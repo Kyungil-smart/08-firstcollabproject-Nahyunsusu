@@ -1,3 +1,4 @@
+// MapManager.cs
 using UnityEngine;
 
 public class MapManager : MonoBehaviour
@@ -14,7 +15,7 @@ public class MapManager : MonoBehaviour
         BuildMap(0);
     }
 
-    // 스테이지 인덱스에 맞는 맵 그래프 생성
+    // MapGraph 생성 및 현재 스테이지 초기화
     public void BuildMap(int stageIndex)
     {
         if (stageIndex >= stagePools.Length)
@@ -28,13 +29,14 @@ public class MapManager : MonoBehaviour
         _graph.Generate(stagePools[stageIndex]);
 
         CurrentRoom = _graph.startRoom;
-        CurrentRoom.isVisited = true;
+        CurrentRoom.state = RoomState.InProgress;
 
         Debug.Log($"[MapManager] 스테이지 {stageIndex} 생성 완료 / 총 방 수: {_graph.allRooms.Count}");
         DebugPrintGraph();
     }
 
-    // 현재 방과 연결된 다음 방으로 이동 시도
+    // 이동 가능 여부를 검사하고 다음 방으로 전환
+    // 방 클리어 상태는 외부 시스템에서 관리
     public bool TryMoveToRoom(RoomNode next)
     {
         if (!CurrentRoom.neighbors.Contains(next))
@@ -43,44 +45,44 @@ public class MapManager : MonoBehaviour
             return false;
         }
 
-        // 전투 방은 클리어 전 이동 불가
-        if (CurrentRoom.roomData.roomType == RoomType.Combat && !CurrentRoom.isCleared)
+        if (CurrentRoom.roomData.roomType == RoomType.Combat &&
+            CurrentRoom.state != RoomState.Cleared)
         {
             Debug.LogWarning("[MapManager] 전투를 끝내야 이동할 수 있습니다.");
             return false;
         }
 
         CurrentRoom = next;
-        CurrentRoom.isVisited = true;
+        CurrentRoom.state = RoomState.InProgress;
 
         Debug.Log($"[MapManager] → {next.nodeId} ({next.roomData.roomType})");
         return true;
     }
 
-    // 보스 처치 후 현재 스테이지 종료 처리
+    // 보스 처치 후 스테이지 종료 처리
     public void OnBossDefeated()
     {
-        _graph.bossRoom.isCleared = true;
+        _graph.bossRoom.state = RoomState.Cleared;
 
         bool isLastStage = _currentStageIndex >= stagePools.Length - 1;
 
         if (isLastStage)
         {
             Debug.Log("[MapManager] 게임 클리어");
-            // 실제 게임 클리어 처리는 GameManager 담당
+            // GameManager 담당
         }
         else
         {
             Debug.Log("[MapManager] 보스 처치 / 포탈 생성");
-            // 다음 스테이지 이동용 포탈 활성화 예정
+            // 포탈 오브젝트 활성화는 나중에
         }
     }
 
     private void DebugPrintGraph()
     {
-        foreach (RoomNode room in _graph.allRooms)
+        foreach (var room in _graph.allRooms)
         {
-            string neighbors = string.Join(", ", room.neighbors.ConvertAll(n => n.nodeId));
+            var neighbors = string.Join(", ", room.neighbors.ConvertAll(n => n.nodeId));
             Debug.Log($"  [{room.nodeId} / {room.roomData.roomType}] → [{neighbors}]");
         }
     }
