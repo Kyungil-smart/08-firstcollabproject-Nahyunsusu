@@ -1,5 +1,8 @@
+using System;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 // 전투 시스템이나 이벤트 또는 플레이어 스탯 관련 기능 등 구현
 public class PlayerController : MonoBehaviour
@@ -11,6 +14,9 @@ public class PlayerController : MonoBehaviour
 	public UnityEvent dashed;
 	public UnityEvent died;
 	public UnityEvent<bool> invincibilityChanged;
+
+	[Header("Debug")]
+	public bool _showPlayerDebugMenu;
 
 	public bool IsInvincible { get; private set; }
 
@@ -39,6 +45,21 @@ public class PlayerController : MonoBehaviour
 		}
 
 		_fsm.ChangeState(_fsm.Hit);
+	}
+
+	private void OnGUI()
+	{
+		if (!_showPlayerDebugMenu) return;
+		
+		if (GUILayout.Button("Reset Health", GUILayout.Height(70), GUILayout.Width(100)))
+		{
+			Health = 100;
+		}
+
+		if (GUILayout.Button("OnHit", GUILayout.Height(70), GUILayout.Width(100)))
+		{
+			OnHit(Random.Range(5, 15));
+		}
 	}
 
 #if UNITY_EDITOR

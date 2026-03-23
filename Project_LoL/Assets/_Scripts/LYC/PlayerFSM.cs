@@ -22,7 +22,6 @@ public class PlayerFSM : MonoBehaviour
 	public Vector2 MoveInput { get; private set; }
 	public Vector2 FacingDir { get; private set; } = Vector2.right;
 	public SkillSlot BufferedSkillSlot { get; private set; }
-	public float StunnedTime => stunDuration;
 
 	private PlayerInputHandler _inputHandler;
 	private PlayerSkillHandler _skillHandler;

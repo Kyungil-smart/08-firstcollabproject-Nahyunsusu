@@ -19,14 +19,16 @@ public class HitState : BaseState
 	private IEnumerator HitStunRoutine()
 	{
 		FSM.Controller.hit.Invoke();
+		FSM.Controller.SetInvincible(true);
 		yield return _yield;
-		
+
 		FSM.ChangeState(FSM.Idle);
 	}
 
 	public override void Exit()
 	{
 		Input.SetInputEnabled(true);
+		FSM.Controller.SetInvincible(false);
 	}
 
 	public override void OnHit()
