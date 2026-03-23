@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private DiceSystem _diceSystem;
+    private DiceSystem _diceSystem;
 
     private int _maxAmmo;
     private int _curAmmo;
@@ -11,6 +11,8 @@ public class Weapon : MonoBehaviour
 
     private void Awake()
     {
+        _diceSystem = new DiceSystem_Random();
+
         if(_diceSystem != null)
         {
             _maxAmmo = _diceSystem.RollDice();
@@ -23,14 +25,17 @@ public class Weapon : MonoBehaviour
         _curAmmo = _maxAmmo;
     }
 
-    private void UseAmmo()
+    public void UseAmmo()
     {
         if (_curAmmo > 0) 
             _curAmmo--;
     }
 
-    private void Reload()
+    public void Reload()
     {
+        // 다이스시스템에서 값 받아옴
+        _maxAmmo = _diceSystem.RollDice();
+
         _curAmmo = _maxAmmo;
     }
 }
