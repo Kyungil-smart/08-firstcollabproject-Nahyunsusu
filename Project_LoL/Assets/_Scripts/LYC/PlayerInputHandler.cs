@@ -5,12 +5,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-	public event Action<Vector2> moved;
-	public event Action leftSkillPerformed;
-	public event Action rightSkillPerformed;
-	public event Action dashed;
+	public event Action<Vector2> Moved;
+	public event Action LeftSkillPerformed;
+	public event Action RightSkillPerformed;
+	public event Action Dashed;
+	public event Action GroupChanged;
 
-	[SerializeField] private float _skillRepeatInterval = 0.1f;
+	[SerializeField] private float skillRepeatInterval = 0.1f;
 
 	private PlayerInputSystem _inputSystem;
 	private InputAction _moveAction;
@@ -32,7 +33,7 @@ public class PlayerInputHandler : MonoBehaviour
 	{
 		if (_isMoving)
 		{
-			moved?.Invoke(_moveAction.ReadValue<Vector2>());
+			Moved?.Invoke(_moveAction.ReadValue<Vector2>());
 		}
 	}
 
@@ -41,31 +42,46 @@ public class PlayerInputHandler : MonoBehaviour
 		DisposeAll();
 	}
 
-	void InitInput()
+	public void SetInputEnabled(bool enable)
 	{
-		_skillRepeatYield = new WaitForSeconds(_skillRepeatInterval);
+		if (enable) _inputSystem?.Enable();
+		else _inputSystem?.Disable();
+	}
+
+	private void InitInput()
+	{
+		_skillRepeatYield = new WaitForSeconds(skillRepeatInterval);
 		_inputSystem = new PlayerInputSystem();
 		_inputSystem.Enable();
 	}
 
-	void BindActions()
+	private void BindActions()
 	{
 		if (_inputSystem == null) return;
 
+		// Skills
 		_inputSystem.Player.LeftSkill.started += _ => StartSkillRepeat(ref _leftSkillCoroutine, OnLeftSkillPerformed);
 		_inputSystem.Player.LeftSkill.canceled += _ => StopRepeat(ref _leftSkillCoroutine);
-
 		_inputSystem.Player.RightSkill.started += _ => StartSkillRepeat(ref _rightSkillCoroutine, OnRightSkillPerformed);
 		_inputSystem.Player.RightSkill.canceled += _ => StopRepeat(ref _rightSkillCoroutine);
 
+		// Movement
 		_moveAction = _inputSystem.Player.Move;
 		_moveAction.performed += _ => _isMoving = true;
-		_moveAction.canceled += _ => _isMoving = false;
+		_moveAction.canceled += _ =>
+		{
+			Moved?.Invoke(Vector2.zero);
+			_isMoving = false;
+		};
 
-		_inputSystem.Player.Dash.performed += _ => dashed?.Invoke();
+		// Dash
+		_inputSystem.Player.Dash.performed += _ => Dashed?.Invoke();
+
+		// Skill Change
+		_inputSystem.Player.ChangeSkillGroup.performed += _ => GroupChanged?.Invoke();
 	}
 
-	void DisposeAll()
+	private void DisposeAll()
 	{
 		if (_inputSystem == null) return;
 		_inputSystem.Disable();
@@ -94,6 +110,6 @@ public class PlayerInputHandler : MonoBehaviour
 		}
 	}
 
-	private void OnLeftSkillPerformed() => leftSkillPerformed?.Invoke();
-	private void OnRightSkillPerformed() => rightSkillPerformed?.Invoke();
+	private void OnLeftSkillPerformed() => LeftSkillPerformed?.Invoke();
+	private void OnRightSkillPerformed() => RightSkillPerformed?.Invoke();
 }
