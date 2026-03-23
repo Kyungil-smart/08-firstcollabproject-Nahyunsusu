@@ -12,23 +12,19 @@ public class PlayerController : MonoBehaviour
 	public UnityEvent died;
 	public UnityEvent<bool> invincibilityChanged;
 
-	public bool IsInvincible
-	{
-		get => _isInvincible;
-		set
-		{
-			_isInvincible = value;
-			invincibilityChanged.Invoke(_isInvincible);
-		}
-	}
-
-	private bool _isInvincible;
+	public bool IsInvincible { get; private set; }
 
 	private PlayerFSM _fsm;
 
 	private void Awake()
 	{
 		_fsm = GetComponent<PlayerFSM>();
+	}
+
+	public void SetInvincible(bool enable)
+	{
+		IsInvincible = enable;
+		invincibilityChanged.Invoke(enable);
 	}
 
 	public void OnHit(int damageAmount)
