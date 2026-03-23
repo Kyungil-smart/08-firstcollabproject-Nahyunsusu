@@ -55,8 +55,8 @@ public class PlayerInputHandler : MonoBehaviour
 		_inputSystem.Player.LeftSkill.started += _ => StartSkillRepeat(ref _leftSkillCoroutine, OnLeftSkillPerformed);
 		_inputSystem.Player.LeftSkill.canceled += _ => StopRepeat(ref _leftSkillCoroutine);
 
-		_inputSystem.Player.RightSkill.started += _ => StartSkillRepeat(ref _leftSkillCoroutine, OnRightSkillPerformed);
-		_inputSystem.Player.RightSkill.canceled += _ => StopRepeat(ref _leftSkillCoroutine);
+		_inputSystem.Player.RightSkill.started += _ => StartSkillRepeat(ref _rightSkillCoroutine, OnRightSkillPerformed);
+		_inputSystem.Player.RightSkill.canceled += _ => StopRepeat(ref _rightSkillCoroutine);
 
 		_moveAction = _inputSystem.Player.Move;
 		_moveAction.performed += _ => _isMoving = true;
