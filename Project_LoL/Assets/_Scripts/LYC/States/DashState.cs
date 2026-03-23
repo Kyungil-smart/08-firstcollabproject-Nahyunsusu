@@ -28,7 +28,7 @@ public class DashState : BaseState
 
 	private IEnumerator DashCoroutine(Vector2 dir)
 	{
-		FSM.Controller.IsInvincible = true;
+		FSM.Controller.SetInvincible(true);
 		FSM.Controller.dashed.Invoke();
 
 		float elapsed = 0f;
@@ -45,7 +45,7 @@ public class DashState : BaseState
 
 	public override void Exit()
 	{
-		FSM.Controller.IsInvincible = false;
+		FSM.Controller.SetInvincible(false);
 		StopCoroutine();
 		_rigidbody.linearVelocity = Vector2.zero;
 	}
