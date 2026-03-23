@@ -38,4 +38,9 @@ public class Weapon : MonoBehaviour
 
         _curAmmo = _maxAmmo;
     }
+
+    public void ApplyEnhancement(int num)
+    {
+
+    }
 }
