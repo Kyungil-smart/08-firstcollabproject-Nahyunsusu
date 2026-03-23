@@ -21,14 +21,15 @@ public class DashState : BaseState
 		Vector2 dir = FSM.MoveInput != Vector2.zero
 			? FSM.MoveInput.normalized
 			: FSM.FacingDir;
-
 		Input.SetInputEnabled(false);
+
 		StartCoroutine(DashCoroutine(dir));
 	}
 
 	private IEnumerator DashCoroutine(Vector2 dir)
 	{
-		// TODO: 무적 설정
+		FSM.Controller.IsInvincible = true;
+		FSM.Controller.dashed.Invoke();
 
 		float elapsed = 0f;
 		while (elapsed < _dashDuration)
@@ -44,7 +45,7 @@ public class DashState : BaseState
 
 	public override void Exit()
 	{
-		// TODO: 무적 해제
+		FSM.Controller.IsInvincible = false;
 		StopCoroutine();
 		_rigidbody.linearVelocity = Vector2.zero;
 	}

@@ -1,11 +1,35 @@
-﻿public class HitState : BaseState
+﻿using System.Collections;
+using UnityEngine;
+
+public class HitState : BaseState
 {
-	public HitState(PlayerFSM fsm, PlayerInputHandler input) : base(fsm, input)
+	private YieldInstruction _yield;
+
+	public HitState(PlayerFSM fsm, PlayerInputHandler input, float stunDuration) : base(fsm, input)
 	{
+		_yield = new WaitForSeconds(stunDuration);
 	}
 
 	public override void Enter()
 	{
+		Input.SetInputEnabled(false);
+		StartCoroutine(HitStunRoutine());
+	}
+
+	private IEnumerator HitStunRoutine()
+	{
+		FSM.Controller.hit.Invoke();
+		yield return _yield;
 		
+		FSM.ChangeState(FSM.Idle);
+	}
+
+	public override void Exit()
+	{
+		Input.SetInputEnabled(true);
+	}
+
+	public override void OnHit()
+	{
 	}
 }

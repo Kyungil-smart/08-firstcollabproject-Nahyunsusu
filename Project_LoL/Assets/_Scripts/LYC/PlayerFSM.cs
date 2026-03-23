@@ -5,6 +5,7 @@ public class PlayerFSM : MonoBehaviour
 	[Header("Stats")] [SerializeField] private float moveSpeed = 8f;
 	[SerializeField] private float dashSpeed = 20f;
 	[SerializeField] private float dashDuration = 0.2f;
+	[SerializeField] private float stunDuration = 0.2f;
 
 	#region States
 
@@ -21,11 +22,11 @@ public class PlayerFSM : MonoBehaviour
 	public Vector2 MoveInput { get; private set; }
 	public Vector2 FacingDir { get; private set; } = Vector2.right;
 	public SkillSlot BufferedSkillSlot { get; private set; }
+	public float StunnedTime => stunDuration;
 
 	private PlayerInputHandler _inputHandler;
 	private PlayerSkillHandler _skillHandler;
 	private Rigidbody2D _rigidbody;
-
 	private BaseState _currentState;
 
 	private void Awake()
@@ -40,7 +41,7 @@ public class PlayerFSM : MonoBehaviour
 		Dash = new DashState(this, _inputHandler, _rigidbody, dashSpeed, dashDuration);
 		Attack = new AttackState(this, _inputHandler, _skillHandler);
 		Die = new DieState(this, _inputHandler);
-		Hit = new HitState(this, _inputHandler);
+		Hit = new HitState(this, _inputHandler, stunDuration);
 	}
 
 	private void OnEnable()
