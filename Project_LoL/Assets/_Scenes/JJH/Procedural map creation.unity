@@ -240,7 +240,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccdb7a308ce98584a9d019f3c61f3545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapManager
-  stagePools: []
+  stagePools:
+  - {fileID: 11400000, guid: e23a45cdac0ee6b498006e7f3d481045, type: 2}
+  - {fileID: 11400000, guid: 578ce0a5314d35548b582a5d65118092, type: 2}
+  - {fileID: 11400000, guid: 1abb7a6493e2495479370df9bf746790, type: 2}
 --- !u!4 &1635943200
 Transform:
   m_ObjectHideFlags: 0

@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5648a8d13f98b4e4fb1e784f01720775, type: 3}
-  m_Name: NewRoomData
+  m_Name: Stage2_Combat_01
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
-  roomName: 
-  roomType: 0
-  stageIndex: 0
+  roomName: Stage2_Combat_01
+  roomType: 1
