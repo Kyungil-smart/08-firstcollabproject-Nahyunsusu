@@ -24,11 +24,8 @@ public class PlayerInputHandler : MonoBehaviour
 
 	private void Awake()
 	{
-		_inputSystem = new PlayerInputSystem();
-		_inputSystem.Enable();
-		_skillRepeatYield = new WaitForSeconds(_skillRepeatInterval);
-
-		Subscribe();
+		InitInput();
+		BindActions();
 	}
 
 	private void Update()
@@ -41,11 +38,17 @@ public class PlayerInputHandler : MonoBehaviour
 
 	private void OnDestroy()
 	{
-		UnSubscribe();
-		_inputSystem.Dispose();
+		DisposeAll();
 	}
 
-	void Subscribe()
+	void InitInput()
+	{
+		_skillRepeatYield = new WaitForSeconds(_skillRepeatInterval);
+		_inputSystem = new PlayerInputSystem();
+		_inputSystem.Enable();
+	}
+
+	void BindActions()
 	{
 		if (_inputSystem == null) return;
 
@@ -58,15 +61,15 @@ public class PlayerInputHandler : MonoBehaviour
 		_moveAction = _inputSystem.Player.Move;
 		_moveAction.performed += _ => _isMoving = true;
 		_moveAction.canceled += _ => _isMoving = false;
+
+		_inputSystem.Player.Dash.performed += _ => dashed?.Invoke();
 	}
 
-	void UnSubscribe()
+	void DisposeAll()
 	{
 		if (_inputSystem == null) return;
-
-		_inputSystem.Player.LeftSkill.Dispose();
-		_inputSystem.Player.RightSkill.Dispose();
-		_moveAction.Dispose();
+		_inputSystem.Disable();
+		_inputSystem.Dispose();
 	}
 
 	private void StartSkillRepeat(ref Coroutine c, Action skillAction)
