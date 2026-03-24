@@ -68,7 +68,7 @@ public class MapGraph
             List<RoomNode> branch = branches[i];
             float branchWidth = branchWidths[i];
             float branchCenterX = currentX + branchWidth * 0.5f;
-            float currentY = -(startRoom.size.y * 0.5f + RoomSpacing);
+            float currentY = -(startRoom.size.y * 0.5f + RoomSpacing + branch[0].size.y * 0.5f);
 
             foreach (RoomNode node in branch)
             {

@@ -21,7 +21,8 @@ public class RoomVisualizer : MonoBehaviour
 
             GameObject obj = new GameObject($"Visual_{room.nodeId}");
             obj.transform.SetParent(transform);
-            obj.transform.position = new Vector3(room.size.x, room.size.y, 1f);
+            obj.transform.position = new Vector3(room.worldPosition.x, room.worldPosition.y, 0f);
+            obj.transform.localScale = new Vector3(room.size.x, room.size.y, 1f);
 
             SpriteRenderer sr = obj.AddComponent<SpriteRenderer>();
             sr.sprite = CreateRectSprite(room.size.x, room.size.y);
@@ -76,6 +77,7 @@ public class RoomVisualizer : MonoBehaviour
             1f
         );
         
+        _spriteCache.Add(key, sprite);
         return sprite;
     }
     
