@@ -8,6 +8,7 @@ public class MapGraph
     public List<RoomNode> allRooms;
 
     private int _nodeCounter = 0;
+    private const int RoomSpacing = 5;
 
     public MapGraph()
     {
@@ -19,7 +20,7 @@ public class MapGraph
     private RoomNode CreateNode(RoomData data)
     {
         RoomNode node = new RoomNode($"room_{_nodeCounter++}", data);
-        _nodeCounter++;
+        node.size = data.GetRoomSize();
         allRooms.Add(node);
         return node;
     }
@@ -28,6 +29,7 @@ public class MapGraph
     {
         // 시작 방 먼저 생성
         startRoom = CreateNode(pool.startData);
+        startRoom.worldPosition = Vector2.zero;
 
         // 시작 방 이후 갈래 수
         int branchCount = Random.Range(2, 5);
@@ -38,9 +40,7 @@ public class MapGraph
         // 갈래별 방 목록
         List<List<RoomNode>> branches = new List<List<RoomNode>>();
         for (int i = 0; i < branchCount; i++)
-        {
             branches.Add(new List<RoomNode>());
-        }
 
         // 셔플된 방을 갈래에 순서대로 분배
         int branchIndex = 0;
@@ -49,7 +49,34 @@ public class MapGraph
             branches[branchIndex % branchCount].Add(CreateNode(data));
             branchIndex++;
         }
+        
+        // 갈래별 위치 계산
+        // 갈래를 좌우로 나누고, 같은 갈래 안에서는 아래 방향으로 배치
+        float totalWidth = 0f;
+        foreach (List<RoomNode> branch in branches)
+        {
+            totalWidth += GetBranchWidth(branch);
+        }
 
+        totalWidth += RoomSpacing * (branches.Count - 1);
+        float startX = -totalWidth * 0.5f;
+
+        for (int i = 0; i < branches.Count; i++)
+        {
+            List<RoomNode> branch = branches[i];
+            float branchWidth = GetBranchWidth(branch);
+            float branchCenterX = startX + branchWidth * 0.5f;
+            float currentY = -(startRoom.size.y * 0.5f + RoomSpacing);
+
+            foreach (RoomNode node in branch)
+            {
+                node.worldPosition = new Vector2(branchCenterX, currentY);
+                currentY -= node.size.y + RoomSpacing;
+            }
+
+            startX += branchWidth + RoomSpacing;
+        }
+        
         // 시작 방에서 각 갈래 첫 방으로 연결
         foreach (List<RoomNode> branch in branches)
         {
@@ -73,11 +100,41 @@ public class MapGraph
 
         // 합류 후에는 가장 긴 갈래 끝에 강화 방과 보스 방 배치
         RoomNode endNode = GetLongestBranchEnd(branches);
-        RoomNode upgradeNode = CreateNode(pool.upgradeData);
+        RoomNode repairNode = CreateNode(pool.repairData);
         bossRoom = CreateNode(pool.bossData);
 
-        endNode.ConnectTo(upgradeNode);
-        upgradeNode.ConnectTo(bossRoom);
+        float repairOffsetY = endNode.size.y * 0.5f;
+        repairOffsetY += RoomSpacing;
+        repairOffsetY += repairNode.size.y * 0.5f;
+
+        repairNode.worldPosition = new Vector2(
+            endNode.worldPosition.x,
+            endNode.worldPosition.y - repairOffsetY
+        );
+        
+        float bossOffsetY = repairNode.size.y * 0.5f;
+        bossOffsetY += RoomSpacing;
+        bossOffsetY += bossRoom.size.y * 0.5f;
+
+        bossRoom.worldPosition = new Vector2(
+            repairNode.worldPosition.x,
+            repairNode.worldPosition.y - bossOffsetY
+        );
+
+        endNode.ConnectTo(repairNode);
+        repairNode.ConnectTo(bossRoom);
+    }
+    
+    // 갈래에서 가장 넓은 방 기준으로 가로 폭 계산
+    private float GetBranchWidth(List<RoomNode> branch)
+    {
+        float max = 0f;
+        foreach (RoomNode node in branch)
+        {
+            if (node.size.x > max)
+                max = node.size.x;
+        }
+        return max;
     }
 
     // 일반 배치용 방만 모아서 섞기
@@ -89,8 +146,6 @@ public class MapGraph
         {
             list.Add(combat);
         }
-
-        list.Add(pool.shopData);
 
         // Fisher-Yates 셔플
         for (int i = list.Count - 1; i > 0; i--)

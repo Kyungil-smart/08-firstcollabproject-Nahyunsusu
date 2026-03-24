@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public enum RoomState
 {
@@ -12,20 +13,18 @@ public enum RoomState
 public class RoomNode
 {
     public string nodeId;          // 디버그 / 식별용 ID (로그, 추적용)
-    
     public RoomData roomData;      // 실제 방 데이터 (타입, 설정 등)
-    
     public RoomState state;        // 현재 진행 상태
-    
     public List<RoomNode> neighbors; // 연결된 인접 노드 (양방향 그래프)
+    
+    public Vector2Int size;        // 방 크기 (타일 단위)
+    public Vector2 worldPosition;  // 씬 상 위치
 
     public RoomNode(string id, RoomData data)
     {
         nodeId = id;
         roomData = data;
-        
         state = RoomState.Unvisited;
-
         neighbors = new List<RoomNode>();
     }
 
