@@ -327,7 +327,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CorridorGenerator
   minWidth: 2
   maxWidth: 6
+  wallPadding: 1.5
   corridorMaterial: {fileID: 0}
+  escapeDist: 6
 --- !u!114 &1635943202
 MonoBehaviour:
   m_ObjectHideFlags: 0
