@@ -1,14 +1,13 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 public class PlayerSkillHandler : MonoBehaviour
 {
-	public UnityEvent<SkillSlot> GroupChanged;
+	public UnityEvent<SkillSlot> SkillSetChanged;
 
 	private PlayerInputHandler _inputHandler;
 
-	private SkillSlot _currentGroup = SkillSlot.Left;
+	private SkillSlot _currentSkillSet = SkillSlot.Left;
 
 	private void Awake()
 	{
@@ -17,23 +16,23 @@ public class PlayerSkillHandler : MonoBehaviour
 
 	private void OnEnable()
 	{
-		_inputHandler.GroupChanged += Group;
+		_inputHandler.SkillSetChanged += ChangeSkillSet;
 	}
 
 	private void OnDisable()
 	{
-		_inputHandler.GroupChanged -= Group;
+		_inputHandler.SkillSetChanged -= ChangeSkillSet;
 	}
 
 	public void Execute(SkillSlot slot)
 	{
-		Debug.Log($"{_currentGroup}.{slot} 스킬 실행");
+		Debug.Log($"{_currentSkillSet}의 {slot} 스킬 실행");
 	}
 
-	private void Group()
+	private void ChangeSkillSet()
 	{
-		_currentGroup = _currentGroup == SkillSlot.Left ? SkillSlot.Right : SkillSlot.Left;
-		Debug.Log($"스킬 그룹 변경 -> {_currentGroup}");
-		GroupChanged?.Invoke(_currentGroup);
+		_currentSkillSet = _currentSkillSet == SkillSlot.Left ? SkillSlot.Right : SkillSlot.Left;
+		Debug.Log($"스킬셋 변경 -> {_currentSkillSet}");
+		SkillSetChanged?.Invoke(_currentSkillSet);
 	}
 }

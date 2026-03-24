@@ -1,56 +1,73 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
-public class DashState : BaseState
+namespace _Scripts.LYC.States
 {
-	private readonly Rigidbody2D _rigidbody;
-	private readonly float _dashSpeed;
-	private readonly float _dashDuration;
-
-	public DashState(PlayerFSM fsm, PlayerInputHandler input,
-		Rigidbody2D rigidbody, float dashSpeed, float dashDuration)
-		: base(fsm, input)
+	public class DashState : BaseState
 	{
-		_rigidbody = rigidbody;
-		_dashSpeed = dashSpeed;
-		_dashDuration = dashDuration;
-	}
+		private readonly Rigidbody2D _rigidbody;
+		private readonly float _dashDistance;
+		private readonly float _dashTime;
+		private readonly float _dashCooldown;
 
-	public override void Enter()
-	{
-		Vector2 dir = FSM.MoveInput != Vector2.zero
-			? FSM.MoveInput.normalized
-			: FSM.FacingDir;
-		Input.SetInputEnabled(false);
+		private float _lastDashTime;
 
-		StartCoroutine(DashCoroutine(dir));
-	}
-
-	private IEnumerator DashCoroutine(Vector2 dir)
-	{
-		FSM.Controller.SetInvincible(true);
-		FSM.Controller.dashed.Invoke();
-
-		float elapsed = 0f;
-		while (elapsed < _dashDuration)
+		public DashState(PlayerFSM fsm, PlayerInputHandler input, Rigidbody2D rigidbody,
+			float dashTime, float dashDistance, float dashCooldown)
+			: base(fsm, input)
 		{
-			_rigidbody.linearVelocity = dir * _dashSpeed;
-			elapsed += Time.deltaTime;
-			yield return null;
+			_rigidbody = rigidbody;
+			_dashDistance = dashDistance;
+			_dashTime = dashTime;
+			_dashCooldown = dashCooldown;
+			_lastDashTime = -9999;
 		}
 
-		Input.SetInputEnabled(true);
-		FSM.ChangeState(FSM.MoveInput != Vector2.zero ? FSM.Move : FSM.Idle);
-	}
+		public override void Enter()
+		{
+			if (Time.time < _lastDashTime + _dashCooldown)
+			{
+				Debug.Log($"Dash cooldown {_lastDashTime + _dashCooldown - Time.time:F2}");
+				FSM.ChangeState(FSM.MoveInput != Vector2.zero ? FSM.Move : FSM.Idle);
+				return;
+			}
 
-	public override void Exit()
-	{
-		FSM.Controller.SetInvincible(false);
-		StopCoroutine();
-		_rigidbody.linearVelocity = Vector2.zero;
-	}
+			Vector2 dir = FSM.MoveInput != Vector2.zero
+				? FSM.MoveInput.normalized
+				: FSM.FacingDir;
+			Input.SetInputEnabled(false);
 
-	public override void OnHit()
-	{
+			StartCoroutine(DashCoroutine(dir));
+		}
+
+		private IEnumerator DashCoroutine(Vector2 dir)
+		{
+			FSM.Controller.SetInvincible(true);
+			FSM.Controller.dashed.Invoke();
+			_rigidbody.linearVelocity = dir * (_dashDistance / _dashTime);
+			_lastDashTime = Time.time;
+
+			float elapsed = 0f;
+			while (elapsed < _dashTime)
+			{
+				elapsed += Time.deltaTime;
+				yield return null;
+			}
+
+			FSM.ChangeState(FSM.MoveInput != Vector2.zero ? FSM.Move : FSM.Idle);
+		}
+
+		public override void Exit()
+		{
+			StopCoroutine();
+			FSM.Controller.SetInvincible(false);
+			Input.SetInputEnabled(true);
+
+			_rigidbody.linearVelocity = Vector2.zero;
+		}
+
+		public override void OnHit()
+		{
+		}
 	}
 }

@@ -1,25 +1,29 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class AttackState : BaseState
+namespace _Scripts.LYC.States
 {
-	private PlayerSkillHandler _skill;
-
-	public AttackState(PlayerFSM fsm, PlayerInputHandler input, PlayerSkillHandler skill)
-		: base(fsm, input)
+	public class AttackState : BaseState
 	{
-		_skill = skill;
-	}
+		private PlayerSkillHandler _skill;
 
-	public override void Enter()
-	{
-		StartCoroutine(ExecuteSkill());
-	}
+		public AttackState(PlayerFSM fsm, PlayerInputHandler input, PlayerSkillHandler skill)
+			: base(fsm, input)
+		{
+			_skill = skill;
+		}
 
-	private IEnumerator ExecuteSkill()
-	{
-		yield return null;
-		_skill.Execute(FSM.BufferedSkillSlot);
-		FSM.ChangeState(FSM.MoveInput == Vector2.zero ? FSM.Idle : FSM.Move);
+		public override void Enter()
+		{
+			StartCoroutine(ExecuteSkill());
+		}
+
+		private IEnumerator ExecuteSkill()
+		{
+			_skill.Execute(FSM.BufferedSkillSlot);
+			yield return null;
+
+			FSM.ChangeState(FSM.MoveInput == Vector2.zero ? FSM.Idle : FSM.Move);
+		}
 	}
 }
