@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5648a8d13f98b4e4fb1e784f01720775, type: 3}
-  m_Name: Stage1_Combat_08
+  m_Name: Stage1_Repair
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
-  roomName: Stage1_Combat_08
-  roomType: 1
+  roomName: Stage1_Repair
+  roomType: 2
+  fixedSize: {x: 0, y: 0}
+  minSize: {x: 10, y: 10}
+  maxSize: {x: 20, y: 20}

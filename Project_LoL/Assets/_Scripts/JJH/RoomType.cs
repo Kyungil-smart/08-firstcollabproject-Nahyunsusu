@@ -4,7 +4,6 @@ public enum RoomType
 {
     Start,      // 시작 지점
     Combat,     // 일반 전투
-    Shop,       // 상점
-    Upgrade,    // 강화
+    Repair,  // 정비 방 (상점 + 강화 통합)
     Boss        // 보스 방 (마지막)
 }
