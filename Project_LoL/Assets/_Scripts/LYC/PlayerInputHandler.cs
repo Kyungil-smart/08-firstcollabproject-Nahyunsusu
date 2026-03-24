@@ -9,7 +9,7 @@ public class PlayerInputHandler : MonoBehaviour
 	public event Action LeftSkillPerformed;
 	public event Action RightSkillPerformed;
 	public event Action Dashed;
-	public event Action GroupChanged;
+	public event Action SkillSetChanged;
 
 	[SerializeField] private float skillRepeatInterval = 0.1f;
 
@@ -78,7 +78,7 @@ public class PlayerInputHandler : MonoBehaviour
 		_inputSystem.Player.Dash.performed += _ => Dashed?.Invoke();
 
 		// Skill Change
-		_inputSystem.Player.ChangeSkillGroup.performed += _ => GroupChanged?.Invoke();
+		_inputSystem.Player.ChangeSkillGroup.performed += _ => SkillSetChanged?.Invoke();
 	}
 
 	private void DisposeAll()
