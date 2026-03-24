@@ -20,6 +20,4 @@ public class EnemyPostAttackState : EnemyStateBase
         else
             _fsm.ChangeState(EnemyStateType.Idle);
     }
-
-    public override void Exit() { }
 }

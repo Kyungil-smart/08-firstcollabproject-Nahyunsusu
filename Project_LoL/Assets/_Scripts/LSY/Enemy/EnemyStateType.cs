@@ -4,5 +4,6 @@ public enum EnemyStateType
     Chase,
     Hit,
     Attack,
-    PostAttack
+    PostAttack,
+    Die
 }
