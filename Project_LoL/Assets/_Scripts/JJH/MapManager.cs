@@ -39,22 +39,25 @@ public class MapManager : MonoBehaviour
         CurrentRoom = _graph.startRoom;
         CurrentRoom.state = RoomState.InProgress;
         
-        // 맵 시각화 및 연결 요소 생성
-        if (corridorGenerator != null)
-            corridorGenerator.Generate(_graph);
-        else
-            Debug.LogWarning("[MapManager] CorridorGenerator 가 연결되어 있지 않습니다.");
-        
-        if (roomVisualizer != null)
-            roomVisualizer.Visualize(_graph);
-        else
-            Debug.LogWarning("[MapManager] RoomVisualizer 가 연결되어 있지 않습니다.");
-
+        // 문 데이터 먼저 생성
         if (doorPlacer != null)
             doorPlacer.PlaceDoors(_graph);
         else
             Debug.LogWarning("[MapManager] DoorPlacer 가 연결되어 있지 않습니다.");
 
+        // 문 위치 기준으로 복도 생성
+        if (corridorGenerator != null)
+            corridorGenerator.Generate(_graph);
+        else
+            Debug.LogWarning("[MapManager] CorridorGenerator 가 연결되어 있지 않습니다.");
+
+        // 방 시각화
+        if (roomVisualizer != null)
+            roomVisualizer.Visualize(_graph);
+        else
+            Debug.LogWarning("[MapManager] RoomVisualizer 가 연결되어 있지 않습니다.");
+
+        // 문 시각화
         if (doorVisualizer != null)
             doorVisualizer.Visualize(_graph);
         else
