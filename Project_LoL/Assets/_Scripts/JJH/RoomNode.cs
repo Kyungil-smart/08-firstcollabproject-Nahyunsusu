@@ -20,12 +20,16 @@ public class RoomNode
     public Vector2Int size;        // 방 크기 (타일 단위)
     public Vector2 worldPosition;  // 씬 상 위치
 
+    // 방에 연결된 문 정보
+    public List<DoorData> doors;
+    
     public RoomNode(string id, RoomData data)
     {
         nodeId = id;
         roomData = data;
         state = RoomState.Unvisited;
         neighbors = new List<RoomNode>();
+        doors = new List<DoorData>();
     }
 
     // 다른 노드와 연결 (양방향)
