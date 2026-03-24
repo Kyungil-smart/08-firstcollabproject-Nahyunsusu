@@ -465,6 +465,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1abb7a6493e2495479370df9bf746790, type: 2}
   corridorGenerator: {fileID: 1635943201}
   roomVisualizer: {fileID: 1635943202}
+  roomSpacing: 15
 --- !u!4 &1635943200
 Transform:
   m_ObjectHideFlags: 0

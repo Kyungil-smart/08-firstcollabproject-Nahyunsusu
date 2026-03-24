@@ -8,7 +8,7 @@ public class MapGraph
     public List<RoomNode> allRooms;
 
     private int _nodeCounter = 0;
-    private const int RoomSpacing = 5;
+    private int RoomSpacing = 15;
 
     public MapGraph()
     {
@@ -25,8 +25,10 @@ public class MapGraph
         return node;
     }
 
-    public void Generate(MapRoomPool pool)
+    public void Generate(MapRoomPool pool, int roomSpacing)
     {
+        RoomSpacing = roomSpacing;
+        
         // 시작 방 먼저 생성
         startRoom = CreateNode(pool.startData);
         startRoom.worldPosition = Vector2.zero;
@@ -68,12 +70,12 @@ public class MapGraph
             List<RoomNode> branch = branches[i];
             float branchWidth = branchWidths[i];
             float branchCenterX = currentX + branchWidth * 0.5f;
-            float currentY = -(startRoom.size.y * 0.5f + RoomSpacing + branch[0].size.y * 0.5f);
+            float currentY = startRoom.size.y * 0.5f + RoomSpacing + branch[0].size.y * 0.5f;
 
             foreach (RoomNode node in branch)
             {
                 node.worldPosition = new Vector2(branchCenterX, currentY);
-                currentY -= node.size.y + RoomSpacing;
+                currentY += node.size.y + RoomSpacing;
             }
 
             currentX += branchWidth + RoomSpacing;
@@ -111,7 +113,7 @@ public class MapGraph
 
         repairNode.worldPosition = new Vector2(
             endNode.worldPosition.x,
-            endNode.worldPosition.y - repairOffsetY
+            endNode.worldPosition.y + repairOffsetY
         );
         
         float bossOffsetY = repairNode.size.y * 0.5f;
@@ -120,7 +122,7 @@ public class MapGraph
 
         bossRoom.worldPosition = new Vector2(
             repairNode.worldPosition.x,
-            repairNode.worldPosition.y - bossOffsetY
+            repairNode.worldPosition.y + bossOffsetY
         );
 
         endNode.ConnectTo(repairNode);

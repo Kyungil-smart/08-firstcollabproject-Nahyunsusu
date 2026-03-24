@@ -11,6 +11,9 @@ public class MapManager : MonoBehaviour
     
     [Header("방 시각화")]
     public RoomVisualizer roomVisualizer;
+    
+    [Header("맵 생성 설정")]
+    [SerializeField] private int roomSpacing = 15;
 
     private MapGraph _graph;
     private int _currentStageIndex;
@@ -32,7 +35,7 @@ public class MapManager : MonoBehaviour
 
         _currentStageIndex = stageIndex;
         _graph = new MapGraph();
-        _graph.Generate(stagePools[stageIndex]);
+        _graph.Generate(stagePools[stageIndex], roomSpacing);
 
         CurrentRoom = _graph.startRoom;
         CurrentRoom.state = RoomState.InProgress;
