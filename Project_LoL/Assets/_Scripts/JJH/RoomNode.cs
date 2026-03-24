@@ -8,11 +8,9 @@ public enum RoomState
     Cleared      // 클리어
 }
 
-// 그래프 기반 맵에서 사용하는 노드
-// 각 방(RoomData)을 하나의 노드로 보고 연결 구조를 관리
 public class RoomNode
 {
-    public string nodeId;          // 디버그 / 식별용 ID (로그, 추적용)
+    public string nodeId;          // 디버그용 ID
     public RoomData roomData;      // 실제 방 데이터 (타입, 설정 등)
     public RoomState state;        // 현재 진행 상태
     public List<RoomNode> neighbors; // 연결된 인접 노드 (양방향 그래프)
@@ -41,5 +39,16 @@ public class RoomNode
 
         if (!other.neighbors.Contains(this))
             other.neighbors.Add(this);
+    }
+    
+    public Rect GetRect()
+    {
+        // worldPosition이 중심점일 경우
+        return new Rect(
+            worldPosition.x - (size.x * 0.5f),
+            worldPosition.y - (size.y * 0.5f),
+            size.x,
+            size.y
+        );
     }
 }
