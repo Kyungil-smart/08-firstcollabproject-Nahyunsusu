@@ -6,12 +6,12 @@ using Random = UnityEngine.Random;
 // 전투 시스템이나 이벤트 또는 플레이어 스탯 관련 기능 등 구현
 public class PlayerController : MonoBehaviour
 {
-	public bool showPlayerDebugMenu;
+	#region Serializable Fields
+
+	[Header("Debug")] public bool enableDebugMenu;
+	public PlayerDataSO sampleSOData;
 
 	[field: Header("Player")]
-	[field: SerializeField]
-	public PlayerDataSO PlayerData { get; private set; }
-
 	[field: SerializeField]
 	public int Health { get; private set; }
 
@@ -26,7 +26,13 @@ public class PlayerController : MonoBehaviour
 	public UnityEvent died;
 	public UnityEvent<bool> invincibilityChanged;
 
+	#endregion
+
+	public PlayerData Data { get; private set; }
+
 	private PlayerFSM _fsm;
+
+	private PlayerDataSO _dataSO;
 
 	private void Awake()
 	{
@@ -36,13 +42,14 @@ public class PlayerController : MonoBehaviour
 	}
 
 	[ContextMenu("Init")]
-	public void Init(PlayerDataSO data = null)
+	public void Init(PlayerDataSO dataSO = null)
 	{
 		// === Player Data ===
-		if (data != null) PlayerData = data;
-		if (PlayerData != null)
+		Data = dataSO != null ? dataSO.Get() : sampleSOData?.Get();
+
+		if (Data != null)
 		{
-			Health = PlayerData.MaxHp;
+			Health = Data.MaxHp;
 			// ...
 		}
 		else
@@ -71,13 +78,14 @@ public class PlayerController : MonoBehaviour
 		_fsm.ChangeState(_fsm.Hit);
 	}
 
+#if UNITY_EDITOR
 	private void OnGUI()
 	{
-		if (!showPlayerDebugMenu) return;
+		if (!enableDebugMenu) return;
 
-		if (GUILayout.Button("Reset Health", GUILayout.Height(70), GUILayout.Width(100)))
+		if (GUILayout.Button("Reset Stat as sample", GUILayout.Height(70), GUILayout.Width(100)))
 		{
-			Health = 100;
+			Init();
 		}
 
 		if (GUILayout.Button("OnHit", GUILayout.Height(70), GUILayout.Width(100)))
@@ -86,7 +94,6 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-#if UNITY_EDITOR
 	[ContextMenu("Debug: OnHit")]
 	private void OnHit()
 	{

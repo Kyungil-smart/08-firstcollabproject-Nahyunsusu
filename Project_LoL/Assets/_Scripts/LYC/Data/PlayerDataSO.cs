@@ -5,16 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/PlayerData")]
 public class PlayerDataSO : ScriptableObject
 {
-	public int StatId => statId;
-	public int MaxHp => maxHp;
-	public int AtkDamage => atkDamage;
-	public float AtkSpeed => atkSpeed;
-	public int MoveSpeed => moveSpeed;
-	public int CritRate => critRate;
-	public int CritDamage => critDamage;
-	public float DashTime => dashTime;
-	public float DashCooldown => dashCooldown;
-	public float DashInvincTime => dashInvincTime;
+	public PlayerData Get() =>
+		new()
+		{
+			StatId = statId,
+			MaxHp = maxHp,
+			AtkDamage = atkDamage,
+			AtkSpeed = atkSpeed,
+			MoveSpeed = moveSpeed,
+			CritRate = critRate,
+			CritDamage = critDamage,
+			DashTime = dashTime,
+			DashCooldown = dashCooldown,
+			DashInvincTime = dashInvincTime,
+		};
 
 	[SerializeField] private int statId;
 	[SerializeField] private int maxHp;

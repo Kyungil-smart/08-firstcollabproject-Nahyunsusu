@@ -42,17 +42,17 @@ public class PlayerFSM : MonoBehaviour
 	[ContextMenu("Init")]
 	public void Init()
 	{
-		var stat = Controller.PlayerData;
-		if (stat == null)
+		var data = Controller.Data;
+		if (data == null)
 		{
 			Debug.LogWarning($"{nameof(PlayerDataSO)} is null");
 			return;
 		}
 
 		Idle = new(this, _inputHandler);
-		Move = new(this, _inputHandler, _rigidbody, stat.MoveSpeed);
+		Move = new(this, _inputHandler, _rigidbody, data.MoveSpeed);
 		Dash = new(this, _inputHandler, _rigidbody,
-			stat.DashTime, dashDistance, stat.DashCooldown);
+			data.DashTime, dashDistance, data.DashCooldown);
 		Attack = new(this, _inputHandler, _skillHandler);
 		Die = new(this, _inputHandler);
 		Hit = new(this, _inputHandler, stunDuration);
