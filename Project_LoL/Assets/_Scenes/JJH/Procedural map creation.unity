@@ -440,6 +440,8 @@ GameObject:
   - component: {fileID: 1635943199}
   - component: {fileID: 1635943201}
   - component: {fileID: 1635943202}
+  - component: {fileID: 1635943204}
+  - component: {fileID: 1635943203}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -463,9 +465,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e23a45cdac0ee6b498006e7f3d481045, type: 2}
   - {fileID: 11400000, guid: 578ce0a5314d35548b582a5d65118092, type: 2}
   - {fileID: 11400000, guid: 1abb7a6493e2495479370df9bf746790, type: 2}
+  roomSpacing: 15
   corridorGenerator: {fileID: 1635943201}
   roomVisualizer: {fileID: 1635943202}
-  roomSpacing: 15
+  doorPlacer: {fileID: 1635943204}
+  doorVisualizer: {fileID: 1635943203}
 --- !u!4 &1635943200
 Transform:
   m_ObjectHideFlags: 0
@@ -508,6 +512,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d97a7a56e6270b4391a80365a3d09b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomVisualizer
+--- !u!114 &1635943203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635943198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c86d49412e552ce4785cf92b9bacdeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorVisualizer
+  doorSize: 2
+--- !u!114 &1635943204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635943198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da3e346423d53143807814a45a99947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorPlacer
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

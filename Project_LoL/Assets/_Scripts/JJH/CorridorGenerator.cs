@@ -25,18 +25,29 @@ public class CorridorGenerator : MonoBehaviour
 
         foreach (RoomNode room in graph.allRooms)
         {
-            foreach (RoomNode neighbor in room.neighbors)
+            foreach (DoorData door in room.doors)
             {
-                string key = GetConnectionKey(room, neighbor);
+                string key = GetConnectionKey(room, door.connectedRoom);
 
                 if (processed.Contains(key))
                     continue;
 
                 processed.Add(key);
+                
+                // 이 문과 연결된 반대편 문 찾기
+                DoorData oppositeDoor = FindOppositeDoor(door.connectedRoom, room);
+
+                if (oppositeDoor == null)
+                    continue;
 
                 float width = Random.Range(minWidth, maxWidth);
-                Vector2[] points = BuildCorridorPoints(room, neighbor);
-                CorridorData corridor = new CorridorData(room, neighbor, width, points);
+                
+                // 문 위치 기준으로 복도 경로 계산
+                Vector2 startPos = room.worldPosition + door.localPosition;
+                Vector2 endPos   = door.connectedRoom.worldPosition + oppositeDoor.localPosition;
+
+                Vector2[] points = BuildCorridorPoints(startPos, endPos, door.direction);
+                CorridorData corridor = new CorridorData(room, door.connectedRoom, width, points);
 
                 _corridors.Add(corridor);
                 DrawCorridor(corridor);
@@ -44,29 +55,36 @@ public class CorridorGenerator : MonoBehaviour
         }
     }
 
-    // 두 방 사이 복도 경로 계산
-    // 같은 높이면 직선, 아니면 L자 꺾임
-    private Vector2[] BuildCorridorPoints(RoomNode a, RoomNode b)
+    // 연결된 방에서 현재 방을 향하는 문 찾기
+    private DoorData FindOppositeDoor(RoomNode room, RoomNode target)
     {
-        Vector2 start = a.worldPosition;
-        Vector2 end   = b.worldPosition;
+        foreach (DoorData door in room.doors)
+        {
+            if (door.connectedRoom == target)
+                return door;
+        }
+        return null;
+    }
+    
+    // 두 방 사이 복도 경로 계산
+    // 수직 문이면 먼저 수직으로 나온 뒤 수평으로 이동, 수평 문이면 반대
+    private Vector2[] BuildCorridorPoints(Vector2 start, Vector2 end, DoorDirection startDir)
+    {
+        float heightDiff = Mathf.Abs(start.y - end.y);
+        float widthDiff  = Mathf.Abs(start.x - end.x);
 
-        // 방 중심이 아닌 경계 기준으로 복도 시작/끝 위치 계산
-        float startY = start.y + a.size.y * 0.5f;
-        float endY   = end.y   - b.size.y * 0.5f;
+        // 거의 직선이면 그냥 직선
+        if (heightDiff < 1f && widthDiff < 1f)
+            return new Vector2[] { start, end };
 
-        Vector2 startPoint = new Vector2(start.x, startY);
-        Vector2 endPoint   = new Vector2(end.x,   endY);
-        
-        float heightDiff = Mathf.Abs(startPoint.y - endPoint.y);
+        // 문 방향 기준으로 꺾임 방향 결정
+        Vector2 mid;
+        if (startDir == DoorDirection.Up || startDir == DoorDirection.Down)
+            mid = new Vector2(start.x, end.y);
+        else
+            mid = new Vector2(end.x, start.y);
 
-        // 높이 차이가 거의 없으면 직선
-        if (heightDiff < 1f)
-            return new Vector2[] { startPoint, endPoint };
-
-        // L자: 수직 이동 후 수평 이동 (꺾임 지점을 시작점 Y 기준으로)
-        Vector2 mid = new Vector2(endPoint.x, startPoint.y);
-        return new Vector2[] { startPoint, mid, endPoint };
+        return new Vector2[] { start, mid, end };
     }
 
     private void DrawCorridor(CorridorData corridor)
