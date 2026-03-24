@@ -1,4 +1,3 @@
-// MapManager.cs
 using UnityEngine;
 
 public class MapManager : MonoBehaviour
@@ -6,14 +5,14 @@ public class MapManager : MonoBehaviour
     [Header("스테이지별 방 풀")]
     public MapRoomPool[] stagePools;
     
-    [Header("복도 생성")]
-    public CorridorGenerator corridorGenerator;
-    
-    [Header("방 시각화")]
-    public RoomVisualizer roomVisualizer;
-    
     [Header("맵 생성 설정")]
     [SerializeField] private int roomSpacing = 15;
+    
+    [Header("맵 출력")]
+    public CorridorGenerator corridorGenerator;
+    public RoomVisualizer roomVisualizer;
+    public DoorPlacer doorPlacer;
+    public DoorVisualizer doorVisualizer;
 
     private MapGraph _graph;
     private int _currentStageIndex;
@@ -40,17 +39,26 @@ public class MapManager : MonoBehaviour
         CurrentRoom = _graph.startRoom;
         CurrentRoom.state = RoomState.InProgress;
         
-        // 복도 시각화
+        // 맵 시각화 및 연결 요소 생성
         if (corridorGenerator != null)
             corridorGenerator.Generate(_graph);
         else
             Debug.LogWarning("[MapManager] CorridorGenerator 가 연결되어 있지 않습니다.");
         
-        // 방 시각화
         if (roomVisualizer != null)
             roomVisualizer.Visualize(_graph);
         else
             Debug.LogWarning("[MapManager] RoomVisualizer 가 연결되어 있지 않습니다.");
+
+        if (doorPlacer != null)
+            doorPlacer.PlaceDoors(_graph);
+        else
+            Debug.LogWarning("[MapManager] DoorPlacer 가 연결되어 있지 않습니다.");
+
+        if (doorVisualizer != null)
+            doorVisualizer.Visualize(_graph);
+        else
+            Debug.LogWarning("[MapManager] DoorVisualizer 가 연결되어 있지 않습니다.");
 
         Debug.Log($"[MapManager] 스테이지 {stageIndex} 생성 완료 / 총 방 수: {_graph.allRooms.Count}");
         DebugPrintGraph();
