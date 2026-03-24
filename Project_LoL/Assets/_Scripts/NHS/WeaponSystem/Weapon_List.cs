@@ -7,58 +7,77 @@ public class Weapon_List : MonoBehaviour
 {
     [SerializeField] private List<Weapon> _weaponList = new List<Weapon>(4);
 
-    private int _curSelectedNum = 0;
+    private bool _isFirstSet = true;
 
     // InputAction
     private PlayerInput _playerInput;
-    private InputAction _inputAction;
+
+    private InputAction        _tabAction;
+    private InputAction  _leftClickAction;
+    private InputAction _rightClickAction;
 
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
+
         if (_playerInput != null)
         {
             // TODO -> InputAction 작성
-            _inputAction = _playerInput.actions.FindAction("WeaponSwap");
+                   _tabAction = _playerInput.actions.FindAction("");
+             _leftClickAction = _playerInput.actions.FindAction("");
+            _rightClickAction = _playerInput.actions.FindAction("");
         }
     }
 
     private void Start()
     {
-        SelectWeapon(0);
+        UpdateWeaponSet();
     }
 
     private void OnEnable()
     {
-        if (_inputAction != null)
-            _inputAction.performed += OnSwapInput;
+        if        (_tabAction != null)        _tabAction.performed +=   OnTabInput;
+        if  (_leftClickAction != null)  _leftClickAction.performed +=  OnLeftClick; 
+        if (_rightClickAction != null) _rightClickAction.performed += OnRightClick; 
     }
 
     private void OnDisable()
     {
-        if (_inputAction != null)
-            _inputAction.performed -= OnSwapInput;
+        if        (_tabAction != null)        _tabAction.performed -=   OnTabInput;
+        if  (_leftClickAction != null)  _leftClickAction.performed -=  OnLeftClick; 
+        if (_rightClickAction != null) _rightClickAction.performed -= OnRightClick; 
     }
 
-    private void SelectWeapon(int index)
+    private void OnTabInput(InputAction.CallbackContext ctx)
     {
-        if (index < 0 || index >= _weaponList.Count || _weaponList[index] == null) return;
-        if (index == _curSelectedNum) return;
-
-        _weaponList[_curSelectedNum].gameObject.SetActive(false);
-
-        _curSelectedNum = index;
-        _weaponList[_curSelectedNum].gameObject.SetActive(true);
+        _isFirstSet = !_isFirstSet;
+        UpdateWeaponSet();
     }
 
-    private void OnSwapInput(InputAction.CallbackContext ctx)
+    private void OnLeftClick(InputAction.CallbackContext ctx) => OnFire(0);
+    private void OnRightClick(InputAction.CallbackContext ctx) => OnFire(1);
+
+    private void UpdateWeaponSet()
     {
-        int inputVal = (int)ctx.ReadValue<float>();
-        SelectWeapon(inputVal - 1);
+        for (int i = 0; i < _weaponList.Count; i++)
+        {
+            if (_weaponList[i] == null) continue;
+            _weaponList[i].gameObject.SetActive(false);
+        }
+
+        int startIndex = _isFirstSet ? 0 : 2;
+
+        _weaponList[startIndex]?.    gameObject.SetActive(true);
+        _weaponList[startIndex + 1]?.gameObject.SetActive(true);
     }
 
-    public Weapon GetCurrentWeapon()
+    private void OnFire(int type)
     {
-        return _weaponList[_curSelectedNum];
+        int weaponIndex = (_isFirstSet ? 0 : 2) + type;
+
+        if (weaponIndex < _weaponList.Count && _weaponList[weaponIndex] != null)
+        {
+            _weaponList[weaponIndex].Attack();
+        }
     }
 }
