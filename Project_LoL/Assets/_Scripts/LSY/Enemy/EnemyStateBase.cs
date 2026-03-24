@@ -1,10 +1,10 @@
-public abstract class EnemyStateBase
+public class EnemyStateBase
 {
     protected EnemyFSM _fsm;
 
     public EnemyStateBase(EnemyFSM fsm) { _fsm = fsm; }
 
-    public abstract void Enter();
-    public abstract void Update();
-    public abstract void Exit();
+    public virtual void Enter() { }
+    public virtual void Update() { }
+    public virtual void Exit() { }
 }

@@ -12,6 +12,4 @@ public class EnemyIdleState : EnemyStateBase
         if (_fsm.isPlayerInDetectRange)
             _fsm.ChangeState(EnemyStateType.Chase);
     }
-
-    public override void Exit() { }
 }

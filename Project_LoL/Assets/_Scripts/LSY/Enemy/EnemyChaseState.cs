@@ -4,8 +4,6 @@ public class EnemyChaseState : EnemyStateBase
 {
     public EnemyChaseState(EnemyFSM fsm) : base(fsm) { }
 
-    public override void Enter() { }
-
     public override void Update()
     {
         if (_fsm.isPlayerInAttackRange)
