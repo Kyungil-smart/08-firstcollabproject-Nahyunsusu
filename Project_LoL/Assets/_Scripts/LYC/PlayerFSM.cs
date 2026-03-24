@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using _Scripts.LYC.States;
+using UnityEngine;
 
 public class PlayerFSM : MonoBehaviour
 {
-	[Header("Stats")] [SerializeField] private float moveSpeed = 8f;
-	[SerializeField] private float dashSpeed = 20f;
-	[SerializeField] private float dashDuration = 0.2f;
-	[SerializeField] private float stunDuration = 0.2f;
+	[Header("Stats")]
+	[SerializeField]
+	private float stunDuration = 0.2f;
+
+	[SerializeField]
+	private float dashDistance = 2f;
 
 	#region States
 
@@ -34,17 +37,30 @@ public class PlayerFSM : MonoBehaviour
 		_inputHandler = GetComponent<PlayerInputHandler>();
 		_skillHandler = GetComponent<PlayerSkillHandler>();
 		_rigidbody = GetComponent<Rigidbody2D>();
+	}
 
-		Idle = new IdleState(this, _inputHandler);
-		Move = new MoveState(this, _inputHandler, _rigidbody, moveSpeed);
-		Dash = new DashState(this, _inputHandler, _rigidbody, dashSpeed, dashDuration);
-		Attack = new AttackState(this, _inputHandler, _skillHandler);
-		Die = new DieState(this, _inputHandler);
-		Hit = new HitState(this, _inputHandler, stunDuration);
+	[ContextMenu("Init")]
+	public void Init()
+	{
+		var stat = Controller.PlayerData;
+		if (stat == null)
+		{
+			Debug.LogWarning($"{nameof(PlayerDataSO)} is null");
+			return;
+		}
+
+		Idle = new(this, _inputHandler);
+		Move = new(this, _inputHandler, _rigidbody, stat.MoveSpeed);
+		Dash = new(this, _inputHandler, _rigidbody,
+			stat.DashTime, dashDistance, stat.DashCooldown);
+		Attack = new(this, _inputHandler, _skillHandler);
+		Die = new(this, _inputHandler);
+		Hit = new(this, _inputHandler, stunDuration);
 	}
 
 	private void OnEnable()
 	{
+		Init();
 		BindInputCallbacks();
 		ChangeState(Idle);
 	}

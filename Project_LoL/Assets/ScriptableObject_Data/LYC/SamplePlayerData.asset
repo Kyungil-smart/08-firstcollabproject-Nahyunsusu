@@ -16,9 +16,9 @@ MonoBehaviour:
   maxHp: 50
   atkDamage: 10
   atkSpeed: 1
-  moveSpeed: 4
+  moveSpeed: 2
   critRate: 72
   critDamage: 20
   dashTime: 0.2
-  dashCooldown: 3
-  dashInvincTime: 0.2
+  dashCooldown: 2
+  dashInvincTime: 0.3

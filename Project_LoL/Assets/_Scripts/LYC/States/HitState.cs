@@ -1,37 +1,40 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class HitState : BaseState
+namespace _Scripts.LYC.States
 {
-	private YieldInstruction _yield;
-
-	public HitState(PlayerFSM fsm, PlayerInputHandler input, float stunDuration) : base(fsm, input)
+	public class HitState : BaseState
 	{
-		_yield = new WaitForSeconds(stunDuration);
-	}
+		private YieldInstruction _yield;
 
-	public override void Enter()
-	{
-		Input.SetInputEnabled(false);
-		StartCoroutine(HitStunRoutine());
-	}
+		public HitState(PlayerFSM fsm, PlayerInputHandler input, float stunDuration) : base(fsm, input)
+		{
+			_yield = new WaitForSeconds(stunDuration);
+		}
 
-	private IEnumerator HitStunRoutine()
-	{
-		FSM.Controller.hit.Invoke();
-		FSM.Controller.SetInvincible(true);
-		yield return _yield;
+		public override void Enter()
+		{
+			Input.SetInputEnabled(false);
+			StartCoroutine(HitStunRoutine());
+		}
 
-		FSM.ChangeState(FSM.Idle);
-	}
+		private IEnumerator HitStunRoutine()
+		{
+			FSM.Controller.hit.Invoke();
+			FSM.Controller.SetInvincible(true);
+			yield return _yield;
 
-	public override void Exit()
-	{
-		Input.SetInputEnabled(true);
-		FSM.Controller.SetInvincible(false);
-	}
+			FSM.ChangeState(FSM.Idle);
+		}
 
-	public override void OnHit()
-	{
+		public override void Exit()
+		{
+			Input.SetInputEnabled(true);
+			FSM.Controller.SetInvincible(false);
+		}
+
+		public override void OnHit()
+		{
+		}
 	}
 }

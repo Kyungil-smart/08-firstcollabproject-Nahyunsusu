@@ -1,39 +1,42 @@
 ﻿using UnityEngine;
 
-public class MoveState : BaseState
+namespace _Scripts.LYC.States
 {
-	private readonly Rigidbody2D rb;
-	private readonly float speed;
-
-	public MoveState(PlayerFSM fsm, PlayerInputHandler input, Rigidbody2D rb, float speed)
-		: base(fsm, input)
+	public class MoveState : BaseState
 	{
-		this.rb = rb;
-		this.speed = speed;
-	}
+		private readonly Rigidbody2D _rb;
+		private readonly float _speed;
 
-	public override void Enter()
-	{
-	}
-
-	public override void Update()
-	{
-		if (FSM.MoveInput == Vector2.zero)
+		public MoveState(PlayerFSM fsm, PlayerInputHandler input, Rigidbody2D rb, float speed)
+			: base(fsm, input)
 		{
-			FSM.ChangeState(FSM.Idle);
-			return;
+			_rb = rb;
+			_speed = speed;
 		}
 
-		var velocity = FSM.MoveInput.normalized;
-		rb.linearVelocity = velocity * speed;
-	}
+		public override void Enter()
+		{
+		}
 
-	public override void Exit()
-	{
-		rb.linearVelocity = Vector2.zero;
-	}
+		public override void Update()
+		{
+			if (FSM.MoveInput == Vector2.zero)
+			{
+				FSM.ChangeState(FSM.Idle);
+				return;
+			}
 
-	public override void OnDashed() => FSM.ChangeState(FSM.Dash);
-	public override void OnLeftSkill() => FSM.EnterAttack(SkillSlot.Left);
-	public override void OnRightSkill() => FSM.EnterAttack(SkillSlot.Right);
+			var velocity = FSM.MoveInput.normalized;
+			_rb.linearVelocity = velocity * _speed;
+		}
+
+		public override void Exit()
+		{
+			_rb.linearVelocity = Vector2.zero;
+		}
+
+		public override void OnDashed() => FSM.ChangeState(FSM.Dash);
+		public override void OnLeftSkill() => FSM.EnterAttack(SkillSlot.Left);
+		public override void OnRightSkill() => FSM.EnterAttack(SkillSlot.Right);
+	}
 }

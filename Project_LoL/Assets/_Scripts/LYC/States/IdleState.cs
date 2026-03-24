@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
 
-public class IdleState : BaseState
+namespace _Scripts.LYC.States
 {
-	public IdleState(PlayerFSM fsm, PlayerInputHandler input) : base(fsm, input)
+	public class IdleState : BaseState
 	{
-	}
-
-	public override void Update()
-	{
-		if (FSM.MoveInput != Vector2.zero)
+		public IdleState(PlayerFSM fsm, PlayerInputHandler input) : base(fsm, input)
 		{
-			FSM.ChangeState(FSM.Move);
 		}
+
+		public override void Update()
+		{
+			if (FSM.MoveInput != Vector2.zero)
+			{
+				FSM.ChangeState(FSM.Move);
+			}
+		}
+
+		public override void OnDashed() => FSM.ChangeState(FSM.Dash);
+
+		public override void OnLeftSkill() => FSM.EnterAttack(SkillSlot.Left);
+
+		public override void OnRightSkill() => FSM.EnterAttack(SkillSlot.Right);
 	}
-
-	public override void OnDashed() => FSM.ChangeState(FSM.Dash);
-
-	public override void OnLeftSkill() => FSM.EnterAttack(SkillSlot.Left);
-
-	public override void OnRightSkill() => FSM.EnterAttack(SkillSlot.Right);
 }
