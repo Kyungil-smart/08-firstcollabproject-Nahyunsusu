@@ -5,6 +5,9 @@ public class MapManager : MonoBehaviour
 {
     [Header("스테이지별 방 풀")]
     public MapRoomPool[] stagePools;
+    
+    [Header("복도 생성")]
+    public CorridorGenerator corridorGenerator;
 
     private MapGraph _graph;
     private int _currentStageIndex;
@@ -30,6 +33,11 @@ public class MapManager : MonoBehaviour
 
         CurrentRoom = _graph.startRoom;
         CurrentRoom.state = RoomState.InProgress;
+        
+        if (corridorGenerator != null)
+            corridorGenerator.Generate(_graph);
+        else
+            Debug.LogWarning("[MapManager] CorridorGenerator 가 연결되어 있지 않습니다.");
 
         Debug.Log($"[MapManager] 스테이지 {stageIndex} 생성 완료 / 총 방 수: {_graph.allRooms.Count}");
         DebugPrintGraph();

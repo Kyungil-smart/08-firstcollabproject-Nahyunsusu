@@ -221,6 +221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1635943200}
   - component: {fileID: 1635943199}
+  - component: {fileID: 1635943201}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -244,6 +245,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e23a45cdac0ee6b498006e7f3d481045, type: 2}
   - {fileID: 11400000, guid: 578ce0a5314d35548b582a5d65118092, type: 2}
   - {fileID: 11400000, guid: 1abb7a6493e2495479370df9bf746790, type: 2}
+  corridorGenerator: {fileID: 1635943201}
 --- !u!4 &1635943200
 Transform:
   m_ObjectHideFlags: 0
@@ -259,6 +261,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1635943201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635943198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962c5f5cc24da9c49b402b800969d842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CorridorGenerator
+  minWidth: 2
+  maxWidth: 6
+  corridorMaterial: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
