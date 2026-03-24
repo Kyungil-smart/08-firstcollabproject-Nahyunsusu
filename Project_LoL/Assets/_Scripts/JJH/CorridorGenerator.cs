@@ -64,9 +64,9 @@ public class CorridorGenerator : MonoBehaviour
         if (heightDiff < 1f)
             return new Vector2[] { start, end };
 
-        // L자: 수직 이동 후 수평 이동
-        Vector2 mid = new Vector2(start.x, end.y);
-        return new Vector2[] { start, mid, end };
+        // L자: 수직 이동 후 수평 이동 (꺾임 지점을 시작점 Y 기준으로)
+        Vector2 mid = new Vector2(endPoint.x, startPoint.y);
+        return new Vector2[] { startPoint, mid, endPoint };
     }
 
     private void DrawCorridor(CorridorData corridor)
