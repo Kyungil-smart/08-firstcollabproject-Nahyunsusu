@@ -13,15 +13,11 @@ MonoBehaviour:
   m_Name: Stage2_Pool
   m_EditorClassIdentifier: Assembly-CSharp::MapRoomPool
   startData: {fileID: 11400000, guid: dc1332f6419d2bf4bb6b0706c8dd3014, type: 2}
-  upgradeData: {fileID: 11400000, guid: 1e5b01f3a3279794da975a2e75a7b53f, type: 2}
   bossData: {fileID: 11400000, guid: 80b954b1acf724d439f9d4a44ee59888, type: 2}
-  shopData: {fileID: 11400000, guid: 467f6bd69c5c1074f82cc950f6eae582, type: 2}
+  repairData: {fileID: 11400000, guid: 467f6bd69c5c1074f82cc950f6eae582, type: 2}
   combatRooms:
   - {fileID: 11400000, guid: ec500c0c478d7904b9ea68fc908e981a, type: 2}
-  - {fileID: 11400000, guid: 5130e59b77eab154e9f83cc5d6149c70, type: 2}
-  - {fileID: 11400000, guid: e1ff583fac21e2243b1ffc998b9e5327, type: 2}
-  - {fileID: 11400000, guid: b8cfb2e9c6a0e0b45a890c55dfc9ca70, type: 2}
-  - {fileID: 11400000, guid: 82a4cd6df850a8c46bc240021b15b477, type: 2}
-  - {fileID: 11400000, guid: e1e1f7fdcc04c3d46bfda0b85c6d641d, type: 2}
-  - {fileID: 11400000, guid: 66c7faebecf059d44ad44e8ef383068a, type: 2}
-  - {fileID: 11400000, guid: 8280c27ad5f7bcb43ae02d0a3094ab2b, type: 2}
+  - {fileID: 11400000, guid: 05e5d02c4a7cdf949856d029244bb617, type: 2}
+  - {fileID: 11400000, guid: 510ced711ddf5c347840f05c968c37e6, type: 2}
+  - {fileID: 11400000, guid: 88f24b25c53a8914bb5401eeb99fe932, type: 2}
+  - {fileID: 11400000, guid: 9157cb2fbf246b949881a1a50cc5198c, type: 2}

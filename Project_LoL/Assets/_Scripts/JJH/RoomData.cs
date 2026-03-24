@@ -17,7 +17,7 @@ public class RoomData : ScriptableObject
     // 전투 방만 가변 크기, 나머지는 고정 크기 사용
     public Vector2Int GetRoomSize()
     {
-        if (roomType == RoomType.Combat)
+        if (roomType == RoomType.Combat || roomType == RoomType.Repair)
         {
             int width  = Random.Range(minSize.x, maxSize.x + 1);
             int height = Random.Range(minSize.y, maxSize.y + 1);

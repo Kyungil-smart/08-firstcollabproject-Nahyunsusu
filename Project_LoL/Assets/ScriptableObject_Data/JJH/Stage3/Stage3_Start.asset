@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
   roomName: Stage3_Start
   roomType: 0
+  fixedSize: {x: 20, y: 20}
+  minSize: {x: 0, y: 0}
+  maxSize: {x: 0, y: 0}
