@@ -1,5 +1,3 @@
-using System;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -7,24 +5,49 @@ using Random = UnityEngine.Random;
 // 전투 시스템이나 이벤트 또는 플레이어 스탯 관련 기능 등 구현
 public class PlayerController : MonoBehaviour
 {
-	[Header("Stats")] [field: SerializeField] public int Health { get; private set; } = 10;
-	[field: SerializeField] public int Experience { get; private set; } = 10;
+	public bool showPlayerDebugMenu;
 
-	[Header("Events")] [Tooltip("대응하는 State에서 Invoke 호출")] public UnityEvent hit;
+	[field: Header("Player")]
+	[field: SerializeField]
+	public PlayerDataSO PlayerData { get; private set; }
+
+	[field: SerializeField]
+	public int Health { get; private set; }
+
+	[field: SerializeField]
+	public int Experience { get; private set; }
+
+	[field: SerializeField]
+	public bool IsInvincible { get; private set; }
+
+	[Header("Events")] public UnityEvent hit;
 	public UnityEvent dashed;
 	public UnityEvent died;
 	public UnityEvent<bool> invincibilityChanged;
-
-	[Header("Debug")]
-	public bool _showPlayerDebugMenu;
-
-	public bool IsInvincible { get; private set; }
 
 	private PlayerFSM _fsm;
 
 	private void Awake()
 	{
 		_fsm = GetComponent<PlayerFSM>();
+
+		Init();
+	}
+
+	[ContextMenu("Init")]
+	public void Init(PlayerDataSO data = null)
+	{
+		// === Player Data ===
+		if (data != null) PlayerData = data;
+		if (PlayerData != null)
+		{
+			Health = PlayerData.MaxHp;
+			// ...
+		}
+		else
+		{
+			Debug.LogWarning($"{nameof(PlayerDataSO)} is null");
+		}
 	}
 
 	public void SetInvincible(bool enable)
@@ -49,8 +72,8 @@ public class PlayerController : MonoBehaviour
 
 	private void OnGUI()
 	{
-		if (!_showPlayerDebugMenu) return;
-		
+		if (!showPlayerDebugMenu) return;
+
 		if (GUILayout.Button("Reset Health", GUILayout.Height(70), GUILayout.Width(100)))
 		{
 			Health = 100;

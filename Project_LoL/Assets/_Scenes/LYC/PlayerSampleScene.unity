@@ -751,8 +751,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2021daf6b25a974bb9dffb64a5f7ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  showPlayerDebugMenu: 0
+  <PlayerData>k__BackingField: {fileID: 11400000, guid: c4ebbe942630e3441b1145e371cf04e4, type: 2}
   <Health>k__BackingField: 0
   <Experience>k__BackingField: 0
+  <IsInvincible>k__BackingField: 0
   hit:
     m_PersistentCalls:
       m_Calls:
@@ -777,7 +780,6 @@ MonoBehaviour:
   invincibilityChanged:
     m_PersistentCalls:
       m_Calls: []
-  _showPlayerDebugMenu: 1
 --- !u!114 &1215519478
 MonoBehaviour:
   m_ObjectHideFlags: 0
