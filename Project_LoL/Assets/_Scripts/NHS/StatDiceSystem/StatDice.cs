@@ -1,16 +1,36 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StatDice : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private PlayerController player;
+
+    private DiceSystem _diceSystem;
+    private void Awake()
     {
-        
+        _diceSystem = new DiceSystem_Random();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RollAndUpgrade()
     {
-        
+        if (player == null) return;
+
+        int result = _diceSystem.RollDice();
+
+        switch (result)
+        {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+        }
     }
 }
