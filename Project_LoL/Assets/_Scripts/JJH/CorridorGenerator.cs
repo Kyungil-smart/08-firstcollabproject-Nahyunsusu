@@ -51,6 +51,13 @@ public class CorridorGenerator : MonoBehaviour
         Vector2 start = a.worldPosition;
         Vector2 end   = b.worldPosition;
 
+        // 방 중심이 아닌 경계 기준으로 복도 시작/끝 위치 계산
+        float startY = start.y - a.size.y * 0.5f;
+        float endY   = end.y   + b.size.y * 0.5f;
+
+        Vector2 startPoint = new Vector2(start.x, startY);
+        Vector2 endPoint   = new Vector2(end.x,   endY);
+        
         float heightDiff = Mathf.Abs(start.y - end.y);
 
         // 높이 차이가 거의 없으면 직선
