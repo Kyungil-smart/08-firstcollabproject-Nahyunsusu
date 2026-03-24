@@ -51,21 +51,23 @@ public class MapGraph
         }
         
         // 갈래별 위치 계산
-        // 갈래를 좌우로 나누고, 같은 갈래 안에서는 아래 방향으로 배치
-        float totalWidth = 0f;
+        // 각 갈래의 실제 최대 너비 기반으로 겹침 없이 배치
+        List<float> branchWidths = new List<float>();
         foreach (List<RoomNode> branch in branches)
-        {
-            totalWidth += GetBranchWidth(branch);
-        }
+            branchWidths.Add(GetBranchWidth(branch));
 
+        float totalWidth = 0f;
+        foreach (float w in branchWidths)
+            totalWidth += w;
         totalWidth += RoomSpacing * (branches.Count - 1);
-        float startX = -totalWidth * 0.5f;
+
+        float currentX = -totalWidth * 0.5f;
 
         for (int i = 0; i < branches.Count; i++)
         {
             List<RoomNode> branch = branches[i];
-            float branchWidth = GetBranchWidth(branch);
-            float branchCenterX = startX + branchWidth * 0.5f;
+            float branchWidth = branchWidths[i];
+            float branchCenterX = currentX + branchWidth * 0.5f;
             float currentY = -(startRoom.size.y * 0.5f + RoomSpacing);
 
             foreach (RoomNode node in branch)
@@ -74,7 +76,7 @@ public class MapGraph
                 currentY -= node.size.y + RoomSpacing;
             }
 
-            startX += branchWidth + RoomSpacing;
+            currentX += branchWidth + RoomSpacing;
         }
         
         // 시작 방에서 각 갈래 첫 방으로 연결
