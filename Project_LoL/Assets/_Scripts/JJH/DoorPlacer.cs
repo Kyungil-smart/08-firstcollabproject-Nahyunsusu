@@ -74,9 +74,23 @@ public class DoorPlacer : MonoBehaviour
 
     private DoorDirection GetDirection(RoomNode from, RoomNode to)
     {
-        // 중심 좌표 차이 기준으로 큰 축 방향 선택
+        Rect fromRect = from.GetRect();
+        Rect toRect = to.GetRect();
+
+        bool overlapX = fromRect.xMin < toRect.xMax && fromRect.xMax > toRect.xMin;
+        bool overlapY = fromRect.yMin < toRect.yMax && fromRect.yMax > toRect.yMin;
+
         Vector2 diff = to.worldPosition - from.worldPosition;
 
+        // x축 범위가 겹치면 위/아래로 연결하는 게 자연스러움
+        if (overlapX && !overlapY)
+            return diff.y > 0 ? DoorDirection.Up : DoorDirection.Down;
+
+        // y축 범위가 겹치면 좌/우로 연결하는 게 자연스러움
+        if (overlapY && !overlapX)
+            return diff.x > 0 ? DoorDirection.Right : DoorDirection.Left;
+
+        // 둘 다 겹치거나 둘 다 안 겹치면 기존 방식 fallback
         if (Mathf.Abs(diff.x) > Mathf.Abs(diff.y))
             return diff.x > 0 ? DoorDirection.Right : DoorDirection.Left;
 
