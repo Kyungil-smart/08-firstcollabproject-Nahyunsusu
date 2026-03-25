@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 
-public class Weapon_List : MonoBehaviour
+public class Skill_List : MonoBehaviour
 {
-    [SerializeField] private List<Weapon> _weaponList = new List<Weapon>(4);
+    [SerializeField] private List<Skill> _weaponList = new List<Skill>(4);
 
-    [SerializeField] private List<Weapon_UI> _slots;
+    [SerializeField] private List<Skill_UI> _slots;
 
     private bool _isFirstSet = true;
 
@@ -85,11 +85,22 @@ public class Weapon_List : MonoBehaviour
 
         if (weaponIndex < _weaponList.Count && _weaponList[weaponIndex] != null)
         {
+            if (_slots[weaponIndex].isCoolingDown) return;
+
             _weaponList[weaponIndex].Attack();
 
             if (weaponIndex < _slots.Count)
             {
-                _slots[weaponIndex].UpdateAmmoOnly(_weaponList[weaponIndex].CurrentAmmo);
+                int currentAmmo = _weaponList[weaponIndex].CurrentAmmo;
+
+                Debug.Log($"{weaponIndex}번 무기 남은 탄수: {currentAmmo}");
+
+                _slots[weaponIndex].UpdateAmmoOnly(currentAmmo);
+
+                if (currentAmmo <= 0)
+                {
+                    _slots[weaponIndex].StartCoolDown(3.0f, _weaponList[weaponIndex]);
+                }
             }
         }
     }
