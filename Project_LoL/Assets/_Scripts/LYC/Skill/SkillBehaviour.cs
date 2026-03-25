@@ -1,11 +1,52 @@
+using System;
 using UnityEngine;
 
 public class SkillBehaviour : MonoBehaviour
 {
-	private SkillData _skillData;
+	[Header("Skill")] [SerializeField]
+	private SkillDataSO skillDataSO;
 
-	public void Init(SkillDataSO skillDataSO)
+	[field: SerializeField]
+	public SkillData CurrentSkillData { get; private set; }
+
+	[field: SerializeField]
+	public int LastDiceResult { get; private set; }
+
+	private void Start()
 	{
-		// _skillData = skillDataSO.Get(1);
+		Init(); // Debug
 	}
+
+	public void Init(SkillDataSO skillInjection = null)
+	{
+		if (skillInjection != null)
+			skillDataSO = skillInjection;
+
+		if (skillDataSO == null)
+		{
+			Debug.LogError($"[SkillBehaviour] {name}: SkillDataSO가 없습니다.");
+			return;
+		}
+
+		InitSKill();
+	}
+
+	public bool TryExecute()
+	{
+		// if (!cooldown)
+		skillDataSO.Use(this, CurrentSkillData);
+
+		return true;
+	}
+
+	private void InitSKill()
+	{
+		LastDiceResult = Roll();
+		CurrentSkillData = skillDataSO.Get(LastDiceResult);
+
+		Debug.Log($"[SkillBehaviour] {skillDataSO.name} — 주사위: {LastDiceResult}");
+	}
+
+	public static int Roll(int min = 1, int max = 6)
+		=> UnityEngine.Random.Range(min, max + 1);
 }
