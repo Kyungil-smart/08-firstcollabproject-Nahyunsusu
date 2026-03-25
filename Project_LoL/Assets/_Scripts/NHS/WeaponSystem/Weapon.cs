@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Skill : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
+    [SerializeField] private Sprite _weaponIcon;
+
+    public Sprite WeaponIcon => _weaponIcon;
+
     private DiceSystem _diceSystem;
-
-    public Sprite SkillIcon => _skillIcon;
-    [SerializeField] private Sprite _skillIcon;
-
 
     private int _maxAmmo;
     public int CurrentAmmo => _curAmmo;
@@ -28,6 +28,9 @@ public class Skill : MonoBehaviour
     {
         if (_curAmmo > 0) 
             _curAmmo--;
+
+        if (_curAmmo == 0)
+            Reload();
     }
 
     public void Reload()
