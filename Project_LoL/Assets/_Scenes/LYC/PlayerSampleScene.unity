@@ -344,50 +344,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572631329}
   m_CullTransparentMesh: 1
---- !u!1 &704441693
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 704441695}
-  - component: {fileID: 704441694}
-  m_Layer: 0
-  m_Name: Skill
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &704441694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704441693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4718b1be13949c42937c8eb8ccb2e88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
---- !u!4 &704441695
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704441693}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &752506030
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +820,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1215519480
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -923,7 +879,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d67060c8320f3994ab8903d55c33cc88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  GroupChanged:
+  sampleSkillDataSO: {fileID: 11400000, guid: 2e76ea4d4a36f1b44b635f92c0f5a1ff, type: 2}
+  skill1:
+    <CurrentSkillData>k__BackingField:
+      SkillID: 
+      SkillName: 
+      SkillType: 0
+      SkillImage: {fileID: 0}
+      SkillDescription: 
+      Damage: 0
+      DamageRangeX: 0
+      DamageRangeY: 0
+      ProjectileSpeed: 0
+      Range: 0
+      Delay: 0
+      MaxUseCount: 0
+      Cooldown: 0
+    <SkillDataSO>k__BackingField: {fileID: 0}
+    <LastDiceResult>k__BackingField: 0
+  skill2:
+    <CurrentSkillData>k__BackingField:
+      SkillID: 
+      SkillName: 
+      SkillType: 0
+      SkillImage: {fileID: 0}
+      SkillDescription: 
+      Damage: 0
+      DamageRangeX: 0
+      DamageRangeY: 0
+      ProjectileSpeed: 0
+      Range: 0
+      Delay: 0
+      MaxUseCount: 0
+      Cooldown: 0
+    <SkillDataSO>k__BackingField: {fileID: 0}
+    <LastDiceResult>k__BackingField: 0
+  skill3:
+    <CurrentSkillData>k__BackingField:
+      SkillID: 
+      SkillName: 
+      SkillType: 0
+      SkillImage: {fileID: 0}
+      SkillDescription: 
+      Damage: 0
+      DamageRangeX: 0
+      DamageRangeY: 0
+      ProjectileSpeed: 0
+      Range: 0
+      Delay: 0
+      MaxUseCount: 0
+      Cooldown: 0
+    <SkillDataSO>k__BackingField: {fileID: 0}
+    <LastDiceResult>k__BackingField: 0
+  skill4:
+    <CurrentSkillData>k__BackingField:
+      SkillID: 
+      SkillName: 
+      SkillType: 0
+      SkillImage: {fileID: 0}
+      SkillDescription: 
+      Damage: 0
+      DamageRangeX: 0
+      DamageRangeY: 0
+      ProjectileSpeed: 0
+      Range: 0
+      Delay: 0
+      MaxUseCount: 0
+      Cooldown: 0
+    <SkillDataSO>k__BackingField: {fileID: 0}
+    <LastDiceResult>k__BackingField: 0
+  SkillSetChanged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1215519482
@@ -2125,6 +2150,63 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1001 &9130912695788670838
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1009619419707625687, guid: 7818d62a533293f49a4a7bca51ca2ae3, type: 3}
+      propertyPath: m_Name
+      value: DiceRoll_Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500416569959799864, guid: 7818d62a533293f49a4a7bca51ca2ae3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500416569959799864, guid: 7818d62a533293f49a4a7bca51ca2ae3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500416569959799864, guid: 7818d62a533293f49a4a7bca51ca2ae3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500416569959799864, guid: 7818d62a533293f49a4a7bca51ca2ae3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500416569959799864, guid: 7818d62a533293f49a4a7bca51ca2ae3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500416569959799864, guid: 7818d62a533293f49a4a7bca51ca2ae3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500416569959799864, guid: 7818d62a533293f49a4a7bca51ca2ae3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500416569959799864, guid: 7818d62a533293f49a4a7bca51ca2ae3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500416569959799864, guid: 7818d62a533293f49a4a7bca51ca2ae3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500416569959799864, guid: 7818d62a533293f49a4a7bca51ca2ae3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7818d62a533293f49a4a7bca51ca2ae3, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2134,4 +2216,4 @@ SceneRoots:
   - {fileID: 1337478961}
   - {fileID: 1044018683}
   - {fileID: 1554530542}
-  - {fileID: 704441695}
+  - {fileID: 9130912695788670838}
