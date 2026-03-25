@@ -38,7 +38,7 @@ public class CorridorGenerator : MonoBehaviour
                 if (oppositeDoor == null)
                     continue;
 
-                float width = Random.Range(minWidth, maxWidth);
+                float width = Mathf.Round(Random.Range(minWidth, maxWidth));
 
                 // 문 로컬 좌표를 월드 좌표로 변환
                 Vector2 start = room.worldPosition + door.localPosition;
@@ -76,8 +76,14 @@ public class CorridorGenerator : MonoBehaviour
         rawPath.Add(start);
 
         // 문 좌표를 바로 잇지 않고, 문 앞에서 한 번 빠져나온 지점을 기준으로 경로 생성
-        Vector2 exitPos = start + GetDoorNormal(startDoor.direction) * escapeDist;
-        Vector2 entrancePos = end + GetDoorNormal(endDoor.direction) * escapeDist;
+        Vector2 exitPos = new Vector2(
+            Mathf.Round(start.x + GetDoorNormal(startDoor.direction).x * escapeDist),
+            Mathf.Round(start.y + GetDoorNormal(startDoor.direction).y * escapeDist)
+        );
+        Vector2 entrancePos = new Vector2(
+            Mathf.Round(end.x + GetDoorNormal(endDoor.direction).x * escapeDist),
+            Mathf.Round(end.y + GetDoorNormal(endDoor.direction).y * escapeDist)
+        );
 
         // exit와 entrance가 이미 같은 축에 있고 중간에 방이 없으면 직선 연결
         bool canConnectStraight = false;
@@ -135,6 +141,12 @@ public class CorridorGenerator : MonoBehaviour
                 mid = CalculateBypass(mid, entrancePos, blocker2, !verticalStart);
             }
 
+            // mid 최종 좌표를 타일 그리드에 맞게 정수화
+            mid = new Vector2(
+                Mathf.Round(mid.x),
+                Mathf.Round(mid.y)
+            );
+
             rawPath.Add(exitPos);
             rawPath.Add(mid);
             rawPath.Add(entrancePos);
@@ -146,9 +158,12 @@ public class CorridorGenerator : MonoBehaviour
         List<Vector2> finalPath = new List<Vector2>();
         foreach (Vector2 p in rawPath)
         {
-            if (finalPath.Count == 0 || Vector2.Distance(finalPath.Last(), p) > 0.01f)
+            // 모든 경로 좌표를 마지막에 한 번 더 정수화
+            Vector2 rounded = new Vector2(Mathf.Round(p.x), Mathf.Round(p.y));
+
+            if (finalPath.Count == 0 || Vector2.Distance(finalPath.Last(), rounded) > 0.01f)
             {
-                finalPath.Add(p);
+                finalPath.Add(rounded);
             }
         }
 
@@ -218,7 +233,11 @@ public class CorridorGenerator : MonoBehaviour
                 : blockerRect.xMin - wallPadding;
         }
 
-        return newMid;
+        // 우회 좌표도 타일 그리드에 맞게 정수화
+        return new Vector2(
+            Mathf.Round(newMid.x),
+            Mathf.Round(newMid.y)
+        );
     }
 
     private Vector2 GetDoorNormal(DoorDirection dir)
