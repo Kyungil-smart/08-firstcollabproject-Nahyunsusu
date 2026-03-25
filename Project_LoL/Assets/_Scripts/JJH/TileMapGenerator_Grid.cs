@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class TileMapGenerator_Grid : MonoBehaviour
 {
-    public enum CellType { Empty, Floor, Door }
+    public enum CellType { Empty, Floor, CorridorFloor, Door }
 
     [Header("타일 프리팹")]
     public GameObject floorTilePrefab;
+    public GameObject corridorFloorTilePrefab;
     public GameObject wallTilePrefab;
 
     [Header("벽 설정")]
@@ -35,11 +36,13 @@ public class TileMapGenerator_Grid : MonoBehaviour
         foreach (RoomNode room in graph.allRooms)
             MarkDoors(room);
 
-        // Floor/Door만 따로 모아서 기준으로 사용
+        // Floor/CorridorFloor/Door만 따로 모아서 기준으로 사용
         HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
         foreach (KeyValuePair<Vector2Int, CellType> cell in _grid)
         {
-            if (cell.Value == CellType.Floor || cell.Value == CellType.Door)
+            if (cell.Value == CellType.Floor ||
+                cell.Value == CellType.CorridorFloor ||
+                cell.Value == CellType.Door)
                 floorPositions.Add(cell.Key);
         }
 
@@ -81,9 +84,14 @@ public class TileMapGenerator_Grid : MonoBehaviour
             wallSet.UnionWith(nextLayer);
         }
 
-        // 타일 생성
+        // 타입별로 다른 프리팹으로 생성
         foreach (KeyValuePair<Vector2Int, CellType> cell in _grid)
-            PlaceTile(floorTilePrefab, cell.Key);
+        {
+            if (cell.Value == CellType.Floor || cell.Value == CellType.Door)
+                PlaceTile(floorTilePrefab, cell.Key);
+            else if (cell.Value == CellType.CorridorFloor)
+                PlaceTile(corridorFloorTilePrefab, cell.Key);
+        }
 
         foreach (Vector2Int pos in wallSet)
             PlaceTile(wallTilePrefab, pos);
@@ -95,10 +103,8 @@ public class TileMapGenerator_Grid : MonoBehaviour
         int startY = Mathf.RoundToInt(room.worldPosition.y - room.size.y * 0.5f);
 
         for (int x = 0; x < room.size.x; x++)
-        {
             for (int y = 0; y < room.size.y; y++)
                 SetCell(new Vector2Int(startX + x, startY + y), CellType.Floor);
-        }
     }
 
     private void MarkCorridorFloor(CorridorData corridor)
@@ -110,30 +116,26 @@ public class TileMapGenerator_Grid : MonoBehaviour
         for (int i = 0; i < corridor.points.Length - 1; i++)
         {
             Vector2 from = corridor.points[i];
-            Vector2 to = corridor.points[i + 1];
+            Vector2 to   = corridor.points[i + 1];
 
             bool isHorizontal = Mathf.Abs(to.y - from.y) < 0.1f;
 
             int startX = Mathf.RoundToInt(Mathf.Min(from.x, to.x));
             int startY = Mathf.RoundToInt(Mathf.Min(from.y, to.y));
-            int endX = Mathf.RoundToInt(Mathf.Max(from.x, to.x));
-            int endY = Mathf.RoundToInt(Mathf.Max(from.y, to.y));
+            int endX   = Mathf.RoundToInt(Mathf.Max(from.x, to.x));
+            int endY   = Mathf.RoundToInt(Mathf.Max(from.y, to.y));
 
             if (isHorizontal)
             {
                 for (int x = startX; x <= endX; x++)
-                {
                     for (int w = minOffset; w <= maxOffset; w++)
-                        SetCell(new Vector2Int(x, startY + w), CellType.Floor);
-                }
+                        SetCell(new Vector2Int(x, startY + w), CellType.CorridorFloor);
             }
             else
             {
                 for (int y = startY; y <= endY; y++)
-                {
                     for (int w = minOffset; w <= maxOffset; w++)
-                        SetCell(new Vector2Int(startX + w, y), CellType.Floor);
-                }
+                        SetCell(new Vector2Int(startX + w, y), CellType.CorridorFloor);
             }
 
             // 꺾이는 지점 메움
@@ -143,10 +145,8 @@ public class TileMapGenerator_Grid : MonoBehaviour
                 int cy = Mathf.RoundToInt(corridor.points[i + 1].y);
 
                 for (int dx = minOffset; dx <= maxOffset; dx++)
-                {
                     for (int dy = minOffset; dy <= maxOffset; dy++)
-                        SetCell(new Vector2Int(cx + dx, cy + dy), CellType.Floor);
-                }
+                        SetCell(new Vector2Int(cx + dx, cy + dy), CellType.CorridorFloor);
             }
         }
     }
@@ -192,12 +192,15 @@ public class TileMapGenerator_Grid : MonoBehaviour
         }
     }
 
-    // Door는 덮어쓰지 않음
+    // Door > Floor > CorridorFloor 우선순위
     private void SetCell(Vector2Int pos, CellType type)
     {
         if (_grid.TryGetValue(pos, out CellType existing))
         {
             if (existing == CellType.Door)
+                return;
+
+            if (existing == CellType.Floor && type == CellType.CorridorFloor)
                 return;
         }
 

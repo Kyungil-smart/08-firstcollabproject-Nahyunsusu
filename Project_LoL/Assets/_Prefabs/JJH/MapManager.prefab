@@ -99,5 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileMapGenerator_Grid
   floorTilePrefab: {fileID: 5280028843789074391, guid: 0139d87420a803f48a28dc30cc4e1144, type: 3}
+  corridorFloorTilePrefab: {fileID: 3492198085750159346, guid: 2219073a5897ab34fa4e59c237af3f4f, type: 3}
   wallTilePrefab: {fileID: 7795775927748887836, guid: dcc3ccda4c51d3641a8da33eb0116d02, type: 3}
   wallThickness: 2
