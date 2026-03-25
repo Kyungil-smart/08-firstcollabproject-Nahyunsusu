@@ -15,6 +15,7 @@ public class CorridorGenerator : MonoBehaviour
     // 생성된 복도 렌더러 보관
     // 다음 Generate 호출 시 Clear()에서 정리
     private List<LineRenderer> _renderers = new List<LineRenderer>();
+    private List<CorridorData> _corridors = new List<CorridorData>();
 
     public void Generate(MapGraph graph)
     {
@@ -52,6 +53,11 @@ public class CorridorGenerator : MonoBehaviour
                     oppositeDoor,
                     graph);
 
+                // 복도 데이터 저장
+                CorridorData corridor = new CorridorData(room, door.connectedRoom, width, points);
+                _corridors.Add(corridor);
+
+                // 디버그용 라인 렌더링
                 DrawCorridor(points, width, room.nodeId, door.connectedRoom.nodeId);
             }
         }
@@ -259,8 +265,14 @@ public class CorridorGenerator : MonoBehaviour
         }
 
         _renderers.Clear();
+        _corridors.Clear();
     }
 
+    public List<CorridorData> GetCorridors()
+    {
+        return _corridors;
+    }
+    
     private string GetConnectionKey(RoomNode a, RoomNode b)
     {
         return string.Compare(a.nodeId, b.nodeId) < 0

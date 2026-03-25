@@ -8,6 +8,9 @@ public class MapManager : MonoBehaviour
     [Header("맵 생성 설정")]
     [SerializeField] private int roomSpacing = 15;
     
+    // 타일맵 생성기 (방/복도 결과를 실제 타일로 변환)
+    [SerializeField] private TileMapGenerator tileMapGenerator;
+    
     [Header("맵 출력")]
     public CorridorGenerator corridorGenerator;
     public RoomVisualizer roomVisualizer;
@@ -50,18 +53,28 @@ public class MapManager : MonoBehaviour
             corridorGenerator.Generate(_graph);
         else
             Debug.LogWarning("[MapManager] CorridorGenerator 가 연결되어 있지 않습니다.");
+        
+        // 복도 생성 이후 타일맵 생성
+        if (tileMapGenerator != null)
+        {
+            tileMapGenerator.Generate(_graph, corridorGenerator.GetCorridors());
+        }
+        else
+        {
+            Debug.LogWarning("[MapManager] TileMapGenerator가 연결되어 있지 않습니다.");
+        }
 
         // 방 시각화
-        if (roomVisualizer != null)
-            roomVisualizer.Visualize(_graph);
-        else
-            Debug.LogWarning("[MapManager] RoomVisualizer 가 연결되어 있지 않습니다.");
-
-        // 문 시각화
-        if (doorVisualizer != null)
-            doorVisualizer.Visualize(_graph);
-        else
-            Debug.LogWarning("[MapManager] DoorVisualizer 가 연결되어 있지 않습니다.");
+        // if (roomVisualizer != null)
+        //     roomVisualizer.Visualize(_graph);
+        // else
+        //     Debug.LogWarning("[MapManager] RoomVisualizer 가 연결되어 있지 않습니다.");
+        //
+        // // 문 시각화
+        // if (doorVisualizer != null)
+        //     doorVisualizer.Visualize(_graph);
+        // else
+        //     Debug.LogWarning("[MapManager] DoorVisualizer 가 연결되어 있지 않습니다.");
 
         Debug.Log($"[MapManager] 스테이지 {stageIndex} 생성 완료 / 총 방 수: {_graph.allRooms.Count}");
         DebugPrintGraph();

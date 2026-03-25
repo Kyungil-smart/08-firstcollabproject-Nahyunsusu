@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5148114750254251503}
   - component: {fileID: 7862616974543464617}
   - component: {fileID: 3863676556440219394}
+  - component: {fileID: 1716348083275633491}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -53,6 +54,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 578ce0a5314d35548b582a5d65118092, type: 2}
   - {fileID: 11400000, guid: 1abb7a6493e2495479370df9bf746790, type: 2}
   roomSpacing: 15
+  tileMapGenerator: {fileID: 1716348083275633491}
   corridorGenerator: {fileID: 6821437083713351527}
   roomVisualizer: {fileID: 5148114750254251503}
   doorPlacer: {fileID: 7862616974543464617}
@@ -112,3 +114,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorVisualizer
   doorSize: 2
+--- !u!114 &1716348083275633491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2754165553543735386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5228b8085ff217748a9832a120f6eb4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileMapGenerator
+  floorTilePrefab: {fileID: 5280028843789074391, guid: 0139d87420a803f48a28dc30cc4e1144, type: 3}
+  wallTilePrefab: {fileID: 7795775927748887836, guid: dcc3ccda4c51d3641a8da33eb0116d02, type: 3}
+  wallThickness: 2
