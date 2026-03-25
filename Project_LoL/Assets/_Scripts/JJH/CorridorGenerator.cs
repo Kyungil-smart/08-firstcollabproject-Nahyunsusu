@@ -39,6 +39,11 @@ public class CorridorGenerator : MonoBehaviour
                     continue;
 
                 float width = Mathf.Round(Random.Range(minWidth, maxWidth));
+                
+                int intWidth = Mathf.Max(1, Mathf.RoundToInt(width));
+
+                door.openingWidth = intWidth;
+                oppositeDoor.openingWidth = intWidth;
 
                 // 문 로컬 좌표를 월드 좌표로 변환
                 Vector2 start = room.worldPosition + door.localPosition;

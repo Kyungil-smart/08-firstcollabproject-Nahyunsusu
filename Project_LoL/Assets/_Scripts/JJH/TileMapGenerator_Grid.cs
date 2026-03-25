@@ -230,7 +230,11 @@ public class TileMapGenerator_Grid : MonoBehaviour
             int dx = Mathf.RoundToInt(worldPos.x);
             int dy = Mathf.RoundToInt(worldPos.y);
 
-            for (int i = -2; i <= 2; i++)
+            int width = Mathf.Max(1, door.openingWidth);
+            int minOffset = -(width - 1) / 2;
+            int maxOffset = width / 2;
+
+            for (int i = minOffset; i <= maxOffset; i++)
             {
                 switch (door.direction)
                 {
