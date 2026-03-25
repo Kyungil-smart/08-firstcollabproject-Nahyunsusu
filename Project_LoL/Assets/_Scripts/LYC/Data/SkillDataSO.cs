@@ -25,7 +25,7 @@ public abstract class SkillDataSO : ScriptableObject
 			ProjectileSpeed = projectileSpeed,
 			Range = range,
 			Delay = delay,
-			MaxUseCount = usableCount,
+			MaxUseCount = maxUseCount,
 			Cooldown = cooldown,
 		};
 
@@ -44,7 +44,7 @@ public abstract class SkillDataSO : ScriptableObject
 	[SerializeField] protected float projectileSpeed;
 	[SerializeField] protected int range;
 	[SerializeField] protected float delay;
-	[SerializeField] protected int usableCount;
+	[SerializeField] protected int maxUseCount;
 	[SerializeField] protected int cooldown;
 
 	[Header("Bonus")]
@@ -57,6 +57,8 @@ public abstract class SkillDataSO : ScriptableObject
 		var list = diceEffects.Get(dice);
 		if (list == null || list.Count == 0) return;
 
+		data.SkillDescription = "스킬 강화 ";
+		
 		foreach (SkillDiceEffectGroup.SkillDiceEffect effect in list)
 		{
 			switch (effect.type)
@@ -88,6 +90,9 @@ public abstract class SkillDataSO : ScriptableObject
 				default:
 					throw new System.ArgumentOutOfRangeException();
 			}
+
+			var str = $"\"{effect.type.ToKorean()} {(effect.amount >= 0 ? "+" : "-")}{effect.amount}\" ";
+			data.SkillDescription += str;
 		}
 	}
 }

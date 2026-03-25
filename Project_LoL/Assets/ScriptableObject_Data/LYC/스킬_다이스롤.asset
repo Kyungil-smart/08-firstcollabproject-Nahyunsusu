@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee194a1b6eaebc4f9264b160100a6b3, type: 3}
+  m_Name: "\uC2A4\uD0AC_\uB2E4\uC774\uC2A4\uB864"
+  m_EditorClassIdentifier: Assembly-CSharp::DiceRollSkill
+  skillID: sc0001
+  skillName: "\uB2E4\uC774\uC2A4 \uB864"
+  skillIconList:
+  - dice: 1
+    skillImage: {fileID: 0}
+  - dice: 2
+    skillImage: {fileID: 0}
+  - dice: 3
+    skillImage: {fileID: 0}
+  - dice: 4
+    skillImage: {fileID: 0}
+  - dice: 5
+    skillImage: {fileID: 0}
+  - dice: 6
+    skillImage: {fileID: 0}
+  skillType: 2
+  damage: 17
+  damageRangeX: 1
+  damageRangeY: 7
+  projectileSpeed: 30
+  range: 7
+  delay: 0.2
+  maxUseCount: 6
+  cooldown: 5
+  diceEffects:
+    dice1Effects:
+    - type: 0
+      amount: 2
+    dice2Effects:
+    - type: 0
+      amount: 4
+    dice3Effects:
+    - type: 0
+      amount: 6
+    dice4Effects:
+    - type: 0
+      amount: 1
+    - type: 6
+      amount: 3
+    dice5Effects:
+    - type: 0
+      amount: 3
+    - type: 6
+      amount: 2
+    dice6Effects:
+    - type: 0
+      amount: 5
+    - type: 6
+      amount: 3
+  <ProjectilePrefab>k__BackingField: {fileID: 0}
