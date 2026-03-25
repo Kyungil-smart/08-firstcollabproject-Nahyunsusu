@@ -61,4 +61,4 @@ MonoBehaviour:
       amount: 5
     - type: 6
       amount: 3
-  <ProjectilePrefab>k__BackingField: {fileID: 0}
+  <ProjectilePrefab>k__BackingField: {fileID: 2456623653250909775, guid: 7818d62a533293f49a4a7bca51ca2ae3, type: 3}

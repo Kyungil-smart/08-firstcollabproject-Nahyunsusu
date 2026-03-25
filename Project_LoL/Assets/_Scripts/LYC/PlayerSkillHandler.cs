@@ -3,19 +3,27 @@ using UnityEngine.Events;
 
 public class PlayerSkillHandler : MonoBehaviour
 {
-	[SerializeField] private SkillBehaviour skill1;
-	[SerializeField] private SkillBehaviour skill2;
-	[SerializeField] private SkillBehaviour skill3;
-	[SerializeField] private SkillBehaviour skill4;
+	[SerializeField] private SkillDataSO sampleSkillDataSO;
+	[SerializeField] private SkillExecutor skill1;
+	[SerializeField] private SkillExecutor skill2;
+	[SerializeField] private SkillExecutor skill3;
+	[SerializeField] private SkillExecutor skill4;
 
 	public UnityEvent<SkillSlot> SkillSetChanged;
 
+	private PlayerController _controller;
 	private PlayerInputHandler _inputHandler;
 	private SkillSlot _currentSkillSet = SkillSlot.Left;
 
 	private void Awake()
 	{
 		_inputHandler = GetComponent<PlayerInputHandler>();
+		_controller = GetComponent<PlayerController>();
+
+		skill1.Init(_controller, sampleSkillDataSO);
+		skill2.Init(_controller, sampleSkillDataSO);
+		skill3.Init(_controller, sampleSkillDataSO);
+		skill4.Init(_controller, sampleSkillDataSO);
 	}
 
 	private void OnEnable()
@@ -40,7 +48,7 @@ public class PlayerSkillHandler : MonoBehaviour
 		SkillSetChanged?.Invoke(_currentSkillSet);
 	}
 
-	private SkillBehaviour GetSkill(SkillSlot slot)
+	private SkillExecutor GetSkill(SkillSlot slot)
 	{
 		switch (slot)
 		{

@@ -7,9 +7,9 @@ public class BombsTimeSkill : SkillDataSO
 	[field: SerializeField]
 	public GameObject ProjectilePrefab { get; private set; }
 
-	public override void Use(SkillBehaviour behaviour, SkillData skillData)
+	public override void Use(SkillExecutor executor)
 	{
-		Debug.Log($"Used: Damage-{skillData.Damage}, MaxUseCount-{skillData.MaxUseCount}");
+		// Debug.Log($"Used: Damage-{skillData.Damage}, MaxUseCount-{skillData.MaxUseCount}");
 	}
 
 	protected override void SetEffect(SkillData data, int dice)

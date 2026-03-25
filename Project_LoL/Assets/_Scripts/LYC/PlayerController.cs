@@ -29,14 +29,13 @@ public class PlayerController : MonoBehaviour
 	#endregion
 
 	public PlayerData Data { get; private set; }
-
-	private PlayerFSM _fsm;
+	public PlayerFSM FSM { get; private set; }
 
 	private PlayerDataSO _dataSO;
 
 	private void Awake()
 	{
-		_fsm = GetComponent<PlayerFSM>();
+		FSM = GetComponent<PlayerFSM>();
 
 		Init();
 	}
@@ -71,11 +70,11 @@ public class PlayerController : MonoBehaviour
 		Health -= damageAmount;
 		if (Health <= 0)
 		{
-			_fsm.ChangeState(_fsm.Die);
+			FSM.ChangeState(FSM.Die);
 			return;
 		}
 
-		_fsm.ChangeState(_fsm.Hit);
+		FSM.ChangeState(FSM.Hit);
 	}
 
 #if UNITY_EDITOR

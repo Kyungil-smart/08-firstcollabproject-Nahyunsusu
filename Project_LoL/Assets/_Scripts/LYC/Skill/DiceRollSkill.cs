@@ -5,11 +5,12 @@ public class DiceRollSkill : SkillDataSO
 {
 	[field: Header("DiceRoll")]
 	[field: SerializeField]
-	public GameObject ProjectilePrefab { get; private set; }
+	public DiceRollProjectile ProjectilePrefab { get; private set; }
 
-	public override void Use(SkillBehaviour behaviour, SkillData skillData)
+	public override void Use(SkillExecutor executor)
 	{
-		Debug.Log($"Used: Damage-{skillData.Damage}, MaxUseCount-{skillData.MaxUseCount}");
+		var proj = Instantiate(ProjectilePrefab);
+		proj.Launch(executor);
 	}
 
 	protected override void SetEffect(SkillData data, int dice)

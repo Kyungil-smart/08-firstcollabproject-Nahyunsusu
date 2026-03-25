@@ -50,7 +50,7 @@ public abstract class SkillDataSO : ScriptableObject
 	[Header("Bonus")]
 	[SerializeField] protected SkillDiceEffectGroup diceEffects;
 
-	public abstract void Use(SkillBehaviour behaviour, SkillData skillData);
+	public abstract void Use(SkillExecutor executor);
 
 	protected virtual void SetEffect(SkillData data, int dice)
 	{
@@ -58,7 +58,7 @@ public abstract class SkillDataSO : ScriptableObject
 		if (list == null || list.Count == 0) return;
 
 		data.SkillDescription = "스킬 강화 ";
-		
+
 		foreach (SkillDiceEffectGroup.SkillDiceEffect effect in list)
 		{
 			switch (effect.type)
