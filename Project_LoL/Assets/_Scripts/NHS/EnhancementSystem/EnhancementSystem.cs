@@ -7,7 +7,7 @@ public class EnhancementSystem : MonoBehaviour
     private bool _isEven; // 짝수이면 True
     private bool _isActionIsEven = false;
 
-    public void EnhanceWeapon(Weapon targetWeapon)
+    public void EnhanceWeapon(Skill targetWeapon)
     {
         if (targetWeapon == null) return;
 
