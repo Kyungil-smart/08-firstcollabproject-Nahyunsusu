@@ -1,26 +1,26 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-// 그래프의 연결 정보를 기반으로 복도를 생성
-// LineRenderer로 시각화, 추후 타일맵/스프라이트로 교체 예정
 public class CorridorGenerator : MonoBehaviour
 {
-    [Header("복도 설정")]
+    [Header("설정")]
     public float minWidth = 2f;
     public float maxWidth = 6f;
+    public float wallPadding = 1.5f;
+    public Material corridorMaterial;
 
-    [Header("LineRenderer 설정")]
-    public Material corridorMaterial;  // 없으면 Unity 기본 재질 사용
+    [SerializeField] private float escapeDist = 2.0f; // 문 앞에서 얼마나 빠져나올지
 
-    private List<CorridorData> _corridors = new List<CorridorData>();
+    // 생성된 복도 렌더러 보관
+    // 다음 Generate 호출 시 Clear()에서 정리
     private List<LineRenderer> _renderers = new List<LineRenderer>();
 
-    // 현재 그래프 기준으로 복도 생성
     public void Generate(MapGraph graph)
     {
         Clear();
 
-        // 중복 연결 방지용 (A→B, B→A 둘 다 처리되지 않도록)
+        // A-B / B-A 중복 생성 방지
         HashSet<string> processed = new HashSet<string>();
 
         foreach (RoomNode room in graph.allRooms)
@@ -28,105 +28,254 @@ public class CorridorGenerator : MonoBehaviour
             foreach (DoorData door in room.doors)
             {
                 string key = GetConnectionKey(room, door.connectedRoom);
-
                 if (processed.Contains(key))
                     continue;
 
                 processed.Add(key);
-                
-                // 이 문과 연결된 반대편 문 찾기
-                DoorData oppositeDoor = FindOppositeDoor(door.connectedRoom, room);
 
+                DoorData oppositeDoor = FindOppositeDoor(door.connectedRoom, room);
                 if (oppositeDoor == null)
                     continue;
 
                 float width = Random.Range(minWidth, maxWidth);
-                
-                // 문 위치 기준으로 복도 경로 계산
-                Vector2 startPos = room.worldPosition + door.localPosition;
-                Vector2 endPos   = door.connectedRoom.worldPosition + oppositeDoor.localPosition;
 
-                Vector2[] points = BuildCorridorPoints(startPos, endPos, door.direction);
-                CorridorData corridor = new CorridorData(room, door.connectedRoom, width, points);
+                // 문 로컬 좌표를 월드 좌표로 변환
+                Vector2 start = room.worldPosition + door.localPosition;
+                Vector2 end = door.connectedRoom.worldPosition + oppositeDoor.localPosition;
 
-                _corridors.Add(corridor);
-                DrawCorridor(corridor);
+                Vector2[] points = BuildCorridorPath(
+                    start,
+                    end,
+                    room,
+                    door,
+                    door.connectedRoom,
+                    oppositeDoor,
+                    graph);
+
+                DrawCorridor(points, width, room.nodeId, door.connectedRoom.nodeId);
             }
         }
     }
 
-    // 연결된 방에서 현재 방을 향하는 문 찾기
-    private DoorData FindOppositeDoor(RoomNode room, RoomNode target)
+    private Vector2[] BuildCorridorPath(
+        Vector2 start,
+        Vector2 end,
+        RoomNode startRoom,
+        DoorData startDoor,
+        RoomNode endRoom,
+        DoorData endDoor,
+        MapGraph graph)
     {
-        foreach (DoorData door in room.doors)
+        List<Vector2> rawPath = new List<Vector2>();
+        rawPath.Add(start);
+
+        // 문 좌표를 바로 잇지 않고, 문 앞에서 한 번 빠져나온 지점을 기준으로 경로 생성
+        Vector2 exitPos = start + GetDoorNormal(startDoor.direction) * escapeDist;
+        Vector2 entrancePos = end + GetDoorNormal(endDoor.direction) * escapeDist;
+
+        // exit와 entrance가 이미 같은 축에 있고 중간에 방이 없으면 직선 연결
+        bool canConnectStraight = false;
+        if (Mathf.Approximately(exitPos.x, entrancePos.x) || Mathf.Approximately(exitPos.y, entrancePos.y))
         {
-            if (door.connectedRoom == target)
-                return door;
+            if (!IsPathBlocked(exitPos, entrancePos, graph, startRoom, endRoom, out _))
+            {
+                canConnectStraight = true;
+            }
         }
-        return null;
-    }
-    
-    // 두 방 사이 복도 경로 계산
-    // 수직 문이면 먼저 수직으로 나온 뒤 수평으로 이동, 수평 문이면 반대
-    private Vector2[] BuildCorridorPoints(Vector2 start, Vector2 end, DoorDirection startDir)
-    {
-        float heightDiff = Mathf.Abs(start.y - end.y);
-        float widthDiff  = Mathf.Abs(start.x - end.x);
 
-        // 거의 직선이면 그냥 직선
-        if (heightDiff < 1f && widthDiff < 1f)
-            return new Vector2[] { start, end };
-
-        // 문 방향 기준으로 꺾임 방향 결정
-        Vector2 mid;
-        if (startDir == DoorDirection.Up || startDir == DoorDirection.Down)
-            mid = new Vector2(start.x, end.y);
+        if (canConnectStraight)
+        {
+            rawPath.Add(exitPos);
+            rawPath.Add(entrancePos);
+        }
         else
-            mid = new Vector2(end.x, start.y);
+        {
+            // 시작 문 방향 기준으로 기본 mid 생성
+            // 세로 문이면 x 고정, 가로 문이면 y 고정
+            Vector2 mid;
+            bool verticalStart = startDoor.direction == DoorDirection.Up || startDoor.direction == DoorDirection.Down;
 
-        return new Vector2[] { start, mid, end };
+            if (verticalStart)
+                mid = new Vector2(exitPos.x, entrancePos.y);
+            else
+                mid = new Vector2(entrancePos.x, exitPos.y);
+
+            // exit 이후 다시 뒤로 꺾이는 케이스 방지
+            // 문 방향과 mid로 가는 방향이 반대면 다른 축 기준으로 다시 계산
+            Vector2 exitDir = GetDoorNormal(startDoor.direction);
+            Vector2 toMid = mid - exitPos;
+
+            if (toMid.sqrMagnitude > 0.0001f)
+            {
+                Vector2 toMidDir = toMid.normalized;
+
+                if (Vector2.Dot(exitDir, toMidDir) < 0f)
+                {
+                    if (verticalStart)
+                        mid = new Vector2(entrancePos.x, exitPos.y);
+                    else
+                        mid = new Vector2(exitPos.x, entrancePos.y);
+                }
+            }
+
+            // 첫 구간이 막히면 blocker 기준으로 mid를 밀어서 우회
+            if (IsPathBlocked(exitPos, mid, graph, startRoom, endRoom, out RoomNode blocker1))
+            {
+                mid = CalculateBypass(exitPos, mid, blocker1, verticalStart);
+            }
+            // 두 번째 구간이 막히면 entrance 쪽 구간 기준으로 우회
+            else if (IsPathBlocked(mid, entrancePos, graph, startRoom, endRoom, out RoomNode blocker2))
+            {
+                mid = CalculateBypass(mid, entrancePos, blocker2, !verticalStart);
+            }
+
+            rawPath.Add(exitPos);
+            rawPath.Add(mid);
+            rawPath.Add(entrancePos);
+        }
+
+        rawPath.Add(end);
+
+        // 같은 점이 연속으로 들어가면 불필요한 꺾임처럼 보일 수 있어서 제거
+        List<Vector2> finalPath = new List<Vector2>();
+        foreach (Vector2 p in rawPath)
+        {
+            if (finalPath.Count == 0 || Vector2.Distance(finalPath.Last(), p) > 0.01f)
+            {
+                finalPath.Add(p);
+            }
+        }
+
+        return finalPath.ToArray();
     }
 
-    private void DrawCorridor(CorridorData corridor)
+    private bool IsPathBlocked(
+        Vector2 p1,
+        Vector2 p2,
+        MapGraph graph,
+        RoomNode startRoom,
+        RoomNode endRoom,
+        out RoomNode blocker)
     {
-        GameObject obj = new GameObject($"Corridor_{corridor.roomA.nodeId}_to_{corridor.roomB.nodeId}");
+        blocker = null;
+
+        // 선분 그대로 검사하지 않고, 약간 두께가 있는 Rect로 검사
+        // 너무 넓으면 과검사, 너무 좁으면 경계 케이스를 놓칠 수 있어서 적당히 유지
+        float thickness = 0.5f;
+
+        Rect pathRect = new Rect(
+            Mathf.Min(p1.x, p2.x) - thickness,
+            Mathf.Min(p1.y, p2.y) - thickness,
+            Mathf.Abs(p1.x - p2.x) + (thickness * 2),
+            Mathf.Abs(p1.y - p2.y) + (thickness * 2)
+        );
+
+        foreach (var room in graph.allRooms)
+        {
+            // 출발/도착 방은 연결 대상이므로 제외
+            if (room == startRoom || room == endRoom)
+                continue;
+
+            if (pathRect.Overlaps(room.GetRect()))
+            {
+                blocker = room;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private Vector2 CalculateBypass(Vector2 p1, Vector2 mid, RoomNode blocker, bool isVerticalFirst)
+    {
+        Rect blockerRect = blocker.GetRect();
+        Vector2 newMid = mid;
+
+        if (isVerticalFirst)
+        {
+            // 세로 구간이 먼저라면 y축 기준으로 위/아래 중 가까운 쪽으로 우회
+            float distToTop = Mathf.Abs(blockerRect.yMax - mid.y);
+            float distToBottom = Mathf.Abs(blockerRect.yMin - mid.y);
+
+            newMid.y = distToTop < distToBottom
+                ? blockerRect.yMax + wallPadding
+                : blockerRect.yMin - wallPadding;
+        }
+        else
+        {
+            // 가로 구간이 먼저라면 x축 기준으로 좌/우 중 가까운 쪽으로 우회
+            float distToRight = Mathf.Abs(blockerRect.xMax - mid.x);
+            float distToLeft = Mathf.Abs(blockerRect.xMin - mid.x);
+
+            newMid.x = distToRight < distToLeft
+                ? blockerRect.xMax + wallPadding
+                : blockerRect.xMin - wallPadding;
+        }
+
+        return newMid;
+    }
+
+    private Vector2 GetDoorNormal(DoorDirection dir)
+    {
+        return dir switch
+        {
+            DoorDirection.Up => Vector2.up,
+            DoorDirection.Down => Vector2.down,
+            DoorDirection.Left => Vector2.left,
+            DoorDirection.Right => Vector2.right,
+            _ => Vector2.zero
+        };
+    }
+
+    private void DrawCorridor(Vector2[] points, float width, string idA, string idB)
+    {
+        GameObject obj = new GameObject($"Corridor_{idA}_to_{idB}");
         obj.transform.SetParent(transform);
 
         LineRenderer lr = obj.AddComponent<LineRenderer>();
-
-        lr.positionCount = corridor.points.Length;
-        lr.startWidth    = corridor.width;
-        lr.endWidth      = corridor.width;
+        lr.positionCount = points.Length;
+        lr.startWidth = width;
+        lr.endWidth = width;
         lr.useWorldSpace = true;
 
-        if (corridorMaterial != null)
+        if (corridorMaterial)
             lr.material = corridorMaterial;
 
-        for (int i = 0; i < corridor.points.Length; i++)
-            lr.SetPosition(i, new Vector3(corridor.points[i].x, corridor.points[i].y, 0f));
+        // XY 평면 기준으로 선 그리기
+        for (int i = 0; i < points.Length; i++)
+        {
+            lr.SetPosition(i, new Vector3(points[i].x, points[i].y, 0f));
+        }
 
         _renderers.Add(lr);
     }
 
-    // 맵 재생성 전에 기존 복도 제거
     public void Clear()
     {
-        foreach (LineRenderer lr in _renderers)
+        foreach (var lr in _renderers)
         {
-            if (lr != null)
+            if (lr)
                 Destroy(lr.gameObject);
         }
 
-        _corridors.Clear();
         _renderers.Clear();
     }
 
-    // 양방향 연결을 하나의 키로 통일
     private string GetConnectionKey(RoomNode a, RoomNode b)
     {
-        string idA = a.nodeId;
-        string idB = b.nodeId;
+        return string.Compare(a.nodeId, b.nodeId) < 0
+            ? $"{a.nodeId}_{b.nodeId}"
+            : $"{b.nodeId}_{a.nodeId}";
+    }
 
-        return string.Compare(idA, idB) < 0 ? $"{idA}_{idB}" : $"{idB}_{idA}";
+    private DoorData FindOppositeDoor(RoomNode room, RoomNode target)
+    {
+        foreach (var d in room.doors)
+        {
+            if (d.connectedRoom == target)
+                return d;
+        }
+
+        return null;
     }
 }
