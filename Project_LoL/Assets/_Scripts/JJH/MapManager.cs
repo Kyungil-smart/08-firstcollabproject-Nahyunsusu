@@ -7,9 +7,9 @@ public class MapManager : MonoBehaviour
     
     [Header("맵 생성 설정")]
     [SerializeField] private int roomSpacing = 15;
-    
-    // 타일맵 생성기 (방/복도 결과를 실제 타일로 변환)
-    [SerializeField] private TileMapGenerator tileMapGenerator;
+
+    [Header("타일맵 생성")]
+    [SerializeField] private TileMapGenerator_Grid tileMapGeneratorGrid;
     
     [Header("맵 출력")]
     public CorridorGenerator corridorGenerator;
@@ -21,7 +21,7 @@ public class MapManager : MonoBehaviour
     private int _currentStageIndex;
     public RoomNode CurrentRoom { get; private set; }
 
-    void Start()
+    private void Start()
     {
         BuildMap(0);
     }
@@ -42,7 +42,7 @@ public class MapManager : MonoBehaviour
         CurrentRoom = _graph.startRoom;
         CurrentRoom.state = RoomState.InProgress;
         
-        // 문 데이터 먼저 생성
+        // 문 데이터 생성
         if (doorPlacer != null)
             doorPlacer.PlaceDoors(_graph);
         else
@@ -54,14 +54,14 @@ public class MapManager : MonoBehaviour
         else
             Debug.LogWarning("[MapManager] CorridorGenerator 가 연결되어 있지 않습니다.");
         
-        // 복도 생성 이후 타일맵 생성
-        if (tileMapGenerator != null)
+        // 복도 생성 후 타일맵 생성
+        if (tileMapGeneratorGrid != null && corridorGenerator != null)
         {
-            tileMapGenerator.Generate(_graph, corridorGenerator.GetCorridors());
+            tileMapGeneratorGrid.Generate(_graph, corridorGenerator.GetCorridors());
         }
         else
         {
-            Debug.LogWarning("[MapManager] TileMapGenerator가 연결되어 있지 않습니다.");
+            Debug.LogWarning("[MapManager] TileMapGenerator_Grid 또는 CorridorGenerator 가 연결되어 있지 않습니다.");
         }
 
         // 방 시각화
@@ -69,8 +69,8 @@ public class MapManager : MonoBehaviour
         //     roomVisualizer.Visualize(_graph);
         // else
         //     Debug.LogWarning("[MapManager] RoomVisualizer 가 연결되어 있지 않습니다.");
-        //
-        // // 문 시각화
+
+        // 문 시각화
         // if (doorVisualizer != null)
         //     doorVisualizer.Visualize(_graph);
         // else
@@ -80,18 +80,15 @@ public class MapManager : MonoBehaviour
         DebugPrintGraph();
     }
 
-    // 이동 가능 여부를 검사하고 다음 방으로 전환
-    // 방 클리어 상태는 외부 시스템에서 관리
+    // 이동 가능 여부 검사 후 다음 방으로 전환
     public bool TryMoveToRoom(RoomNode next)
     {
-        // 연결된 방인지 확인
         if (!CurrentRoom.neighbors.Contains(next))
         {
             Debug.LogWarning($"[MapManager] {next.nodeId} 는 현재 방과 연결되어 있지 않습니다.");
             return false;
         }
         
-        // 연결된 방인지 확인
         if (CurrentRoom.roomData.roomType == RoomType.Combat &&
             CurrentRoom.state != RoomState.Cleared)
         {
@@ -99,7 +96,6 @@ public class MapManager : MonoBehaviour
             return false;
         }
         
-        // 이동 처리 (상태 변경은 외부 시스템에서 처리)
         CurrentRoom.state = RoomState.Cleared;
         CurrentRoom = next;
         CurrentRoom.state = RoomState.InProgress;
