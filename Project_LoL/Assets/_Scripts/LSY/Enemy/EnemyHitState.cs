@@ -10,6 +10,7 @@ public class EnemyHitState : EnemyStateBase
     {
         _timer = 0f;
         _fsm.rigid.linearVelocity = Vector2.zero;
+        _fsm.animator?.SetTrigger("3_Damaged");
     }
 
     public override void Update()

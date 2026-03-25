@@ -11,7 +11,10 @@ public class EnemyPostAttackState : EnemyStateBase
     public override void Update()
     {
         _timer += Time.deltaTime;
+
         if (_timer < _fsm.data.attackCooldown) return;
+
+        _fsm.FlipToPlayer();
 
         if (_fsm.isPlayerInAttackRange)
             _fsm.ChangeState(EnemyStateType.Attack);
