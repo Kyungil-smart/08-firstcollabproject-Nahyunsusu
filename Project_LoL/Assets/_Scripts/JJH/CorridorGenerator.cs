@@ -56,9 +56,6 @@ public class CorridorGenerator : MonoBehaviour
                 // 복도 데이터 저장
                 CorridorData corridor = new CorridorData(room, door.connectedRoom, width, points);
                 _corridors.Add(corridor);
-
-                // 디버그용 라인 렌더링
-                DrawCorridor(points, width, room.nodeId, door.connectedRoom.nodeId);
             }
         }
     }
@@ -250,29 +247,6 @@ public class CorridorGenerator : MonoBehaviour
             DoorDirection.Right => Vector2.right,
             _ => Vector2.zero
         };
-    }
-
-    private void DrawCorridor(Vector2[] points, float width, string idA, string idB)
-    {
-        GameObject obj = new GameObject($"Corridor_{idA}_to_{idB}");
-        obj.transform.SetParent(transform);
-
-        LineRenderer lr = obj.AddComponent<LineRenderer>();
-        lr.positionCount = points.Length;
-        lr.startWidth = width;
-        lr.endWidth = width;
-        lr.useWorldSpace = true;
-
-        if (corridorMaterial)
-            lr.material = corridorMaterial;
-
-        // XY 평면 기준으로 선 그리기
-        for (int i = 0; i < points.Length; i++)
-        {
-            lr.SetPosition(i, new Vector3(points[i].x, points[i].y, 0f));
-        }
-
-        _renderers.Add(lr);
     }
 
     public void Clear()
