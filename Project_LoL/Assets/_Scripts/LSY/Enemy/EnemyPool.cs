@@ -1,9 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// 스폰 방법 두 가지:
-//   1. EnemyPool.Instance.Spawn(prefab, position)     → 프리팹 직접 전달
-//   2. EnemyPool.Instance.Spawn("EnemyName", position) → 이름으로 스폰 (맵 담당 연결용)
 public class EnemyPool : MonoBehaviour
 {
     public static EnemyPool Instance { get; private set; }
@@ -19,7 +16,6 @@ public class EnemyPool : MonoBehaviour
     public List<PoolConfig> poolConfigs;
 
     private Dictionary<string, Queue<GameObject>> _pools;
-
     private Dictionary<string, GameObject> _prefabMap;
 
     private void Awake()
@@ -36,7 +32,7 @@ public class EnemyPool : MonoBehaviour
 
     private void InitPools()
     {
-        _pools     = new Dictionary<string, Queue<GameObject>>();
+        _pools    = new Dictionary<string, Queue<GameObject>>();
         _prefabMap = new Dictionary<string, GameObject>();
 
         foreach (var config in poolConfigs)
@@ -83,7 +79,7 @@ public class EnemyPool : MonoBehaviour
     {
         obj.SetActive(false);
 
-        string key = obj.name.Replace("(Clone)", "").Trim();
+        string key = obj.name;
 
         if (_pools.ContainsKey(key))
             _pools[key].Enqueue(obj);
@@ -100,11 +96,11 @@ public class EnemyPool : MonoBehaviour
         else
             obj = CreateNewObject(_prefabMap[key]);
 
-        obj.transform.position = position;
-        obj.SetActive(true);
-
         if (obj.TryGetComponent(out EnemyFSM fsm))
             fsm.ResetEnemy();
+
+        obj.transform.position = position;
+        obj.SetActive(true);
 
         return obj;
     }

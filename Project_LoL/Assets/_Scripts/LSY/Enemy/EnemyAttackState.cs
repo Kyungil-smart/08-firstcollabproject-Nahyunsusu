@@ -12,6 +12,8 @@ public class EnemyAttackState : EnemyStateBase
         _timer = 0f;
         _hasDealtDamage = false;
         _fsm.rigid.linearVelocity = Vector2.zero;
+        _fsm.FlipToPlayer();
+        _fsm.animator?.SetTrigger("2_Attack");
     }
 
     public override void Update()
@@ -31,6 +33,7 @@ public class EnemyAttackState : EnemyStateBase
     private void TryDealDamage()
     {
         if (!_fsm.isPlayerInAttackRange) return;
+        if (_fsm.playerTransform == null) return;
         if (_fsm.playerTransform.TryGetComponent(out IDamageable damageable))
             damageable.TakeDamage(_fsm.data.attackDamage);
     }

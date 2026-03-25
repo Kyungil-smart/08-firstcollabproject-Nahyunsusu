@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,16 +6,20 @@ public class EnemyFSM : MonoBehaviour, IDamageable
     [Header("데이터")]
     public EnemyData data;
 
+    [Header("애니메이터")]
+    [SerializeField] private Animator _animatorRef;
+
     private Rigidbody2D _rigid;
     private EnemyEffectManager _effectManager;
+    private Animator _animator;
     private Dictionary<EnemyStateType, EnemyStateBase> _states;
     private EnemyStateBase _currentState;
     private int _currentHp;
-    private bool _isInvincible = false;
 
     public EnemyStateType currentStateType { get; private set; }
     public Transform playerTransform { get; private set; }
     public Rigidbody2D rigid => _rigid;
+    public Animator animator => _animator;
 
     public bool isPlayerInDetectRange =>
         playerTransform != null &&
@@ -30,6 +33,10 @@ public class EnemyFSM : MonoBehaviour, IDamageable
     {
         _rigid         = GetComponent<Rigidbody2D>();
         _effectManager = GetComponent<EnemyEffectManager>();
+
+        _animator = _animatorRef != null
+            ? _animatorRef
+            : GetComponentInChildren<Animator>();
 
         if (data == null) return;
 
@@ -70,16 +77,33 @@ public class EnemyFSM : MonoBehaviour, IDamageable
         _currentState.Enter();
     }
 
+    public void FlipToPlayer()
+    {
+        if (playerTransform == null) return;
+
+        float dirX = playerTransform.position.x - transform.position.x;
+        if (dirX == 0) return;
+
+        Vector3 scale = transform.localScale;
+        scale.x = dirX < 0 ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+        transform.localScale = scale;
+    }
+
     public void ResetEnemy()
     {
         _currentHp       = data.maxHp;
-        _isInvincible    = false;
         currentStateType = EnemyStateType.Idle;
+        StopAllCoroutines();
+
+        if (_animator != null)
+        {
+            _animator.SetBool("1_Move",  false);
+            _animator.SetBool("isDeath", false);
+        }
     }
 
     public void TakeDamage(int damage)
     {
-        if (_isInvincible) return;
         if (_currentHp <= 0) return;
 
         _currentHp -= damage;
@@ -91,18 +115,10 @@ public class EnemyFSM : MonoBehaviour, IDamageable
             return;
         }
 
-        StartCoroutine(InvincibleRoutine());
-        ChangeState(EnemyStateType.Hit);
-    }
-
-    private IEnumerator InvincibleRoutine()
-    {
-        _isInvincible = true;
-        yield return new WaitForSeconds(0.2f);
-        _isInvincible = false;
-
-        // 사운드 담당자 연결 필요
+        // 사운드 연결 필요
         // AudioManager.Instance.PlaySFX("몬스터 피격 SFX");
+
+        ChangeState(EnemyStateType.Hit);
     }
 
 #if UNITY_EDITOR

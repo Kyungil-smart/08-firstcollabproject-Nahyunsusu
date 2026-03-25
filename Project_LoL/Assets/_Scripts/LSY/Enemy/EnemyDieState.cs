@@ -7,6 +7,8 @@ public class EnemyDieState : EnemyStateBase
     public override void Enter()
     {
         _fsm.rigid.linearVelocity = Vector2.zero;
+        _fsm.animator?.SetTrigger("4_Death");
+        _fsm.animator?.SetBool("isDeath", true);
 
         // 경험치 매니저 연결 필요
 

@@ -1,23 +1,36 @@
-using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyEffectManager : MonoBehaviour
 {
-    private SpriteRenderer _renderer;
+    private List<SpriteRenderer> _renderers = new List<SpriteRenderer>();
 
-    private float _hitEffectDuration = 0.2f;
+    private const float HIT_EFFECT_DURATION = 0.2f;
 
     private void Awake()
     {
-        _renderer = GetComponent<SpriteRenderer>();
+        GetComponentsInChildren(true, _renderers);
     }
 
     public void PlayHitEffect()
     {
-        if (_renderer == null) return;
+        if (_renderers.Count == 0) return;
+        StartCoroutine(HitColorRoutine());
+    }
 
-        Color original = _renderer.color;
-        _renderer.color = new Color(0.5f, original.g, original.b, original.a);
-        _renderer.DOColor(original, _hitEffectDuration).SetEase(Ease.InCubic);
+    private IEnumerator HitColorRoutine()
+    {
+        List<Color> originals = new List<Color>();
+        foreach (SpriteRenderer Sprite in _renderers)
+            originals.Add(Sprite.color);
+
+        foreach (SpriteRenderer Sprite in _renderers)
+            Sprite.color = new Color(0.5f, 0f, 0f, Sprite.color.a);
+
+        yield return new WaitForSeconds(HIT_EFFECT_DURATION);
+
+        for (int i = 0; i < _renderers.Count; i++)
+            _renderers[i].color = originals[i];
     }
 }

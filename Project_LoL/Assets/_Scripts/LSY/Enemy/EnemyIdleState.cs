@@ -5,6 +5,7 @@ public class EnemyIdleState : EnemyStateBase
     public override void Enter()
     {
         _fsm.rigid.linearVelocity = UnityEngine.Vector2.zero;
+        _fsm.animator?.SetBool("1_Move", false);
     }
 
     public override void Update()
