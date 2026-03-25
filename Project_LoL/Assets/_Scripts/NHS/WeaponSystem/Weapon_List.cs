@@ -7,6 +7,8 @@ public class Weapon_List : MonoBehaviour
 {
     [SerializeField] private List<Weapon> _weaponList = new List<Weapon>(4);
 
+    [SerializeField] private List<Weapon_UI> _slots;
+
     private bool _isFirstSet = true;
 
     // InputAction
@@ -23,9 +25,9 @@ public class Weapon_List : MonoBehaviour
         if (_playerInput != null)
         {
             // TODO -> InputAction 작성
-                   _tabAction = _playerInput.actions.FindAction("");
-             _leftClickAction = _playerInput.actions.FindAction("");
-            _rightClickAction = _playerInput.actions.FindAction("");
+                   _tabAction = _playerInput.actions.FindAction("Tab");
+             _leftClickAction = _playerInput.actions.FindAction("Attack");
+            _rightClickAction = _playerInput.actions.FindAction("AttackRight");
         }
     }
 
@@ -51,26 +53,32 @@ public class Weapon_List : MonoBehaviour
     private void OnTabInput(InputAction.CallbackContext ctx)
     {
         _isFirstSet = !_isFirstSet;
+        Debug.Log($"Tab 입력됨! 현재 시작 인덱스: {(_isFirstSet ? 0 : 2)}");
         UpdateWeaponSet();
     }
 
-    private void OnLeftClick(InputAction.CallbackContext ctx) => OnFire(0);
+    private void  OnLeftClick(InputAction.CallbackContext ctx) => OnFire(0);
     private void OnRightClick(InputAction.CallbackContext ctx) => OnFire(1);
 
     private void UpdateWeaponSet()
     {
+        int startIndex = _isFirstSet ? 0 : 2;
+
         for (int i = 0; i < _weaponList.Count; i++)
         {
             if (_weaponList[i] == null) continue;
-            _weaponList[i].gameObject.SetActive(false);
+
+            bool isSelectedSet = (i == startIndex || i == startIndex + 1);
+
+            _weaponList[i].gameObject.SetActive(isSelectedSet);
+
+            if (i < _slots.Count && _slots[i] != null)
+            {
+                _slots[i].UpdateUI(_weaponList[i], isSelectedSet);
+            }
         }
-
-        int startIndex = _isFirstSet ? 0 : 2;
-
-        _weaponList[startIndex]?.    gameObject.SetActive(true);
-        _weaponList[startIndex + 1]?.gameObject.SetActive(true);
     }
-
+        
     private void OnFire(int type)
     {
         int weaponIndex = (_isFirstSet ? 0 : 2) + type;
@@ -78,6 +86,11 @@ public class Weapon_List : MonoBehaviour
         if (weaponIndex < _weaponList.Count && _weaponList[weaponIndex] != null)
         {
             _weaponList[weaponIndex].Attack();
+
+            if (weaponIndex < _slots.Count)
+            {
+                _slots[weaponIndex].UpdateAmmoOnly(_weaponList[weaponIndex].CurrentAmmo);
+            }
         }
     }
 }
