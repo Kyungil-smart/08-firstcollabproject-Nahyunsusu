@@ -54,9 +54,7 @@ MonoBehaviour:
   roomSpacing: 15
   tileMapGeneratorGrid: {fileID: 3845462966532681469}
   corridorGenerator: {fileID: 6821437083713351527}
-  roomVisualizer: {fileID: 0}
   doorPlacer: {fileID: 7862616974543464617}
-  doorVisualizer: {fileID: 0}
 --- !u!114 &6821437083713351527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +71,7 @@ MonoBehaviour:
   maxWidth: 6
   wallPadding: 1.5
   corridorMaterial: {fileID: 0}
-  escapeDist: 6
+  escapeDist: 3
 --- !u!114 &7862616974543464617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorPlacer
   doorMargin: 1.5
+  maxCorridorWidth: 6
 --- !u!114 &3845462966532681469
 MonoBehaviour:
   m_ObjectHideFlags: 0

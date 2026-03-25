@@ -13,9 +13,7 @@ public class MapManager : MonoBehaviour
     
     [Header("맵 출력")]
     public CorridorGenerator corridorGenerator;
-    public RoomVisualizer roomVisualizer;
     public DoorPlacer doorPlacer;
-    public DoorVisualizer doorVisualizer;
 
     private MapGraph _graph;
     private int _currentStageIndex;
@@ -63,18 +61,6 @@ public class MapManager : MonoBehaviour
         {
             Debug.LogWarning("[MapManager] TileMapGenerator_Grid 또는 CorridorGenerator 가 연결되어 있지 않습니다.");
         }
-
-        // 방 시각화
-        // if (roomVisualizer != null)
-        //     roomVisualizer.Visualize(_graph);
-        // else
-        //     Debug.LogWarning("[MapManager] RoomVisualizer 가 연결되어 있지 않습니다.");
-
-        // 문 시각화
-        // if (doorVisualizer != null)
-        //     doorVisualizer.Visualize(_graph);
-        // else
-        //     Debug.LogWarning("[MapManager] DoorVisualizer 가 연결되어 있지 않습니다.");
 
         Debug.Log($"[MapManager] 스테이지 {stageIndex} 생성 완료 / 총 방 수: {_graph.allRooms.Count}");
         DebugPrintGraph();

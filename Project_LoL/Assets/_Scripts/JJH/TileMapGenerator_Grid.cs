@@ -35,24 +35,53 @@ public class TileMapGenerator_Grid : MonoBehaviour
         foreach (RoomNode room in graph.allRooms)
             MarkDoors(room);
 
-        // 바닥/문 주변 빈 칸을 벽으로 처리
-        HashSet<Vector2Int> wallSet = new HashSet<Vector2Int>();
-
+        // Floor/Door만 따로 모아서 기준으로 사용
+        HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
         foreach (KeyValuePair<Vector2Int, CellType> cell in _grid)
         {
-            if (cell.Value != CellType.Floor && cell.Value != CellType.Door)
-                continue;
+            if (cell.Value == CellType.Floor || cell.Value == CellType.Door)
+                floorPositions.Add(cell.Key);
+        }
 
-            for (int w = 1; w <= wallThickness; w++)
+        // 바닥 기준 외곽 1칸 벽 생성
+        HashSet<Vector2Int> wallSet = new HashSet<Vector2Int>();
+        foreach (Vector2Int pos in floorPositions)
+        {
+            for (int dx = -1; dx <= 1; dx++)
             {
-                foreach (Vector2Int neighbor in GetNeighbors(cell.Key, w))
+                for (int dy = -1; dy <= 1; dy++)
                 {
-                    if (!_grid.ContainsKey(neighbor))
+                    if (dx == 0 && dy == 0) continue;
+
+                    Vector2Int neighbor = pos + new Vector2Int(dx, dy);
+                    if (!floorPositions.Contains(neighbor))
                         wallSet.Add(neighbor);
                 }
             }
         }
 
+        // wallThickness만큼 레이어 확장
+        for (int w = 2; w <= wallThickness; w++)
+        {
+            HashSet<Vector2Int> nextLayer = new HashSet<Vector2Int>();
+            foreach (Vector2Int pos in wallSet)
+            {
+                for (int dx = -1; dx <= 1; dx++)
+                {
+                    for (int dy = -1; dy <= 1; dy++)
+                    {
+                        if (dx == 0 && dy == 0) continue;
+
+                        Vector2Int neighbor = pos + new Vector2Int(dx, dy);
+                        if (!floorPositions.Contains(neighbor) && !wallSet.Contains(neighbor))
+                            nextLayer.Add(neighbor);
+                    }
+                }
+            }
+            wallSet.UnionWith(nextLayer);
+        }
+
+        // 타일 생성
         foreach (KeyValuePair<Vector2Int, CellType> cell in _grid)
             PlaceTile(floorTilePrefab, cell.Key);
 
@@ -75,7 +104,6 @@ public class TileMapGenerator_Grid : MonoBehaviour
     private void MarkCorridorFloor(CorridorData corridor)
     {
         int width = Mathf.Max(1, Mathf.RoundToInt(corridor.width));
-        int halfWidth = width / 2;
         int minOffset = -(width - 1) / 2;
         int maxOffset = width / 2;
 
@@ -139,11 +167,25 @@ public class TileMapGenerator_Grid : MonoBehaviour
                     case DoorDirection.Up:
                     case DoorDirection.Down:
                         SetCell(new Vector2Int(dx + i, dy), CellType.Door);
+
+                        // 문 바깥 방향 두 칸은 Floor로 보호
+                        int outerY1 = dy + (door.direction == DoorDirection.Up ? 1 : -1);
+                        int outerY2 = dy + (door.direction == DoorDirection.Up ? 2 : -2);
+
+                        SetCell(new Vector2Int(dx + i, outerY1), CellType.Floor);
+                        SetCell(new Vector2Int(dx + i, outerY2), CellType.Floor);
                         break;
 
                     case DoorDirection.Left:
                     case DoorDirection.Right:
                         SetCell(new Vector2Int(dx, dy + i), CellType.Door);
+
+                        // 문 바깥 방향 두 칸은 Floor로 보호
+                        int outerX1 = dx + (door.direction == DoorDirection.Right ? 1 : -1);
+                        int outerX2 = dx + (door.direction == DoorDirection.Right ? 2 : -2);
+
+                        SetCell(new Vector2Int(outerX1, dy + i), CellType.Floor);
+                        SetCell(new Vector2Int(outerX2, dy + i), CellType.Floor);
                         break;
                 }
             }
@@ -160,21 +202,6 @@ public class TileMapGenerator_Grid : MonoBehaviour
         }
 
         _grid[pos] = type;
-    }
-
-    // 지정 거리 범위 좌표 반환
-    private IEnumerable<Vector2Int> GetNeighbors(Vector2Int pos, int dist)
-    {
-        for (int dx = -dist; dx <= dist; dx++)
-        {
-            for (int dy = -dist; dy <= dist; dy++)
-            {
-                if (dx == 0 && dy == 0)
-                    continue;
-
-                yield return new Vector2Int(pos.x + dx, pos.y + dy);
-            }
-        }
     }
 
     private void PlaceTile(GameObject prefab, Vector2Int pos)
