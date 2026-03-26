@@ -10,7 +10,7 @@ public class CorridorGenerator : MonoBehaviour
     public float wallPadding = 1.5f;
     public Material corridorMaterial;
 
-    [SerializeField] private float escapeDist = 2.0f; // 문 앞에서 얼마나 빠져나올지
+    [SerializeField] private float _escapeDist = 2.0f; // 문 앞에서 얼마나 빠져나올지
 
     // 생성된 복도 렌더러 보관
     // 다음 Generate 호출 시 Clear()에서 정리
@@ -39,6 +39,11 @@ public class CorridorGenerator : MonoBehaviour
                     continue;
 
                 float width = Mathf.Round(Random.Range(minWidth, maxWidth));
+                
+                int intWidth = Mathf.Max(1, Mathf.RoundToInt(width));
+
+                door.openingWidth = intWidth;
+                oppositeDoor.openingWidth = intWidth;
 
                 // 문 로컬 좌표를 월드 좌표로 변환
                 Vector2 start = room.worldPosition + door.localPosition;
@@ -56,9 +61,6 @@ public class CorridorGenerator : MonoBehaviour
                 // 복도 데이터 저장
                 CorridorData corridor = new CorridorData(room, door.connectedRoom, width, points);
                 _corridors.Add(corridor);
-
-                // 디버그용 라인 렌더링
-                DrawCorridor(points, width, room.nodeId, door.connectedRoom.nodeId);
             }
         }
     }
@@ -77,12 +79,12 @@ public class CorridorGenerator : MonoBehaviour
 
         // 문 좌표를 바로 잇지 않고, 문 앞에서 한 번 빠져나온 지점을 기준으로 경로 생성
         Vector2 exitPos = new Vector2(
-            Mathf.Round(start.x + GetDoorNormal(startDoor.direction).x * escapeDist),
-            Mathf.Round(start.y + GetDoorNormal(startDoor.direction).y * escapeDist)
+            Mathf.Round(start.x + GetDoorNormal(startDoor.direction).x * _escapeDist),
+            Mathf.Round(start.y + GetDoorNormal(startDoor.direction).y * _escapeDist)
         );
         Vector2 entrancePos = new Vector2(
-            Mathf.Round(end.x + GetDoorNormal(endDoor.direction).x * escapeDist),
-            Mathf.Round(end.y + GetDoorNormal(endDoor.direction).y * escapeDist)
+            Mathf.Round(end.x + GetDoorNormal(endDoor.direction).x * _escapeDist),
+            Mathf.Round(end.y + GetDoorNormal(endDoor.direction).y * _escapeDist)
         );
 
         // exit와 entrance가 이미 같은 축에 있고 중간에 방이 없으면 직선 연결
@@ -250,29 +252,6 @@ public class CorridorGenerator : MonoBehaviour
             DoorDirection.Right => Vector2.right,
             _ => Vector2.zero
         };
-    }
-
-    private void DrawCorridor(Vector2[] points, float width, string idA, string idB)
-    {
-        GameObject obj = new GameObject($"Corridor_{idA}_to_{idB}");
-        obj.transform.SetParent(transform);
-
-        LineRenderer lr = obj.AddComponent<LineRenderer>();
-        lr.positionCount = points.Length;
-        lr.startWidth = width;
-        lr.endWidth = width;
-        lr.useWorldSpace = true;
-
-        if (corridorMaterial)
-            lr.material = corridorMaterial;
-
-        // XY 평면 기준으로 선 그리기
-        for (int i = 0; i < points.Length; i++)
-        {
-            lr.SetPosition(i, new Vector3(points[i].x, points[i].y, 0f));
-        }
-
-        _renderers.Add(lr);
     }
 
     public void Clear()
