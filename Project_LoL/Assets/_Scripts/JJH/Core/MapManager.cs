@@ -66,8 +66,8 @@ public class MapManager : MonoBehaviour
             _tileMapGeneratorGrid.Generate(_graph, corridorGenerator.GetCorridors());
         else
             Debug.LogWarning("[MapManager] TileMapGenerator_Grid 또는 CorridorGenerator 가 연결되어 있지 않습니다.");
-        
-        PlaceBossRooms();
+
+        PlaceFixedRooms();
 
         // 문 생성
         if (_doorController != null)
