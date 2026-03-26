@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class DoorPlacer : MonoBehaviour
 {
-    [SerializeField] private float doorMargin = 1.5f; // 벽 끝에 너무 붙지 않도록 여유
-    [SerializeField] private int maxCorridorWidth = 6; // 최대 복도 폭 (문 위치 보정용)
+    [SerializeField] private float _doorMargin = 1.5f; // 벽 끝에 너무 붙지 않도록 여유
+    [SerializeField] private int _maxCorridorWidth = 6; // 최대 복도 폭 (문 위치 보정용)
 
     public void PlaceDoors(MapGraph graph)
     {
@@ -44,8 +44,8 @@ public class DoorPlacer : MonoBehaviour
         float halfH = owner.size.y * 0.5f;
 
         // 복도 폭을 고려해 코너에 붙지 않도록 추가 여유 확보
-        float corridorHalf = Mathf.Floor(maxCorridorWidth * 0.5f);
-        float safeMargin = Mathf.Max(doorMargin, corridorHalf);
+        float corridorHalf = Mathf.Floor(_maxCorridorWidth * 0.5f);
+        float safeMargin = Mathf.Max(_doorMargin, corridorHalf);
 
         // 작은 방에서도 범위가 뒤집히지 않도록 보정
         float xMin = Mathf.Min(-halfW + safeMargin, halfW - safeMargin);

@@ -7,10 +7,10 @@ public class MapManager : MonoBehaviour
     public MapRoomPool[] stagePools;
     
     [Header("맵 생성 설정")]
-    [SerializeField] private int roomSpacing = 15;
+    [SerializeField] private int _roomSpacing = 15;
 
     [Header("타일맵 생성")]
-    [SerializeField] private TileMapGenerator_Grid tileMapGeneratorGrid;
+    [SerializeField] private TileMapGenerator_Grid _tileMapGeneratorGrid;
     
     [Header("맵 출력")]
     public CorridorGenerator corridorGenerator;
@@ -41,7 +41,7 @@ public class MapManager : MonoBehaviour
 
         _currentStageIndex = stageIndex;
         _graph = new MapGraph();
-        _graph.Generate(stagePools[stageIndex], roomSpacing);
+        _graph.Generate(stagePools[stageIndex], _roomSpacing);
 
         _runtimeDataMap.Clear();
         foreach (RoomNode room in _graph.allRooms)
@@ -59,8 +59,8 @@ public class MapManager : MonoBehaviour
         else
             Debug.LogWarning("[MapManager] CorridorGenerator 가 연결되어 있지 않습니다.");
 
-        if (tileMapGeneratorGrid != null && corridorGenerator != null)
-            tileMapGeneratorGrid.Generate(_graph, corridorGenerator.GetCorridors());
+        if (_tileMapGeneratorGrid != null && corridorGenerator != null)
+            _tileMapGeneratorGrid.Generate(_graph, corridorGenerator.GetCorridors());
         else
             Debug.LogWarning("[MapManager] TileMapGenerator_Grid 또는 CorridorGenerator 가 연결되어 있지 않습니다.");
 

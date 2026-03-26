@@ -10,7 +10,7 @@ public class CorridorGenerator : MonoBehaviour
     public float wallPadding = 1.5f;
     public Material corridorMaterial;
 
-    [SerializeField] private float escapeDist = 2.0f; // 문 앞에서 얼마나 빠져나올지
+    [SerializeField] private float _escapeDist = 2.0f; // 문 앞에서 얼마나 빠져나올지
 
     // 생성된 복도 렌더러 보관
     // 다음 Generate 호출 시 Clear()에서 정리
@@ -79,12 +79,12 @@ public class CorridorGenerator : MonoBehaviour
 
         // 문 좌표를 바로 잇지 않고, 문 앞에서 한 번 빠져나온 지점을 기준으로 경로 생성
         Vector2 exitPos = new Vector2(
-            Mathf.Round(start.x + GetDoorNormal(startDoor.direction).x * escapeDist),
-            Mathf.Round(start.y + GetDoorNormal(startDoor.direction).y * escapeDist)
+            Mathf.Round(start.x + GetDoorNormal(startDoor.direction).x * _escapeDist),
+            Mathf.Round(start.y + GetDoorNormal(startDoor.direction).y * _escapeDist)
         );
         Vector2 entrancePos = new Vector2(
-            Mathf.Round(end.x + GetDoorNormal(endDoor.direction).x * escapeDist),
-            Mathf.Round(end.y + GetDoorNormal(endDoor.direction).y * escapeDist)
+            Mathf.Round(end.x + GetDoorNormal(endDoor.direction).x * _escapeDist),
+            Mathf.Round(end.y + GetDoorNormal(endDoor.direction).y * _escapeDist)
         );
 
         // exit와 entrance가 이미 같은 축에 있고 중간에 방이 없으면 직선 연결
