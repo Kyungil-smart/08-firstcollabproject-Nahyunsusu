@@ -16,6 +16,9 @@ public class MapManager : MonoBehaviour
     public CorridorGenerator corridorGenerator;
     public DoorPlacer doorPlacer;
 
+    [Header("문 시스템")]
+    [SerializeField] private DoorController _doorController;
+
     private MapGraph _graph;
     private int _currentStageIndex;
 
@@ -64,8 +67,36 @@ public class MapManager : MonoBehaviour
         else
             Debug.LogWarning("[MapManager] TileMapGenerator_Grid 또는 CorridorGenerator 가 연결되어 있지 않습니다.");
 
+        // 문 생성
+        if (_doorController != null)
+            _doorController.BuildDoors(_graph);
+        else
+            Debug.LogWarning("[MapManager] DoorController 가 연결되어 있지 않습니다.");
+
+        // RoomTrigger 생성
+        CreateRoomTriggers();
+
         Debug.Log($"[MapManager] 스테이지 {stageIndex} 생성 완료 / 총 방 수: {_graph.allRooms.Count}");
         DebugPrintGraph();
+    }
+
+    private void CreateRoomTriggers()
+    {
+        foreach (RoomNode room in _graph.allRooms)
+        {
+            GameObject triggerObj = new GameObject($"RoomTrigger_{room.nodeId}");
+            triggerObj.transform.SetParent(transform);
+            triggerObj.transform.position = new Vector3(room.worldPosition.x, room.worldPosition.y, 0f);
+
+            BoxCollider2D col = triggerObj.AddComponent<BoxCollider2D>();
+            col.isTrigger = true;
+            col.size = room.size;
+
+            RoomTrigger rt = triggerObj.AddComponent<RoomTrigger>();
+            rt.room = room;
+            rt.mapManager = this;
+            rt.doorController = _doorController;
+        }
     }
 
     public bool TryMoveToRoom(RoomNode next)
@@ -90,6 +121,18 @@ public class MapManager : MonoBehaviour
 
         Debug.Log($"[MapManager] → {next.nodeId} ({next.roomData.roomType})");
         return true;
+    }
+
+    public void OnCombatCleared(RoomNode room)
+    {
+        RoomRuntimeData data = GetRuntimeData(room);
+        if (data == null)
+            return;
+
+        data.state = RoomState.Cleared;
+
+        if (_doorController != null)
+            _doorController.OpenDoors(room);
     }
 
     public void OnBossDefeated()
