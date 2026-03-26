@@ -278,6 +278,35 @@ public class TileMapGenerator_Grid : MonoBehaviour
         tile.transform.SetParent(transform);
         _tiles.Add(tile);
     }
+    
+    // 특정 좌표가 바닥 타일인지 확인 (스폰 가능 여부 판단용)
+    public bool IsFloor(Vector2Int pos)
+    {
+        return _grid.TryGetValue(pos, out CellType type) &&
+               (type == CellType.Floor || type == CellType.CorridorFloor);
+    }
+
+    // 방 내부 바닥 좌표 목록 반환 (스폰 후보 위치 계산용)
+    public List<Vector2Int> GetFloorPositionsInRoom(RoomNode room)
+    {
+        List<Vector2Int> result = new List<Vector2Int>();
+
+        int startX = Mathf.RoundToInt(room.worldPosition.x - room.size.x * 0.5f);
+        int startY = Mathf.RoundToInt(room.worldPosition.y - room.size.y * 0.5f);
+
+        for (int x = 0; x < room.size.x; x++)
+        {
+            for (int y = 0; y < room.size.y; y++)
+            {
+                Vector2Int pos = new Vector2Int(startX + x, startY + y);
+
+                if (IsFloor(pos))
+                    result.Add(pos);
+            }
+        }
+
+        return result;
+    }
 
     public void Clear()
     {
