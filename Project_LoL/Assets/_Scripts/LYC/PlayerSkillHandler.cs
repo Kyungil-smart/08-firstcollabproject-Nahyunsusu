@@ -1,30 +1,39 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerSkillHandler : MonoBehaviour
 {
-	[SerializeField] private SkillDataSO sampleSkillDataSO;
-	[SerializeField] private SkillExecutor skill1;
-	[SerializeField] private SkillExecutor skill2;
-	[SerializeField] private SkillExecutor skill3;
-	[SerializeField] private SkillExecutor skill4;
+	[Header("Current skill information")]
+	[field: SerializeField]
+	public SkillSlot CurrentSkillSlot { get; private set; }
 
-	public UnityEvent<SkillSlot> SkillSetChanged;
+	[field: SerializeField]
+	public SkillExecutor[] Skills { get; private set; }
+
+	[Header("Skill Events")]
+	[field: SerializeField]
+	public UnityEvent<SkillSlot> SkillSetChanged { get; private set; }
+
+	[field: SerializeField]
+	public UnityEvent<int> SkillChanged { get; private set; }
+
+	[field: SerializeField]
+	public UnityEvent<int> SkillExecuted { get; private set; }
+
+	[field: SerializeField]
+	public UnityEvent<int, SkillExecuteResult> SkillExecutionFailed { get; private set; }
 
 	private PlayerController _controller;
 	private PlayerInputHandler _inputHandler;
-	private SkillSlot _currentSkillSet = SkillSlot.Left;
 
 	private void Awake()
 	{
 		_inputHandler = GetComponent<PlayerInputHandler>();
 		_controller = GetComponent<PlayerController>();
 
-		skill1.Init(_controller, sampleSkillDataSO);
-		skill2.Init(_controller, sampleSkillDataSO);
-		skill3.Init(_controller, sampleSkillDataSO);
-		skill4.Init(_controller, sampleSkillDataSO);
+		Skills = new SkillExecutor[4];
+		for (var i = 0; i < Skills.Length; i++)
+			Skills[i] = new SkillExecutor(_controller);
 	}
 
 	private void OnEnable()
@@ -37,41 +46,35 @@ public class PlayerSkillHandler : MonoBehaviour
 		_inputHandler.SkillSetChanged -= ChangeSkillSet;
 	}
 
+	public void SetSkill(SkillDataSO skillData, int slotIndex)
+	{
+		if (slotIndex >= Skills.Length)
+		{
+			Debug.LogError($"{nameof(slotIndex)} {slotIndex} is invalid");
+			return;
+		}
+
+		Skills[slotIndex].Set(skillData);
+		SkillChanged.Invoke(slotIndex);
+	}
+
 	public void Execute(SkillSlot slot)
 	{
-		var result = GetSkill(slot).TryExecute();
-		var resultLog = result switch
-		{
-			SkillExecuteResult.Success => "실행 성공",
-			SkillExecuteResult.NotExist => "스킬 없음",
-			SkillExecuteResult.OnCooldown => "쿨타임",
-			SkillExecuteResult.Rolling => "주사위 굴리는 중",
-			_ => throw new ArgumentOutOfRangeException()
-		};
+		int index = ConvertSlotToIndex(slot);
+		SkillExecuteResult result = Skills[index].TryExecute();
 
-		Debug.Log($@"[{typeof(PlayerSkillHandler)}] {_currentSkillSet}.{slot}->{resultLog}");
+		if (result == SkillExecuteResult.Success)
+			SkillExecuted.Invoke(index);
+		else
+			SkillExecutionFailed.Invoke(index, result);
 	}
 
 	private void ChangeSkillSet()
 	{
-		_currentSkillSet = _currentSkillSet == SkillSlot.Left ? SkillSlot.Right : SkillSlot.Left;
-		Debug.Log($"스킬셋 변경 -> {_currentSkillSet}");
-		SkillSetChanged?.Invoke(_currentSkillSet);
+		CurrentSkillSlot = CurrentSkillSlot == SkillSlot.Left ? SkillSlot.Right : SkillSlot.Left;
+		SkillSetChanged?.Invoke(CurrentSkillSlot);
 	}
 
-	private SkillExecutor GetSkill(SkillSlot slot)
-	{
-		switch (slot)
-		{
-			case SkillSlot.Left when _currentSkillSet == SkillSlot.Left:
-				return skill1;
-			case SkillSlot.Left when _currentSkillSet == SkillSlot.Left:
-				return skill2;
-			case SkillSlot.Left:
-				return skill3;
-			case SkillSlot.Right:
-			default:
-				return skill4;
-		}
-	}
+	private int ConvertSlotToIndex(SkillSlot slot)
+		=> (int)CurrentSkillSlot + (int)slot;
 }
