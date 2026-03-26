@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour
@@ -17,14 +18,19 @@ public class MapManager : MonoBehaviour
 
     private MapGraph _graph;
     private int _currentStageIndex;
+
+    private Dictionary<RoomNode, RoomRuntimeData> _runtimeDataMap
+        = new Dictionary<RoomNode, RoomRuntimeData>();
+
     public RoomNode CurrentRoom { get; private set; }
+
+    public RoomRuntimeData CurrentRoomData => GetRuntimeData(CurrentRoom);
 
     private void Start()
     {
         BuildMap(0);
     }
 
-    // MapGraph 생성 및 현재 스테이지 초기화
     public void BuildMap(int stageIndex)
     {
         if (stageIndex >= stagePools.Length)
@@ -37,36 +43,31 @@ public class MapManager : MonoBehaviour
         _graph = new MapGraph();
         _graph.Generate(stagePools[stageIndex], roomSpacing);
 
+        _runtimeDataMap.Clear();
+        foreach (RoomNode room in _graph.allRooms)
+            _runtimeDataMap[room] = new RoomRuntimeData(room);
+
         CurrentRoom = _graph.startRoom;
-        CurrentRoom.state = RoomState.InProgress;
-        
-        // 문 데이터 생성
+
         if (doorPlacer != null)
             doorPlacer.PlaceDoors(_graph);
         else
             Debug.LogWarning("[MapManager] DoorPlacer 가 연결되어 있지 않습니다.");
 
-        // 문 위치 기준으로 복도 생성
         if (corridorGenerator != null)
             corridorGenerator.Generate(_graph);
         else
             Debug.LogWarning("[MapManager] CorridorGenerator 가 연결되어 있지 않습니다.");
-        
-        // 복도 생성 후 타일맵 생성
+
         if (tileMapGeneratorGrid != null && corridorGenerator != null)
-        {
             tileMapGeneratorGrid.Generate(_graph, corridorGenerator.GetCorridors());
-        }
         else
-        {
             Debug.LogWarning("[MapManager] TileMapGenerator_Grid 또는 CorridorGenerator 가 연결되어 있지 않습니다.");
-        }
 
         Debug.Log($"[MapManager] 스테이지 {stageIndex} 생성 완료 / 총 방 수: {_graph.allRooms.Count}");
         DebugPrintGraph();
     }
 
-    // 이동 가능 여부 검사 후 다음 방으로 전환
     public bool TryMoveToRoom(RoomNode next)
     {
         if (!CurrentRoom.neighbors.Contains(next))
@@ -75,25 +76,27 @@ public class MapManager : MonoBehaviour
             return false;
         }
         
+        RoomRuntimeData currentData = GetRuntimeData(CurrentRoom);
+
         if (CurrentRoom.roomData.roomType == RoomType.Combat &&
-            CurrentRoom.state != RoomState.Cleared)
+            currentData != null &&
+            currentData.state != RoomState.Cleared)
         {
             Debug.LogWarning("[MapManager] 전투를 끝내야 이동할 수 있습니다.");
             return false;
         }
         
-        CurrentRoom.state = RoomState.Cleared;
         CurrentRoom = next;
-        CurrentRoom.state = RoomState.InProgress;
 
         Debug.Log($"[MapManager] → {next.nodeId} ({next.roomData.roomType})");
         return true;
     }
 
-    // 보스 처치 후 스테이지 종료 처리
     public void OnBossDefeated()
     {
-        _graph.bossRoom.state = RoomState.Cleared;
+        RoomRuntimeData bossData = GetRuntimeData(_graph.bossRoom);
+        if (bossData != null)
+            bossData.state = RoomState.Cleared;
 
         bool isLastStage = _currentStageIndex >= stagePools.Length - 1;
 
@@ -105,8 +108,20 @@ public class MapManager : MonoBehaviour
         else
         {
             Debug.Log("[MapManager] 보스 처치 / 포탈 생성");
-            // 다음 스테이지 이동용 포탈 활성화 예정
+            // 포탈 오브젝트 활성화 예정
         }
+    }
+
+    public RoomRuntimeData GetRuntimeData(RoomNode room)
+    {
+        if (room == null)
+            return null;
+
+        if (_runtimeDataMap.TryGetValue(room, out RoomRuntimeData data))
+            return data;
+
+        Debug.LogWarning($"[MapManager] {room.nodeId} 의 런타임 데이터가 없습니다.");
+        return null;
     }
 
     private void DebugPrintGraph()
