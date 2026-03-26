@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7862616974543464617}
   - component: {fileID: 3845462966532681469}
   - component: {fileID: 4134677338801015634}
-  - component: {fileID: 8294680364233528588}
+  - component: {fileID: 5076016567667641620}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -57,7 +57,7 @@ MonoBehaviour:
   _tileMapGeneratorGrid: {fileID: 3845462966532681469}
   corridorGenerator: {fileID: 6821437083713351527}
   doorPlacer: {fileID: 7862616974543464617}
-  _doorController: {fileID: 0}
+  _doorController: {fileID: 5076016567667641620}
 --- !u!114 &6821437083713351527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
   maxWidth: 6
   wallPadding: 1.5
   corridorMaterial: {fileID: 0}
-  _escapeDist: 2
+  _escapeDist: 4
 --- !u!114 &7862616974543464617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   _wallMargin: 1
   _doorExcludeRadius: 4
   _monsterSpacing: 3
---- !u!114 &8294680364233528588
+--- !u!114 &5076016567667641620
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

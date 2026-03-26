@@ -26,6 +26,10 @@ public class TileMapGenerator_Grid : MonoBehaviour
         {
             if (room.size.x == 0 || room.size.y == 0)
                 continue;
+            
+            if (room.roomData.roomType == RoomType.Boss ||
+                room.roomData.roomType == RoomType.Start)
+                continue;
 
             MarkRoomFloor(room);
         }

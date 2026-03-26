@@ -66,6 +66,8 @@ public class MapManager : MonoBehaviour
             _tileMapGeneratorGrid.Generate(_graph, corridorGenerator.GetCorridors());
         else
             Debug.LogWarning("[MapManager] TileMapGenerator_Grid 또는 CorridorGenerator 가 연결되어 있지 않습니다.");
+        
+        PlaceBossRooms();
 
         // 문 생성
         if (_doorController != null)
@@ -165,6 +167,30 @@ public class MapManager : MonoBehaviour
 
         Debug.LogWarning($"[MapManager] {room.nodeId} 의 런타임 데이터가 없습니다.");
         return null;
+    }
+    
+    private void PlaceFixedRooms()
+    {
+        foreach (RoomNode room in _graph.allRooms)
+        {
+            GameObject prefab = null;
+
+            if (room.roomData.roomType == RoomType.Start)
+                prefab = room.roomData.startRoomPrefab;
+            else if (room.roomData.roomType == RoomType.Boss)
+                prefab = room.roomData.bossPrefab;
+
+            if (prefab == null)
+                continue;
+
+            GameObject obj = Instantiate(
+                prefab,
+                new Vector3(room.worldPosition.x, room.worldPosition.y, 0f),
+                Quaternion.identity
+            );
+
+            obj.transform.SetParent(transform);
+        }
     }
 
     private void DebugPrintGraph()
