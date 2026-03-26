@@ -13,7 +13,7 @@ public class EnhancementUI : MonoBehaviour
 
     [Header("Current Selection")]
     private Button _selectedEquipment = null;
-    private int _selectedOddEven = -1;
+    private int    _selectedOddEven = -1;
 
     private void Start()
     {
@@ -34,6 +34,8 @@ public class EnhancementUI : MonoBehaviour
     private void OnSelectEquipment(int index)
     {
         _selectedEquipment = _equipmentButtons[index];
+
+        Debug.Log($"{index}번 무기 선택됨");
 
         CheckRequirement();
     }
@@ -57,5 +59,7 @@ public class EnhancementUI : MonoBehaviour
     private void ExecuteEnhancement()
     {
         Debug.Log("강화 시작");
+
+        _selectedEquipment = null;
     }
 }
