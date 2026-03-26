@@ -15,7 +15,7 @@ MonoBehaviour:
   skillID: sc0002
   skillName: "\uBC24\uC2A4\uD0C0\uC784"
   skillIconList: []
-  skillType: 6
+  skillType: 38
   damage: 8
   damageRangeX: 3
   damageRangeY: 3
@@ -50,3 +50,17 @@ MonoBehaviour:
     - type: 0
       amount: 6
   <ProjectilePrefab>k__BackingField: {fileID: 0}
+  <ProjectileEffect>k__BackingField: {fileID: 6106438395226734041, guid: 68cc78eea6d4da545b8cdb18293417a7, type: 3}
+  <ExplosionEffectsList>k__BackingField:
+  - dice: 1
+    explosionParticle: {fileID: 3739310704445661917, guid: 2f5bc3d55f381034289b674e39b69e17, type: 3}
+  - dice: 2
+    explosionParticle: {fileID: 3739310704445661917, guid: 2f5bc3d55f381034289b674e39b69e17, type: 3}
+  - dice: 3
+    explosionParticle: {fileID: 3739310704445661917, guid: 2f5bc3d55f381034289b674e39b69e17, type: 3}
+  - dice: 4
+    explosionParticle: {fileID: 2874435893526275542, guid: a95b2fad3ff4b454f88197ad8fb5e9b5, type: 3}
+  - dice: 5
+    explosionParticle: {fileID: 2874435893526275542, guid: a95b2fad3ff4b454f88197ad8fb5e9b5, type: 3}
+  - dice: 6
+    explosionParticle: {fileID: 2874435893526275542, guid: a95b2fad3ff4b454f88197ad8fb5e9b5, type: 3}

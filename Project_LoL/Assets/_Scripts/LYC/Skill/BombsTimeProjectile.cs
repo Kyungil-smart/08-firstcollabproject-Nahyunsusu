@@ -1,13 +1,13 @@
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DiceRollProjectile : MonoBehaviour, ISkillProjectile
+public class BombsTimeProjectile : MonoBehaviour, ISkillProjectile
 {
 	private Rigidbody2D _rb;
 	private Vector2 _direction;
 	private float _speed;
 	private float _maxRange;
 	private Vector2 _startPosition;
+
 	private bool _isLaunched;
 
 	private void Awake()
@@ -15,6 +15,11 @@ public class DiceRollProjectile : MonoBehaviour, ISkillProjectile
 		_rb = GetComponent<Rigidbody2D>();
 	}
 
+	public void Init()
+	{
+		
+	}
+	
 	public void Launch(SkillExecutor executor)
 	{
 		_direction = executor.Controller.FSM.FacingDir;
@@ -23,7 +28,6 @@ public class DiceRollProjectile : MonoBehaviour, ISkillProjectile
 		_maxRange = executor.CurrentSkillData.Range;
 
 		transform.position = _startPosition;
-		transform.right = _direction;
 		_isLaunched = true;
 	}
 
@@ -37,8 +41,16 @@ public class DiceRollProjectile : MonoBehaviour, ISkillProjectile
 		float traveled = Vector2.Distance(_startPosition, transform.position);
 		if (traveled >= _maxRange)
 		{
-			Destroy(gameObject);
+			Explode();
+			_isLaunched = false;
 		}
+	}
+
+	private void Explode()
+	{
+		// TODO: Particle, Physics
+
+		Destroy(gameObject);
 	}
 
 	private void OnCollisionEnter2D(Collision2D other)
