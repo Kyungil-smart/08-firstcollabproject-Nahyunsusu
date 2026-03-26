@@ -33,7 +33,7 @@ public class DiceRollProjectile : MonoBehaviour, ISkillProjectile
 		Vector2 next = _rb.position + _direction * (_speed * Time.fixedDeltaTime);
 		_rb.MovePosition(next);
 
-		float traveled = Vector2.Distance(_startPosition, _rb.position);
+		float traveled = Vector2.Distance(_startPosition, transform.position);
 		if (traveled >= _maxRange)
 		{
 			Destroy(gameObject);

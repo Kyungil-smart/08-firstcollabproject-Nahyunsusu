@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
 		{
 			Health = Data.MaxHp;
 			// ...
+
+			FSM.Init(Data);
 		}
 		else
 		{

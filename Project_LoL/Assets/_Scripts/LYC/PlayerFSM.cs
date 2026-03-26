@@ -39,10 +39,8 @@ public class PlayerFSM : MonoBehaviour
 		_rigidbody = GetComponent<Rigidbody2D>();
 	}
 
-	[ContextMenu("Init")]
-	public void Init()
+	public void Init(PlayerData data)
 	{
-		var data = Controller.Data;
 		if (data == null)
 		{
 			Debug.LogWarning($"{nameof(PlayerDataSO)} is null");
@@ -56,13 +54,14 @@ public class PlayerFSM : MonoBehaviour
 		Attack = new(this, _inputHandler, _skillHandler);
 		Die = new(this, _inputHandler);
 		Hit = new(this, _inputHandler, stunDuration);
+
+
+		ChangeState(Idle);
 	}
 
 	private void OnEnable()
 	{
-		Init();
 		BindInputCallbacks();
-		ChangeState(Idle);
 	}
 
 	private void Update()
