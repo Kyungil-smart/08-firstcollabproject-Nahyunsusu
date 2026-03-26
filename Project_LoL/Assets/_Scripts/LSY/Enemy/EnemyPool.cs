@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 스폰: EnemyPool.Instance.Spawn(prefab, position, room)
+// room이 null이면 A* 그리드 없이 직선 이동
 public class EnemyPool : MonoBehaviour
 {
     public static EnemyPool Instance { get; private set; }
@@ -32,8 +34,10 @@ public class EnemyPool : MonoBehaviour
 
     private void InitPools()
     {
-        _pools    = new Dictionary<string, Queue<GameObject>>();
+        _pools     = new Dictionary<string, Queue<GameObject>>();
         _prefabMap = new Dictionary<string, GameObject>();
+
+        if (poolConfigs == null || poolConfigs.Count == 0) return;
 
         foreach (var config in poolConfigs)
         {
@@ -51,8 +55,14 @@ public class EnemyPool : MonoBehaviour
         }
     }
 
-    public GameObject Spawn(GameObject prefab, Vector3 position)
+    public GameObject Spawn(GameObject prefab, Vector3 position, RoomNode room = null)
     {
+        if (prefab == null)
+        {
+            Debug.LogWarning("[EnemyPool] Spawn 실패: prefab이 null입니다.");
+            return null;
+        }
+
         string key = prefab.name;
 
         if (!_pools.ContainsKey(key))
@@ -61,25 +71,32 @@ public class EnemyPool : MonoBehaviour
             _prefabMap[key] = prefab;
         }
 
-        return SpawnByKey(key, position);
-    }
-
-    public GameObject Spawn(string enemyName, Vector3 position)
-    {
-        if (!_prefabMap.ContainsKey(enemyName))
-        {
-            Debug.LogWarning($"[EnemyPool] {enemyName} 을 찾을 수 없습니다. 인스펙터에서 등록해주세요.");
-            return null;
-        }
-
-        return SpawnByKey(enemyName, position);
+        return SpawnByKey(key, position, room);
     }
 
     public void Return(GameObject obj)
     {
+        if (obj == null)
+        {
+            Debug.LogWarning("[EnemyPool] Return 실패: obj가 null입니다.");
+            return;
+        }
+
+        // 이미 비활성화된 오브젝트는 중복 반환으로 간주
+        if (!obj.activeSelf)
+        {
+            Debug.LogWarning("[EnemyPool] 이미 반환된 오브젝트입니다.");
+            return;
+        }
+
+        // 색상 복구 후 비활성화 (피격 색상이 남아있는 문제 방지)
+        if (obj.TryGetComponent(out EnemyEffectManager effect))
+            effect.RestoreColors();
+
         obj.SetActive(false);
 
-        string key = obj.name;
+        // (Clone) 제거 후 키 매칭
+        string key = obj.name.Replace("(Clone)", "").Trim();
 
         if (_pools.ContainsKey(key))
             _pools[key].Enqueue(obj);
@@ -87,17 +104,29 @@ public class EnemyPool : MonoBehaviour
             Destroy(obj);
     }
 
-    private GameObject SpawnByKey(string key, Vector3 position)
+    private GameObject SpawnByKey(string key, Vector3 position, RoomNode room)
     {
         GameObject obj;
 
         if (_pools[key].Count > 0)
+        {
             obj = _pools[key].Dequeue();
-        else
+        }
+        else if (_prefabMap.ContainsKey(key))
+        {
             obj = CreateNewObject(_prefabMap[key]);
+        }
+        else
+        {
+            Debug.LogWarning($"[EnemyPool] {key} prefab 정보가 없습니다.");
+            return null;
+        }
 
         if (obj.TryGetComponent(out EnemyFSM fsm))
+        {
             fsm.ResetEnemy();
+            fsm.SetRoom(room);
+        }
 
         obj.transform.position = position;
         obj.SetActive(true);

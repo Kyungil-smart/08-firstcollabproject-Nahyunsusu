@@ -7,10 +7,11 @@ public class EnemyFSM : MonoBehaviour, IDamageable
     public EnemyData data;
 
     [Header("애니메이터")]
-    [SerializeField] private Animator _animatorRef;
+    [SerializeField] private Animator _animatorRef; // 인스펙터에서 직접 연결
 
     private Rigidbody2D _rigid;
     private EnemyEffectManager _effectManager;
+    private EnemyPathfinder _pathfinder;
     private Animator _animator;
     private Dictionary<EnemyStateType, EnemyStateBase> _states;
     private EnemyStateBase _currentState;
@@ -20,6 +21,8 @@ public class EnemyFSM : MonoBehaviour, IDamageable
     public Transform playerTransform { get; private set; }
     public Rigidbody2D rigid => _rigid;
     public Animator animator => _animator;
+    public EnemyPathfinder pathfinder => _pathfinder;
+    public RoomNode currentRoom { get; private set; }
 
     public bool isPlayerInDetectRange =>
         playerTransform != null &&
@@ -33,6 +36,7 @@ public class EnemyFSM : MonoBehaviour, IDamageable
     {
         _rigid         = GetComponent<Rigidbody2D>();
         _effectManager = GetComponent<EnemyEffectManager>();
+        _pathfinder    = GetComponent<EnemyPathfinder>();
 
         _animator = _animatorRef != null
             ? _animatorRef
@@ -77,16 +81,12 @@ public class EnemyFSM : MonoBehaviour, IDamageable
         _currentState.Enter();
     }
 
-    public void FlipToPlayer()
+    // 스폰 시 방 정보 설정 및 그리드 초기화
+    public void SetRoom(RoomNode room)
     {
-        if (playerTransform == null) return;
-
-        float dirX = playerTransform.position.x - transform.position.x;
-        if (dirX == 0) return;
-
-        Vector3 scale = transform.localScale;
-        scale.x = dirX < 0 ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
-        transform.localScale = scale;
+        currentRoom = room;
+        if (_pathfinder != null && room != null)
+            _pathfinder.InitGrid(room);
     }
 
     public void ResetEnemy()
@@ -115,10 +115,23 @@ public class EnemyFSM : MonoBehaviour, IDamageable
             return;
         }
 
-        // 사운드 연결 필요
+        // 사운드 담당자 연결 필요
         // AudioManager.Instance.PlaySFX("몬스터 피격 SFX");
 
         ChangeState(EnemyStateType.Hit);
+    }
+
+    // 플레이어 방향으로 좌우 반전 (SPUM 기본 방향 기준)
+    public void FlipToPlayer()
+    {
+        if (playerTransform == null) return;
+
+        float dirX = playerTransform.position.x - transform.position.x;
+        if (dirX == 0) return;
+
+        Vector3 scale = transform.localScale;
+        scale.x = dirX < 0 ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+        transform.localScale = scale;
     }
 
 #if UNITY_EDITOR
