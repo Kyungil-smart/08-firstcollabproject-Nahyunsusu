@@ -58,7 +58,7 @@ public class PlayerFSM : MonoBehaviour
 		Hit = new(this, _inputHandler, stunDuration);
 	}
 
-	private void OnEnable()
+	private void Start()
 	{
 		Init();
 		BindInputCallbacks();
