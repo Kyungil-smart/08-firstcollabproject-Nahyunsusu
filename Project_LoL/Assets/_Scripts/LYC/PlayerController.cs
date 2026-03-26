@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -37,11 +36,11 @@ public class PlayerController : MonoBehaviour
 	{
 		FSM = GetComponent<PlayerFSM>();
 
-		Init();
+		InitPlayerData();
 	}
 
 	[ContextMenu("Init")]
-	public void Init(PlayerDataSO dataSO = null)
+	public void InitPlayerData(PlayerDataSO dataSO = null)
 	{
 		// === Player Data ===
 		Data = dataSO != null ? dataSO.Get() : sampleSOData?.Get();
@@ -50,13 +49,16 @@ public class PlayerController : MonoBehaviour
 		{
 			Health = Data.MaxHp;
 			// ...
-
-			FSM.Init(Data);
 		}
 		else
 		{
 			Debug.LogWarning($"{nameof(PlayerDataSO)} is null");
 		}
+	}
+
+	private void Start()
+	{
+		FSM.Init();
 	}
 
 	public void SetInvincible(bool enable)
@@ -86,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
 		if (GUILayout.Button("Reset Stat as sample", GUILayout.Height(70), GUILayout.Width(100)))
 		{
-			Init();
+			InitPlayerData();
 		}
 
 		if (GUILayout.Button("OnHit", GUILayout.Height(70), GUILayout.Width(100)))

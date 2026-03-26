@@ -1,5 +1,13 @@
 using UnityEngine;
 
+public enum SkillExecuteResult
+{
+	Success,
+	NotExist,
+	OnCooldown,
+	Rolling
+}
+
 [System.Serializable]
 public class SkillExecutor
 {
@@ -35,13 +43,16 @@ public class SkillExecutor
 		Debug.Log($"[{typeof(SkillExecutor)}] {SkillDataSO.name} Init(주사위: {LastDiceResult})");
 	}
 
-	public bool TryExecute()
+	public SkillExecuteResult TryExecute()
 	{
-		if (_lastExecutedTime + CurrentSkillData.Cooldown > Time.time) return false;
+		if (CurrentSkillData == null) return SkillExecuteResult.NotExist;
+		if (_lastExecutedTime + CurrentSkillData.Delay > Time.time) return SkillExecuteResult.OnCooldown;
+		// if(_isRolling) return ...
 
 		SkillDataSO.Use(this);
-		Debug.Log($"[{typeof(SkillExecutor)}] {CurrentSkillData.SkillName} 실행");
-		return true;
+		_lastExecutedTime = Time.time;
+
+		return SkillExecuteResult.Success;
 	}
 
 	public static int Roll(int min = 1, int max = 6)

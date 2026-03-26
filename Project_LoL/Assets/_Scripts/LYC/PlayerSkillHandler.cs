@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -38,7 +39,17 @@ public class PlayerSkillHandler : MonoBehaviour
 
 	public void Execute(SkillSlot slot)
 	{
-		GetSkill(slot).TryExecute();
+		var result = GetSkill(slot).TryExecute();
+		var resultLog = result switch
+		{
+			SkillExecuteResult.Success => "실행 성공",
+			SkillExecuteResult.NotExist => "스킬 없음",
+			SkillExecuteResult.OnCooldown => "쿨타임",
+			SkillExecuteResult.Rolling => "주사위 굴리는 중",
+			_ => throw new ArgumentOutOfRangeException()
+		};
+
+		Debug.Log($@"[{typeof(PlayerSkillHandler)}] {_currentSkillSet}.{slot}->{resultLog}");
 	}
 
 	private void ChangeSkillSet()

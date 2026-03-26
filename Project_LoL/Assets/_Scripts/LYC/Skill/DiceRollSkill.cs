@@ -11,6 +11,8 @@ public class DiceRollSkill : SkillDataSO
 	{
 		var proj = Instantiate(ProjectilePrefab);
 		proj.Launch(executor);
+
+		Debug.Log($"{skillName} 발동");
 	}
 
 	protected override void SetEffect(SkillData data, int dice)
