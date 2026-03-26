@@ -12,6 +12,10 @@ public class RoomData : ScriptableObject
     public Vector2Int fixedSize;    // 전투 방을 제외한 고정 크기 방
     public Vector2Int minSize;      // 전투 방 랜덤 크기 범위 (최소)
     public Vector2Int maxSize;      // 전투 방 랜덤 크기 범위 (최대)
+    
+    [Header("고정 프리팹 (Boss, Start 타입만 사용)")]
+    public GameObject startRoomPrefab;
+    public GameObject bossPrefab;
 
     // 방 타입에 따라 크기 반환
     // 전투 방만 가변 크기, 나머지는 고정 크기 사용

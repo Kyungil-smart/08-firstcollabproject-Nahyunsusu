@@ -10,10 +10,8 @@ public class CorridorGenerator : MonoBehaviour
     public float wallPadding = 1.5f;
     public Material corridorMaterial;
 
-    [SerializeField] private float _escapeDist = 2.0f; // 문 앞에서 얼마나 빠져나올지
+    [SerializeField] private float _escapeDist = 4.0f;
 
-    // 생성된 복도 렌더러 보관
-    // 다음 Generate 호출 시 Clear()에서 정리
     private List<LineRenderer> _renderers = new List<LineRenderer>();
     private List<CorridorData> _corridors = new List<CorridorData>();
 
@@ -21,7 +19,6 @@ public class CorridorGenerator : MonoBehaviour
     {
         Clear();
 
-        // A-B / B-A 중복 생성 방지
         HashSet<string> processed = new HashSet<string>();
 
         foreach (RoomNode room in graph.allRooms)
@@ -39,28 +36,27 @@ public class CorridorGenerator : MonoBehaviour
                     continue;
 
                 float width = Mathf.Round(Random.Range(minWidth, maxWidth));
-                
                 int intWidth = Mathf.Max(1, Mathf.RoundToInt(width));
 
                 door.openingWidth = intWidth;
                 oppositeDoor.openingWidth = intWidth;
 
-                // 문 로컬 좌표를 월드 좌표로 변환
                 Vector2 start = room.worldPosition + door.localPosition;
-                Vector2 end = door.connectedRoom.worldPosition + oppositeDoor.localPosition;
+                Vector2 end   = door.connectedRoom.worldPosition + oppositeDoor.localPosition;
 
                 Vector2[] points = BuildCorridorPath(
-                    start,
-                    end,
-                    room,
-                    door,
-                    door.connectedRoom,
-                    oppositeDoor,
-                    graph);
+                    start, end,
+                    room, door,
+                    door.connectedRoom, oppositeDoor,
+                    graph, width);
 
-                // 복도 데이터 저장
-                CorridorData corridor = new CorridorData(room, door.connectedRoom, width, points);
-                _corridors.Add(corridor);
+                if (points == null)
+                {
+                    Debug.LogWarning($"[CorridorGenerator] {room.nodeId} → {door.connectedRoom.nodeId} 유효한 경로 없음");
+                    continue;
+                }
+
+                _corridors.Add(new CorridorData(room, door.connectedRoom, width, points));
             }
         }
     }
@@ -72,185 +68,143 @@ public class CorridorGenerator : MonoBehaviour
         DoorData startDoor,
         RoomNode endRoom,
         DoorData endDoor,
-        MapGraph graph)
+        MapGraph graph,
+        float corridorWidth)
     {
-        List<Vector2> rawPath = new List<Vector2>();
-        rawPath.Add(start);
+        float halfWidth = corridorWidth * 0.5f;
 
-        // 문 좌표를 바로 잇지 않고, 문 앞에서 한 번 빠져나온 지점을 기준으로 경로 생성
-        Vector2 exitPos = new Vector2(
-            Mathf.Round(start.x + GetDoorNormal(startDoor.direction).x * _escapeDist),
-            Mathf.Round(start.y + GetDoorNormal(startDoor.direction).y * _escapeDist)
-        );
-        Vector2 entrancePos = new Vector2(
-            Mathf.Round(end.x + GetDoorNormal(endDoor.direction).x * _escapeDist),
-            Mathf.Round(end.y + GetDoorNormal(endDoor.direction).y * _escapeDist)
-        );
+        // 문 앞에서 escapeDist만큼 빠져나온 지점
+        Vector2 exitPos = SnapToGrid(start + GetDoorNormal(startDoor.direction) * _escapeDist);
+        Vector2 entrancePos = SnapToGrid(end + GetDoorNormal(endDoor.direction) * _escapeDist);
 
-        // exit와 entrance가 이미 같은 축에 있고 중간에 방이 없으면 직선 연결
-        bool canConnectStraight = false;
-        if (Mathf.Approximately(exitPos.x, entrancePos.x) || Mathf.Approximately(exitPos.y, entrancePos.y))
+        // 직선 연결 가능 여부 먼저 확인
+        if (CanConnectStraight(exitPos, entrancePos, graph, startRoom, endRoom, halfWidth))
         {
-            if (!IsPathBlocked(exitPos, entrancePos, graph, startRoom, endRoom, out _))
-            {
-                canConnectStraight = true;
-            }
+            return BuildPath(start, exitPos, entrancePos, end);
         }
 
-        if (canConnectStraight)
+        // 후보 A: exit.x 기준 → entrance.y 기준 꺾임
+        Vector2 midA = new Vector2(exitPos.x, entrancePos.y);
+
+        // 후보 B: entrance.x 기준 → exit.y 기준 꺾임
+        Vector2 midB = new Vector2(entrancePos.x, exitPos.y);
+
+        bool validA = IsValidPath(exitPos, midA, entrancePos, graph, startRoom, endRoom, halfWidth);
+        bool validB = IsValidPath(exitPos, midB, entrancePos, graph, startRoom, endRoom, halfWidth);
+
+        if (validA && validB)
         {
-            rawPath.Add(exitPos);
-            rawPath.Add(entrancePos);
-        }
-        else
-        {
-            // 시작 문 방향 기준으로 기본 mid 생성
-            // 세로 문이면 x 고정, 가로 문이면 y 고정
-            Vector2 mid;
-            bool verticalStart = startDoor.direction == DoorDirection.Up || startDoor.direction == DoorDirection.Down;
-
-            if (verticalStart)
-                mid = new Vector2(exitPos.x, entrancePos.y);
-            else
-                mid = new Vector2(entrancePos.x, exitPos.y);
-
-            // exit 이후 다시 뒤로 꺾이는 케이스 방지
-            // 문 방향과 mid로 가는 방향이 반대면 다른 축 기준으로 다시 계산
-            Vector2 exitDir = GetDoorNormal(startDoor.direction);
-            Vector2 toMid = mid - exitPos;
-
-            if (toMid.sqrMagnitude > 0.0001f)
-            {
-                Vector2 toMidDir = toMid.normalized;
-
-                if (Vector2.Dot(exitDir, toMidDir) < 0f)
-                {
-                    if (verticalStart)
-                        mid = new Vector2(entrancePos.x, exitPos.y);
-                    else
-                        mid = new Vector2(exitPos.x, entrancePos.y);
-                }
-            }
-
-            // 첫 구간이 막히면 blocker 기준으로 mid를 밀어서 우회
-            if (IsPathBlocked(exitPos, mid, graph, startRoom, endRoom, out RoomNode blocker1))
-            {
-                mid = CalculateBypass(exitPos, mid, blocker1, verticalStart);
-            }
-            // 두 번째 구간이 막히면 entrance 쪽 구간 기준으로 우회
-            else if (IsPathBlocked(mid, entrancePos, graph, startRoom, endRoom, out RoomNode blocker2))
-            {
-                mid = CalculateBypass(mid, entrancePos, blocker2, !verticalStart);
-            }
-
-            // mid 최종 좌표를 타일 그리드에 맞게 정수화
-            mid = new Vector2(
-                Mathf.Round(mid.x),
-                Mathf.Round(mid.y)
-            );
-
-            rawPath.Add(exitPos);
-            rawPath.Add(mid);
-            rawPath.Add(entrancePos);
+            // 둘 다 유효하면 더 짧은 경로 선택
+            float lenA = PathLength(exitPos, midA, entrancePos);
+            float lenB = PathLength(exitPos, midB, entrancePos);
+            Vector2 mid = lenA <= lenB ? midA : midB;
+            return BuildPath(start, exitPos, SnapToGrid(mid), entrancePos, end);
         }
 
-        rawPath.Add(end);
+        if (validA)
+            return BuildPath(start, exitPos, SnapToGrid(midA), entrancePos, end);
 
-        // 같은 점이 연속으로 들어가면 불필요한 꺾임처럼 보일 수 있어서 제거
-        List<Vector2> finalPath = new List<Vector2>();
-        foreach (Vector2 p in rawPath)
+        if (validB)
+            return BuildPath(start, exitPos, SnapToGrid(midB), entrancePos, end);
+
+        // 둘 다 막힘
+        return null;
+    }
+
+    // 직선 연결 가능 여부 확인
+    private bool CanConnectStraight(
+        Vector2 exitPos, Vector2 entrancePos,
+        MapGraph graph, RoomNode startRoom, RoomNode endRoom,
+        float halfWidth)
+    {
+        if (!Mathf.Approximately(exitPos.x, entrancePos.x) &&
+            !Mathf.Approximately(exitPos.y, entrancePos.y))
+            return false;
+
+        return !IsPathBlocked(exitPos, entrancePos, graph, startRoom, endRoom, halfWidth);
+    }
+
+    // L자 경로 전체 유효 여부 확인
+    private bool IsValidPath(
+        Vector2 exitPos, Vector2 mid, Vector2 entrancePos,
+        MapGraph graph, RoomNode startRoom, RoomNode endRoom,
+        float halfWidth)
+    {
+        return !IsPathBlocked(exitPos, mid, graph, startRoom, endRoom, halfWidth) &&
+               !IsPathBlocked(mid, entrancePos, graph, startRoom, endRoom, halfWidth);
+    }
+
+    // 경로 총 길이 계산
+    private float PathLength(Vector2 exitPos, Vector2 mid, Vector2 entrancePos)
+    {
+        return Vector2.Distance(exitPos, mid) + Vector2.Distance(mid, entrancePos);
+    }
+
+    // 포인트들로 최종 경로 배열 생성
+    // 중복 좌표 제거
+    private Vector2[] BuildPath(params Vector2[] points)
+    {
+        List<Vector2> result = new List<Vector2>();
+
+        foreach (Vector2 p in points)
         {
-            // 모든 경로 좌표를 마지막에 한 번 더 정수화
-            Vector2 rounded = new Vector2(Mathf.Round(p.x), Mathf.Round(p.y));
-
-            if (finalPath.Count == 0 || Vector2.Distance(finalPath.Last(), rounded) > 0.01f)
-            {
-                finalPath.Add(rounded);
-            }
+            Vector2 snapped = SnapToGrid(p);
+            if (result.Count == 0 || Vector2.Distance(result.Last(), snapped) > 0.01f)
+                result.Add(snapped);
         }
 
-        return finalPath.ToArray();
+        return result.ToArray();
     }
 
     private bool IsPathBlocked(
-        Vector2 p1,
-        Vector2 p2,
+        Vector2 p1, Vector2 p2,
         MapGraph graph,
-        RoomNode startRoom,
-        RoomNode endRoom,
-        out RoomNode blocker)
+        RoomNode startRoom, RoomNode endRoom,
+        float halfWidth)
     {
-        blocker = null;
-
-        // 선분 그대로 검사하지 않고, 약간 두께가 있는 Rect로 검사
-        // 너무 넓으면 과검사, 너무 좁으면 경계 케이스를 놓칠 수 있어서 적당히 유지
-        float thickness = 0.5f;
+        float thickness = Mathf.Max(0.5f, halfWidth);
 
         Rect pathRect = new Rect(
             Mathf.Min(p1.x, p2.x) - thickness,
             Mathf.Min(p1.y, p2.y) - thickness,
-            Mathf.Abs(p1.x - p2.x) + (thickness * 2),
-            Mathf.Abs(p1.y - p2.y) + (thickness * 2)
+            Mathf.Abs(p1.x - p2.x) + thickness * 2,
+            Mathf.Abs(p1.y - p2.y) + thickness * 2
         );
 
-        foreach (var room in graph.allRooms)
+        foreach (RoomNode room in graph.allRooms)
         {
             // 출발/도착 방은 연결 대상이므로 제외
             if (room == startRoom || room == endRoom)
                 continue;
 
-            if (pathRect.Overlaps(room.GetRect()))
-            {
-                blocker = room;
+            Rect roomRect = new Rect(
+                room.GetRect().x - wallPadding,
+                room.GetRect().y - wallPadding,
+                room.GetRect().width + wallPadding * 2,
+                room.GetRect().height + wallPadding * 2
+            );
+
+            if (pathRect.Overlaps(roomRect))
                 return true;
-            }
         }
 
         return false;
     }
 
-    private Vector2 CalculateBypass(Vector2 p1, Vector2 mid, RoomNode blocker, bool isVerticalFirst)
+    private Vector2 SnapToGrid(Vector2 pos)
     {
-        Rect blockerRect = blocker.GetRect();
-        Vector2 newMid = mid;
-
-        if (isVerticalFirst)
-        {
-            // 세로 구간이 먼저라면 y축 기준으로 위/아래 중 가까운 쪽으로 우회
-            float distToTop = Mathf.Abs(blockerRect.yMax - mid.y);
-            float distToBottom = Mathf.Abs(blockerRect.yMin - mid.y);
-
-            newMid.y = distToTop < distToBottom
-                ? blockerRect.yMax + wallPadding
-                : blockerRect.yMin - wallPadding;
-        }
-        else
-        {
-            // 가로 구간이 먼저라면 x축 기준으로 좌/우 중 가까운 쪽으로 우회
-            float distToRight = Mathf.Abs(blockerRect.xMax - mid.x);
-            float distToLeft = Mathf.Abs(blockerRect.xMin - mid.x);
-
-            newMid.x = distToRight < distToLeft
-                ? blockerRect.xMax + wallPadding
-                : blockerRect.xMin - wallPadding;
-        }
-
-        // 우회 좌표도 타일 그리드에 맞게 정수화
-        return new Vector2(
-            Mathf.Round(newMid.x),
-            Mathf.Round(newMid.y)
-        );
+        return new Vector2(Mathf.Round(pos.x), Mathf.Round(pos.y));
     }
 
     private Vector2 GetDoorNormal(DoorDirection dir)
     {
         return dir switch
         {
-            DoorDirection.Up => Vector2.up,
-            DoorDirection.Down => Vector2.down,
-            DoorDirection.Left => Vector2.left,
+            DoorDirection.Up    => Vector2.up,
+            DoorDirection.Down  => Vector2.down,
+            DoorDirection.Left  => Vector2.left,
             DoorDirection.Right => Vector2.right,
-            _ => Vector2.zero
+            _                   => Vector2.zero
         };
     }
 
@@ -266,11 +220,8 @@ public class CorridorGenerator : MonoBehaviour
         _corridors.Clear();
     }
 
-    public List<CorridorData> GetCorridors()
-    {
-        return _corridors;
-    }
-    
+    public List<CorridorData> GetCorridors() => _corridors;
+
     private string GetConnectionKey(RoomNode a, RoomNode b)
     {
         return string.Compare(a.nodeId, b.nodeId) < 0
@@ -280,7 +231,7 @@ public class CorridorGenerator : MonoBehaviour
 
     private DoorData FindOppositeDoor(RoomNode room, RoomNode target)
     {
-        foreach (var d in room.doors)
+        foreach (DoorData d in room.doors)
         {
             if (d.connectedRoom == target)
                 return d;
