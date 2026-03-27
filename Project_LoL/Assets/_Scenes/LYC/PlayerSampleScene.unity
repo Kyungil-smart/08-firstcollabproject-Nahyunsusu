@@ -908,7 +908,19 @@ MonoBehaviour:
         m_CallState: 2
   dashed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1215519482}
+        m_TargetAssemblyTypeName: PlayerEffectManager, Assembly-CSharp
+        m_MethodName: PlayDashEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   died:
     m_PersistentCalls:
       m_Calls: []
@@ -1024,7 +1036,19 @@ MonoBehaviour:
       m_Calls: []
   <SkillExecuted>k__BackingField:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1215519482}
+        m_TargetAssemblyTypeName: PlayerEffectManager, Assembly-CSharp
+        m_MethodName: PlaySkillExecutionEffect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   <SkillExecutionFailed>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
@@ -2183,7 +2207,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

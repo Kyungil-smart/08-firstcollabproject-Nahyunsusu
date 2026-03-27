@@ -11,6 +11,7 @@ namespace _Scripts.LYC.States
 		private readonly float _dashCooldown;
 
 		private float _lastDashTime;
+		private Vector3 _dashStartPosition;
 
 		public DashState(PlayerFSM fsm, PlayerInputHandler input, Rigidbody2D rigidbody,
 			float dashTime, float dashDistance, float dashCooldown)
@@ -42,15 +43,15 @@ namespace _Scripts.LYC.States
 
 		private IEnumerator DashCoroutine(Vector2 dir)
 		{
+			_lastDashTime = Time.time;
+			_dashStartPosition = FSM.transform.position;
+			_rigidbody.linearVelocity = dir * (_dashDistance / _dashTime);
+
 			FSM.Controller.SetInvincible(true);
 			FSM.Controller.dashed.Invoke();
-			_rigidbody.linearVelocity = dir * (_dashDistance / _dashTime);
-			_lastDashTime = Time.time;
 
-			float elapsed = 0f;
-			while (elapsed < _dashTime)
+			while (Vector3.Distance(_dashStartPosition, FSM.transform.position) < _dashDistance)
 			{
-				elapsed += Time.deltaTime;
 				yield return null;
 			}
 
