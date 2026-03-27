@@ -3,7 +3,7 @@ public class SkillData
 {
 	public string SkillID;
 	public string SkillName;
-	public AttackType SkillType;
+	public SkillType SkillType;
 	public UnityEngine.UI.Image SkillImage;
 	public string SkillDescription;
 

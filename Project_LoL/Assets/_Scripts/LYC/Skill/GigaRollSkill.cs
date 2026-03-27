@@ -1,0 +1,33 @@
+using UnityEngine;
+
+namespace _Scripts.LYC.Skill
+{
+    [CreateAssetMenu(fileName = "GigaRoll", menuName = "Player/Skill/GigaRoll")]
+    public class GigaRollSkill : SkillDataSO
+    {
+        [field: Header("GigaRoll")]
+        [field: SerializeField]
+        public GigaRollProjectile ProjectilePrefab { get; private set; }
+
+        [field: SerializeField] public ParticleSystem ProjectileEffect { get; private set; }
+
+        [field: SerializeField] public ParticleSystem ExplosionParticle { get; private set; }
+
+        public override void Use(SkillExecutor executor)
+        {
+            Vector2 dir = executor.Controller.FSM.MouseDir;
+            Vector2 position = executor.Controller.transform.position;
+
+            var proj = Instantiate(ProjectilePrefab);
+            proj.Init(dir, position + dir, executor, ProjectileEffect, ExplosionParticle);
+        }
+
+        protected override void SetEffect(SkillData data, int dice)
+        {
+            base.SetEffect(data, dice);
+
+            data.SkillDescription = $"전방으로 ({data.Range})거리 에 폭탄을 발사하여 적에게 ({data.Damage})만큼의 데미지를 줍니다\n" +
+                                    data.SkillDescription;
+        }
+    }
+}
