@@ -1,3 +1,4 @@
+using _Scripts.LYC.Skill;
 using UnityEngine;
 
 public abstract class SkillDataSO : ScriptableObject

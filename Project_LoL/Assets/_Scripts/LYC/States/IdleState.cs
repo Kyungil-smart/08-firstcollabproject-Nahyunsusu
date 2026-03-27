@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using _Scripts.LYC.Skill;
+using UnityEngine;
 
 namespace _Scripts.LYC.States
 {
