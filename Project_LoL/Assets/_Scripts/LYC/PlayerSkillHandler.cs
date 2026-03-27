@@ -76,5 +76,5 @@ public class PlayerSkillHandler : MonoBehaviour
 	}
 
 	private int ConvertSlotToIndex(SkillSlot slot)
-		=> (int)CurrentSkillSlot + (int)slot;
+		=> (CurrentSkillSlot == SkillSlot.Left ? 0 : 2) + (int)slot;
 }

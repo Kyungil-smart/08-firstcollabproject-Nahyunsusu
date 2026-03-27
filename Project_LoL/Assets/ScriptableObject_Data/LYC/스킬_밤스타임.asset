@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BombsTimeSkill
   skillID: sc0002
   skillName: "\uBC24\uC2A4\uD0C0\uC784"
-  skillIconList: []
+  skillIconSet:
+    icon1: {fileID: 0}
+    icon2: {fileID: 0}
+    icon3: {fileID: 0}
+    icon4: {fileID: 0}
+    icon5: {fileID: 0}
+    icon6: {fileID: 0}
   skillType: 38
   damage: 8
   damageRangeX: 3
@@ -51,16 +57,10 @@ MonoBehaviour:
       amount: 6
   <ProjectilePrefab>k__BackingField: {fileID: 1840859090483820285, guid: fb3b390fc9bc774458d5e3673e35cccf, type: 3}
   <ProjectileEffect>k__BackingField: {fileID: 6106438395226734041, guid: 68cc78eea6d4da545b8cdb18293417a7, type: 3}
-  <ExplosionEffectsList>k__BackingField:
-  - dice: 1
-    particle: {fileID: 3739310704445661917, guid: 2f5bc3d55f381034289b674e39b69e17, type: 3}
-  - dice: 2
-    particle: {fileID: 3739310704445661917, guid: 2f5bc3d55f381034289b674e39b69e17, type: 3}
-  - dice: 3
-    particle: {fileID: 3739310704445661917, guid: 2f5bc3d55f381034289b674e39b69e17, type: 3}
-  - dice: 4
-    particle: {fileID: 2874435893526275542, guid: a95b2fad3ff4b454f88197ad8fb5e9b5, type: 3}
-  - dice: 5
-    particle: {fileID: 2874435893526275542, guid: a95b2fad3ff4b454f88197ad8fb5e9b5, type: 3}
-  - dice: 6
-    particle: {fileID: 2874435893526275542, guid: a95b2fad3ff4b454f88197ad8fb5e9b5, type: 3}
+  <ExplosionParticleSet>k__BackingField:
+    particle1: {fileID: 3739310704445661917, guid: 2f5bc3d55f381034289b674e39b69e17, type: 3}
+    particle2: {fileID: 3739310704445661917, guid: 2f5bc3d55f381034289b674e39b69e17, type: 3}
+    particle3: {fileID: 3739310704445661917, guid: 2f5bc3d55f381034289b674e39b69e17, type: 3}
+    particle4: {fileID: 2874435893526275542, guid: a95b2fad3ff4b454f88197ad8fb5e9b5, type: 3}
+    particle5: {fileID: 2874435893526275542, guid: a95b2fad3ff4b454f88197ad8fb5e9b5, type: 3}
+    particle6: {fileID: 2874435893526275542, guid: a95b2fad3ff4b454f88197ad8fb5e9b5, type: 3}

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BombsTime", menuName = "Player/Skill/BombsTime")]
@@ -13,7 +11,7 @@ public class BombsTimeSkill : SkillDataSO
 	public ParticleSystem ProjectileEffect { get; private set; }
 
 	[field: SerializeField]
-	public List<DiceParticleSet> ExplosionEffectsList { get; private set; }
+	public DiceParticleSet ExplosionParticleSet { get; private set; }
 
 	public override void Use(SkillExecutor executor)
 	{
@@ -25,13 +23,10 @@ public class BombsTimeSkill : SkillDataSO
 			position + facingDir,
 			executor.CurrentSkillData,
 			ProjectileEffect,
-			GetExplosionParticle(executor.LastDiceResult));
+			ExplosionParticleSet.Get(executor.LastDiceResult));
 
 		Debug.Log($"{skillName} 발동");
 	}
-
-	private ParticleSystem GetExplosionParticle(int dice)
-		=> ExplosionEffectsList.First(e => e.dice == dice).particle;
 
 	protected override void SetEffect(SkillData data, int dice)
 	{

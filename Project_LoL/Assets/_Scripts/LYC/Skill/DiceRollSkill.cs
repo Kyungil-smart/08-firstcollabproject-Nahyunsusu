@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DiceRoll", menuName = "Player/Skill/DiceRoll")]
@@ -10,7 +8,7 @@ public class DiceRollSkill : SkillDataSO
 	public SkillProjectile ProjectilePrefab { get; private set; }
 
 	[field: SerializeField]
-	public List<DiceParticleSet> ProjectileVFX { get; private set; }
+	public DiceParticleSet ProjectileParticleSet { get; private set; }
 
 	public override void Use(SkillExecutor executor)
 	{
@@ -18,13 +16,10 @@ public class DiceRollSkill : SkillDataSO
 		Vector2 position = executor.Controller.transform.position;
 
 		var proj = Instantiate(ProjectilePrefab);
-		proj.Init(facingDir, position + facingDir, executor.CurrentSkillData, GetProjectile(executor.LastDiceResult));
+		proj.Init(facingDir, position + facingDir, executor.CurrentSkillData, ProjectileParticleSet.Get(executor.LastDiceResult));
 
 		Debug.Log($"{skillName} 발동");
 	}
-
-	private ParticleSystem GetProjectile(int dice)
-		=> ProjectileVFX.First(d => d.dice == dice).particle;
 
 	protected override void SetEffect(SkillData data, int dice)
 	{

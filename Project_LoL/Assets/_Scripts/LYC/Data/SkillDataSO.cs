@@ -5,10 +5,35 @@ using UnityEngine;
 public abstract class SkillDataSO : ScriptableObject
 {
 	[System.Serializable]
-	public class SkillImageData
+	public class DiceSkillIconSet
 	{
-		public int dice;
-		public UnityEngine.UI.Image skillImage;
+		[Header("Dice 1")]
+		public UnityEngine.UI.Image icon1;
+
+		[Header("Dice 2")]
+		public UnityEngine.UI.Image icon2;
+
+		[Header("Dice 3")]
+		public UnityEngine.UI.Image icon3;
+
+		[Header("Dice 4")]
+		public UnityEngine.UI.Image icon4;
+
+		[Header("Dice 5")]
+		public UnityEngine.UI.Image icon5;
+
+		[Header("Dice 6")]
+		public UnityEngine.UI.Image icon6;
+
+		public UnityEngine.UI.Image Get(int dice) => dice switch
+		{
+			1 => icon1,
+			2 => icon2,
+			3 => icon3,
+			4 => icon4,
+			5 => icon5,
+			_ => icon6
+		};
 	}
 
 	public SkillData Get(int dice)
@@ -18,7 +43,7 @@ public abstract class SkillDataSO : ScriptableObject
 			SkillID = skillID,
 			SkillName = skillName,
 			SkillType = skillType,
-			SkillImage = skillIconList.FirstOrDefault(x => x.dice == dice)?.skillImage,
+			SkillImage = skillIconSet.Get(dice),
 			Damage = damage,
 			DamageRangeX = damageRangeX,
 			DamageRangeY = damageRangeY,
@@ -35,7 +60,7 @@ public abstract class SkillDataSO : ScriptableObject
 
 	[Header("Common")] [SerializeField] protected string skillID;
 	[SerializeField] protected string skillName;
-	[SerializeField] protected List<SkillImageData> skillIconList;
+	[SerializeField] protected DiceSkillIconSet skillIconSet;
 	[SerializeField] protected AttackType skillType;
 
 	[SerializeField] protected int damage;
