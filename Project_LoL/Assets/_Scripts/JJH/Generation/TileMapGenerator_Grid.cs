@@ -11,7 +11,7 @@ public class TileMapGenerator_Grid : MonoBehaviour
     public GameObject wallTilePrefab;
 
     [Header("벽 설정")]
-    public int wallThickness = 2;
+    public int wallThickness = 1;
 
     private Dictionary<Vector2Int, CellType> _grid = new Dictionary<Vector2Int, CellType>();
     private HashSet<Vector2Int> _doorPositions = new HashSet<Vector2Int>();
@@ -134,7 +134,9 @@ public class TileMapGenerator_Grid : MonoBehaviour
             Vector2 from = corridor.points[i];
             Vector2 to   = corridor.points[i + 1];
 
-            bool isHorizontal = Mathf.Abs(to.y - from.y) < 0.1f;
+            // 절댓값 비교로 수평/수직 판정
+            Vector2 dir = to - from;
+            bool isHorizontal = Mathf.Abs(dir.x) > Mathf.Abs(dir.y);
 
             int startX = Mathf.RoundToInt(Mathf.Min(from.x, to.x));
             int startY = Mathf.RoundToInt(Mathf.Min(from.y, to.y));
