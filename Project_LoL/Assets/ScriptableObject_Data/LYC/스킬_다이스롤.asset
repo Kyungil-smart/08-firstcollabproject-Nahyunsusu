@@ -62,4 +62,16 @@ MonoBehaviour:
     - type: 6
       amount: 3
   <ProjectilePrefab>k__BackingField: {fileID: 1840859090483820285, guid: fb3b390fc9bc774458d5e3673e35cccf, type: 3}
-  <ProjectileVFX>k__BackingField: {fileID: 6232948036839370694, guid: caa449f47fc5e9341a66fedc082df4a8, type: 3}
+  <ProjectileVFX>k__BackingField:
+  - dice: 1
+    particle: {fileID: 2381332572968880441, guid: 2f8f0fd5021dea547843b5a868777d2d, type: 3}
+  - dice: 2
+    particle: {fileID: 2381332572968880441, guid: 2f8f0fd5021dea547843b5a868777d2d, type: 3}
+  - dice: 3
+    particle: {fileID: 2381332572968880441, guid: 2f8f0fd5021dea547843b5a868777d2d, type: 3}
+  - dice: 4
+    particle: {fileID: 6232948036839370694, guid: caa449f47fc5e9341a66fedc082df4a8, type: 3}
+  - dice: 5
+    particle: {fileID: 6232948036839370694, guid: caa449f47fc5e9341a66fedc082df4a8, type: 3}
+  - dice: 6
+    particle: {fileID: 6232948036839370694, guid: caa449f47fc5e9341a66fedc082df4a8, type: 3}

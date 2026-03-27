@@ -59,7 +59,7 @@ public abstract class SkillDataSO : ScriptableObject
 
 		data.SkillDescription = "스킬 강화 ";
 
-		foreach (SkillDiceEffectGroup.SkillDiceEffect effect in list)
+		foreach (DiceEffectSet effect in list)
 		{
 			switch (effect.type)
 			{
