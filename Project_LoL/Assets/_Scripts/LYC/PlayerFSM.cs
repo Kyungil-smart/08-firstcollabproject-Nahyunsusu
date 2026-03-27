@@ -57,6 +57,9 @@ public class PlayerFSM : MonoBehaviour
 		Die = new(this, _inputHandler);
 		Hit = new(this, _inputHandler, stunDuration);
 
+	private void Start()
+	{
+		Init();
 		ChangeState(Idle);
 	}
 
