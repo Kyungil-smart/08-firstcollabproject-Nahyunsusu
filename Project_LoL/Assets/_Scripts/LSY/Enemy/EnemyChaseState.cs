@@ -15,7 +15,6 @@ public class EnemyChaseState : EnemyStateBase
     {
         _fsm.animator?.SetBool("1_Move", true);
 
-        // 몬스터마다 타이머 초기값 랜덤 분산 → 동시 경로 계산 방지
         _pathUpdateTimer = Random.Range(0f, PATH_UPDATE_INTERVAL);
         RequestPath();
     }
@@ -68,12 +67,9 @@ public class EnemyChaseState : EnemyStateBase
 
         _path = newPath;
 
-        // 현재 위치와 가장 가까운 웨이포인트부터 시작
-        // → 경로 재계산 시 갑자기 시작점으로 돌아가는 문제 방지
         _pathIndex = GetClosestPathIndex();
     }
 
-    // 현재 위치에서 가장 가까운 웨이포인트 인덱스 반환
     private int GetClosestPathIndex()
     {
         int closest = 0;
@@ -94,7 +90,6 @@ public class EnemyChaseState : EnemyStateBase
 
     private void MoveAlongPath()
     {
-        // 경로 없으면 직선 이동으로 폴백
         if (_path == null || _path.Count == 0 || _pathIndex >= _path.Count)
         {
             if (_fsm.playerTransform != null)

@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// A* 경로 탐색
-// 방 범위 안에서 그리드 생성 후 장애물 감지 → 경로 계산
 public class EnemyPathfinder : MonoBehaviour
 {
     [Header("그리드 설정")]
@@ -93,7 +91,6 @@ public class EnemyPathfinder : MonoBehaviour
             Node current = GetLowestFCost(openList);
             openList.Remove(current);
 
-            // 꺼낸 직후 closedSet 체크 → 중복 처리 방지
             if (closedSet.Contains(current)) continue;
             closedSet.Add(current);
 
@@ -111,9 +108,6 @@ public class EnemyPathfinder : MonoBehaviour
                     neighbor.hCost  = GetDistance(neighbor, targetNode);
                     neighbor.parent = current;
 
-                    // openHashSet 제거
-                    // 비용 낮아진 노드는 무조건 재추가
-                    // closedSet이 중복 처리를 막아주므로 안전
                     openList.Add(neighbor);
                 }
             }
