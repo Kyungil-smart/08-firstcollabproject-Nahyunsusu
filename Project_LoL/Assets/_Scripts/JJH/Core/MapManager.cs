@@ -63,7 +63,7 @@ public class MapManager : MonoBehaviour
             Debug.LogWarning("[MapManager] CorridorGenerator 가 연결되어 있지 않습니다.");
 
         if (_tileMapGeneratorGrid != null && corridorGenerator != null)
-            _tileMapGeneratorGrid.Generate(_graph, corridorGenerator.GetCorridors());
+            _tileMapGeneratorGrid.Generate(_graph, corridorGenerator.GetCorridors(), corridorGenerator.GetConnectedPairs());
         else
             Debug.LogWarning("[MapManager] TileMapGenerator_Grid 또는 CorridorGenerator 가 연결되어 있지 않습니다.");
 

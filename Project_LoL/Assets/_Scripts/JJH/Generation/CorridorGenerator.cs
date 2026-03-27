@@ -7,7 +7,7 @@ public class CorridorGenerator : MonoBehaviour
     [Header("설정")]
     public float minWidth = 2f;
     public float maxWidth = 6f;
-    public float wallPadding = 1.5f;
+    public float wallPadding = 4f;
     public Material corridorMaterial;
 
     [SerializeField] private float _escapeDist = 4.0f;
@@ -238,5 +238,16 @@ public class CorridorGenerator : MonoBehaviour
         }
 
         return null;
+    }
+    
+    public HashSet<string> GetConnectedPairs()
+    {
+        HashSet<string> pairs = new HashSet<string>();
+        foreach (CorridorData corridor in _corridors)
+        {
+            string key = GetConnectionKey(corridor.roomA, corridor.roomB);
+            pairs.Add(key);
+        }
+        return pairs;
     }
 }

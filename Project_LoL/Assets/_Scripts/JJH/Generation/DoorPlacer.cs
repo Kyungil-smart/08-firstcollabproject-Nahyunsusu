@@ -74,6 +74,7 @@ public class DoorPlacer : MonoBehaviour
                 break;
         }
 
+        localPos = new Vector2(Mathf.Round(localPos.x), Mathf.Round(localPos.y));
         return localPos;
     }
 

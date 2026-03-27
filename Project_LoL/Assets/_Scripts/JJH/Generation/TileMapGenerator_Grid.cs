@@ -17,7 +17,7 @@ public class TileMapGenerator_Grid : MonoBehaviour
     private HashSet<Vector2Int> _doorPositions = new HashSet<Vector2Int>();
     private List<GameObject> _tiles = new List<GameObject>();
 
-    public void Generate(MapGraph graph, List<CorridorData> corridors)
+    public void Generate(MapGraph graph, List<CorridorData> corridors, HashSet<string> connectedPairs)
     {
         Clear();
 
@@ -42,7 +42,7 @@ public class TileMapGenerator_Grid : MonoBehaviour
 
         // 문 위치 등록
         foreach (RoomNode room in graph.allRooms)
-            MarkDoors(room);
+            MarkDoors(room, connectedPairs);
 
         // Floor/CorridorFloor만 floorPositions으로 추출
         HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
@@ -228,10 +228,15 @@ public class TileMapGenerator_Grid : MonoBehaviour
     }
     
     // 문 위치 등록
-    private void MarkDoors(RoomNode room)
+    private void MarkDoors(RoomNode room, HashSet<string> connectedPairs)
     {
         foreach (DoorData door in room.doors)
         {
+            // 실제 복도가 연결된 문만 등록
+            string key = GetConnectionKey(room, door.connectedRoom);
+            if (!connectedPairs.Contains(key))
+                continue;
+
             Vector2 worldPos = room.worldPosition + door.localPosition;
             int dx = Mathf.RoundToInt(worldPos.x);
             int dy = Mathf.RoundToInt(worldPos.y);
@@ -256,6 +261,13 @@ public class TileMapGenerator_Grid : MonoBehaviour
                 }
             }
         }
+    }
+    
+    private string GetConnectionKey(RoomNode a, RoomNode b)
+    {
+        return string.Compare(a.nodeId, b.nodeId) < 0
+            ? $"{a.nodeId}_{b.nodeId}"
+            : $"{b.nodeId}_{a.nodeId}";
     }
 
     // Room Floor는 CorridorFloor에 덮이지 않음
