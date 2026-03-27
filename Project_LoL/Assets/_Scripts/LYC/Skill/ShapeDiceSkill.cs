@@ -12,11 +12,12 @@ public class ShapeDice : SkillDataSO
 
 	public override void Use(SkillExecutor executor)
 	{
-		Vector2 facingDir = executor.Controller.FSM.FacingDir;
+		Vector2 dir = executor.Controller.FSM.MouseDir;
 		Vector2 position = executor.Controller.transform.position;
+		var particle = ProjectileParticleSet.Get(executor.LastDiceResult);
 
 		var projectile = Instantiate(ProjectilePrefab);
-		projectile.Init(facingDir, position + facingDir, executor.CurrentSkillData, ProjectileParticleSet.Get(executor.LastDiceResult));
+		projectile.Init(dir, position + dir, executor, particle);
 
 		Debug.Log($"{skillName} 발동");
 	}

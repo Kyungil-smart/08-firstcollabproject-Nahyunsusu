@@ -13,21 +13,26 @@ public class SkillProjectile : MonoBehaviour
 	private float _range = 7f;
 	private float _explosionX = 1;
 	private float _explosionY = 1;
+	private float _damage;
 
 	private void Awake()
 	{
 		_rb = GetComponent<Rigidbody2D>();
 	}
 
-	public void Init(Vector2 direction, Vector2 startPosition, SkillData data, ParticleSystem
-		projectileParticle, ParticleSystem explosionParticle = null)
+	public void Init(Vector2 direction, Vector2 startPosition, SkillExecutor executor, ParticleSystem projectileParticle,
+		ParticleSystem explosionParticle = null)
 	{
+		var skillData = executor.CurrentSkillData;
+		var playerData = executor.Controller.Data;
+
 		_direction = direction;
 		_startPosition = startPosition;
-		_range = data.Range;
-		_speed = data.ProjectileSpeed;
-		_explosionX = data.DamageRangeX;
-		_explosionY = data.DamageRangeY;
+		_range = skillData.Range;
+		_speed = skillData.ProjectileSpeed;
+		_explosionX = skillData.DamageRangeX;
+		_explosionY = skillData.DamageRangeY;
+		_damage = skillData.Damage + playerData.AtkDamage; // 데미지 계산
 
 		// Root
 		transform.right = _direction;
@@ -37,7 +42,7 @@ public class SkillProjectile : MonoBehaviour
 		_projectile = Instantiate(projectileParticle, transform);
 		_projectile.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 		var main = _projectile.main;
-		float remainTime = _range / _speed;
+		float remainTime = _range / _speed + 0.2f; // 자연스러운 스킬 표현을 위한 오프셋
 		main.startLifetime = remainTime;
 		main.duration = remainTime;
 		_projectile.Play();
@@ -47,8 +52,8 @@ public class SkillProjectile : MonoBehaviour
 		{
 			_explosion = Instantiate(explosionParticle, transform);
 			float scale = Mathf.Max(_explosionX, _explosionY);
-			explosionParticle.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-			explosionParticle.transform.localScale = Vector3.one * scale;
+			_explosion.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+			_explosion.transform.localScale = Vector3.one * scale;
 		}
 	}
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using _Scripts.LYC.States;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerFSM : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class PlayerFSM : MonoBehaviour
 
 	public PlayerController Controller { get; private set; }
 	public Vector2 MoveInput { get; private set; }
+	public Vector2 MouseDir { get; private set; }
 	public Vector2 FacingDir { get; private set; } = Vector2.right;
 	public SkillSlot BufferedSkillSlot { get; private set; }
 
@@ -31,6 +33,8 @@ public class PlayerFSM : MonoBehaviour
 	private PlayerSkillHandler _skillHandler;
 	private Rigidbody2D _rigidbody;
 	private BaseState _currentState;
+
+	private Camera _mainCamera;
 
 	private void Awake()
 	{
@@ -56,6 +60,8 @@ public class PlayerFSM : MonoBehaviour
 		Attack = new(this, _inputHandler, _skillHandler);
 		Die = new(this, _inputHandler);
 		Hit = new(this, _inputHandler, stunDuration);
+
+		_mainCamera = Camera.main;
 	}
 
 	private void Start()
@@ -66,6 +72,10 @@ public class PlayerFSM : MonoBehaviour
 
 	private void Update()
 	{
+		var mousePosition = Mouse.current.position.ReadValue();
+		var worldPosition = _mainCamera.ScreenToWorldPoint(mousePosition);
+		MouseDir = (worldPosition - transform.position).normalized;
+
 		_currentState?.Update();
 	}
 

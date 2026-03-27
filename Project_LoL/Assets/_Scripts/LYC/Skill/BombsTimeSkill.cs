@@ -15,15 +15,12 @@ public class BombsTimeSkill : SkillDataSO
 
 	public override void Use(SkillExecutor executor)
 	{
-		Vector2 facingDir = executor.Controller.FSM.FacingDir;
+		Vector2 dir = executor.Controller.FSM.MouseDir;
 		Vector2 position = executor.Controller.transform.position;
+		var explosionParticle = ExplosionParticleSet.Get(executor.LastDiceResult);
 
 		SkillProjectile proj = Instantiate(ProjectilePrefab);
-		proj.Init(facingDir,
-			position + facingDir,
-			executor.CurrentSkillData,
-			ProjectileEffect,
-			ExplosionParticleSet.Get(executor.LastDiceResult));
+		proj.Init(dir, position + dir, executor, ProjectileEffect, explosionParticle);
 
 		Debug.Log($"{skillName} 발동");
 	}

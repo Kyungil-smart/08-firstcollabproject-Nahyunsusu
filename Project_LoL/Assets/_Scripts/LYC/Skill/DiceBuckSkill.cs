@@ -12,19 +12,20 @@ public class DiceBuckSkill : SkillDataSO
 
 	public override void Use(SkillExecutor executor)
 	{
-		Vector2 facingDir = executor.Controller.FSM.FacingDir;
+		Vector2 dir = executor.Controller.FSM.MouseDir;
 		Vector2 position = executor.Controller.transform.position;
+		var particle = ProjectileParticleSet.Get(executor.LastDiceResult);
 
 		float angle = 15f;
-		Vector2 upperDir = Quaternion.Euler(0, 0, angle) * facingDir;
-		Vector2 lowerDir = Quaternion.Euler(0, 0, -angle) * facingDir;
+		Vector2 upperDir = Quaternion.Euler(0, 0, angle) * dir;
+		Vector2 lowerDir = Quaternion.Euler(0, 0, -angle) * dir;
 
 		var upperProj = Instantiate(ProjectilePrefab);
 		var centerProj = Instantiate(ProjectilePrefab);
 		var lowerProj = Instantiate(ProjectilePrefab);
-		upperProj.Init(upperDir, position + upperDir, executor.CurrentSkillData, ProjectileParticleSet.Get(executor.LastDiceResult));
-		centerProj.Init(facingDir, position + facingDir, executor.CurrentSkillData, ProjectileParticleSet.Get(executor.LastDiceResult));
-		lowerProj.Init(lowerDir, position + lowerDir, executor.CurrentSkillData, ProjectileParticleSet.Get(executor.LastDiceResult));
+		upperProj.Init(upperDir, position + upperDir, executor, particle);
+		centerProj.Init(dir, position + dir, executor, particle);
+		lowerProj.Init(lowerDir, position + lowerDir, executor, particle);
 
 		Debug.Log($"{skillName} 발동");
 	}
