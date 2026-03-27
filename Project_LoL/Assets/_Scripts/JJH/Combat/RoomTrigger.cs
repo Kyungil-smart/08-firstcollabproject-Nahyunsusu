@@ -28,5 +28,6 @@ public class RoomTrigger : MonoBehaviour
 
         // 방 진입 시 바로 문 닫기 (몬스터 수와 무관)
         doorController.CloseDoors(room);
+        RoomClearManager.Instance?.StartRoom(room);
     }
 }

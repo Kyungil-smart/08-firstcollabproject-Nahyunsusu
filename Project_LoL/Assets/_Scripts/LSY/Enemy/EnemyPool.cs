@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// 스폰: EnemyPool.Instance.Spawn(prefab, position, room)
-// room이 null이면 A* 그리드 없이 직선 이동
 public class EnemyPool : MonoBehaviour
 {
     public static EnemyPool Instance { get; private set; }
@@ -82,20 +80,17 @@ public class EnemyPool : MonoBehaviour
             return;
         }
 
-        // 이미 비활성화된 오브젝트는 중복 반환으로 간주
         if (!obj.activeSelf)
         {
             Debug.LogWarning("[EnemyPool] 이미 반환된 오브젝트입니다.");
             return;
         }
 
-        // 색상 복구 후 비활성화 (피격 색상이 남아있는 문제 방지)
         if (obj.TryGetComponent(out EnemyEffectManager effect))
             effect.RestoreColors();
 
         obj.SetActive(false);
 
-        // (Clone) 제거 후 키 매칭
         string key = obj.name.Replace("(Clone)", "").Trim();
 
         if (_pools.ContainsKey(key))

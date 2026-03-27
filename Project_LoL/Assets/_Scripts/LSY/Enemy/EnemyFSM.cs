@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFSM : MonoBehaviour, IDamageable
+public class EnemyFSM : MonoBehaviour, Damageable
 {
     [Header("데이터")]
     public EnemyData data;
 
     [Header("애니메이터")]
-    [SerializeField] private Animator _animatorRef; // 인스펙터에서 직접 연결
+    [SerializeField] private Animator _animatorRef;
 
     private Rigidbody2D _rigid;
     private EnemyEffectManager _effectManager;
@@ -81,7 +81,6 @@ public class EnemyFSM : MonoBehaviour, IDamageable
         _currentState.Enter();
     }
 
-    // 스폰 시 방 정보 설정 및 그리드 초기화
     public void SetRoom(RoomNode room)
     {
         currentRoom = room;
@@ -121,7 +120,6 @@ public class EnemyFSM : MonoBehaviour, IDamageable
         ChangeState(EnemyStateType.Hit);
     }
 
-    // 플레이어 방향으로 좌우 반전 (SPUM 기본 방향 기준)
     public void FlipToPlayer()
     {
         if (playerTransform == null) return;

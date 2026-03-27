@@ -34,7 +34,7 @@ public class EnemyAttackState : EnemyStateBase
     {
         if (!_fsm.isPlayerInAttackRange) return;
         if (_fsm.playerTransform == null) return;
-        if (_fsm.playerTransform.TryGetComponent(out IDamageable damageable))
+        if (_fsm.playerTransform.TryGetComponent(out Damageable damageable))
             damageable.TakeDamage(_fsm.data.attackDamage);
     }
 }
