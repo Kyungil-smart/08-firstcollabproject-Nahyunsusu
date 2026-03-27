@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f3a4c3dcec43609ad815a3917fb152, type: 3}
+  m_Name: "\uC2A4\uD0AC_\uD1A0\uB124\uC774\uB2E4\uC774\uC2A4"
+  m_EditorClassIdentifier: Assembly-CSharp::TornadiceSkill
+  skillID: sc0007
+  skillName: "\uD1A0\uB124\uC774\uB2E4\uC774\uC2A4"
+  skillIconSet:
+    icon1: {fileID: 0}
+    icon2: {fileID: 0}
+    icon3: {fileID: 0}
+    icon4: {fileID: 0}
+    icon5: {fileID: 0}
+    icon6: {fileID: 0}
+  skillType: 0
+  damage: 9
+  damageRangeX: 1
+  damageRangeY: 1
+  projectileSpeed: 30
+  range: 5
+  delay: 0.5
+  maxUseCount: 4
+  cooldown: 5
+  diceEffects:
+    dice1Effects: []
+    dice2Effects: []
+    dice3Effects: []
+    dice4Effects: []
+    dice5Effects: []
+    dice6Effects: []
+  <ProjectilePrefab>k__BackingField: {fileID: 1840859090483820285, guid: fb3b390fc9bc774458d5e3673e35cccf, type: 3}
+  <ProjectileSet>k__BackingField:
+    particle1: {fileID: 6590320239041688317, guid: f0c34ff3777e96e47b94ee5408beea47, type: 3}
+    particle2: {fileID: 6590320239041688317, guid: f0c34ff3777e96e47b94ee5408beea47, type: 3}
+    particle3: {fileID: 6590320239041688317, guid: f0c34ff3777e96e47b94ee5408beea47, type: 3}
+    particle4: {fileID: 6409217586302758438, guid: b6c0e5d03a9f45748a6c3f9dc79b980c, type: 3}
+    particle5: {fileID: 6409217586302758438, guid: b6c0e5d03a9f45748a6c3f9dc79b980c, type: 3}
+    particle6: {fileID: 6409217586302758438, guid: b6c0e5d03a9f45748a6c3f9dc79b980c, type: 3}
