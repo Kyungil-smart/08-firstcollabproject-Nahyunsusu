@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ee194a1b6eaebc4f9264b160100a6b3, type: 3}
-  m_Name: "\uC2A4\uD0AC_\uB2E4\uC774\uC2A4\uB864"
-  m_EditorClassIdentifier: Assembly-CSharp::DiceRollSkill
-  skillID: sc0001
-  skillName: "\uB2E4\uC774\uC2A4 \uB864"
+  m_Script: {fileID: 11500000, guid: 23801e8d2a84c284989d429f62482f95, type: 3}
+  m_Name: "\uC2A4\uD0AC_\uB2E4\uC774\uC2A4\uBC85"
+  m_EditorClassIdentifier: Assembly-CSharp::DiceBuckSkill
+  skillID: SC0003
+  skillName: "\uB2E4\uC774\uC2A4 \uBC85"
   skillIconSet:
     icon1: {fileID: 0}
     icon2: {fileID: 0}
@@ -21,14 +21,14 @@ MonoBehaviour:
     icon4: {fileID: 0}
     icon5: {fileID: 0}
     icon6: {fileID: 0}
-  skillType: 2
-  damage: 17
+  skillType: 13
+  damage: 10
   damageRangeX: 1
-  damageRangeY: 7
+  damageRangeY: 1
   projectileSpeed: 30
   range: 7
-  delay: 0.2
-  maxUseCount: 6
+  delay: 0.4
+  maxUseCount: 5
   cooldown: 5
   diceEffects:
     dice1Effects:
@@ -43,23 +43,23 @@ MonoBehaviour:
     dice4Effects:
     - type: 0
       amount: 1
-    - type: 6
+    - type: 3
       amount: 3
     dice5Effects:
     - type: 0
       amount: 3
-    - type: 6
-      amount: 2
+    - type: 3
+      amount: 5
     dice6Effects:
     - type: 0
       amount: 5
-    - type: 6
-      amount: 3
+    - type: 3
+      amount: 7
   <ProjectilePrefab>k__BackingField: {fileID: 1840859090483820285, guid: fb3b390fc9bc774458d5e3673e35cccf, type: 3}
   <ProjectileParticleSet>k__BackingField:
-    particle1: {fileID: 2381332572968880441, guid: 2f8f0fd5021dea547843b5a868777d2d, type: 3}
-    particle2: {fileID: 2381332572968880441, guid: 2f8f0fd5021dea547843b5a868777d2d, type: 3}
-    particle3: {fileID: 2381332572968880441, guid: 2f8f0fd5021dea547843b5a868777d2d, type: 3}
-    particle4: {fileID: 6232948036839370694, guid: caa449f47fc5e9341a66fedc082df4a8, type: 3}
-    particle5: {fileID: 6232948036839370694, guid: caa449f47fc5e9341a66fedc082df4a8, type: 3}
-    particle6: {fileID: 6232948036839370694, guid: caa449f47fc5e9341a66fedc082df4a8, type: 3}
+    particle1: {fileID: 2912159954717664470, guid: 98d52ab325751cf4aac529d2bc4635b7, type: 3}
+    particle2: {fileID: 2912159954717664470, guid: 98d52ab325751cf4aac529d2bc4635b7, type: 3}
+    particle3: {fileID: 2912159954717664470, guid: 98d52ab325751cf4aac529d2bc4635b7, type: 3}
+    particle4: {fileID: 616600483538032778, guid: 959a053d15494ef47a02a26816250716, type: 3}
+    particle5: {fileID: 616600483538032778, guid: 959a053d15494ef47a02a26816250716, type: 3}
+    particle6: {fileID: 616600483538032778, guid: 959a053d15494ef47a02a26816250716, type: 3}

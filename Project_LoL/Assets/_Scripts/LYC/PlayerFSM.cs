@@ -1,4 +1,5 @@
-﻿using _Scripts.LYC.States;
+﻿using System;
+using _Scripts.LYC.States;
 using UnityEngine;
 
 public class PlayerFSM : MonoBehaviour
@@ -39,13 +40,12 @@ public class PlayerFSM : MonoBehaviour
 		_rigidbody = GetComponent<Rigidbody2D>();
 	}
 
-	[ContextMenu("Init")]
 	public void Init()
 	{
 		var data = Controller.Data;
 		if (data == null)
 		{
-			Debug.LogWarning($"{nameof(PlayerDataSO)} is null");
+			Debug.LogWarning($"{nameof(PlayerDataSO)} in {nameof(PlayerController)} is null");
 			return;
 		}
 
@@ -56,18 +56,21 @@ public class PlayerFSM : MonoBehaviour
 		Attack = new(this, _inputHandler, _skillHandler);
 		Die = new(this, _inputHandler);
 		Hit = new(this, _inputHandler, stunDuration);
-	}
 
 	private void Start()
 	{
 		Init();
-		BindInputCallbacks();
 		ChangeState(Idle);
 	}
 
 	private void Update()
 	{
 		_currentState?.Update();
+	}
+
+	private void OnEnable()
+	{
+		BindInputCallbacks();
 	}
 
 	private void OnDisable()

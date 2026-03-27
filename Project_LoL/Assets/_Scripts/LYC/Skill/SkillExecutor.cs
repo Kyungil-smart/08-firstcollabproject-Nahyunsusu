@@ -1,47 +1,61 @@
 using UnityEngine;
 
+public enum SkillExecuteResult
+{
+	Success,
+	NotExist,
+	OnCooldown,
+	Rolling
+}
+
 [System.Serializable]
 public class SkillExecutor
 {
 	[field: SerializeField] public SkillData CurrentSkillData { get; private set; }
 	[field: SerializeField] public SkillDataSO SkillDataSO { get; private set; }
 	[field: SerializeField] public int LastDiceResult { get; private set; }
+	[field: SerializeField] public float LastExecutedTime { get; private set; }
 
 	public PlayerController Controller { get; private set; }
 
-	private float _lastExecutedTime = -999;
-
-	public void Init(PlayerController controller, SkillDataSO skillInjection = null)
+	public SkillExecutor(PlayerController controller)
 	{
 		Controller = controller;
+		CurrentSkillData = null;
+		SkillDataSO = null;
 
-		if (skillInjection != null)
-			SkillDataSO = skillInjection;
+		LastExecutedTime = -1;
+		LastDiceResult = -1;
+	}
 
-		if (SkillDataSO == null)
+	public void Set(SkillDataSO newSkill = null)
+	{
+		SkillDataSO = newSkill;
+		CurrentSkillData = null;
+		LastDiceResult = 0;
+
+		if (SkillDataSO != null)
 		{
-			Debug.LogError($"[{typeof(SkillExecutor)}] SkillDataSO가 없습니다.");
-			return;
+			RefreshData();
 		}
-
-		RollSkillDice();
 	}
 
-	private void RollSkillDice()
+	private void RefreshData()
 	{
-		_lastExecutedTime = -999;
-		LastDiceResult = Roll();
+		LastDiceResult = Roll(); // TODO: Wait for rolling dice
 		CurrentSkillData = SkillDataSO.Get(LastDiceResult);
-		Debug.Log($"[{typeof(SkillExecutor)}] {SkillDataSO.name} Init(주사위: {LastDiceResult})");
 	}
 
-	public bool TryExecute()
+	public SkillExecuteResult TryExecute()
 	{
-		if (_lastExecutedTime + CurrentSkillData.Cooldown > Time.time) return false;
+		if (CurrentSkillData == null) return SkillExecuteResult.NotExist;
+		if (LastExecutedTime + CurrentSkillData.Delay > Time.time) return SkillExecuteResult.OnCooldown;
+		// if(_isRolling) return ...
 
 		SkillDataSO.Use(this);
-		Debug.Log($"[{typeof(SkillExecutor)}] {CurrentSkillData.SkillName} 실행");
-		return true;
+		LastExecutedTime = Time.time;
+
+		return SkillExecuteResult.Success;
 	}
 
 	public static int Roll(int min = 1, int max = 6)

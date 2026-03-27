@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -9,7 +8,7 @@ public class PlayerController : MonoBehaviour
 	#region Serializable Fields
 
 	[Header("Debug")] public bool enableDebugMenu;
-	public PlayerDataSO sampleSOData;
+	public PlayerDataSO playerDebugData;
 
 	[field: Header("Player")]
 	[field: SerializeField]
@@ -36,15 +35,17 @@ public class PlayerController : MonoBehaviour
 	private void Awake()
 	{
 		FSM = GetComponent<PlayerFSM>();
-
-		Init();
 	}
 
-	[ContextMenu("Init")]
-	public void Init(PlayerDataSO dataSO = null)
+	private void Start()
+	{
+		InitPlayer();
+	}
+
+	public void InitPlayer(PlayerDataSO dataSO = null)
 	{
 		// === Player Data ===
-		Data = dataSO != null ? dataSO.Get() : sampleSOData?.Get();
+		Data = dataSO == null ? playerDebugData?.Get() : dataSO.Get();
 
 		if (Data != null)
 		{
@@ -55,6 +56,8 @@ public class PlayerController : MonoBehaviour
 		{
 			Debug.LogWarning($"{nameof(PlayerDataSO)} is null");
 		}
+
+		FSM.Init();
 	}
 
 	public void SetInvincible(bool enable)
@@ -84,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
 		if (GUILayout.Button("Reset Stat as sample", GUILayout.Height(70), GUILayout.Width(100)))
 		{
-			Init();
+			InitPlayer();
 		}
 
 		if (GUILayout.Button("OnHit", GUILayout.Height(70), GUILayout.Width(100)))
