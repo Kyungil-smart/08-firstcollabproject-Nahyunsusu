@@ -5,12 +5,18 @@ public class DiceRollSkill : SkillDataSO
 {
 	[field: Header("DiceRoll")]
 	[field: SerializeField]
-	public DiceRollProjectile ProjectilePrefab { get; private set; }
+	public SkillProjectile ProjectilePrefab { get; private set; }
+
+	[field: SerializeField]
+	public ParticleSystem ProjectileVFX { get; private set; }
 
 	public override void Use(SkillExecutor executor)
 	{
+		Vector2 facingDir = executor.Controller.FSM.FacingDir;
+		Vector2 position = executor.Controller.transform.position;
+
 		var proj = Instantiate(ProjectilePrefab);
-		proj.Launch(executor);
+		proj.Init(facingDir, position + facingDir, executor.CurrentSkillData, ProjectileVFX);
 
 		Debug.Log($"{skillName} 발동");
 	}

@@ -15,7 +15,7 @@ public class BombsTimeSkill : SkillDataSO
 
 	[field: Header("BombsTime")]
 	[field: SerializeField]
-	public SkillProjectileBase ProjectilePrefab { get; private set; }
+	public SkillProjectile ProjectilePrefab { get; private set; }
 
 	[field: SerializeField]
 	public ParticleSystem ProjectileEffect { get; private set; }
@@ -28,7 +28,7 @@ public class BombsTimeSkill : SkillDataSO
 		Vector2 facingDir = executor.Controller.FSM.FacingDir;
 		Vector2 position = executor.Controller.transform.position;
 
-		SkillProjectileBase proj = Instantiate(ProjectilePrefab);
+		SkillProjectile proj = Instantiate(ProjectilePrefab);
 		proj.Init(facingDir,
 			position + facingDir,
 			executor.CurrentSkillData,

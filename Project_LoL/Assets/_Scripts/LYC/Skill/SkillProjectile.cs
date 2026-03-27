@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillProjectileBase : MonoBehaviour
+public class SkillProjectile : MonoBehaviour
 {
 	private Rigidbody2D _rb;
 	private ParticleSystem _projectile;
@@ -46,7 +46,9 @@ public class SkillProjectileBase : MonoBehaviour
 		if (explosionParticle != null)
 		{
 			_explosion = Instantiate(explosionParticle, transform);
+			float scale = Mathf.Max(_explosionX, _explosionY);
 			explosionParticle.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+			explosionParticle.transform.localScale = Vector3.one * scale;
 		}
 	}
 
