@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillProjectileBase : MonoBehaviour
@@ -6,10 +7,12 @@ public class SkillProjectileBase : MonoBehaviour
 	private ParticleSystem _projectile;
 	private ParticleSystem _explosion;
 
-	private float _speed = 30f;
-	private float _range = 7f;
 	private Vector2 _direction;
 	private Vector2 _startPosition;
+	private float _speed = 30f;
+	private float _range = 7f;
+	private float _explosionX = 1;
+	private float _explosionY = 1;
 
 	private void Awake()
 	{
@@ -23,10 +26,28 @@ public class SkillProjectileBase : MonoBehaviour
 		_startPosition = startPosition;
 		_range = data.Range;
 		_speed = data.ProjectileSpeed;
-		
+		_explosionX = data.DamageRangeX;
+		_explosionY = data.DamageRangeY;
 
-		float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
-		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		// Root
+		transform.right = _direction;
+		transform.position = _startPosition;
+
+		// Projectile Particle
+		_projectile = Instantiate(projectileParticle, transform);
+		_projectile.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+		var main = _projectile.main;
+		float remainTime = _range / _speed;
+		main.startLifetime = remainTime;
+		main.duration = remainTime;
+		_projectile.Play();
+
+		// Explosion Particle
+		if (explosionParticle != null)
+		{
+			_explosion = Instantiate(explosionParticle, transform);
+			explosionParticle.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+		}
 	}
 
 	private void FixedUpdate()
@@ -41,24 +62,29 @@ public class SkillProjectileBase : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		// 히트 판정 처리
 		DestroyProjectile();
 	}
 
 	private void DestroyProjectile()
 	{
-		// VFX를 부모에서 분리 후 파티클 잔상 재생
-		Transform vfx = transform.Find("VFX");
-		if (vfx != null)
+		// Physics
+		ContactFilter2D contactFilter2D = ContactFilter2D.noFilter; // Todo: Set monster layer
+		float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+		List<Collider2D> monsters = new();
+		Physics2D.OverlapBox(transform.position, new Vector2(_explosionX, _explosionY), angle, contactFilter2D, monsters);
+
+		foreach (Collider2D monster in monsters)
 		{
-			vfx.SetParent(null);
-			var ps = vfx.GetComponent<ParticleSystem>();
-			if (ps != null)
-			{
-				ps.Stop();
-				// 파티클이 모두 사라지면 제거
-				Destroy(vfx.gameObject, ps.main.duration + ps.main.startLifetime.constantMax);
-			}
+			// monster.gameObject.GetComponent<?>().Hit();
+			Destroy(monster.gameObject);
+		}
+
+		// Particle
+		if (_explosion != null)
+		{
+			_explosion.transform.SetParent(null);
+			_explosion.Play();
+			Destroy(_explosion.gameObject, _explosion.main.duration + _explosion.main.startLifetime.constantMax);
 		}
 
 		Destroy(gameObject);

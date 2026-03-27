@@ -49,7 +49,7 @@ MonoBehaviour:
       amount: 7
     - type: 0
       amount: 6
-  <ProjectilePrefab>k__BackingField: {fileID: 0}
+  <ProjectilePrefab>k__BackingField: {fileID: 1840859090483820285, guid: fb3b390fc9bc774458d5e3673e35cccf, type: 3}
   <ProjectileEffect>k__BackingField: {fileID: 6106438395226734041, guid: 68cc78eea6d4da545b8cdb18293417a7, type: 3}
   <ExplosionEffectsList>k__BackingField:
   - dice: 1
