@@ -1,151 +1,74 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class RoomCombatHandler : MonoBehaviour
 {
     [Header("스폰 설정")]
-    
-    [Header("위치 찾기 최대 시도 횟수")]
-    [SerializeField] private int _maxSpawnAttempts = 30;   // 위치 찾기 최대 시도 횟수
-    [Header("벽에서 떨어질 최소 타일 거리")]
-    [SerializeField] private int _wallMargin = 1;          // 벽에서 떨어질 최소 타일 거리
-    [Header("문 주변 제외 반경")]
-    [SerializeField] private float _doorExcludeRadius = 4f; // 문 주변 제외 반경
-    [Header("몬스터 간 최소 거리")]
-    [SerializeField] private float _monsterSpacing = 3f;    // 몬스터 간 최소 거리
+    [SerializeField] private int _wallMargin = 1;
+    [SerializeField] private float _doorExcludeRadius = 3f;
+    [SerializeField] private float _monsterSpacing = 2f;
 
-    private TileMapGenerator_Grid _tileMapGenerator;
+    [Header("참조")]
+    [SerializeField] private TileMapGenerator_Grid _tileGenerator;
+    [SerializeField] private DoorController _doorController;
 
-    private void Awake()
-    {
-        _tileMapGenerator = GetComponent<TileMapGenerator_Grid>();
-    }
-
-    // 전투 방 기준 스폰 위치 반환
     public List<Vector2> GetSpawnPositions(RoomNode room, int count)
     {
-        List<Vector2> spawnPositions = new List<Vector2>();
+        List<Vector2> finalPositions = new List<Vector2>();
 
-        if (room == null)
-            return spawnPositions;
+        List<Vector2Int> candidates = _tileGenerator.GetFloorPositionsInRoom(room);
+        candidates = FilterByMargin(candidates, room);
 
-        if (_tileMapGenerator == null)
+        List<Vector3> doorPositions = _doorController.GetDoorWorldPositions(room);
+        candidates = FilterByDoorDistance(candidates, doorPositions);
+
+        if (candidates.Count == 0) return finalPositions;
+
+        var shuffled = candidates.OrderBy(x => Random.value).ToList();
+        foreach (var pos in shuffled)
         {
-            Debug.LogWarning("[RoomCombatHandler] TileMapGenerator_Grid 가 없습니다.");
-            return spawnPositions;
-        }
+            Vector2 worldPos = new Vector2(pos.x + 0.5f, pos.y + 0.5f);
 
-        if (count <= 0)
-            return spawnPositions;
-
-        // 전투 방이 아니면 스폰하지 않음
-        if (room.roomData == null || room.roomData.roomType != RoomType.Combat)
-            return spawnPositions;
-
-        List<Vector2Int> candidates = _tileMapGenerator.GetFloorPositionsInRoom(room);
-
-        candidates = FilterByWallMargin(candidates, room);
-        candidates = FilterByDoorRadius(candidates, room);
-
-        if (candidates.Count == 0)
-        {
-            Debug.LogWarning($"[RoomCombatHandler] {room.nodeId} 스폰 가능한 위치가 없습니다.");
-            return spawnPositions;
-        }
-
-        int attempts = 0;
-
-        // 재시도 방식으로 위치 선정
-        while (spawnPositions.Count < count &&
-               attempts < _maxSpawnAttempts &&
-               candidates.Count > 0)
-        {
-            attempts++;
-
-            int randomIndex = Random.Range(0, candidates.Count);
-            Vector2Int candidate = candidates[randomIndex];
-            Vector2 worldPos = new Vector2(candidate.x + 0.5f, candidate.y + 0.5f);
-
-            if (IsTooCloseToOther(worldPos, spawnPositions))
-                continue;
-
-            spawnPositions.Add(worldPos);
-
-            // 이미 선택된 위치는 재사용하지 않음
-            candidates.RemoveAt(randomIndex);
-        }
-
-        if (spawnPositions.Count < count)
-        {
-            Debug.LogWarning(
-                $"[RoomCombatHandler] {room.nodeId} 요청 {count}마리 중 {spawnPositions.Count}개 위치만 확보됨.");
-        }
-
-        return spawnPositions;
-    }
-
-    // 방 경계 기준으로 벽에서 일정 거리 이내 좌표 제외
-    private List<Vector2Int> FilterByWallMargin(List<Vector2Int> candidates, RoomNode room)
-    {
-        int startX = Mathf.RoundToInt(room.worldPosition.x - room.size.x * 0.5f);
-        int startY = Mathf.RoundToInt(room.worldPosition.y - room.size.y * 0.5f);
-        int endX = startX + room.size.x;
-        int endY = startY + room.size.y;
-
-        List<Vector2Int> filtered = new List<Vector2Int>();
-
-        foreach (Vector2Int pos in candidates)
-        {
-            if (pos.x >= startX + _wallMargin && pos.x < endX - _wallMargin &&
-                pos.y >= startY + _wallMargin && pos.y < endY - _wallMargin)
+            if (!IsTooCloseToOthers(worldPos, finalPositions))
             {
-                filtered.Add(pos);
+                finalPositions.Add(worldPos);
+                if (finalPositions.Count >= count) break;
             }
         }
 
-        return filtered;
+        return finalPositions;
     }
 
-    // 문 주변 일정 반경 이내 좌표 제외
-    private List<Vector2Int> FilterByDoorRadius(List<Vector2Int> candidates, RoomNode room)
+    private List<Vector2Int> FilterByMargin(List<Vector2Int> origin, RoomNode room)
     {
-        List<Vector2Int> filtered = new List<Vector2Int>();
-        float radiusSq = _doorExcludeRadius * _doorExcludeRadius;
+        RectInt b = new RectInt(
+            Mathf.RoundToInt(room.worldPosition.x),
+            Mathf.RoundToInt(room.worldPosition.y),
+            room.size.x,
+            room.size.y
+        );
 
-        foreach (Vector2Int pos in candidates)
-        {
-            bool tooClose = false;
-
-            foreach (DoorData door in room.doors)
-            {
-                Vector2 doorWorldPos = room.worldPosition + door.localPosition;
-                float distSq = ((Vector2)pos - doorWorldPos).sqrMagnitude;
-
-                if (distSq < radiusSq)
-                {
-                    tooClose = true;
-                    break;
-                }
-            }
-
-            if (!tooClose)
-                filtered.Add(pos);
-        }
-
-        return filtered;
+        return origin.Where(p =>
+            p.x >= b.xMin + _wallMargin && p.x < b.xMax - _wallMargin &&
+            p.y >= b.yMin + _wallMargin && p.y < b.yMax - _wallMargin
+        ).ToList();
     }
 
-    // 이미 선택된 위치와 일정 거리 이내면 제외
-    private bool IsTooCloseToOther(Vector2 pos, List<Vector2> others)
+    private List<Vector2Int> FilterByDoorDistance(List<Vector2Int> origin, List<Vector3> doors)
     {
-        float spacingSq = _monsterSpacing * _monsterSpacing;
+        float sqrRad = _doorExcludeRadius * _doorExcludeRadius;
 
-        foreach (Vector2 other in others)
+        return origin.Where(p =>
         {
-            if ((pos - other).sqrMagnitude < spacingSq)
-                return true;
-        }
+            Vector2 pWorld = new Vector2(p.x + 0.5f, p.y + 0.5f);
+            return doors.All(dPos => (pWorld - (Vector2)dPos).sqrMagnitude > sqrRad);
+        }).ToList();
+    }
 
-        return false;
+    private bool IsTooCloseToOthers(Vector2 pos, List<Vector2> others)
+    {
+        float sqrSpace = _monsterSpacing * _monsterSpacing;
+        return others.Any(o => (pos - o).sqrMagnitude < sqrSpace);
     }
 }

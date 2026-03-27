@@ -17,3 +17,9 @@ MonoBehaviour:
   fixedSize: {x: 50, y: 50}
   minSize: {x: 0, y: 0}
   maxSize: {x: 0, y: 0}
+  startRoomPrefab: {fileID: 0}
+  bossPrefab: {fileID: 0}
+  useFixedDoor: 1
+  fixedDoorWidth: 1
+  fixedDoorDirection: 1
+  fixedDoorLocalPosition: {x: 0, y: 0}

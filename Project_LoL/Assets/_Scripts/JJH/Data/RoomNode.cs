@@ -1,46 +1,52 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomNode
 {
-    public string nodeId;             // 디버그용 ID
-    public RoomData roomData;         // 실제 방 데이터 (타입, 설정 등)
-    public List<RoomNode> neighbors;  // 연결된 인접 노드 (양방향 그래프)
+    public string nodeId;
+    public RoomData roomData;
+    public List<RoomNode> neighbors = new List<RoomNode>();
 
-    public Vector2Int size;           // 방 크기 (타일 단위)
-    public Vector2 worldPosition;     // 씬 상 위치
+    public Vector2Int size;
+    public Vector2 worldPosition;
+    
+    [System.Obsolete("승열님의 RoomClearManager 호환용입니다.")]
+    [Serializable]
+    public class DoorData
+    {
+        // 기존에 승열님이 썼을 법한 최소한의 변수만 남겨둡니다.
+        public Vector2Int position;
+        public int direction;
+    }
+    
+    [System.Obsolete("승열님의 EnemyPathfinder 호환용입니다.")]
+    public Rect GetRect()
+    {
+        return new Rect(worldPosition.x, worldPosition.y, size.x, size.y);
+    }
 
-    // 방에 연결된 문 정보
-    public List<DoorData> doors;
+    // 문 데이터는 ConnectionResult에서 관리
 
     public RoomNode(string id, RoomData data)
     {
         nodeId = id;
         roomData = data;
-        neighbors = new List<RoomNode>();
-        doors = new List<DoorData>();
     }
 
-    // 다른 노드와 연결 (양방향)
-    // 그래프 구조이기 때문에 서로 참조하도록 구성
     public void ConnectTo(RoomNode other)
     {
-        if (other == null)
-            return;
+        if (other == null || other == this) return;
 
-        if (!neighbors.Contains(other))
-            neighbors.Add(other);
-
-        if (!other.neighbors.Contains(this))
-            other.neighbors.Add(this);
+        if (!neighbors.Contains(other)) neighbors.Add(other);
+        if (!other.neighbors.Contains(this)) other.neighbors.Add(this);
     }
 
-    public Rect GetRect()
+    public RectInt GetBounds()
     {
-        // worldPosition이 중심점일 경우
-        return new Rect(
-            worldPosition.x - (size.x * 0.5f),
-            worldPosition.y - (size.y * 0.5f),
+        return new RectInt(
+            Mathf.RoundToInt(worldPosition.x),
+            Mathf.RoundToInt(worldPosition.y),
             size.x,
             size.y
         );
