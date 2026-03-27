@@ -56,6 +56,7 @@ public class PlayerFSM : MonoBehaviour
 		Attack = new(this, _inputHandler, _skillHandler);
 		Die = new(this, _inputHandler);
 		Hit = new(this, _inputHandler, stunDuration);
+	}
 
 	private void Start()
 	{
