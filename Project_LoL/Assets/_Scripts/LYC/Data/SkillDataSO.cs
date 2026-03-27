@@ -59,7 +59,7 @@ public abstract class SkillDataSO : ScriptableObject
 	[Header("Common")] [SerializeField] protected string skillID;
 	[SerializeField] protected string skillName;
 	[SerializeField] protected DiceSkillIconSet skillIconSet;
-	[SerializeField] protected AttackType skillType;
+	[SerializeField] protected SkillType skillType;
 
 	[SerializeField] protected int damage;
 	[SerializeField] protected int damageRangeX;

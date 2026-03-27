@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ShapeDice", menuName = "Player/Skill/ShapeDice")]
-public class ShapeDice : SkillDataSO
+public class ShapeDiceSkill : SkillDataSO
 {
 	[field: Header("DiceRoll")]
 	[field: SerializeField]

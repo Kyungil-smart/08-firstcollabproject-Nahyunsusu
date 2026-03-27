@@ -1,7 +1,7 @@
 ﻿using System;
 
 [Flags]
-public enum AttackType
+public enum SkillType
 {
 	None = 0,
 	Melee = 1 << 0, // 1  - 근접
