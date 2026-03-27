@@ -17,3 +17,7 @@ MonoBehaviour:
   fixedSize: {x: 20, y: 20}
   minSize: {x: 0, y: 0}
   maxSize: {x: 0, y: 0}
+  floorPrefab: {fileID: 2179359387349515802, guid: c21235e3c79f4ea4683edc2187b7c4f5, type: 3}
+  useFixedDoor: 0
+  fixedDoorDirection: 0
+  fixedDoorLocalPosition: {x: 0, y: 0}

@@ -1,146 +1,115 @@
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
-
+using UnityEngine;
+ 
 public class MapGraph
 {
     public RoomNode startRoom;
     public RoomNode bossRoom;
-    public List<RoomNode> allRooms;
-
-    private int _nodeCounter = 0;
-    private int _roomSpacing = 15;
-
-    public MapGraph()
-    {
-        allRooms = new List<RoomNode>();
-    }
-
+    public List<RoomNode> allRooms = new List<RoomNode>();
+ 
+    private int _nodeCounter;
+    private int _spacing;
+ 
     private RoomNode CreateNode(RoomData data)
     {
-        RoomNode node = new RoomNode($"room_{_nodeCounter++}", data);
+        var node = new RoomNode($"room_{_nodeCounter++}", data);
         node.size = data.GetRandomSize();
         allRooms.Add(node);
         return node;
     }
-
-    public void Generate(MapRoomPool pool, int roomSpacing)
+ 
+    public void Generate(MapRoomPool pool, int spacing)
     {
-        _roomSpacing = roomSpacing;
+        _spacing = spacing;
         _nodeCounter = 0;
         allRooms.Clear();
-
+ 
         startRoom = CreateNode(pool.startData);
-        startRoom.worldPosition = Vector2.zero;
-
+        startRoom.gridOrigin = Vector2Int.zero;
+ 
+        List<RoomData> shuffled = BuildShuffledPool(pool);
         int branchCount = Random.Range(2, 5);
-        List<RoomData> roomPool = BuildShuffledPool(pool);
-        List<List<RoomNode>> branches = new List<List<RoomNode>>();
+        var branches = new List<List<RoomNode>>();
         for (int i = 0; i < branchCount; i++) branches.Add(new List<RoomNode>());
-
-        int branchIndex = 0;
-        foreach (RoomData data in roomPool)
-        {
-            branches[branchIndex % branchCount].Add(CreateNode(data));
-            branchIndex++;
-        }
-
+ 
+        for (int i = 0; i < shuffled.Count; i++)
+            branches[i % branchCount].Add(CreateNode(shuffled[i]));
+ 
         PositionBranches(branches);
         EstablishConnections(branches, pool);
     }
-
+ 
     private void PositionBranches(List<List<RoomNode>> branches)
     {
-        List<int> branchWidths = branches.Select(b => GetMaxBranchWidth(b)).ToList();
-        int totalWidth = branchWidths.Sum() + (_roomSpacing * (branches.Count - 1));
-
-        int currentX = -totalWidth / 2;
-
-        for (int i = 0; i < branches.Count; i++)
+        int totalWidth = branches.Sum(b => GetMaxWidth(b)) + _spacing * (branches.Count - 1);
+        int currentX = startRoom.gridOrigin.x - totalWidth / 2;
+ 
+        foreach (var branch in branches)
         {
-            int branchCenterX = currentX + (branchWidths[i] / 2);
-            int currentY = Mathf.RoundToInt(startRoom.size.y + _roomSpacing);
-
-            foreach (var node in branches[i])
+            int maxW = GetMaxWidth(branch);
+            int centerX = currentX + maxW / 2;
+            int currentY = startRoom.gridOrigin.y + startRoom.size.y + _spacing;
+ 
+            foreach (var node in branch)
             {
-                node.worldPosition = new Vector2(branchCenterX - (node.size.x / 2), currentY);
-                currentY += node.size.y + _roomSpacing;
+                node.gridOrigin = new Vector2Int(centerX - node.size.x / 2, currentY);
+                currentY += node.size.y + _spacing;
             }
-
-            currentX += branchWidths[i] + _roomSpacing;
+ 
+            currentX += maxW + _spacing;
         }
     }
-
+ 
     private void EstablishConnections(List<List<RoomNode>> branches, MapRoomPool pool)
     {
         foreach (var branch in branches)
-        {
-            if (branch.Count > 0)
-                startRoom.ConnectTo(branch[0]);
-        }
-
+            if (branch.Count > 0) startRoom.ConnectTo(branch[0]);
+ 
         foreach (var branch in branches)
-        {
             for (int i = 0; i < branch.Count - 1; i++)
-            {
                 branch[i].ConnectTo(branch[i + 1]);
-            }
-        }
-
+ 
         MergeBranches(branches);
-
-        RoomNode lastNode = GetLongestBranchEnd(branches);
-
-        RoomNode repairNode = CreateNode(pool.repairData);
-        repairNode.worldPosition = new Vector2(
-            lastNode.worldPosition.x,
-            lastNode.worldPosition.y + lastNode.size.y + _roomSpacing
-        );
-        lastNode.ConnectTo(repairNode);
-
+ 
+        RoomNode last = branches.OrderByDescending(b => b.Count).First().Last();
+ 
+        RoomNode repair = CreateNode(pool.repairData);
+        repair.gridOrigin = new Vector2Int(last.gridOrigin.x, last.gridOrigin.y + last.size.y + _spacing);
+        last.ConnectTo(repair);
+ 
         bossRoom = CreateNode(pool.bossData);
-        bossRoom.worldPosition = new Vector2(
-            repairNode.worldPosition.x,
-            repairNode.worldPosition.y + repairNode.size.y + _roomSpacing
-        );
-        repairNode.ConnectTo(bossRoom);
+        bossRoom.gridOrigin = new Vector2Int(repair.gridOrigin.x, repair.gridOrigin.y + repair.size.y + _spacing);
+        repair.ConnectTo(bossRoom);
     }
-
-    private int GetMaxBranchWidth(List<RoomNode> branch)
+ 
+    private void MergeBranches(List<List<RoomNode>> branches)
     {
-        return branch.Count > 0 ? branch.Max(n => n.size.x) : 0;
+        List<RoomNode> ends = branches.Where(b => b.Count > 0).Select(b => b.Last()).ToList();
+        while (ends.Count > 1)
+        {
+            var next = new List<RoomNode>();
+            for (int i = 0; i < ends.Count - 1; i += 2)
+            {
+                ends[i].ConnectTo(ends[i + 1]);
+                next.Add(ends[i + 1]);
+            }
+            if (ends.Count % 2 != 0) next.Add(ends.Last());
+            ends = next;
+        }
     }
-
+ 
+    private int GetMaxWidth(List<RoomNode> branch) =>
+        branch.Count > 0 ? branch.Max(n => n.size.x) : 0;
+ 
     private List<RoomData> BuildShuffledPool(MapRoomPool pool)
     {
-        List<RoomData> list = new List<RoomData>(pool.combatRooms);
+        var list = new List<RoomData>(pool.combatRooms);
         for (int i = list.Count - 1; i > 0; i--)
         {
             int j = Random.Range(0, i + 1);
             (list[i], list[j]) = (list[j], list[i]);
         }
         return list;
-    }
-
-    private void MergeBranches(List<List<RoomNode>> branches)
-    {
-        List<RoomNode> ends = branches.Where(b => b.Count > 0).Select(b => b.Last()).ToList();
-        while (ends.Count > 1)
-        {
-            List<RoomNode> nextEnds = new List<RoomNode>();
-            for (int i = 0; i < ends.Count - 1; i += 2)
-            {
-                ends[i].ConnectTo(ends[i + 1]);
-                nextEnds.Add(ends[i + 1]);
-            }
-
-            if (ends.Count % 2 != 0) nextEnds.Add(ends.Last());
-            ends = nextEnds;
-        }
-    }
-
-    private RoomNode GetLongestBranchEnd(List<List<RoomNode>> branches)
-    {
-        return branches.OrderByDescending(b => b.Count).First().Last();
     }
 }
