@@ -302,7 +302,7 @@ MonoBehaviour:
   injectionArray:
   - inject: 1
     slot: 0
-    data: {fileID: 11400000, guid: 8a8ed706ccf4a5642abfda24e5d13d16, type: 2}
+    data: {fileID: 11400000, guid: 6012088aa2a4d9d4db8e20d4c1516d1c, type: 2}
   - inject: 1
     slot: 1
     data: {fileID: 11400000, guid: 16d33b442e1ffb941ab1218f0e3ff44c, type: 2}
@@ -520,7 +520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a614cd241410144bd9928528fb00b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.LYC.Tester.TEST_TimeScaler
-  timeMultiplier: 1
+  timeMultiplier: 0.13
 --- !u!4 &861835638
 Transform:
   m_ObjectHideFlags: 0
