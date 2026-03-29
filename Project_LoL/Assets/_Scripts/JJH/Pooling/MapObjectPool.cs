@@ -21,7 +21,7 @@ public class MapObjectPool : MonoBehaviour
 
     public void Prewarm(GameObject prefab, int count)
     {
-        // [DEBUG] 프리팹 체크
+        // 프리팹 체크
         Debug.Assert(prefab != null, "Prewarm prefab null");
         
         if (prefab == null || count <= 0)
@@ -41,7 +41,7 @@ public class MapObjectPool : MonoBehaviour
 
     public GameObject Spawn(GameObject prefab, Transform parent, Vector3 position, Quaternion rotation)
     {
-        // [DEBUG] 풀링 대상 프리팹 null 체크
+        // 풀링 대상 프리팹 null 체크
         Debug.Assert(prefab != null, "Spawn prefab null");
         
         if (prefab == null)
