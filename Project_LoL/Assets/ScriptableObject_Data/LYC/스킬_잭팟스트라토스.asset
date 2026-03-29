@@ -15,12 +15,12 @@ MonoBehaviour:
   skillID: sc0010
   skillName: "\uC7AD\uD31F \uC2A4\uD2B8\uB77C\uD1A0\uC2A4"
   skillIconSet:
-    icon1: {fileID: 0}
-    icon2: {fileID: 0}
-    icon3: {fileID: 0}
-    icon4: {fileID: 0}
-    icon5: {fileID: 0}
-    icon6: {fileID: 0}
+    icon1: {fileID: 21300000, guid: 6f094fec871d6aa4f9f6b373d5820be7, type: 3}
+    icon2: {fileID: 21300000, guid: 4393d06142761ee448961418e2b7f8e8, type: 3}
+    icon3: {fileID: 21300000, guid: 0b23f82506379834cafbb0a56fd6a279, type: 3}
+    icon4: {fileID: 21300000, guid: f1a8b283ad5db054bbe342b58470e5f1, type: 3}
+    icon5: {fileID: 21300000, guid: aee725db0478e3543b908780bbb3147a, type: 3}
+    icon6: {fileID: 21300000, guid: 4b537e97706b6924c8b41f763eaf35b4, type: 3}
   skillType: 0
   damage: 20
   damageRangeX: 3

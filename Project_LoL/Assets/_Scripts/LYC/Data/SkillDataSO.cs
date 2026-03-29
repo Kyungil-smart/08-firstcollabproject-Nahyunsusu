@@ -7,24 +7,24 @@ public abstract class SkillDataSO : ScriptableObject
 	public class DiceSkillIconSet
 	{
 		[Header("Dice 1")]
-		public UnityEngine.UI.Image icon1;
+		public Sprite icon1;
 
 		[Header("Dice 2")]
-		public UnityEngine.UI.Image icon2;
+		public Sprite icon2;
 
 		[Header("Dice 3")]
-		public UnityEngine.UI.Image icon3;
+		public Sprite icon3;
 
 		[Header("Dice 4")]
-		public UnityEngine.UI.Image icon4;
+		public Sprite icon4;
 
 		[Header("Dice 5")]
-		public UnityEngine.UI.Image icon5;
+		public Sprite icon5;
 
 		[Header("Dice 6")]
-		public UnityEngine.UI.Image icon6;
+		public Sprite icon6;
 
-		public UnityEngine.UI.Image Get(int dice) => dice switch
+		public Sprite Get(int dice) => dice switch
 		{
 			1 => icon1,
 			2 => icon2,
