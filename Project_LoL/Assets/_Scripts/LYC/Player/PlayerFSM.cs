@@ -63,11 +63,6 @@ public class PlayerFSM : MonoBehaviour
 		Hit = new(this, _inputHandler, stunDuration);
 
 		_mainCamera = Camera.main;
-	}
-
-	private void Start()
-	{
-		Init();
 		ChangeState(Idle);
 	}
 
