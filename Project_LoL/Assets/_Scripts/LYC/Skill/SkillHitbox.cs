@@ -25,7 +25,7 @@ namespace _Scripts.LYC.Skill
 
 			// Damage
 			_damage = skillData.Damage + playerData.AtkDamage;
-			if (Random.Range(0, 1.0f) < playerData.CritRate)
+			if (Random.Range(0, 100) < playerData.CritRate)
 			{
 				_damage *= playerData.CritDamage;
 			}

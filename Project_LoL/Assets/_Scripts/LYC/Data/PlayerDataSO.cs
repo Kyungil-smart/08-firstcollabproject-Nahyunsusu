@@ -8,26 +8,24 @@ public class PlayerDataSO : ScriptableObject
 	public PlayerData Get() =>
 		new()
 		{
-			StatId = statId,
-			MaxHp = maxHp,
-			AtkDamage = atkDamage,
-			AtkSpeed = atkSpeed,
-			MoveSpeed = moveSpeed,
-			CritRate = critRate,
-			CritDamage = critDamage,
-			DashTime = dashTime,
-			DashCooldown = dashCooldown,
-			DashInvincTime = dashInvincTime,
+			HP = PlayerHP,
+			AtkDamage = PlayerAttack,
+			AtkSpeed = PlayerAttackSpeed,
+			CritDamage = PlayerCritDamage,
+			CritRate = PlayerCritRate,
+			DashCooldown = PlayerDashCooldown,
+			DashInvincTime = PlayerDashInvincTime,
+			DashTime = PlayerDashTime,
+			MoveSpeed = PlayerMoveSpeed
 		};
 
-	[SerializeField] private int statId;
-	[SerializeField] private int maxHp;
-	[SerializeField] private int atkDamage;
-	[SerializeField] private float atkSpeed;
-	[SerializeField] private int moveSpeed;
-	[SerializeField] private int critRate;
-	[SerializeField] private int critDamage;
-	[SerializeField] private float dashTime;
-	[SerializeField] private float dashCooldown;
-	[SerializeField] private float dashInvincTime;
+	[field: SerializeField] public int PlayerHP { get; private set; }
+	[field: SerializeField] public int PlayerAttack { get; private set; }
+	[field: SerializeField] public float PlayerAttackSpeed { get; private set; }
+	[field: SerializeField] public int PlayerMoveSpeed { get; private set; }
+	[field: SerializeField] public int PlayerCritRate { get; private set; }
+	[field: SerializeField] public int PlayerCritDamage { get; private set; }
+	[field: SerializeField] public float PlayerDashTime { get; private set; }
+	[field: SerializeField] public float PlayerDashCooldown { get; private set; }
+	[field: SerializeField] public float PlayerDashInvincTime { get; private set; }
 }

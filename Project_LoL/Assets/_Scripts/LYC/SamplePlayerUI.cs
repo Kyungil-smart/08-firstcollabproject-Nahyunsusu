@@ -20,7 +20,7 @@ public class SamplePlayerUI : MonoBehaviour
 	private void Update()
 	{
 		statText.text = $"hp: {player.Health}\n" +
-		                $"exp: {player.Experience}\n" +
+		                $"exp: {player.Exp}\n" +
 		                $"invincible: {(player.IsInvincible ? "O" : "X")}\n";
 	}
 }

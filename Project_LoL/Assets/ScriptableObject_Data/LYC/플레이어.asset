@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6e03b034feb384cbbb66d97efb975c, type: 3}
   m_Name: "\uD50C\uB808\uC774\uC5B4"
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDataSO
-  statId: 0
-  maxHp: 50
-  atkDamage: 10
-  atkSpeed: 1
-  moveSpeed: 2
-  critRate: 72
-  critDamage: 20
-  dashTime: 0.2
-  dashCooldown: 2
-  dashInvincTime: 0.3
+  <PlayerHP>k__BackingField: 50
+  <PlayerAttack>k__BackingField: 10
+  <PlayerAttackSpeed>k__BackingField: 1
+  <PlayerMoveSpeed>k__BackingField: 3
+  <PlayerCritRate>k__BackingField: 50
+  <PlayerCritDamage>k__BackingField: 2
+  <PlayerDashTime>k__BackingField: 0.2
+  <PlayerDashCooldown>k__BackingField: 2
+  <PlayerDashInvincTime>k__BackingField: 0.5

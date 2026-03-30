@@ -38,7 +38,7 @@ namespace _Scripts.LYC.Skill
 
 			// Damage
 			_skillDamage = skillData.Damage + playerData.AtkDamage;
-			if (Random.Range(0, 1.0f) < playerData.CritRate)
+			if (Random.Range(0, 100) < playerData.CritRate)
 			{
 				_skillDamage *= playerData.CritDamage;
 			}
@@ -68,9 +68,10 @@ namespace _Scripts.LYC.Skill
 
 		private void FixedUpdate()
 		{
-			_rb.MovePosition(_rb.position + _direction * (_speed * Time.fixedDeltaTime));
+			Vector2 position = transform.position;
+			_rb.MovePosition(position + _direction * (_speed * Time.fixedDeltaTime));
 
-			if (Vector2.Distance(_startPosition, _rb.position) >= _range)
+			if (Vector2.Distance(_startPosition, position) >= _range)
 			{
 				DestroyProjectile();
 			}

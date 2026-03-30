@@ -1975,14 +1975,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-      propertyPath: <AutoInit>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-      propertyPath: <PlayerDataSOSample>k__BackingField
-      value: 
-      objectReference: {fileID: 11400000, guid: c4ebbe942630e3441b1145e371cf04e4, type: 2}
     - target: {fileID: 6214984124904572333, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
