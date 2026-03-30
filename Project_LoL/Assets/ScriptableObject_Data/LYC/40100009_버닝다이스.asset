@@ -17,7 +17,7 @@ MonoBehaviour:
   description: "\uCEE4\uC11C \uBC29\uD5A5\uC73C\uB85C ({range})\uAC70\uB9AC\uB9CC\uD07C
     \uACF5\uACA9\uC744 \uB0A0\uB824 \uC801\uC5D0\uAC8C ({damage})\uB9CC\uD07C\uC758
     \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4"
-  skillType: 0
+  skillType: 4
   skillIconSet:
     icon1: {fileID: 21300000, guid: 40b4663822c06ee4a9e82bd3ea03cea8, type: 3}
     icon2: {fileID: 21300000, guid: 15e3357d14f058546825e8ef58a0418b, type: 3}
@@ -33,6 +33,7 @@ MonoBehaviour:
   delay: 0.2
   maxUseCount: 6
   cooldown: 5
+  price: 0
   diceEffects:
     dice1Effects: []
     dice2Effects: []

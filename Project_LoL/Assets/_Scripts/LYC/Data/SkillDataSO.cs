@@ -52,6 +52,7 @@ public abstract class SkillDataSO : ScriptableObject
 			Delay = delay,
 			MaxUseCount = maxUseCount,
 			Cooldown = cooldown,
+			Price = price
 		};
 
 		SetEffect(data, dice);
@@ -72,6 +73,7 @@ public abstract class SkillDataSO : ScriptableObject
 	[SerializeField] protected float delay;
 	[SerializeField] protected int maxUseCount;
 	[SerializeField] protected int cooldown;
+	[SerializeField] protected int price;
 
 	[Header("Bonus")]
 	[SerializeField]

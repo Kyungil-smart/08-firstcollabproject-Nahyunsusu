@@ -33,6 +33,7 @@ MonoBehaviour:
   delay: 0.2
   maxUseCount: 6
   cooldown: 5
+  price: 0
   diceEffects:
     dice1Effects:
     - type: 0

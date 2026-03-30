@@ -15,4 +15,5 @@ public class SkillData
 	public float Delay;
 	public int MaxUseCount;
 	public int Cooldown;
+	public int Price;
 }
