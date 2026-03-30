@@ -26,7 +26,7 @@ public class MapGraph
         allRooms.Clear();
  
         startRoom = CreateNode(pool.startData);
-        startRoom.gridOrigin = Vector2Int.zero;
+        startRoom.gridOrigin = new Vector2Int(-startRoom.size.x / 2, -startRoom.size.y / 2);
  
         List<RoomData> shuffled = BuildShuffledPool(pool);
         int branchCount = Random.Range(2, 5);
