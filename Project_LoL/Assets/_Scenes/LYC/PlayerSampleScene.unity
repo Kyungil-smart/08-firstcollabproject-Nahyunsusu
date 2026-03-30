@@ -1975,42 +1975,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 923561147717376668, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.349
-      objectReference: {fileID: 0}
-    - target: {fileID: 923561147717376668, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.251
-      objectReference: {fileID: 0}
-    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-      propertyPath: dashed.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-      propertyPath: dashed.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-      propertyPath: dashed.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 38931389614778090}
-    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-      propertyPath: dashed.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-      propertyPath: dashed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Play
-      objectReference: {fileID: 0}
-    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-      propertyPath: dashed.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.ParticleSystem, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-      propertyPath: dashed.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 6214984124904572333, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2060,11 +2024,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
---- !u!198 &38931389614778090 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3676572154924073671, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-  m_PrefabInstance: {fileID: 38931389614778089}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
