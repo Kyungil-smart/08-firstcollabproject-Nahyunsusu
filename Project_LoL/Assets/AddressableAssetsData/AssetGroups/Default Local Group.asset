@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Default Local Group
+  m_GUID: 058f2fa242b39c14bbd2dc1e6cb5b96a
+  m_SerializeEntries:
+  - m_GUID: 11430c2aeacb4c545bd966081ac08ddf
+    m_Address: skill-sc0004
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 16d33b442e1ffb941ab1218f0e3ff44c
+    m_Address: skill-sc0009
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e76ea4d4a36f1b44b635f92c0f5a1ff
+    m_Address: skill-sc0001
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 378addabf44469a4983bc65d6f030542
+    m_Address: skill-sc0005
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41d3376fb5548d74fad35596f913b7fd
+    m_Address: skill-sc0003
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6012088aa2a4d9d4db8e20d4c1516d1c
+    m_Address: skill-sc0010
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a55e6117ba10d143b5bf934d4e2e2aa
+    m_Address: skill-sc0006
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a8ed706ccf4a5642abfda24e5d13d16
+    m_Address: skill-sc0008
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b0dff5b322be92644a3e3ed67277ec9f
+    m_Address: skill-sc0007
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4ebbe942630e3441b1145e371cf04e4
+    m_Address: playerData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6036d8af2bed714288d8acb16b2a9f5
+    m_Address: skill-sc0002
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: b1b3a23a0b3ceb3429e7faba2a3cb7ab, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ff932e4e6f1ea6f48ba299c159e76af2, type: 2}
+    - {fileID: 11400000, guid: 4eed5ce00be8fff4788a8ea314e55c1a, type: 2}

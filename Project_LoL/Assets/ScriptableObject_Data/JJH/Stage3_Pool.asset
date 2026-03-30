@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f704a3a6e4dd24095216be6bffd0ed, type: 3}
+  m_Name: Stage3_Pool
+  m_EditorClassIdentifier: Assembly-CSharp::MapRoomPool
+  startData: {fileID: 11400000, guid: e022c2baff6358746bd773a979be92fa, type: 2}
+  bossData: {fileID: 11400000, guid: 247c6494cd1784c43be5f1ee1c3b7ba5, type: 2}
+  repairData: {fileID: 11400000, guid: 4e4cc4e1fda6efa4ca7f5c1a993b6ad7, type: 2}
+  combatRooms:
+  - {fileID: 11400000, guid: 603ca95f2ccd3674db0768452f54ea61, type: 2}
+  - {fileID: 11400000, guid: 693b74927fed0c34eb2f22688ab5fd83, type: 2}
+  - {fileID: 11400000, guid: 9027602ebc419154a9d73b1c0a527e9d, type: 2}
+  - {fileID: 11400000, guid: 617e61e6135684d49bf8c5f0c20ed8cd, type: 2}
+  - {fileID: 11400000, guid: eb212fd4c32661d40a42b3254215ddd8, type: 2}
