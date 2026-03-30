@@ -229,7 +229,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   enableDebugMenu: 1
-  playerDebugData: {fileID: 11400000, guid: c4ebbe942630e3441b1145e371cf04e4, type: 2}
+  <PlayerDataSOSample>k__BackingField: {fileID: 11400000, guid: c4ebbe942630e3441b1145e371cf04e4, type: 2}
+  <AutoInit>k__BackingField: 1
   <Health>k__BackingField: 0
   <Experience>k__BackingField: 0
   <IsInvincible>k__BackingField: 0

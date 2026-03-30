@@ -16,47 +16,57 @@ MonoBehaviour:
   m_GUID: 058f2fa242b39c14bbd2dc1e6cb5b96a
   m_SerializeEntries:
   - m_GUID: 11430c2aeacb4c545bd966081ac08ddf
-    m_Address: skill-sc0004
+    m_Address: s-40100004
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 16d33b442e1ffb941ab1218f0e3ff44c
-    m_Address: skill-sc0009
+    m_Address: s-40100009
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2e76ea4d4a36f1b44b635f92c0f5a1ff
-    m_Address: skill-sc0001
+    m_Address: s-40100001
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 378addabf44469a4983bc65d6f030542
-    m_Address: skill-sc0005
+    m_Address: s-40100005
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 41d3376fb5548d74fad35596f913b7fd
-    m_Address: skill-sc0003
+    m_Address: s-40100003
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 536eb3bcbbe2d564eba4ec33b5de24e1
+    m_Address: s-40100011
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6012088aa2a4d9d4db8e20d4c1516d1c
-    m_Address: skill-sc0010
+    m_Address: s-40100010
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 606c753fa52db0047bf618a7ea315223
+    m_Address: s-40100012
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6a55e6117ba10d143b5bf934d4e2e2aa
-    m_Address: skill-sc0006
+    m_Address: s-40100006
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8a8ed706ccf4a5642abfda24e5d13d16
-    m_Address: skill-sc0008
+    m_Address: s-40100008
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b0dff5b322be92644a3e3ed67277ec9f
-    m_Address: skill-sc0007
+    m_Address: s-40100007
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -66,7 +76,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e6036d8af2bed714288d8acb16b2a9f5
-    m_Address: skill-sc0002
+    m_Address: s-40100002
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

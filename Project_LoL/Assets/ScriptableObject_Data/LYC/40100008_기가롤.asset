@@ -10,10 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 191f530833767924f96be8e1e14a5573, type: 3}
-  m_Name: "\uC2A4\uD0AC_\uAE30\uAC00\uB864"
+  m_Name: "40100008_\uAE30\uAC00\uB864"
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.LYC.Skill.GigaRollSkill
-  skillID: sc0008
+  skillID: 40100008
   skillName: "\uAE30\uAC00\uB864"
+  description: "\uCEE4\uC11C \uBC29\uD5A5\uC73C\uB85C ({range})\uAC70\uB9AC\uB9CC\uD07C
+    \uACF5\uACA9\uC744 \uB0A0\uB824 \uC801\uC5D0\uAC8C ({damage})\uB9CC\uD07C\uC758
+    \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4"
+  skillType: 0
   skillIconSet:
     icon1: {fileID: 21300000, guid: c6e3344c80d396f458c3530bc286aae4, type: 3}
     icon2: {fileID: 21300000, guid: e73f58ae6feaa2d40b46d6b7bbe3b64d, type: 3}
@@ -21,7 +25,6 @@ MonoBehaviour:
     icon4: {fileID: 21300000, guid: a9f64df9ca399f345aad305019c55452, type: 3}
     icon5: {fileID: 21300000, guid: 98ef1ec83aaf0984b9a9a9abc9c44a4b, type: 3}
     icon6: {fileID: 21300000, guid: b22bc00e02714f84189b70c97c06b70c, type: 3}
-  skillType: 0
   damage: 17
   damageRangeX: 5
   damageRangeY: 1

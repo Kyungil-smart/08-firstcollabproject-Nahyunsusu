@@ -47,7 +47,7 @@ public class PlayerSkillHandler : MonoBehaviour
 		_inputHandler.SkillSetChanged -= ChangeSkillSet;
 	}
 
-	public void SetSkill(SkillDataSO skillData, int slotIndex)
+	public void SetSkill(SkillDataSO skillData, int slotIndex, int dice = 0)
 	{
 		if (slotIndex >= Skills.Length)
 		{
@@ -55,7 +55,15 @@ public class PlayerSkillHandler : MonoBehaviour
 			return;
 		}
 
-		Skills[slotIndex].Set(skillData);
+		if (dice != 0)
+		{
+			Skills[slotIndex].Set(skillData, dice);
+		}
+		else
+		{
+			Skills[slotIndex].Set(skillData);
+		}
+
 		SkillChanged.Invoke(slotIndex);
 	}
 
