@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b3af8328074566933ed262468a7fb5, type: 3}
+  m_Name: SAMPLE_EnemyDiceRoll
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDiceRollSkill
+  skillID: 1
+  skillName: diceroll
+  skillType: 0
+  damage: 10
+  damageRangeX: 1
+  damageRangeY: 1
+  projectileSpeed: 30
+  range: 5
+  delay: 0.2
+  maxUseCount: 3
+  cooldown: 1
+  <ProjectilePrefab>k__BackingField: {fileID: 4917029153309309916, guid: 85942edd815415747864288f5253ed48, type: 3}
+  <ProjectileParticle>k__BackingField: {fileID: 2381332572968880441, guid: 2f8f0fd5021dea547843b5a868777d2d, type: 3}
