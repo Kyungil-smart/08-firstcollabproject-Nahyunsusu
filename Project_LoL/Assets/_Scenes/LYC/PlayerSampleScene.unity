@@ -302,8 +302,8 @@ MonoBehaviour:
   injectionArray:
   - dice: 0
     data: {fileID: 11400000, guid: 2e76ea4d4a36f1b44b635f92c0f5a1ff, type: 2}
-  - dice: 6
-    data: {fileID: 11400000, guid: 606c753fa52db0047bf618a7ea315223, type: 2}
+  - dice: 1
+    data: {fileID: 11400000, guid: 11430c2aeacb4c545bd966081ac08ddf, type: 2}
   - dice: 0
     data: {fileID: 11400000, guid: b0dff5b322be92644a3e3ed67277ec9f, type: 2}
   - dice: 0
@@ -1975,6 +1975,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 923561147717376668, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.349
+      objectReference: {fileID: 0}
+    - target: {fileID: 923561147717376668, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.251
+      objectReference: {fileID: 0}
+    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
+      propertyPath: dashed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
+      propertyPath: dashed.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
+      propertyPath: dashed.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 38931389614778090}
+    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
+      propertyPath: dashed.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
+      propertyPath: dashed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
+      propertyPath: dashed.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.ParticleSystem, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 976248339180411139, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
+      propertyPath: dashed.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6214984124904572333, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2024,6 +2060,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
+--- !u!198 &38931389614778090 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3676572154924073671, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
+  m_PrefabInstance: {fileID: 38931389614778089}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

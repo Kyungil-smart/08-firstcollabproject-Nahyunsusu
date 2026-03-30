@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerEffectManager : MonoBehaviour
 {
+	[SerializeField] private ParticleSystem _dashParticle;
+	
 	private SpriteRenderer _playerRenderer;
 	private float _actionEffectDuration = 0.2f;
 
