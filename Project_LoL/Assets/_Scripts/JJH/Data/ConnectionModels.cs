@@ -5,8 +5,8 @@ public enum DoorDir { Up, Down, Left, Right }
  
 public class DoorCandidate
 {
-    public Vector2Int wallPos;      // 벽 위 좌표 (문이 생성될 타일)
-    public Vector2Int entrance;     // 문 바깥 복도 시작 좌표 (wallPos + dir offset)
+    public Vector2Int wallPos;
+    public Vector2Int entrance;
     public DoorDir dir;
     public RoomNode owner;
  
@@ -29,8 +29,8 @@ public class DoorCandidate
  
 public class CorridorPath
 {
-    public List<Vector2Int> tiles;  // entrance ~ entrance 사이 복도 타일 목록
-    public int bendCount;           // 꺾인 횟수 (0=직선, 1=L자, 2=2회 꺾기)
+    public List<Vector2Int> tiles;
+    public int bendCount;
     public float score;
 }
  
@@ -41,4 +41,5 @@ public class ConnectionResult
     public DoorCandidate doorA;
     public DoorCandidate doorB;
     public List<Vector2Int> corridorTiles;
+    public int corridorWidth;
 }

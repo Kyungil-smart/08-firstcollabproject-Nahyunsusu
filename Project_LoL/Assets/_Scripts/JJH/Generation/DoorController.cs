@@ -6,8 +6,8 @@ public class DoorController : MonoBehaviour
     [SerializeField] private MapObjectPool _objectPool;
     [SerializeField] private GameObject _doorPrefab;
     [SerializeField] private Transform _doorRoot;
-    
-    private Dictionary<RoomNode, List<GameObject>> _roomDoors = new Dictionary<RoomNode, List<GameObject>>();
+ 
+    private Dictionary<RoomNode, List<DoorObject>> _roomDoors = new Dictionary<RoomNode, List<DoorObject>>();
  
     public void BuildDoors(List<ConnectionResult> connections)
     {
@@ -16,16 +16,25 @@ public class DoorController : MonoBehaviour
  
         foreach (var conn in connections)
         {
-            PlaceDoor(conn.doorA);
-            PlaceDoor(conn.doorB);
+            PlaceDoor(conn.doorA, conn.corridorWidth);
+ 
+            if (conn.doorB.owner != null &&
+                conn.doorB.owner.roomData.roomType != RoomType.Boss)
+                PlaceDoor(conn.doorB, conn.corridorWidth);
         }
     }
  
-    private void PlaceDoor(DoorCandidate door)
+    private void PlaceDoor(DoorCandidate door, int width)
     {
         if (door == null) return;
-        
-        Vector3 worldPos = new Vector3(door.wallPos.x, door.wallPos.y, 0f);
+ 
+        bool isVertical = door.dir == DoorDir.Up || door.dir == DoorDir.Down;
+        float centerOffset = (width - 1) / 2f;
+ 
+        Vector3 worldPos = isVertical
+            ? new Vector3(door.wallPos.x + centerOffset, door.wallPos.y, 0f)
+            : new Vector3(door.wallPos.x, door.wallPos.y + centerOffset, 0f);
+ 
         GameObject d = _objectPool.Spawn(_doorPrefab, _doorRoot, worldPos, Quaternion.identity);
  
         float angle = door.dir switch
@@ -37,11 +46,17 @@ public class DoorController : MonoBehaviour
         };
         d.transform.rotation = Quaternion.Euler(0f, 0f, angle);
  
+        DoorObject doorObj = d.GetComponent<DoorObject>();
+        if (doorObj != null)
+            doorObj.Setup(width, isVertical);
+ 
         if (door.owner != null)
         {
             if (!_roomDoors.ContainsKey(door.owner))
-                _roomDoors[door.owner] = new List<GameObject>();
-            _roomDoors[door.owner].Add(d);
+                _roomDoors[door.owner] = new List<DoorObject>();
+ 
+            if (doorObj != null)
+                _roomDoors[door.owner].Add(doorObj);
         }
     }
  
@@ -49,14 +64,14 @@ public class DoorController : MonoBehaviour
     {
         if (!_roomDoors.TryGetValue(room, out var doors)) return;
         foreach (var d in doors)
-            if (d != null) d.SetActive(false);
+            if (d != null) d.Close();
     }
  
     public void OpenDoors(RoomNode room)
     {
         if (!_roomDoors.TryGetValue(room, out var doors)) return;
         foreach (var d in doors)
-            if (d != null) d.SetActive(true);
+            if (d != null) d.Open();
     }
  
     public List<Vector3> GetDoorWorldPositions(RoomNode room)

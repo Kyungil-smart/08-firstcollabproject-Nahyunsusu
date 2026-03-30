@@ -6,6 +6,9 @@ public class ConnectionPlanner : MonoBehaviour
     [SerializeField] private int _bendClearance = 10;
     [SerializeField] private int _roomClearance = 20;
     [SerializeField] private int _bendStepCount = 5;
+    [SerializeField] private int _corridorWidthMin = 2;
+    [SerializeField] private int _corridorWidthMax = 6;
+    [SerializeField] private int _bossCorridorWidth = 4;
  
     private HashSet<Vector2Int> _roomCells = new HashSet<Vector2Int>();
     private Dictionary<RoomNode, RectInt> _roomBounds = new Dictionary<RoomNode, RectInt>();
@@ -57,16 +60,20 @@ public class ConnectionPlanner : MonoBehaviour
         {
             foreach (var cb in candidatesB)
             {
-                var result = TryConnect(a, b, ca, cb);
-                if (result != null)
-                    return result;
+                bool isVertical = ca.dir == DoorDir.Up || ca.dir == DoorDir.Down;
+ 
+                for (int width = _corridorWidthMin; width <= _corridorWidthMax; width++)
+                {
+                    var result = TryConnect(a, b, ca, cb, width, isVertical);
+                    if (result != null)
+                        return result;
+                }
             }
         }
  
         return null;
     }
  
-    // 상대 방 위치를 기준으로 마주보는 벽에서만 후보 생성
     private List<DoorCandidate> GetDoorCandidates(RoomNode room, RoomNode other)
     {
         var list = new List<DoorCandidate>();
@@ -93,42 +100,48 @@ public class ConnectionPlanner : MonoBehaviour
         {
             if (dx > 0)
                 AddDoorCandidates(list, room, b, DoorDir.Right,
-                    new Vector2Int(b.xMax - 1, b.yMin + b.height / 2), Vector2Int.up);
+                    new Vector2Int(b.xMax, b.yMin + b.height / 2), Vector2Int.up);
             else
                 AddDoorCandidates(list, room, b, DoorDir.Left,
-                    new Vector2Int(b.xMin, b.yMin + b.height / 2), Vector2Int.up);
+                    new Vector2Int(b.xMin - 1, b.yMin + b.height / 2), Vector2Int.up);
         }
         else
         {
             if (dy > 0)
                 AddDoorCandidates(list, room, b, DoorDir.Up,
-                    new Vector2Int(b.xMin + b.width / 2, b.yMax - 1), Vector2Int.right);
+                    new Vector2Int(b.xMin + b.width / 2, b.yMax), Vector2Int.right);
             else
                 AddDoorCandidates(list, room, b, DoorDir.Down,
-                    new Vector2Int(b.xMin + b.width / 2, b.yMin), Vector2Int.right);
+                    new Vector2Int(b.xMin + b.width / 2, b.yMin - 1), Vector2Int.right);
         }
  
         return list;
     }
  
-    private ConnectionResult TryConnect(RoomNode a, RoomNode b, DoorCandidate ca, DoorCandidate cb)
+    private ConnectionResult TryConnect(
+        RoomNode a, RoomNode b,
+        DoorCandidate ca, DoorCandidate cb,
+        int width, bool isVertical)
     {
-        var straight = TryStraight(ca, cb, a, b);
+        var straight = TryStraight(ca, cb, a, b, width, isVertical);
         if (straight != null)
-            return MakeResult(a, b, ca, cb, straight);
+            return MakeResult(a, b, ca, cb, straight, width);
  
-        var lShape = TryLShape(ca, cb, a, b);
+        var lShape = TryLShape(ca, cb, a, b, width, isVertical);
         if (lShape != null)
-            return MakeResult(a, b, ca, cb, lShape);
+            return MakeResult(a, b, ca, cb, lShape, width);
  
-        var doubleBend = TryDoubleBend(ca, cb, a, b);
+        var doubleBend = TryDoubleBend(ca, cb, a, b, width, isVertical);
         if (doubleBend != null)
-            return MakeResult(a, b, ca, cb, doubleBend);
+            return MakeResult(a, b, ca, cb, doubleBend, width);
  
         return null;
     }
  
-    private List<Vector2Int> TryStraight(DoorCandidate ca, DoorCandidate cb, RoomNode a, RoomNode b)
+    private List<Vector2Int> TryStraight(
+        DoorCandidate ca, DoorCandidate cb,
+        RoomNode a, RoomNode b,
+        int width, bool isVertical)
     {
         Vector2Int s = ca.entrance;
         Vector2Int e = cb.entrance;
@@ -137,13 +150,16 @@ public class ConnectionPlanner : MonoBehaviour
             return null;
  
         var tiles = MakeLine(s, e);
-        if (!PathClear(tiles, a, b))
+        if (!PathClear(tiles, a, b, width, isVertical))
             return null;
  
         return Wrap(tiles, ca.wallPos, cb.wallPos);
     }
  
-    private List<Vector2Int> TryLShape(DoorCandidate ca, DoorCandidate cb, RoomNode a, RoomNode b)
+    private List<Vector2Int> TryLShape(
+        DoorCandidate ca, DoorCandidate cb,
+        RoomNode a, RoomNode b,
+        int width, bool isVertical)
     {
         Vector2Int s = ca.entrance;
         Vector2Int e = cb.entrance;
@@ -159,7 +175,7 @@ public class ConnectionPlanner : MonoBehaviour
             if (!BendClear(corner, cb)) continue;
  
             var tiles = ConcatLines(s, corner, e);
-            if (!PathClear(tiles, a, b)) continue;
+            if (!PathClear(tiles, a, b, width, isVertical)) continue;
  
             return Wrap(tiles, ca.wallPos, cb.wallPos);
         }
@@ -167,7 +183,10 @@ public class ConnectionPlanner : MonoBehaviour
         return null;
     }
  
-    private List<Vector2Int> TryDoubleBend(DoorCandidate ca, DoorCandidate cb, RoomNode a, RoomNode b)
+    private List<Vector2Int> TryDoubleBend(
+        DoorCandidate ca, DoorCandidate cb,
+        RoomNode a, RoomNode b,
+        int width, bool isVertical)
     {
         Vector2Int s = ca.entrance;
         Vector2Int e = cb.entrance;
@@ -189,7 +208,7 @@ public class ConnectionPlanner : MonoBehaviour
             if (!BendClear(p2, cb)) continue;
  
             var tiles = ConcatLines(s, p1, p2, e);
-            if (!PathClear(tiles, a, b)) continue;
+            if (!PathClear(tiles, a, b, width, isVertical)) continue;
  
             return Wrap(tiles, ca.wallPos, cb.wallPos);
         }
@@ -203,7 +222,7 @@ public class ConnectionPlanner : MonoBehaviour
             if (!BendClear(p2, cb)) continue;
  
             var tiles = ConcatLines(s, p1, p2, e);
-            if (!PathClear(tiles, a, b)) continue;
+            if (!PathClear(tiles, a, b, width, isVertical)) continue;
  
             return Wrap(tiles, ca.wallPos, cb.wallPos);
         }
@@ -211,45 +230,48 @@ public class ConnectionPlanner : MonoBehaviour
         return null;
     }
  
-    // 문 방향 축 기준으로 entrance에서 bend까지 직선 거리가 BendClearance 이상인지 확인
     private bool BendClear(Vector2Int bend, DoorCandidate door)
     {
         Vector2Int offset = DoorCandidate.DirOffset(door.dir);
  
         if (offset.x != 0)
-        {
-            int dist = Mathf.Abs(bend.x - door.entrance.x);
-            return dist >= _bendClearance;
-        }
+            return Mathf.Abs(bend.x - door.entrance.x) >= _bendClearance;
         else
-        {
-            int dist = Mathf.Abs(bend.y - door.entrance.y);
-            return dist >= _bendClearance;
-        }
+            return Mathf.Abs(bend.y - door.entrance.y) >= _bendClearance;
     }
  
-    // 복도 타일 각각에서 연결 대상 외 다른 방까지 체비쇼프 거리가 RoomClearance 이상인지 확인
-    private bool PathClear(List<Vector2Int> tiles, RoomNode a, RoomNode b)
+    // 중심선 타일을 폭만큼 확장한 전체 범위로 방 회피 검사
+    private bool PathClear(
+        List<Vector2Int> tiles, RoomNode a, RoomNode b,
+        int width, bool isVertical)
     {
+        int half = width / 2;
+ 
         foreach (var t in tiles)
         {
-            foreach (var pair in _roomBounds)
+            for (int i = -half; i < width - half; i++)
             {
-                if (pair.Key == a || pair.Key == b) continue;
+                Vector2Int expanded = isVertical
+                    ? new Vector2Int(t.x + i, t.y)
+                    : new Vector2Int(t.x, t.y + i);
  
-                RectInt rb = pair.Value;
-                int distX = 0;
-                int distY = 0;
+                foreach (var pair in _roomBounds)
+                {
+                    if (pair.Key == a || pair.Key == b) continue;
  
-                if (t.x < rb.xMin) distX = rb.xMin - t.x;
-                else if (t.x >= rb.xMax) distX = t.x - (rb.xMax - 1);
+                    RectInt rb = pair.Value;
+                    int distX = 0;
+                    int distY = 0;
  
-                if (t.y < rb.yMin) distY = rb.yMin - t.y;
-                else if (t.y >= rb.yMax) distY = t.y - (rb.yMax - 1);
+                    if (expanded.x < rb.xMin) distX = rb.xMin - expanded.x;
+                    else if (expanded.x >= rb.xMax) distX = expanded.x - (rb.xMax - 1);
  
-                int dist = distX + distY;
-                if (dist < _roomClearance)
-                    return false;
+                    if (expanded.y < rb.yMin) distY = rb.yMin - expanded.y;
+                    else if (expanded.y >= rb.yMax) distY = expanded.y - (rb.yMax - 1);
+ 
+                    if (distX + distY < _roomClearance)
+                        return false;
+                }
             }
         }
  
@@ -272,7 +294,8 @@ public class ConnectionPlanner : MonoBehaviour
     private ConnectionResult MakeResult(
         RoomNode a, RoomNode b,
         DoorCandidate ca, DoorCandidate cb,
-        List<Vector2Int> tiles)
+        List<Vector2Int> tiles,
+        int width)
     {
         return new ConnectionResult
         {
@@ -280,7 +303,8 @@ public class ConnectionPlanner : MonoBehaviour
             roomB = b,
             doorA = ca,
             doorB = cb,
-            corridorTiles = tiles
+            corridorTiles = tiles,
+            corridorWidth = width
         };
     }
  
@@ -302,8 +326,8 @@ public class ConnectionPlanner : MonoBehaviour
         RectInt ub = _roomBounds[upper];
  
         int cx = lb.xMin + lb.width / 2;
-        var wallLower = new Vector2Int(cx, lb.yMax - 1);
-        var wallUpper = new Vector2Int(cx, ub.yMin);
+        var wallLower = new Vector2Int(cx, lb.yMax);
+        var wallUpper = new Vector2Int(cx, ub.yMin - 1);
  
         var ca = new DoorCandidate(wallLower, DoorDir.Up, lower);
         var cb = new DoorCandidate(wallUpper, DoorDir.Down, upper);
@@ -315,7 +339,8 @@ public class ConnectionPlanner : MonoBehaviour
             roomB = upper,
             doorA = ca,
             doorB = cb,
-            corridorTiles = corridor
+            corridorTiles = corridor,
+            corridorWidth = _bossCorridorWidth
         };
     }
  
@@ -333,10 +358,10 @@ public class ConnectionPlanner : MonoBehaviour
  
     private bool OnWall(Vector2Int pos, DoorDir dir, RectInt b)
     {
-        if (dir == DoorDir.Up)    return pos.y == b.yMax - 1 && pos.x >= b.xMin && pos.x < b.xMax;
-        if (dir == DoorDir.Down)  return pos.y == b.yMin     && pos.x >= b.xMin && pos.x < b.xMax;
-        if (dir == DoorDir.Left)  return pos.x == b.xMin     && pos.y >= b.yMin && pos.y < b.yMax;
-        if (dir == DoorDir.Right) return pos.x == b.xMax - 1 && pos.y >= b.yMin && pos.y < b.yMax;
+        if (dir == DoorDir.Up)    return pos.y == b.yMax     && pos.x >= b.xMin && pos.x < b.xMax;
+        if (dir == DoorDir.Down)  return pos.y == b.yMin - 1 && pos.x >= b.xMin && pos.x < b.xMax;
+        if (dir == DoorDir.Left)  return pos.x == b.xMin - 1 && pos.y >= b.yMin && pos.y < b.yMax;
+        if (dir == DoorDir.Right) return pos.x == b.xMax     && pos.y >= b.yMin && pos.y < b.yMax;
         return false;
     }
  
@@ -378,4 +403,3 @@ public class ConnectionPlanner : MonoBehaviour
         return b.nodeId + "|" + a.nodeId;
     }
 }
- 
