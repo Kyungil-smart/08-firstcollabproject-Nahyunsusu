@@ -12,6 +12,7 @@ public class EnemyFSM : MonoBehaviour, Damageable
     private Rigidbody2D _rigid;
     private EnemyEffectManager _effectManager;
     private EnemyPathfinder _pathfinder;
+    private MonsterSkillExecutor _skillExecutor;
     private Animator _animator;
     private Dictionary<EnemyStateType, EnemyStateBase> _states;
     private EnemyStateBase _currentState;
@@ -22,6 +23,7 @@ public class EnemyFSM : MonoBehaviour, Damageable
     public Rigidbody2D rigid => _rigid;
     public Animator animator => _animator;
     public EnemyPathfinder pathfinder => _pathfinder;
+    public MonsterSkillExecutor skillExecutor => _skillExecutor;
     public RoomNode currentRoom { get; private set; }
 
     public bool isPlayerInDetectRange =>
@@ -37,6 +39,7 @@ public class EnemyFSM : MonoBehaviour, Damageable
         _rigid         = GetComponent<Rigidbody2D>();
         _effectManager = GetComponent<EnemyEffectManager>();
         _pathfinder    = GetComponent<EnemyPathfinder>();
+        _skillExecutor = GetComponent<MonsterSkillExecutor>();
 
         _animator = _animatorRef != null
             ? _animatorRef
@@ -116,6 +119,11 @@ public class EnemyFSM : MonoBehaviour, Damageable
 
         // 사운드 담당자 연결 필요
         // AudioManager.Instance.PlaySFX("몬스터 피격 SFX");
+
+        if (currentStateType == EnemyStateType.Attack)
+        {
+            return;
+        }
 
         ChangeState(EnemyStateType.Hit);
     }
