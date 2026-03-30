@@ -5,6 +5,14 @@ namespace _Scripts.LYC.Skill
 	public class GigaRollProjectile : SkillProjectile
 	{
 		private float _extendedRange = 0;
+		private CircleCollider2D _collider;
+
+		public override void Init(Vector2 direction, Vector2 startPosition, SkillExecutor executor, ParticleSystem projectileParticle,
+			ParticleSystem explosionParticle = null)
+		{
+			_collider = GetComponent<CircleCollider2D>();
+			base.Init(direction, startPosition, executor, projectileParticle, explosionParticle);
+		}
 
 		private void FixedUpdate()
 		{
@@ -15,7 +23,7 @@ namespace _Scripts.LYC.Skill
 			if (_extendedRange >= 1)
 			{
 				transform.localScale = Vector3.one * _extendedRange;
-				// TODO: Collider 크기 증가
+				_collider.radius = _extendedRange * 0.5f;
 			}
 
 			if (Vector2.Distance(_startPosition, _rb.position) >= _range)

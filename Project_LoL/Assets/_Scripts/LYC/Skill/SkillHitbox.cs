@@ -5,9 +5,9 @@ namespace _Scripts.LYC.Skill
 {
 	public class SkillHitbox : MonoBehaviour
 	{
-		private float _damage;
-		private float _duration;
-		private ParticleSystem _effect;
+		protected float _damage;
+		protected float _duration;
+		protected ParticleSystem _effect;
 
 		/// <summary>
 		/// 근접 히트박스를 초기화합니다.
@@ -57,7 +57,7 @@ namespace _Scripts.LYC.Skill
 			}
 		}
 
-		private IEnumerator DestroyAfterDuration()
+		protected virtual IEnumerator DestroyAfterDuration()
 		{
 			yield return new WaitForSeconds(_duration);
 			DestroyHitbox();

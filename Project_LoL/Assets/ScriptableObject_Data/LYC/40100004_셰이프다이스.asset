@@ -10,10 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 569f0411c526e9a45b67eb99fb8c1d9d, type: 3}
-  m_Name: "\uC2A4\uD0AC_\uC170\uC774\uD504\uB2E4\uC774\uC2A4"
+  m_Name: "40100004_\uC170\uC774\uD504\uB2E4\uC774\uC2A4"
   m_EditorClassIdentifier: Assembly-CSharp::ShapeDice
-  skillID: sc0004
+  skillID: 40100004
   skillName: "\uC170\uC774\uD504 \uB2E4\uC774\uC2A4"
+  description: "\uCEE4\uC11C \uBC29\uD5A5\uC73C\uB85C ({range})\uAC70\uB9AC\uB9CC\uD07C
+    \uACF5\uACA9\uC744 \uB0A0\uB824 \uC801\uC5D0\uAC8C ({damage})\uB9CC\uD07C\uC758
+    \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4"
+  skillType: 59
   skillIconSet:
     icon1: {fileID: 21300000, guid: 072413bde2ce54a4386f1552591a37c8, type: 3}
     icon2: {fileID: 21300000, guid: fbb1065c5d0aa7348808a61499935869, type: 3}
@@ -21,7 +25,6 @@ MonoBehaviour:
     icon4: {fileID: 21300000, guid: 25f70bbba052f4747b9edbdf2a8c35aa, type: 3}
     icon5: {fileID: 21300000, guid: e47d1b5e2a7b6ae4f8732f0b13e7c6f6, type: 3}
     icon6: {fileID: 21300000, guid: af30c1318070afb4083e8a2e037bd9c6, type: 3}
-  skillType: 59
   damage: 50
   damageRangeX: 1
   damageRangeY: 1

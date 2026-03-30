@@ -30,7 +30,7 @@ namespace _Scripts.LYC.Skill
             var playerData = executor.Controller.Data;
 
             _direction = direction;
-            _startPosition = startPosition;
+            _startPosition = startPosition + direction;
             _range = skillData.Range;
             _speed = skillData.ProjectileSpeed;
             _explosionX = skillData.DamageRangeX;
