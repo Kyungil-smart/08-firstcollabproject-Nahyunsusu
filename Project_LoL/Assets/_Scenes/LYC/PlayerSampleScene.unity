@@ -303,11 +303,11 @@ MonoBehaviour:
   - dice: 0
     data: {fileID: 11400000, guid: 2e76ea4d4a36f1b44b635f92c0f5a1ff, type: 2}
   - dice: 1
-    data: {fileID: 11400000, guid: 11430c2aeacb4c545bd966081ac08ddf, type: 2}
+    data: {fileID: 11400000, guid: e6036d8af2bed714288d8acb16b2a9f5, type: 2}
   - dice: 0
     data: {fileID: 11400000, guid: b0dff5b322be92644a3e3ed67277ec9f, type: 2}
   - dice: 0
-    data: {fileID: 11400000, guid: 11430c2aeacb4c545bd966081ac08ddf, type: 2}
+    data: {fileID: 11400000, guid: 8a8ed706ccf4a5642abfda24e5d13d16, type: 2}
 --- !u!4 &170835826
 Transform:
   m_ObjectHideFlags: 0
@@ -1892,7 +1892,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

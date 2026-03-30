@@ -26,7 +26,7 @@ MonoBehaviour:
     icon5: {fileID: 21300000, guid: 98ef1ec83aaf0984b9a9a9abc9c44a4b, type: 3}
     icon6: {fileID: 21300000, guid: b22bc00e02714f84189b70c97c06b70c, type: 3}
   damage: 17
-  damageRangeX: 5
+  damageRangeX: 1
   damageRangeY: 1
   projectileSpeed: 30
   range: 5
