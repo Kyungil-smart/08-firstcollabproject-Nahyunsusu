@@ -86,7 +86,7 @@ MonoBehaviour:
   _tileGenerator: {fileID: 928597045972814894}
   _doorController: {fileID: 7947275424986238716}
   _objectPool: {fileID: 7698904211471236959}
-  _roomSpacing: 20
+  _roomSpacing: 30
 --- !u!114 &1915048030721137299
 MonoBehaviour:
   m_ObjectHideFlags: 0
