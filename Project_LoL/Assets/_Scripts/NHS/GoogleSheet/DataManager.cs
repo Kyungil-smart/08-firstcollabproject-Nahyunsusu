@@ -9,16 +9,20 @@ public class DataManager : MonoBehaviour
     public SheetData _sheet;
 
     [SerializeField] private List<EquipmentData_SO> _equipDataList;
+
     private Dictionary<string, EquipmentData_SO> _equipDataDictionary = new();
 
-    private void Awake()
+    public bool IsLoaded { get; private set; } = false;
+
+    public void Init()
     {
         InitEquipDataDictionary();
     }
 
-    private void Start()
+    public void LoadData()
     {
-        StartCoroutine(_sheet.Load(SetEquipDatas));
+        Action<char, string[]> combinedCallback = SetEquipDatas;
+        StartCoroutine(_sheet.Load(combinedCallback));
     }
 
     private void SetEquipDatas(char splitSymbol, string[] lines)
@@ -60,6 +64,7 @@ public class DataManager : MonoBehaviour
             Debug.Log($"{i}번 줄 파싱 시도: {cols[1]}");
             equip.SetData(cols);
         }
+        IsLoaded = true; 
     }
 
     private void InitEquipDataDictionary()
