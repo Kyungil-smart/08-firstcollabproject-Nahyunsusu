@@ -28,12 +28,12 @@ public class EnemyPathfinder : MonoBehaviour
     public void InitGrid(RoomNode room)
     {
         Rect rect = room.GetRect();
-
+        
         _gridOrigin = new Vector2(rect.xMin, rect.yMin);
         _gridWidth  = Mathf.RoundToInt(rect.width  / nodeSize);
         _gridHeight = Mathf.RoundToInt(rect.height / nodeSize);
         _grid       = new Node[_gridWidth, _gridHeight];
-
+        
         for (int x = 0; x < _gridWidth; x++)
         {
             for (int y = 0; y < _gridHeight; y++)
@@ -42,14 +42,14 @@ public class EnemyPathfinder : MonoBehaviour
                     x * nodeSize + nodeSize * 0.5f,
                     y * nodeSize + nodeSize * 0.5f
                 );
-
+        
                 bool walkable = !Physics2D.OverlapBox(
                     worldPos,
                     Vector2.one * (nodeSize * 0.8f),
                     0f,
                     obstacleLayer
                 );
-
+        
                 _grid[x, y] = new Node
                 {
                     walkable = walkable,

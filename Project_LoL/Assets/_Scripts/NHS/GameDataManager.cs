@@ -4,7 +4,9 @@ public class GameDataManager : MonoBehaviour
 {
     public static GameDataManager instance;
 
-    public DataManager equip;
+    [SerializeField] private DataManager _equip;
+    public DataManager equip => _equip;
+
 
     private void Awake()
     {
@@ -13,9 +15,9 @@ public class GameDataManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            equip.Init();
+            _equip.Init();
 
-            equip.LoadData();
+            _equip.LoadData();
         }
         else
         {

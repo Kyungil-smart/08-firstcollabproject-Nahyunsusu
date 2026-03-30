@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9441d7a44eb267c4caea17438a29ee03, type: 3}
   m_Name: Equip 34
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData_SO
-  <EquipID>k__BackingField: 0
+  <EquipID>k__BackingField: 30000001
   <EquipName>k__BackingField: 
+  <EquipText>k__BackingField: 
+  <EquipUpgrade>k__BackingField: 0
+  <EquipPrice>k__BackingField: 0
   <EquipHP>k__BackingField: 0
-  <EquipAttack>k__BackingField: 0
+  <EquipAttackDamage>k__BackingField: 0
   <EquipAttackSpeed>k__BackingField: 0
   <EquipMoveSpeed>k__BackingField: 0
-  <EquipCritRate>k__BackingField: 0
+  <EquipCritChance>k__BackingField: 0
   <EquipCritDamage>k__BackingField: 0
+  <EquipSpecial>k__BackingField: 
