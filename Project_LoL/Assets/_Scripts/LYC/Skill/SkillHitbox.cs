@@ -5,7 +5,7 @@ namespace _Scripts.LYC.Skill
 {
 	public class SkillHitbox : MonoBehaviour
 	{
-		protected float _damage;
+		protected int _damage;
 		protected float _duration;
 		protected ParticleSystem _effect;
 
@@ -14,7 +14,7 @@ namespace _Scripts.LYC.Skill
 		/// <param name="direction"> direction이 Vector2.zero이면 방향이 없는 히트박스로 처리됩니다</param>
 		/// <param name="position">히트박스의 실제 생성 위치는 <c>position + direction</c>입니다.</param>
 		/// </summary>
-		public virtual void Init(Vector2 direction, Vector2 position, SkillExecutor executor, float duration,
+		public void Init(Vector2 direction, Vector2 position, SkillExecutor executor, float duration,
 			ParticleSystem effect)
 		{
 			SkillData skillData = executor.CurrentSkillData;
@@ -23,6 +23,14 @@ namespace _Scripts.LYC.Skill
 			_damage = skillData.Damage + playerData.AtkDamage;
 			_duration = duration;
 
+			// Damage
+			_damage = skillData.Damage + playerData.AtkDamage;
+			if (Random.Range(0, 1.0f) < playerData.CritRate)
+			{
+				_damage *= playerData.CritDamage;
+			}
+
+			// Root
 			transform.right = direction;
 			transform.position = position + direction;
 
@@ -51,9 +59,9 @@ namespace _Scripts.LYC.Skill
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
-			if (other.CompareTag("Monster"))
+			if (other.TryGetComponent(out EnemyFSM enemy))
 			{
-				// TODO: Hit
+				enemy.TakeDamage(_damage);
 			}
 		}
 
@@ -63,7 +71,7 @@ namespace _Scripts.LYC.Skill
 			DestroyHitbox();
 		}
 
-		protected virtual void DestroyHitbox()
+		protected void DestroyHitbox()
 		{
 			if (_effect != null)
 			{

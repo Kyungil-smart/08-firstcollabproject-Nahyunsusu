@@ -3,103 +3,114 @@ using UnityEngine;
 
 namespace _Scripts.LYC.Skill
 {
-    public class SkillProjectile : MonoBehaviour
-    {
-        protected Rigidbody2D _rb;
-        protected ParticleSystem _projectile;
-        protected ParticleSystem _explosion;
+	public class SkillProjectile : MonoBehaviour
+	{
+		protected Rigidbody2D _rb;
+		protected ParticleSystem _projectile;
+		protected ParticleSystem _explosion;
 
-        protected Vector2 _direction;
-        protected Vector2 _startPosition;
-        protected float _speed = 30f;
-        protected float _range = 7f;
-        protected float _explosionX = 1;
-        protected float _explosionY = 1;
-        protected float _damage;
+		protected Vector2 _direction;
+		protected Vector2 _startPosition;
+		protected float _speed = 30f;
+		protected float _range = 7f;
+		protected float _explosionX = 1;
+		protected float _explosionY = 1;
+		protected int _skillDamage;
 
-        private void Awake()
-        {
-            _rb = GetComponent<Rigidbody2D>();
-        }
+		private void Awake()
+		{
+			_rb = GetComponent<Rigidbody2D>();
+		}
 
-        public virtual void Init(Vector2 direction, Vector2 startPosition, SkillExecutor executor,
-            ParticleSystem projectileParticle,
-            ParticleSystem explosionParticle = null)
-        {
-            var skillData = executor.CurrentSkillData;
-            var playerData = executor.Controller.Data;
+		public virtual void Init(Vector2 direction, Vector2 startPosition, SkillExecutor executor,
+			ParticleSystem projectileParticle,
+			ParticleSystem explosionParticle = null)
+		{
+			SkillData skillData = executor.CurrentSkillData;
+			PlayerData playerData = executor.Controller.Data;
 
-            _direction = direction;
-            _startPosition = startPosition + direction;
-            _range = skillData.Range;
-            _speed = skillData.ProjectileSpeed;
-            _explosionX = skillData.DamageRangeX;
-            _explosionY = skillData.DamageRangeY;
-            _damage = skillData.Damage + playerData.AtkDamage; // 데미지 계산
+			_direction = direction;
+			_startPosition = startPosition + direction;
+			_range = skillData.Range;
+			_speed = skillData.ProjectileSpeed;
+			_explosionX = skillData.DamageRangeX;
+			_explosionY = skillData.DamageRangeY;
 
-            // Root
-            transform.right = _direction;
-            transform.position = _startPosition;
+			// Damage
+			_skillDamage = skillData.Damage + playerData.AtkDamage;
+			if (Random.Range(0, 1.0f) < playerData.CritRate)
+			{
+				_skillDamage *= playerData.CritDamage;
+			}
 
-            // Projectile Particle
-            _projectile = Instantiate(projectileParticle, transform);
-            _projectile.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-            var main = _projectile.main;
-            float remainTime = _range / _speed + 0.2f; // 자연스러운 스킬 표현을 위한 오프셋
-            main.startLifetime = remainTime;
-            main.duration = remainTime;
-            _projectile.Play();
+			// Root
+			transform.right = _direction;
+			transform.position = _startPosition;
 
-            // Explosion Particle
-            if (explosionParticle != null)
-            {
-                _explosion = Instantiate(explosionParticle, transform);
-                float scale = Mathf.Max(_explosionX, _explosionY);
-                _explosion.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-                _explosion.transform.localScale = Vector3.one * scale;
-            }
-        }
+			// Projectile Particle
+			_projectile = Instantiate(projectileParticle, transform);
+			_projectile.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+			ParticleSystem.MainModule main = _projectile.main;
+			float remainTime = _range / _speed + 0.2f; // 자연스러운 스킬 표현을 위한 오프셋
+			main.startLifetime = remainTime;
+			main.duration = remainTime;
+			_projectile.Play();
 
-        private void FixedUpdate()
-        {
-            _rb.MovePosition(_rb.position + _direction * (_speed * Time.fixedDeltaTime));
+			// Explosion Particle
+			if (explosionParticle != null)
+			{
+				_explosion = Instantiate(explosionParticle, transform);
+				float scale = Mathf.Max(_explosionX, _explosionY);
+				_explosion.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+				_explosion.transform.localScale = Vector3.one * scale;
+			}
+		}
 
-            if (Vector2.Distance(_startPosition, _rb.position) >= _range)
-            {
-                DestroyProjectile();
-            }
-        }
+		private void FixedUpdate()
+		{
+			_rb.MovePosition(_rb.position + _direction * (_speed * Time.fixedDeltaTime));
 
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.CompareTag("Monster"))
-                DestroyProjectile();
-        }
+			if (Vector2.Distance(_startPosition, _rb.position) >= _range)
+			{
+				DestroyProjectile();
+			}
+		}
 
-        protected virtual void DestroyProjectile()
-        {
-            // Physics
-            ContactFilter2D contactFilter2D = ContactFilter2D.noFilter; // Todo: Set monster layer
-            float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
-            List<Collider2D> monsters = new();
-            Physics2D.OverlapBox(transform.position, new Vector2(_explosionX, _explosionY), angle, contactFilter2D,
-                monsters);
+		private void OnTriggerEnter2D(Collider2D other)
+		{
+			// TODO: 벽 충돌 처리 필요
 
-            foreach (Collider2D monster in monsters)
-            {
-                // monster.gameObject.GetComponent<?>().Hit();
-                Destroy(monster.gameObject);
-            }
+			if (other.TryGetComponent(out EnemyFSM e))
+			{
+				DestroyProjectile();
+			}
+		}
 
-            // Particle
-            if (_explosion != null)
-            {
-                _explosion.transform.SetParent(null);
-                _explosion.Play();
-                Destroy(_explosion.gameObject, _explosion.main.duration + _explosion.main.startLifetime.constantMax);
-            }
+		protected virtual void DestroyProjectile()
+		{
+			// Physics
+			ContactFilter2D contactFilter2D = ContactFilter2D.noFilter; // Todo: Set monster layer
+			float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+			List<Collider2D> result = new();
+			Physics2D.OverlapBox(transform.position, new Vector2(_explosionX, _explosionY), angle, contactFilter2D,
+				result);
 
-            Destroy(gameObject);
-        }
-    }
+			foreach (Collider2D c in result)
+			{
+				if (!c.TryGetComponent(out EnemyFSM enemy)) continue;
+
+				enemy.TakeDamage(_skillDamage);
+			}
+
+			// Particle
+			if (_explosion != null)
+			{
+				_explosion.transform.SetParent(null);
+				_explosion.Play();
+				Destroy(_explosion.gameObject, _explosion.main.duration + _explosion.main.startLifetime.constantMax);
+			}
+
+			Destroy(gameObject);
+		}
+	}
 }
