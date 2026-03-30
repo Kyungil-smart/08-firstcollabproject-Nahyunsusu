@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EquipData", menuName = "ScriptableObjects/EquipData")]
 public class EquipmentData_SO : ScriptableObject
 {
+    [field: SerializeField] public UnityEngine.Sprite EquipImage;
+
     //SkillID	SkillEffect	SkillIcon	SkillText	SkillDesc	SkillDamage	SkillAttackSize	SkillObjectSpeed	SkillRange	SkillDelay	SkillUseCount	SkillCoolTime	SkillFunction	SkillLS	SkillPrice
     [field: SerializeField] public int    EquipID           { get; private set; }
     [field: SerializeField] public string EquipName         { get; private set; }

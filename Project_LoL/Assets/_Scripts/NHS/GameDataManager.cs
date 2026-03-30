@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameDataManager : MonoBehaviour
@@ -6,6 +7,9 @@ public class GameDataManager : MonoBehaviour
 
     [SerializeField] private DataManager _equip;
     public DataManager equip => _equip;
+
+    [SerializeField] private SkillDataSO _skillDataSO;
+    public SkillDataSO skillDataSO => _skillDataSO;
 
 
     private void Awake()
