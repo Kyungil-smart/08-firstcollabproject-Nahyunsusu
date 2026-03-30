@@ -14,10 +14,13 @@ public class EnemyDieState : EnemyStateBase
         _fsm.animator?.SetBool("isDeath", true);
 
         // 경험치 매니저 연결 필요
+        // ExperienceManager.Instance.AddExp(_fsm.data.expReward);
 
         // 골드 매니저 연결 필요
+        // GoldManager.Instance.AddGold(_fsm.data.goldReward);
 
         // 던전 퇴장 시 결과 UI에 표시될 처치 수 기록
+        // DungeonManager.Instance.AddKillCount();
 
         if (RoomClearManager.Instance != null)
             RoomClearManager.Instance.OnEnemyDied(_fsm.currentRoom);

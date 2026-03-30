@@ -27,7 +27,7 @@ public class EnemyPathfinder : MonoBehaviour
 
     public void InitGrid(RoomNode room)
     {
-        Rect rect = room.GetRect();
+        RectInt rect = room.GetBounds();
 
         _gridOrigin = new Vector2(rect.xMin, rect.yMin);
         _gridWidth  = Mathf.RoundToInt(rect.width  / nodeSize);
