@@ -25,14 +25,18 @@ public class StoreItemSlot : MonoBehaviour
         _button.onClick.AddListener(() => Debug.Log($"{data.EquipName} 구매 시도!"));
     }
 
-    public void SetSkill(SkillDataSO data)
+    public void SetSkill(SkillDataSO skillDataSO, int diceValue = 1)
     {
-        if (data == null) return;
+        if (skillDataSO == null) return;
 
-        data = SkillDataSO.Get();
+        SkillData data = skillDataSO.Get(diceValue);
 
-        _descriptionText.text = $"<b>{data.skillName}</b>\n{data.EquipText}";
+        _descriptionText.text = $"<b>{data.SkillName}</b>\n{data.SkillDescription}";
+        _priceText.text = $"{data.Price}";
 
-        _priceText.text = $"{data.EquipPrice}";
+        if (_image != null) _image.sprite = data.SkillImage;
+
+        _button.onClick.RemoveAllListeners();
+        _button.onClick.AddListener(() => Debug.Log($"{data.SkillName} 스킬 구매!"));
     }
 }

@@ -78,7 +78,7 @@ public class DataManager : MonoBehaviour
         //_equipDataList = null;
     }
 
-    public List<EquipmentData_SO> GetRandomEquips(int count = 4)
+    public List<EquipmentData_SO> GetRandomEquips(int count = 2)
     {
         if (!IsLoaded || _equipDataList.Count < count) return null;
 
