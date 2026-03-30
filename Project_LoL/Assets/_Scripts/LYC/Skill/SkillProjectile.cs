@@ -3,26 +3,26 @@ using UnityEngine;
 
 namespace _Scripts.LYC.Skill
 {
-    public class SkillProjectile : MonoBehaviour, ISkillProjectile
+    public class SkillProjectile : MonoBehaviour
     {
-        private Rigidbody2D _rb;
-        private ParticleSystem _projectile;
-        private ParticleSystem _explosion;
+        protected Rigidbody2D _rb;
+        protected ParticleSystem _projectile;
+        protected ParticleSystem _explosion;
 
-        private Vector2 _direction;
-        private Vector2 _startPosition;
-        private float _speed = 30f;
-        private float _range = 7f;
-        private float _explosionX = 1;
-        private float _explosionY = 1;
-        private float _damage;
+        protected Vector2 _direction;
+        protected Vector2 _startPosition;
+        protected float _speed = 30f;
+        protected float _range = 7f;
+        protected float _explosionX = 1;
+        protected float _explosionY = 1;
+        protected float _damage;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
         }
 
-        public void Init(Vector2 direction, Vector2 startPosition, SkillExecutor executor,
+        public virtual void Init(Vector2 direction, Vector2 startPosition, SkillExecutor executor,
             ParticleSystem projectileParticle,
             ParticleSystem explosionParticle = null)
         {
@@ -76,7 +76,7 @@ namespace _Scripts.LYC.Skill
                 DestroyProjectile();
         }
 
-        private void DestroyProjectile()
+        protected virtual void DestroyProjectile()
         {
             // Physics
             ContactFilter2D contactFilter2D = ContactFilter2D.noFilter; // Todo: Set monster layer

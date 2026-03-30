@@ -5,7 +5,7 @@ namespace _Scripts.LYC.Tester
 {
 	public class TEST_TimeScaler : MonoBehaviour
 	{
-		[Range(0, 10)] public float timeMultiplier;
+		[Range(0.01f, 2f)] public float timeMultiplier;
 
 		private void Start()
 		{
@@ -15,6 +15,6 @@ namespace _Scripts.LYC.Tester
 		private void Update()
 		{
 			Time.timeScale = timeMultiplier;
-			}
+		}
 	}
 }

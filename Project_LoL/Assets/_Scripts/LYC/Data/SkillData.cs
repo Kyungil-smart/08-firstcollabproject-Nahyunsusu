@@ -4,7 +4,7 @@ public class SkillData
 	public string SkillID;
 	public string SkillName;
 	public SkillType SkillType;
-	public UnityEngine.UI.Image SkillImage;
+	public UnityEngine.Sprite SkillImage;
 	public string SkillDescription;
 
 	public int Damage;

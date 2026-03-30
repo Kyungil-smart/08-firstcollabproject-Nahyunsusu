@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 // 전투 시스템이나 이벤트 또는 플레이어 스탯 관련 기능 등 구현
@@ -8,9 +9,14 @@ public class PlayerController : MonoBehaviour
 	#region Serializable Fields
 
 	[Header("Debug")] public bool enableDebugMenu;
-	public PlayerDataSO playerDebugData;
 
 	[field: Header("Player")]
+	[field: SerializeField]
+	public PlayerDataSO PlayerDataSOSample { get; private set; }
+
+	[field: SerializeField]
+	public bool AutoInit { get; private set; } = true;
+
 	[field: SerializeField]
 	public int Health { get; private set; }
 
@@ -39,13 +45,14 @@ public class PlayerController : MonoBehaviour
 
 	private void Start()
 	{
-		InitPlayer();
+		if (AutoInit)
+			InitPlayer();
 	}
 
 	public void InitPlayer(PlayerDataSO dataSO = null)
 	{
 		// === Player Data ===
-		Data = dataSO == null ? playerDebugData?.Get() : dataSO.Get();
+		Data = dataSO == null ? PlayerDataSOSample?.Get() : dataSO.Get();
 
 		if (Data != null)
 		{
