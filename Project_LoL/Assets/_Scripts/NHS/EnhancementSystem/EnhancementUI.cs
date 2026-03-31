@@ -13,7 +13,7 @@ public class EnhancementUI : MonoBehaviour
 
     [Header("Current Selection")]
     private Button _selectedEquipment = null;
-    private int    _selectedOddEven = -1;
+    private int      _selectedOddEven = -1;
 
     private void Start()
     {
