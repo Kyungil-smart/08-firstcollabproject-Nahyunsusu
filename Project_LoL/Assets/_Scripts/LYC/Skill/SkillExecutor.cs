@@ -18,6 +18,9 @@ namespace _Scripts.LYC.Skill
 		[field: SerializeField] public int LastDiceResult { get; private set; }
 		[field: SerializeField] public float LastExecutedTime { get; private set; }
 
+		public Vector2 MouseDir => Controller.FSM.MouseDir;
+		public Vector2 Position => Controller.transform.position;
+
 		public PlayerController Controller { get; private set; }
 
 		public SkillExecutor(PlayerController controller)
@@ -30,21 +33,21 @@ namespace _Scripts.LYC.Skill
 			LastDiceResult = -1;
 		}
 
-		public void Set(SkillDataSO newSkill = null)
+		public void Set(SkillDataSO newSkill = null, int dice = 0)
 		{
 			SkillDataSO = newSkill;
 			CurrentSkillData = null;
-			LastDiceResult = 0;
+			LastDiceResult = dice;
 
 			if (SkillDataSO != null)
 			{
-				RefreshData();
+				RefreshData(roll: dice == 0);
 			}
 		}
 
-		private void RefreshData()
+		private void RefreshData(bool roll = true)
 		{
-			LastDiceResult = Roll(); // TODO: Wait for rolling dice
+			if (roll) LastDiceResult = Roll(); // TODO: Wait for rolling dice
 			CurrentSkillData = SkillDataSO.Get(LastDiceResult);
 		}
 

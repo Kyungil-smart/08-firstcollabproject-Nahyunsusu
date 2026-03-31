@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee37b69581552b4a9a243ad5baec6b4, type: 3}
+  m_Name: bs0002_swing
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterSkillDataSO
+  skillId: bs0002_swing
+  skillType: 0
+  isFixedTarget: 1
+  attackCount: 1
+  attackInterval: 0.2
+  baseDamage: 20
+  castVfxPrefab: {fileID: 0}
+  mainVfxPrefab: {fileID: 0}
+  hitVfxPrefab: {fileID: 0}
+  trailVfxPrefabA: {fileID: 0}
+  trailVfxPrefabB: {fileID: 0}
+  skillPrefab: {fileID: 7100533659222294910, guid: 71b8cde02c58a89429e4f07f24087702, type: 3}
+  skillPrefab2: {fileID: 707544473937658112, guid: bddc43fe5c73cdf43b80ff94007d5464, type: 3}
+  warningDuration: 1
+  warningPrefab: {fileID: 3793445430646518522, guid: 0557673a72b8ab248b3f32f8baa524d7, type: 3}
+  range: 0
+  damageRangeX: 7
+  damageRangeY: 3
+  projectileSpeed: 2
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0

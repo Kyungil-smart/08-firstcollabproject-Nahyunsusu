@@ -32,21 +32,9 @@ public class RoomClearManager : MonoBehaviour
         if (room.roomData == null || room.roomData.roomType != RoomType.Combat)
             return;
 
-        if (_roomCombatHandler == null)
+        if (_roomCombatHandler == null || _enemyPool == null || _spawnConfig == null)
         {
-            Debug.LogWarning("[RoomClearManager] RoomCombatHandler가 연결되지 않았습니다.");
-            return;
-        }
-
-        if (_enemyPool == null)
-        {
-            Debug.LogWarning("[RoomClearManager] EnemyPool이 연결되지 않았습니다.");
-            return;
-        }
-
-        if (_spawnConfig == null)
-        {
-            Debug.LogWarning("[RoomClearManager] RoomSpawnConfigSO가 연결되지 않았습니다.");
+            Debug.LogWarning("[RoomClearManager] 필요한 매니저나 설정(SO)이 연결되지 않았습니다.");
             return;
         }
 
@@ -95,7 +83,7 @@ public class RoomClearManager : MonoBehaviour
 
         if (runtimeData.state == RoomState.Cleared)
         {
-            Debug.Log($"[RoomClearManager] {room.nodeId} 클리어!");
+            Debug.Log($"[RoomClearManager] {room.nodeId} 클리어! 문 개방 신호 전송");
             _mapManager?.OnCombatCleared(room);
         }
     }

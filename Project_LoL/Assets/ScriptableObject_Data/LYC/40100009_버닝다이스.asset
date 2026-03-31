@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5a55d36c3646b09d562d16d1436b6f, type: 3}
+  m_Name: "40100009_\uBC84\uB2DD\uB2E4\uC774\uC2A4"
+  m_EditorClassIdentifier: Assembly-CSharp::_Scripts.LYC.Skill.BurningDiceSkill
+  skillID: 40100009
+  skillName: "\uBC84\uB2DD \uB2E4\uC774\uC2A4"
+  description: "\uCEE4\uC11C \uBC29\uD5A5\uC73C\uB85C ({range})\uAC70\uB9AC\uB9CC\uD07C
+    \uACF5\uACA9\uC744 \uB0A0\uB824 \uC801\uC5D0\uAC8C ({damage})\uB9CC\uD07C\uC758
+    \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4"
+  skillType: 4
+  skillIconSet:
+    icon1: {fileID: 21300000, guid: 40b4663822c06ee4a9e82bd3ea03cea8, type: 3}
+    icon2: {fileID: 21300000, guid: 15e3357d14f058546825e8ef58a0418b, type: 3}
+    icon3: {fileID: 21300000, guid: a280980e01e4f264aa30064da5fa12a9, type: 3}
+    icon4: {fileID: 21300000, guid: c37afa89c00436145970806477a3077b, type: 3}
+    icon5: {fileID: 21300000, guid: 5d858ca8e184feb4c93758a8082e1e48, type: 3}
+    icon6: {fileID: 21300000, guid: 34b1f41f2f4a7a64b911453b5375da06, type: 3}
+  damage: 20
+  damageRangeX: 3
+  damageRangeY: 2
+  projectileSpeed: 0
+  range: 2
+  delay: 0.2
+  maxUseCount: 6
+  cooldown: 5
+  price: 0
+  diceEffects:
+    dice1Effects: []
+    dice2Effects: []
+    dice3Effects: []
+    dice4Effects: []
+    dice5Effects: []
+    dice6Effects: []
+  <Hitbox>k__BackingField: {fileID: 6328662636636476298, guid: 9e14e3e112be1e449be240194cff6009, type: 3}
+  <Effect>k__BackingField: {fileID: 6715582766309951490, guid: f1bb5d2c9c0abc24e946f1e9c17d9a2a, type: 3}

@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 // 전투 시스템이나 이벤트 또는 플레이어 스탯 관련 기능 등 구현
@@ -21,7 +20,13 @@ public class PlayerController : MonoBehaviour
 	public int Health { get; private set; }
 
 	[field: SerializeField]
-	public int Experience { get; private set; }
+	public int Level { get; private set; }
+
+	[field: SerializeField]
+	public int Gold { get; private set; }
+
+	[field: SerializeField]
+	public int Exp { get; private set; }
 
 	[field: SerializeField]
 	public bool IsInvincible { get; private set; }
@@ -56,8 +61,7 @@ public class PlayerController : MonoBehaviour
 
 		if (Data != null)
 		{
-			Health = Data.MaxHp;
-			// ...
+			Health = Data.HP;
 		}
 		else
 		{
@@ -73,7 +77,7 @@ public class PlayerController : MonoBehaviour
 		invincibilityChanged.Invoke(enable);
 	}
 
-	public void OnHit(int damageAmount)
+	public void TakeDamage(int damageAmount)
 	{
 		if (IsInvincible) return;
 
@@ -99,14 +103,14 @@ public class PlayerController : MonoBehaviour
 
 		if (GUILayout.Button("OnHit", GUILayout.Height(70), GUILayout.Width(100)))
 		{
-			OnHit(Random.Range(5, 15));
+			TakeDamage(Random.Range(5, 15));
 		}
 	}
 
 	[ContextMenu("Debug: OnHit")]
-	private void OnHit()
+	private void TakeDamage()
 	{
-		OnHit(1);
+		TakeDamage(1);
 	}
 #endif
 }

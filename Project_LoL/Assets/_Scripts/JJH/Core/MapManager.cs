@@ -63,10 +63,21 @@ public class MapManager : MonoBehaviour
         {
             if (room.roomData.floorPrefab != null)
             {
-                Vector3 pos = new Vector3(room.gridOrigin.x, room.gridOrigin.y, 0f);
-                _objectPool.Spawn(room.roomData.floorPrefab, _tileGenerator.TileRoot, pos, Quaternion.identity);
+                if (room.roomData.roomType == RoomType.Start)
+                {
+                    _objectPool.Spawn(room.roomData.floorPrefab, _tileGenerator.TileRoot, Vector3.zero, Quaternion.identity);
+                }
+                else
+                {
+                    Vector3 pos = new Vector3(
+                        room.gridOrigin.x + room.size.x * 0.5f,
+                        room.gridOrigin.y + room.size.y * 0.5f,
+                        0f
+                    );
+                    _objectPool.Spawn(room.roomData.floorPrefab, _tileGenerator.TileRoot, pos, Quaternion.identity);
+                }
             }
- 
+
             _tileGenerator.GenerateRoom(room);
         }
     }

@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa9a74d448e55d84cb227804ba6165fd, type: 3}
+  m_Name: "40100002_\uBC24\uC2A4\uD0C0\uC784"
+  m_EditorClassIdentifier: Assembly-CSharp::BombsTimeSkill
+  skillID: 40100002
+  skillName: "\uBC24\uC2A4\uD0C0\uC784"
+  description: "\uCEE4\uC11C \uBC29\uD5A5\uC73C\uB85C ({range})\uAC70\uB9AC\uC5D0
+    \uD3ED\uD0C4\uC744 \uBC1C\uC0AC\uD558\uC5EC \uC801\uC5D0\uAC8C ({damage})\uB9CC\uD07C\uC758
+    \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4"
+  skillType: 38
+  skillIconSet:
+    icon1: {fileID: 21300000, guid: c80072406a8d6374ab13a598c277c52a, type: 3}
+    icon2: {fileID: 21300000, guid: 81fbd16b833ed4642bbf6e754ff2756b, type: 3}
+    icon3: {fileID: 21300000, guid: 1c10a87f92e969c49af8b9dec021bbad, type: 3}
+    icon4: {fileID: 21300000, guid: 2a5fd1b49ee9e7848af8896d90c52d21, type: 3}
+    icon5: {fileID: 21300000, guid: d68bb80f7aa80d84ebb351afc1fdfe81, type: 3}
+    icon6: {fileID: 21300000, guid: 64845bf479b125f45aa48bce53cf6f8c, type: 3}
+  damage: 8
+  damageRangeX: 3
+  damageRangeY: 3
+  projectileSpeed: 20
+  range: 7
+  delay: 0.4
+  maxUseCount: 4
+  cooldown: 5
+  diceEffects:
+    dice1Effects:
+    - type: 3
+      amount: 3
+    dice2Effects:
+    - type: 3
+      amount: 5
+    dice3Effects:
+    - type: 3
+      amount: 7
+    dice4Effects:
+    - type: 3
+      amount: 3
+    - type: 0
+      amount: 2
+    dice5Effects:
+    - type: 3
+      amount: 5
+    - type: 0
+      amount: 4
+    dice6Effects:
+    - type: 3
+      amount: 7
+    - type: 0
+      amount: 6
+  <ProjectilePrefab>k__BackingField: {fileID: 1840859090483820285, guid: fb3b390fc9bc774458d5e3673e35cccf, type: 3}
+  <ProjectileEffect>k__BackingField: {fileID: 6106438395226734041, guid: 68cc78eea6d4da545b8cdb18293417a7, type: 3}
+  <ExplosionParticleSet>k__BackingField:
+    particle1: {fileID: 3739310704445661917, guid: 2f5bc3d55f381034289b674e39b69e17, type: 3}
+    particle2: {fileID: 3739310704445661917, guid: 2f5bc3d55f381034289b674e39b69e17, type: 3}
+    particle3: {fileID: 3739310704445661917, guid: 2f5bc3d55f381034289b674e39b69e17, type: 3}
+    particle4: {fileID: 2874435893526275542, guid: a95b2fad3ff4b454f88197ad8fb5e9b5, type: 3}
+    particle5: {fileID: 2874435893526275542, guid: a95b2fad3ff4b454f88197ad8fb5e9b5, type: 3}
+    particle6: {fileID: 2874435893526275542, guid: a95b2fad3ff4b454f88197ad8fb5e9b5, type: 3}

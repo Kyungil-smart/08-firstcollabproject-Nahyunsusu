@@ -5,8 +5,7 @@ namespace _Scripts.LYC.Tester
 	[System.Serializable]
 	public class SKillInjectionData
 	{
-		public bool inject = true;
-		public int slot;
+		public int dice = 0;
 		public SkillDataSO data;
 	}
 
@@ -20,10 +19,10 @@ namespace _Scripts.LYC.Tester
 			if (skillHandler == null) return;
 			if (injectionArray == null) return;
 
-			foreach (SKillInjectionData data in injectionArray)
+			for (int i = 0; i < 4; i++)
 			{
-				if (data.inject)
-					skillHandler.SetSkill(data.data, data.slot);
+				var data = injectionArray[i];
+				skillHandler.SetSkill(data.data, i, data.dice);
 			}
 		}
 	}

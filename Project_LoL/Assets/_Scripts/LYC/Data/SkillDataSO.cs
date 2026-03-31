@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using _Scripts.LYC.Skill;
 using UnityEngine;
 
@@ -51,6 +52,7 @@ public abstract class SkillDataSO : ScriptableObject
 			Delay = delay,
 			MaxUseCount = maxUseCount,
 			Cooldown = cooldown,
+			Price = price
 		};
 
 		SetEffect(data, dice);
@@ -59,8 +61,9 @@ public abstract class SkillDataSO : ScriptableObject
 
 	[Header("Common")] [SerializeField] protected string skillID;
 	[SerializeField] protected string skillName;
-	[SerializeField] protected DiceSkillIconSet skillIconSet;
+	[SerializeField] protected string description;
 	[SerializeField] protected SkillType skillType;
+	[SerializeField] protected DiceSkillIconSet skillIconSet;
 
 	[SerializeField] protected int damage;
 	[SerializeField] protected int damageRangeX;
@@ -70,53 +73,77 @@ public abstract class SkillDataSO : ScriptableObject
 	[SerializeField] protected float delay;
 	[SerializeField] protected int maxUseCount;
 	[SerializeField] protected int cooldown;
+	[SerializeField] protected int price;
 
 	[Header("Bonus")]
-	[SerializeField] protected SkillDiceEffectGroup diceEffects;
+	[SerializeField]
+	protected SkillDiceEffectGroup diceEffects;
 
 	public abstract void Use(SkillExecutor executor);
 
-	protected virtual void SetEffect(SkillData data, int dice)
+	protected void SetEffect(SkillData data, int dice)
 	{
 		var list = diceEffects.Get(dice);
-		if (list == null || list.Count == 0) return;
 
-		data.SkillDescription = "스킬 강화 ";
-
-		foreach (DiceEffectSet effect in list)
+		if (list != null && list.Count > 0)
 		{
-			switch (effect.type)
+			string effectDescription = "스킬 강화 ";
+
+			foreach (DiceEffectSet effect in list)
 			{
-				case SkillBonusType.Damage:
-					data.Damage += (int)effect.amount;
-					break;
-				case SkillBonusType.DamageRangeX:
-					data.DamageRangeX += (int)effect.amount;
-					break;
-				case SkillBonusType.DamageRangeY:
-					data.DamageRangeY += (int)effect.amount;
-					break;
-				case SkillBonusType.ProjectileSpeed:
-					data.ProjectileSpeed += (int)effect.amount;
-					break;
-				case SkillBonusType.Range:
-					data.Range += (int)effect.amount;
-					break;
-				case SkillBonusType.Delay:
-					data.Delay += effect.amount;
-					break;
-				case SkillBonusType.MaxUseCount:
-					data.MaxUseCount += (int)effect.amount;
-					break;
-				case SkillBonusType.Cooldown:
-					data.Delay += effect.amount;
-					break;
-				default:
-					throw new System.ArgumentOutOfRangeException();
+				switch (effect.type)
+				{
+					case SkillBonusType.Damage:
+						data.Damage += (int)effect.amount;
+						break;
+					case SkillBonusType.DamageRangeX:
+						data.DamageRangeX += (int)effect.amount;
+						break;
+					case SkillBonusType.DamageRangeY:
+						data.DamageRangeY += (int)effect.amount;
+						break;
+					case SkillBonusType.ProjectileSpeed:
+						data.ProjectileSpeed += (int)effect.amount;
+						break;
+					case SkillBonusType.Range:
+						data.Range += (int)effect.amount;
+						break;
+					case SkillBonusType.Delay:
+						data.Delay += effect.amount;
+						break;
+					case SkillBonusType.MaxUseCount:
+						data.MaxUseCount += (int)effect.amount;
+						break;
+					case SkillBonusType.Cooldown:
+						data.Delay += effect.amount;
+						break;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+
+				var str = $"\"{effect.type.ToKorean()} {(effect.amount >= 0 ? "+" : "-")}{effect.amount}\" ";
+				effectDescription += str;
 			}
 
-			var str = $"\"{effect.type.ToKorean()} {(effect.amount >= 0 ? "+" : "-")}{effect.amount}\" ";
-			data.SkillDescription += str;
+			data.SkillDescription = ResolveDescription(data) + "\n" + effectDescription;
 		}
+		else
+		{
+			data.SkillDescription = ResolveDescription(data);
+		}
+	}
+
+	[SuppressMessage("ReSharper", "SpecifyACultureInStringConversionExplicitly")]
+	private string ResolveDescription(SkillData data)
+	{
+		return description
+			.Replace("{damage}", data.Damage.ToString())
+			.Replace("{damageRangeX}", data.DamageRangeX.ToString())
+			.Replace("{damageRangeY}", data.DamageRangeY.ToString())
+			.Replace("{projectileSpeed}", data.ProjectileSpeed.ToString())
+			.Replace("{range}", data.Range.ToString())
+			.Replace("{delay}", data.Delay.ToString())
+			.Replace("{maxUseCount}", data.MaxUseCount.ToString())
+			.Replace("{cooldown}", data.Cooldown.ToString());
 	}
 }

@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 166fe52b709d4b489c3bca922c133f6e, type: 3}
+  m_Name: "40100011_\uC2A4\uD2B8\uB9AC\uD2B8\uB2E4\uC774\uC2A4"
+  m_EditorClassIdentifier: Assembly-CSharp::_Scripts.LYC.Skill.StreetDiceSkill
+  skillID: 40100011
+  skillName: "\uC2A4\uD2B8\uB9AC\uC2A4\uB2E4\uC774\uC2A4"
+  description: "\uCEE4\uC11C \uBC29\uD5A5\uC73C\uB85C ({range})\uAC70\uB9AC\uB9CC\uD07C
+    \uACF5\uACA9\uC744 \uB0A0\uB824 \uC801\uC5D0\uAC8C ({damage})\uB9CC\uD07C\uC758
+    \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4"
+  skillType: 1
+  skillIconSet:
+    icon1: {fileID: 21300000, guid: cc72396175bb3bb4b8b9335184192339, type: 3}
+    icon2: {fileID: 21300000, guid: 061b4c8e3070fbe4d9be860a13b1cffd, type: 3}
+    icon3: {fileID: 21300000, guid: 8a80a16979db50f4db5d9fbc4238364a, type: 3}
+    icon4: {fileID: 21300000, guid: 152efe3fe8f727a48b1b6d5dc2a9f393, type: 3}
+    icon5: {fileID: 21300000, guid: 1a5c253874c85d64aa99078e80d141ee, type: 3}
+    icon6: {fileID: 21300000, guid: 936b7c98f5a7ffd419d1d84c5b839d9b, type: 3}
+  damage: 17
+  damageRangeX: 3
+  damageRangeY: 1
+  projectileSpeed: 0
+  range: 3
+  delay: 0.3
+  maxUseCount: 6
+  cooldown: 5
+  price: 0
+  diceEffects:
+    dice1Effects: []
+    dice2Effects: []
+    dice3Effects: []
+    dice4Effects: []
+    dice5Effects: []
+    dice6Effects: []
+  <Hitbox>k__BackingField: {fileID: 6701573468997801403, guid: e81d059bb8e49774d9e57330e7e357d7, type: 3}
+  <ParticleSet>k__BackingField:
+    particle1: {fileID: 3935525571437280161, guid: 3079d54a81b1d244190c97cbe559a44d, type: 3}
+    particle2: {fileID: 3935525571437280161, guid: 3079d54a81b1d244190c97cbe559a44d, type: 3}
+    particle3: {fileID: 5716578101745105481, guid: f040595d42a153049b95f76be9cd17eb, type: 3}
+    particle4: {fileID: 5716578101745105481, guid: f040595d42a153049b95f76be9cd17eb, type: 3}
+    particle5: {fileID: 597948127934601842, guid: 0883601b4dc7bc94f814843a24118936, type: 3}
+    particle6: {fileID: 597948127934601842, guid: 0883601b4dc7bc94f814843a24118936, type: 3}

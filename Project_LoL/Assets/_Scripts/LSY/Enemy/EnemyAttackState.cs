@@ -3,38 +3,43 @@ using UnityEngine;
 public class EnemyAttackState : EnemyStateBase
 {
     private float _timer;
-    private bool _hasDealtDamage;
 
     public EnemyAttackState(EnemyFSM fsm) : base(fsm) { }
 
     public override void Enter()
     {
         _timer = 0f;
-        _hasDealtDamage = false;
         _fsm.rigid.linearVelocity = Vector2.zero;
+
+        if (_fsm.playerTransform != null)
+            _fsm.initialTargetPos = _fsm.playerTransform.position;
+
         _fsm.FlipToPlayer();
-        _fsm.animator?.SetTrigger("2_Attack");
+
+        if (_fsm.currentSkill != null)
+        {
+            if (_fsm.currentSkill.skillType == MonsterSkillType.Melee && _fsm.meleeSkill != null)
+            {
+                _fsm.meleeSkill.ExecuteMelee(_fsm.currentSkill, _fsm.initialTargetPos, _fsm.data.attackDamage);
+            }
+            else if (_fsm.currentSkill.skillType == MonsterSkillType.Ranged && _fsm.rangedSkill != null)
+            {
+                _fsm.rangedSkill.ExecuteRanged(_fsm.currentSkill, _fsm.initialTargetPos, _fsm.data.attackDamage);
+            }
+        }
+
+        if (_fsm.animator != null) _fsm.animator.SetTrigger("2_Attack");
     }
 
     public override void Update()
     {
         _timer += Time.deltaTime;
 
-        if (!_hasDealtDamage && _timer >= _fsm.data.attackDuration * 0.5f)
-        {
-            TryDealDamage();
-            _hasDealtDamage = true;
-        }
-
         if (_timer >= _fsm.data.attackDuration)
+        {
             _fsm.ChangeState(EnemyStateType.PostAttack);
+        }
     }
 
-    private void TryDealDamage()
-    {
-        if (!_fsm.isPlayerInAttackRange) return;
-        if (_fsm.playerTransform == null) return;
-        if (_fsm.playerTransform.TryGetComponent(out Damageable damageable))
-            damageable.TakeDamage(_fsm.data.attackDamage);
-    }
+    public override void Exit() { }
 }

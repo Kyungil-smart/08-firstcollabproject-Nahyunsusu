@@ -1,10 +1,16 @@
+using System;
 using UnityEngine;
 
 public class GameDataManager : MonoBehaviour
 {
     public static GameDataManager instance;
 
-    public DataManager equip;
+    public DataManager equip => _equip;
+    [SerializeField] private DataManager _equip;
+
+    public SkillDataSO skillDataSO => _skillDataSO;
+    [SerializeField] private SkillDataSO _skillDataSO;
+
 
     private void Awake()
     {
@@ -13,9 +19,9 @@ public class GameDataManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            equip.Init();
+            _equip.Init();
 
-            equip.LoadData();
+            _equip.LoadData();
         }
         else
         {

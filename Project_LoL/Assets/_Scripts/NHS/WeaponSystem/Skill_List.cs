@@ -53,7 +53,7 @@ public class Skill_List : MonoBehaviour
     private void OnTabInput(InputAction.CallbackContext ctx)
     {
         _isFirstSet = !_isFirstSet;
-        Debug.Log($"Tab 입력됨! 현재 시작 인덱스: {(_isFirstSet ? 0 : 2)}");
+        Debug.Log($"Tab 입력됨");
         UpdateWeaponSet();
     }
 
