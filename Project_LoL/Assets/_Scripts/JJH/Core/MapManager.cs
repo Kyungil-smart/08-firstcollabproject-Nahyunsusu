@@ -8,7 +8,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private TileMapGenerator_Grid _tileGenerator;
     [SerializeField] private DoorController _doorController;
     [SerializeField] private MapObjectPool _objectPool;
-    [SerializeField] private int _roomSpacing = 15;
+    [SerializeField] private int _roomSpacing = 30;
  
     private MapGraph _graph;
     private Dictionary<RoomNode, RoomRuntimeData> _runtimeDataMap = new Dictionary<RoomNode, RoomRuntimeData>();
@@ -44,7 +44,6 @@ public class MapManager : MonoBehaviour
         return data;
     }
  
-    // 전투 클리어 시 RoomClearManager에서 호출
     public void OnCombatCleared(RoomNode room)
     {
         _doorController.OpenDoors(room);
@@ -77,9 +76,34 @@ public class MapManager : MonoBehaviour
                     _objectPool.Spawn(room.roomData.floorPrefab, _tileGenerator.TileRoot, pos, Quaternion.identity);
                 }
             }
-
+ 
             _tileGenerator.GenerateRoom(room);
+ 
+            if (room.roomData.roomType == RoomType.Combat)
+                PlaceRoomTrigger(room);
         }
+    }
+ 
+    private void PlaceRoomTrigger(RoomNode room)
+    {
+        RectInt b = room.GetBounds();
+ 
+        GameObject triggerObj = new GameObject("RoomTrigger");
+        triggerObj.transform.SetParent(_tileGenerator.TileRoot);
+        triggerObj.transform.position = new Vector3(
+            b.xMin + b.width / 2f,
+            b.yMin + b.height / 2f,
+            0f
+        );
+ 
+        BoxCollider2D col = triggerObj.AddComponent<BoxCollider2D>();
+        col.size = new Vector2(b.width, b.height);
+        col.isTrigger = true;
+ 
+        RoomTrigger rt = triggerObj.AddComponent<RoomTrigger>();
+        rt.room = room;
+        rt.mapManager = this;
+        rt.doorController = _doorController;
     }
  
     private void PlaceConnections(List<ConnectionResult> connections)

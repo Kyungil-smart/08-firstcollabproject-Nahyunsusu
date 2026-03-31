@@ -2,6 +2,9 @@ using UnityEngine;
  
 public class DoorObject : MonoBehaviour
 {
+    [SerializeField] private float _colliderThickness = 1f;
+    [SerializeField] private float _spriteSpacing = 2f;
+ 
     private BoxCollider2D _collider;
     private GameObject[] _activeSprites;
  
@@ -10,20 +13,16 @@ public class DoorObject : MonoBehaviour
         _collider = GetComponentInChildren<BoxCollider2D>(true);
     }
  
-    public void Setup(int width, bool isVertical)
+    public void Setup(int width)
     {
         if (_collider != null)
         {
-            _collider.size = isVertical
-                ? new Vector2(width, 1f)
-                : new Vector2(1f, width);
-            _collider.offset = Vector2.zero;
+            _collider.size = new Vector2(width, _colliderThickness);
+            _collider.offset = new Vector2((width - 1) / 2f, 0f);
             _collider.gameObject.SetActive(false);
         }
  
         int spriteCount = Mathf.CeilToInt(width / 2f);
-        float centerOffset = (width - 1) / 2f;
- 
         _activeSprites = new GameObject[spriteCount];
  
         for (int i = 1; i <= 3; i++)
@@ -36,11 +35,8 @@ public class DoorObject : MonoBehaviour
  
             if (!active) continue;
  
-            float pos = (i - 1) * 2f - centerOffset;
-            spriteObj.localPosition = isVertical
-                ? new Vector3(pos, 0f, 0f)
-                : new Vector3(0f, pos, 0f);
- 
+            float localX = (i * _spriteSpacing) - (_spriteSpacing / 2f) - 0.5f;
+            spriteObj.localPosition = new Vector3(localX, 0f, 0f);
             _activeSprites[i - 1] = spriteObj.gameObject;
         }
     }

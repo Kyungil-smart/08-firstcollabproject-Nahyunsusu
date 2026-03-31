@@ -4,7 +4,7 @@ using UnityEngine;
 public class ConnectionPlanner : MonoBehaviour
 {
     [SerializeField] private int _bendClearance = 10;
-    [SerializeField] private int _roomClearance = 20;
+    [SerializeField] private int _roomClearance = 5;
     [SerializeField] private int _bendStepCount = 5;
     [SerializeField] private int _corridorWidthMin = 2;
     [SerializeField] private int _corridorWidthMax = 6;
@@ -52,25 +52,23 @@ public class ConnectionPlanner : MonoBehaviour
     {
         if (IsBossPair(a, b))
             return ConnectVertical(a, b);
- 
+
+        int width = Random.Range(_corridorWidthMin, _corridorWidthMax + 1);
+
         List<DoorCandidate> candidatesA = GetDoorCandidates(a, b);
         List<DoorCandidate> candidatesB = GetDoorCandidates(b, a);
- 
+
         foreach (var ca in candidatesA)
         {
             foreach (var cb in candidatesB)
             {
                 bool isVertical = ca.dir == DoorDir.Up || ca.dir == DoorDir.Down;
- 
-                for (int width = _corridorWidthMin; width <= _corridorWidthMax; width++)
-                {
-                    var result = TryConnect(a, b, ca, cb, width, isVertical);
-                    if (result != null)
-                        return result;
-                }
+                var result = TryConnect(a, b, ca, cb, width, isVertical);
+                if (result != null)
+                    return result;
             }
         }
- 
+
         return null;
     }
  
@@ -240,7 +238,6 @@ public class ConnectionPlanner : MonoBehaviour
             return Mathf.Abs(bend.y - door.entrance.y) >= _bendClearance;
     }
  
-    // 중심선 타일을 폭만큼 확장한 전체 범위로 방 회피 검사
     private bool PathClear(
         List<Vector2Int> tiles, RoomNode a, RoomNode b,
         int width, bool isVertical)
@@ -297,6 +294,9 @@ public class ConnectionPlanner : MonoBehaviour
         List<Vector2Int> tiles,
         int width)
     {
+        ca.RecalcWallPos(width);
+        cb.RecalcWallPos(width);
+
         return new ConnectionResult
         {
             roomA = a,

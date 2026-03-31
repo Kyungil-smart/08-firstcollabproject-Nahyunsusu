@@ -40,12 +40,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4601266322052777277}
-  - component: {fileID: 6257904623153463242}
+  - component: {fileID: 5703223403657063063}
   - component: {fileID: 1915048030721137299}
   - component: {fileID: 928597045972814894}
   - component: {fileID: 7947275424986238716}
   - component: {fileID: 7698904211471236959}
-  - component: {fileID: 1584234087321242860}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -70,7 +69,7 @@ Transform:
   - {fileID: 8480314937181534272}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6257904623153463242
+--- !u!114 &5703223403657063063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,6 +137,7 @@ MonoBehaviour:
   _objectPool: {fileID: 7698904211471236959}
   _doorPrefab: {fileID: 391623070118702739, guid: f7a7022b352f1ff43b133cda1fd42254, type: 3}
   _doorRoot: {fileID: 8480314937181534272}
+  _doorWallOffset: 0.5
 --- !u!114 &7698904211471236959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,18 +151,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapObjectPool
   _defaultPrewarmCount: 20
---- !u!114 &1584234087321242860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2754165553543735386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e51e5334fa592b047bd740aa4cd52ac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorObject
 --- !u!1 &7734492493679460797
 GameObject:
   m_ObjectHideFlags: 0
