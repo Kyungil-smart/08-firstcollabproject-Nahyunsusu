@@ -12,6 +12,9 @@ public class EnemyPathfinder : MonoBehaviour
     private int _gridHeight;
     private Vector2 _gridOrigin;
 
+    private List<Node> _openList = new List<Node>();
+    private HashSet<Node> _closedSet = new HashSet<Node>();
+
     private class Node
     {
         public bool walkable;
@@ -79,27 +82,27 @@ public class EnemyPathfinder : MonoBehaviour
                 _grid[x, y].parent = null;
             }
 
-        List<Node> openList     = new List<Node>();
-        HashSet<Node> closedSet = new HashSet<Node>();
+        _openList.Clear();
+        _closedSet.Clear();
 
         startNode.gCost = 0;
         startNode.hCost = GetDistance(startNode, targetNode);
-        openList.Add(startNode);
+        _openList.Add(startNode);
 
-        while (openList.Count > 0)
+        while (_openList.Count > 0)
         {
-            Node current = GetLowestFCost(openList);
-            openList.Remove(current);
+            Node current = GetLowestFCost(_openList);
+            _openList.Remove(current);
 
-            if (closedSet.Contains(current)) continue;
-            closedSet.Add(current);
+            if (_closedSet.Contains(current)) continue;
+            _closedSet.Add(current);
 
             if (current == targetNode)
                 return RetracePath(startNode, targetNode);
 
             foreach (Node neighbor in GetNeighbors(current))
             {
-                if (!neighbor.walkable || closedSet.Contains(neighbor)) continue;
+                if (!neighbor.walkable || _closedSet.Contains(neighbor)) continue;
 
                 int newGCost = current.gCost + GetDistance(current, neighbor);
                 if (newGCost < neighbor.gCost)
@@ -108,7 +111,7 @@ public class EnemyPathfinder : MonoBehaviour
                     neighbor.hCost  = GetDistance(neighbor, targetNode);
                     neighbor.parent = current;
 
-                    openList.Add(neighbor);
+                    _openList.Add(neighbor);
                 }
             }
         }

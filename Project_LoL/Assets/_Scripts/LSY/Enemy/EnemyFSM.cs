@@ -1,10 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class EnemyFSM : MonoBehaviour, Damageable
 {
     [Header("데이터")]
     public EnemyData data;
+    
+    [Header("스킬 설정")]
+    public MonsterSkillDataSO currentSkill;
 
     [Header("애니메이터")]
     [SerializeField] private Animator _animatorRef;
@@ -12,8 +16,11 @@ public class EnemyFSM : MonoBehaviour, Damageable
     private Rigidbody2D _rigid;
     private EnemyEffectManager _effectManager;
     private EnemyPathfinder _pathfinder;
-    private MonsterSkillExecutor _skillExecutor;
     private Animator _animator;
+    
+    public EnemyMeleeSkill meleeSkill { get; private set; }
+    public EnemyRangedSkill rangedSkill { get; private set; }
+
     private Dictionary<EnemyStateType, EnemyStateBase> _states;
     private EnemyStateBase _currentState;
     private int _currentHp;
@@ -23,8 +30,9 @@ public class EnemyFSM : MonoBehaviour, Damageable
     public Rigidbody2D rigid => _rigid;
     public Animator animator => _animator;
     public EnemyPathfinder pathfinder => _pathfinder;
-    public MonsterSkillExecutor skillExecutor => _skillExecutor;
     public RoomNode currentRoom { get; private set; }
+    
+    public Vector2 initialTargetPos { get; set; }
 
     public bool isPlayerInDetectRange =>
         playerTransform != null &&
@@ -39,7 +47,9 @@ public class EnemyFSM : MonoBehaviour, Damageable
         _rigid         = GetComponent<Rigidbody2D>();
         _effectManager = GetComponent<EnemyEffectManager>();
         _pathfinder    = GetComponent<EnemyPathfinder>();
-        _skillExecutor = GetComponent<MonsterSkillExecutor>();
+
+        meleeSkill = GetComponent<EnemyMeleeSkill>();
+        rangedSkill = GetComponent<EnemyRangedSkill>();
 
         _animator = _animatorRef != null
             ? _animatorRef
@@ -65,8 +75,7 @@ public class EnemyFSM : MonoBehaviour, Damageable
 
     private void OnEnable()
     {
-        if (_states != null)
-            ChangeState(EnemyStateType.Idle);
+        if (_states != null) ChangeState(EnemyStateType.Idle);
     }
 
     private void Update()
@@ -97,6 +106,11 @@ public class EnemyFSM : MonoBehaviour, Damageable
         currentStateType = EnemyStateType.Idle;
         StopAllCoroutines();
 
+        if (_rigid != null)
+        {
+            _rigid.bodyType = RigidbodyType2D.Dynamic;
+        }
+
         if (_animator != null)
         {
             _animator.SetBool("1_Move",  false);
@@ -117,13 +131,7 @@ public class EnemyFSM : MonoBehaviour, Damageable
             return;
         }
 
-        // 사운드 담당자 연결 필요
-        // AudioManager.Instance.PlaySFX("몬스터 피격 SFX");
-
-        if (currentStateType == EnemyStateType.Attack)
-        {
-            return;
-        }
+        if (currentStateType == EnemyStateType.Attack) return;
 
         ChangeState(EnemyStateType.Hit);
     }

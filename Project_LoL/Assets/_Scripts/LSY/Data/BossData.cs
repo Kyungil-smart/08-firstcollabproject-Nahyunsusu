@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class BossData : ScriptableObject
 {
     [Header("기본 스탯")]
+    public string monsterName;
     public int maxHp = 1000;
     public float moveSpeed = 2f;
     public int attackDamage = 25;

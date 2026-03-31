@@ -4609,6 +4609,7 @@ GameObject:
   - component: {fileID: 8958440960600137876}
   - component: {fileID: 5754611028871822104}
   - component: {fileID: 4453786103992215272}
+  - component: {fileID: -6825652629649091341}
   m_Layer: 5
   m_Name: Boos1
   m_TagString: Untagged
@@ -4625,7 +4626,7 @@ RectTransform:
   m_GameObject: {fileID: 3668570908561610495}
   m_LocalRotation: {x: 0, y: 0.008726558, z: 0, w: 0.999962}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2501995181914810004}
@@ -4652,6 +4653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossFSM
   data: {fileID: 11400000, guid: bf3b56c4f2e505b4986663aa16130f47, type: 2}
   warningSignObj: {fileID: 8081588850674341035}
+  teleportHitThreshold: 5
 --- !u!50 &4453786103992215272
 Rigidbody2D:
   serializedVersion: 5
@@ -4679,6 +4681,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-6825652629649091341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3668570908561610495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 415476a163e1d31409938516709cb37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Boss1Skill
 --- !u!1 &3676296521703623569
 GameObject:
   m_ObjectHideFlags: 0

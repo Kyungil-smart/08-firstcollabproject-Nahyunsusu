@@ -1,7 +1,6 @@
 public enum MonsterSkillType
 {
-    Ranged,
     Melee,
-    Dash,
-    Cross
+    Ranged,
+    Dash
 }

@@ -3256,6 +3256,8 @@ GameObject:
   - component: {fileID: 6672290601953606754}
   - component: {fileID: 3430291997909305567}
   - component: {fileID: 7603588287340965958}
+  - component: {fileID: 109494532403398535}
+  - component: {fileID: -3103014241845257288}
   m_Layer: 5
   m_Name: Boos3
   m_TagString: Untagged
@@ -3272,7 +3274,7 @@ RectTransform:
   m_GameObject: {fileID: 1708284833807399274}
   m_LocalRotation: {x: 0, y: 0.008726558, z: 0, w: 0.999962}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7042351069057197332}
@@ -3297,8 +3299,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a515be17c7d53ee46b1993ee938e7a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossFSM
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: 14e6c43d3bcb71948a12da3111fd846b, type: 2}
   warningSignObj: {fileID: 4024756910112493534}
+  teleportHitThreshold: 5
 --- !u!50 &7603588287340965958
 Rigidbody2D:
   serializedVersion: 5
@@ -3314,7 +3317,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -3325,7 +3328,31 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!114 &109494532403398535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708284833807399274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d924457e3d1ba54e805ceb8b807a3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Boss3Skill4
+--- !u!114 &-3103014241845257288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708284833807399274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4257d9e4e19b941bcfe86f25f0e8e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Boss3Skill10
 --- !u!1 &1715167647611854706
 GameObject:
   m_ObjectHideFlags: 0
