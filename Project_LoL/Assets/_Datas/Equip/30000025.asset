@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: 30000025
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData_SO
   <EquipImage>k__BackingField: {fileID: 0}
-  <EquipID>k__BackingField: 0
-  <EquipText>k__BackingField: 
-  <EquipUpgrade>k__BackingField: 0
-  <EquipChance1>k__BackingField: 0
-  <EquipChance2>k__BackingField: 0
-  <EquipChance3>k__BackingField: 0
-  <EquipPrice>k__BackingField: 0
-  <EquipHP>k__BackingField: 0
-  <EquipAttackDamage>k__BackingField: 0
+  <EquipID>k__BackingField: 30000025
+  <EquipText>k__BackingField: "\uCD5C\uB300 \uCCB4\uB825 +20, \uACF5\uACA9\uB825
+    +50, \uCE58\uBA85\uD0C0 \uD655\uB960 -20"
+  <EquipUpgrade>k__BackingField: 1
+  <EquipChance1>k__BackingField: 250
+  <EquipChance2>k__BackingField: 250
+  <EquipChance3>k__BackingField: 250
+  <EquipPrice>k__BackingField: 10
+  <EquipHP>k__BackingField: 20
+  <EquipAttackDamage>k__BackingField: 50
   <EquipAttackSpeed>k__BackingField: 0
   <EquipMoveSpeed>k__BackingField: 0
   <EquipCritChance>k__BackingField: 0
   <EquipCritDamage>k__BackingField: 0
-  <EquipSpecial>k__BackingField: 
-  <EquipName_KO>k__BackingField: 
-  <EquipName_EN>k__BackingField: 
+  <EquipSpecial>k__BackingField: 0
+  <EquipName_KO>k__BackingField: "\uC774\uAC00 \uBE60\uC9C4 \uD1B1"
+  <EquipName_EN>k__BackingField: Chipped Saw

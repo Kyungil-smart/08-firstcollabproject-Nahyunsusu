@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: 30000030
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData_SO
   <EquipImage>k__BackingField: {fileID: 0}
-  <EquipID>k__BackingField: 0
-  <EquipText>k__BackingField: 
-  <EquipUpgrade>k__BackingField: 0
-  <EquipChance1>k__BackingField: 0
-  <EquipChance2>k__BackingField: 0
-  <EquipChance3>k__BackingField: 0
-  <EquipPrice>k__BackingField: 0
+  <EquipID>k__BackingField: 30000030
+  <EquipText>k__BackingField: "\uACF5\uACA9\uB825 +50, \uACF5\uACA9\uC18D\uB3C4 +50,
+    \uCE58\uBA85\uD0C0 \uD53C\uD574 +50"
+  <EquipUpgrade>k__BackingField: 2
+  <EquipChance1>k__BackingField: 150
+  <EquipChance2>k__BackingField: 150
+  <EquipChance3>k__BackingField: 150
+  <EquipPrice>k__BackingField: 10
   <EquipHP>k__BackingField: 0
-  <EquipAttackDamage>k__BackingField: 0
-  <EquipAttackSpeed>k__BackingField: 0
+  <EquipAttackDamage>k__BackingField: 50
+  <EquipAttackSpeed>k__BackingField: 50
   <EquipMoveSpeed>k__BackingField: 0
   <EquipCritChance>k__BackingField: 0
-  <EquipCritDamage>k__BackingField: 0
-  <EquipSpecial>k__BackingField: 
-  <EquipName_KO>k__BackingField: 
-  <EquipName_EN>k__BackingField: 
+  <EquipCritDamage>k__BackingField: 50
+  <EquipSpecial>k__BackingField: 0
+  <EquipName_KO>k__BackingField: "\uC544\uC2A4\uD14C\uB9AC\uC548 \uC7A5\uAC11"
+  <EquipName_EN>k__BackingField: Aster Gloves

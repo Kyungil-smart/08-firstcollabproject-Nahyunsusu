@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: 30000027
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData_SO
   <EquipImage>k__BackingField: {fileID: 0}
-  <EquipID>k__BackingField: 0
-  <EquipText>k__BackingField: 
-  <EquipUpgrade>k__BackingField: 0
-  <EquipChance1>k__BackingField: 0
-  <EquipChance2>k__BackingField: 0
-  <EquipChance3>k__BackingField: 0
-  <EquipPrice>k__BackingField: 0
+  <EquipID>k__BackingField: 30000027
+  <EquipText>k__BackingField: "\uACF5\uACA9\uB825 +20, \uACF5\uACA9\uC18D\uB3C4 -20,
+    \uC774\uB3D9\uC18D\uB3C4 +20"
+  <EquipUpgrade>k__BackingField: 1
+  <EquipChance1>k__BackingField: 500
+  <EquipChance2>k__BackingField: 500
+  <EquipChance3>k__BackingField: 500
+  <EquipPrice>k__BackingField: 10
   <EquipHP>k__BackingField: 0
-  <EquipAttackDamage>k__BackingField: 0
-  <EquipAttackSpeed>k__BackingField: 0
-  <EquipMoveSpeed>k__BackingField: 0
+  <EquipAttackDamage>k__BackingField: 20
+  <EquipAttackSpeed>k__BackingField: -20
+  <EquipMoveSpeed>k__BackingField: 20
   <EquipCritChance>k__BackingField: 0
   <EquipCritDamage>k__BackingField: 0
-  <EquipSpecial>k__BackingField: 
-  <EquipName_KO>k__BackingField: 
-  <EquipName_EN>k__BackingField: 
+  <EquipSpecial>k__BackingField: 0
+  <EquipName_KO>k__BackingField: "\uBD80\uBA54\uB791"
+  <EquipName_EN>k__BackingField: Boomerang

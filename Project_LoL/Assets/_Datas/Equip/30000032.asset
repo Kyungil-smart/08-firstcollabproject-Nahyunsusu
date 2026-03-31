@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: 30000032
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData_SO
   <EquipImage>k__BackingField: {fileID: 0}
-  <EquipID>k__BackingField: 0
-  <EquipText>k__BackingField: 
+  <EquipID>k__BackingField: 30000032
+  <EquipText>k__BackingField: "\uCD5C\uB300 \uCCB4\uB825 +30, \uACF5\uACA9\uB825
+    +40, \uCE58\uBA85\uD0C0 \uD655\uB960 - 50"
   <EquipUpgrade>k__BackingField: 0
-  <EquipChance1>k__BackingField: 0
-  <EquipChance2>k__BackingField: 0
-  <EquipChance3>k__BackingField: 0
-  <EquipPrice>k__BackingField: 0
-  <EquipHP>k__BackingField: 0
-  <EquipAttackDamage>k__BackingField: 0
+  <EquipChance1>k__BackingField: 150
+  <EquipChance2>k__BackingField: 150
+  <EquipChance3>k__BackingField: 150
+  <EquipPrice>k__BackingField: 10
+  <EquipHP>k__BackingField: 30
+  <EquipAttackDamage>k__BackingField: 40
   <EquipAttackSpeed>k__BackingField: 0
   <EquipMoveSpeed>k__BackingField: 0
-  <EquipCritChance>k__BackingField: 0
+  <EquipCritChance>k__BackingField: -50
   <EquipCritDamage>k__BackingField: 0
-  <EquipSpecial>k__BackingField: 
-  <EquipName_KO>k__BackingField: 
-  <EquipName_EN>k__BackingField: 
+  <EquipSpecial>k__BackingField: 0
+  <EquipName_KO>k__BackingField: "\uB9C8\uBAA8\uB41C \uB300\uAC80"
+  <EquipName_EN>k__BackingField: Worn Greatsword

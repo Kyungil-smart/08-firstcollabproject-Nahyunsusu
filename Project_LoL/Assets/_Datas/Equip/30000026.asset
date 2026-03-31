@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: 30000026
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData_SO
   <EquipImage>k__BackingField: {fileID: 0}
-  <EquipID>k__BackingField: 0
-  <EquipText>k__BackingField: 
-  <EquipUpgrade>k__BackingField: 0
-  <EquipChance1>k__BackingField: 0
-  <EquipChance2>k__BackingField: 0
-  <EquipChance3>k__BackingField: 0
-  <EquipPrice>k__BackingField: 0
+  <EquipID>k__BackingField: 30000026
+  <EquipText>k__BackingField: "\uACF5\uACA9\uB825 +100, \uACF5\uACA9\uC18D\uB3C4
+    -70, \uC774\uB3D9\uC18D\uB3C4 -20"
+  <EquipUpgrade>k__BackingField: 6
+  <EquipChance1>k__BackingField: 150
+  <EquipChance2>k__BackingField: 150
+  <EquipChance3>k__BackingField: 150
+  <EquipPrice>k__BackingField: 10
   <EquipHP>k__BackingField: 0
-  <EquipAttackDamage>k__BackingField: 0
-  <EquipAttackSpeed>k__BackingField: 0
-  <EquipMoveSpeed>k__BackingField: 0
+  <EquipAttackDamage>k__BackingField: 100
+  <EquipAttackSpeed>k__BackingField: -70
+  <EquipMoveSpeed>k__BackingField: -20
   <EquipCritChance>k__BackingField: 0
   <EquipCritDamage>k__BackingField: 0
-  <EquipSpecial>k__BackingField: 
-  <EquipName_KO>k__BackingField: 
-  <EquipName_EN>k__BackingField: 
+  <EquipSpecial>k__BackingField: 0
+  <EquipName_KO>k__BackingField: "\uBD95\uAD34\uB41C \uD798"
+  <EquipName_EN>k__BackingField: Collapse Force

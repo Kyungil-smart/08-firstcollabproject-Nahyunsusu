@@ -13,19 +13,21 @@ MonoBehaviour:
   m_Name: 30000028
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData_SO
   <EquipImage>k__BackingField: {fileID: 0}
-  <EquipID>k__BackingField: 0
-  <EquipText>k__BackingField: 
-  <EquipUpgrade>k__BackingField: 0
-  <EquipChance1>k__BackingField: 0
-  <EquipChance2>k__BackingField: 0
-  <EquipChance3>k__BackingField: 0
-  <EquipPrice>k__BackingField: 0
+  <EquipID>k__BackingField: 30000028
+  <EquipText>k__BackingField: "[\uD2B9\uC218 \uD6A8\uACFC] \uB9CE\uC740 \uBCF4\uC0C1.
+    \uB9CE\uC740 \uACE8\uB4DC. \uBD84\uD574\uD558\uBA74 \uBD80\uC790\uAC00 \uB420
+    \uAC83 \uAC19\uB2E4, \uACF5\uACA9\uB825 +1"
+  <EquipUpgrade>k__BackingField: 6
+  <EquipChance1>k__BackingField: 150
+  <EquipChance2>k__BackingField: 150
+  <EquipChance3>k__BackingField: 150
+  <EquipPrice>k__BackingField: 5000
   <EquipHP>k__BackingField: 0
-  <EquipAttackDamage>k__BackingField: 0
+  <EquipAttackDamage>k__BackingField: 1
   <EquipAttackSpeed>k__BackingField: 0
   <EquipMoveSpeed>k__BackingField: 0
   <EquipCritChance>k__BackingField: 0
   <EquipCritDamage>k__BackingField: 0
-  <EquipSpecial>k__BackingField: 
-  <EquipName_KO>k__BackingField: 
-  <EquipName_EN>k__BackingField: 
+  <EquipSpecial>k__BackingField: 0
+  <EquipName_KO>k__BackingField: "\uBB34\uAC70\uC6B4 \uAE08\uBC18\uC9C0"
+  <EquipName_EN>k__BackingField: Heavy Gold Ring
