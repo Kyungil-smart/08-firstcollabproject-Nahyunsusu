@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   maxHp: 100
   moveSpeed: 3
-  attackDamage: 10
-  detectRange: 5
-  attackRange: 3
+  attackDamage: 20
+  detectRange: 8
+  attackRange: 2
   hitDuration: 0.3
-  attackDuration: 0.5
+  attackDuration: 1
   attackCooldown: 1
+  skill: {fileID: 11400000, guid: ab13c8889c3f1414e8cfa31541061d81, type: 2}
   expReward: 10
   goldReward: 5

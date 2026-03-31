@@ -1,53 +1,41 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyEffectManager : MonoBehaviour
 {
-    private List<SpriteRenderer> _renderers = new List<SpriteRenderer>();
-    private List<Color> _originalColors = new List<Color>();
-    private Coroutine _hitCoroutine;
-
-    private const float HIT_EFFECT_DURATION = 0.2f;
+    private SpriteRenderer _spriteRenderer;
+    private Color _originColor;
 
     private void Awake()
     {
-        GetComponentsInChildren(true, _renderers);
-
-        foreach (SpriteRenderer sr in _renderers)
-            _originalColors.Add(sr.color);
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (_spriteRenderer != null) _originColor = _spriteRenderer.color;
     }
 
     public void PlayHitEffect()
     {
-        if (_renderers.Count == 0) return;
+        PlayHitFlash();
+    }
 
-        if (_hitCoroutine != null)
-        {
-            StopCoroutine(_hitCoroutine);
-            RestoreColors();
-        }
+    public void PlayHitFlash()
+    {
+        if (_spriteRenderer == null) return;
+        StopAllCoroutines();
+        StartCoroutine(HitFlashRoutine());
+    }
 
-        _hitCoroutine = StartCoroutine(HitColorRoutine());
+    private IEnumerator HitFlashRoutine()
+    {
+        _spriteRenderer.color = Color.red; 
+        yield return new WaitForSeconds(0.1f);
+        _spriteRenderer.color = _originColor;
     }
 
     public void RestoreColors()
     {
-        for (int i = 0; i < _renderers.Count; i++)
+        if (_spriteRenderer != null)
         {
-            if (_renderers[i] != null)
-                _renderers[i].color = _originalColors[i];
+            _spriteRenderer.color = _originColor;
         }
-    }
-
-    private IEnumerator HitColorRoutine()
-    {
-        foreach (SpriteRenderer sr in _renderers)
-            sr.color = new Color(0.5f, 0f, 0f, sr.color.a);
-
-        yield return new WaitForSeconds(HIT_EFFECT_DURATION);
-
-        RestoreColors();
-        _hitCoroutine = null;
     }
 }

@@ -2,29 +2,54 @@ using UnityEngine;
 
 public class MonsterSkillHitbox : MonoBehaviour
 {
+    private MonsterSkillDataSO _skill;
     private int _damage;
-    private LayerMask _targetLayer;
-    private Vector2 _size;
+    private bool _hasHit = false;
+    private Rigidbody2D _rb;
 
-    public void Init(int damage, Vector2 size, float duration, LayerMask targetLayer)
+    private void Awake()
     {
-        _damage = damage;
-        _size = size;
-        _targetLayer = targetLayer;
-
-        Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, _size, transform.eulerAngles.z, _targetLayer);
-        foreach (var hit in hits)
+        _rb = GetComponent<Rigidbody2D>();
+        if (_rb == null)
         {
-            if (hit.TryGetComponent(out Damageable d)) d.TakeDamage(_damage);
+            _rb = gameObject.AddComponent<Rigidbody2D>();
         }
-
-        Destroy(gameObject, duration);
+        _rb.bodyType = RigidbodyType2D.Kinematic;
     }
 
-    private void OnDrawGizmos()
+    public void Init(MonsterSkillDataSO skill, int damage)
     {
-        Gizmos.color = Color.red;
-        Gizmos.matrix = transform.localToWorldMatrix;
-        Gizmos.DrawWireCube(Vector3.zero, _size);
+        _skill = skill;
+        _damage = damage;
+        _hasHit = false;
+
+        transform.localScale = new Vector3(skill.damageRangeX, skill.damageRangeY, 1f);
+
+        SkillPool.Instance.Despawn(gameObject, 0.2f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (_hasHit || _skill == null) return;
+
+        if (other.CompareTag("Enemy") || other.CompareTag("Boss")) return;
+
+        if (((1 << other.gameObject.layer) & _skill.targetLayer.value) != 0)
+        {
+            if (other.TryGetComponent(out Damageable target))
+            {
+                target.TakeDamage(_damage);
+                
+                if (_skill.hitVfxPrefab != null)
+                {
+                    GameObject vfx = SkillPool.Instance.Spawn(_skill.hitVfxPrefab, other.transform.position, Quaternion.identity);
+                    SkillPool.Instance.Despawn(vfx, 1.0f);
+                }
+
+                _hasHit = true;
+
+                SkillPool.Instance.Despawn(gameObject);
+            }
+        }
     }
 }

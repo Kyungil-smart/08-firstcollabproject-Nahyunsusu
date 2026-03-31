@@ -10482,6 +10482,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1549319274225778790}
   - component: {fileID: 2478748354698004664}
+  - component: {fileID: 6645691632320473720}
+  - component: {fileID: -4301247225347873235}
   m_Layer: 5
   m_Name: Enemy4
   m_TagString: Untagged
@@ -10522,8 +10524,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 590217a9fddda91448bef5b90d528eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFSM
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: d7d660d6eeb33454ea6d124d8b8b5d05, type: 2}
+  currentSkill: {fileID: 11400000, guid: ab13c8889c3f1414e8cfa31541061d81, type: 2}
   _animatorRef: {fileID: 2932395034866217991}
+--- !u!50 &6645691632320473720
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7844854224969159464}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &-4301247225347873235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7844854224969159464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f8f4fc9adf29fc47af2ff3d4e754d81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyRangedSkill
 --- !u!1 &7919065175546456726
 GameObject:
   m_ObjectHideFlags: 0

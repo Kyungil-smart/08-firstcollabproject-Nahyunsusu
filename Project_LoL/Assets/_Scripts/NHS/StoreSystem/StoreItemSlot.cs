@@ -29,10 +29,10 @@ public class StoreItemSlot : MonoBehaviour
     {
         if (data == null) return;
 
-        data = SkillDataSO.Get();
+        //data = SkillDataSO.Get();
 
-        _descriptionText.text = $"<b>{data.skillName}</b>\n{data.EquipText}";
+        //_descriptionText.text = $"<b>{data.skillName}</b>\n{data.EquipText}";
 
-        _priceText.text = $"{data.EquipPrice}";
+        //_priceText.text = $"{data.EquipPrice}";
     }
 }
