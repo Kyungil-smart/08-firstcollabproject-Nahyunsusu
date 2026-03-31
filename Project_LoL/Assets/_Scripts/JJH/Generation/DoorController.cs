@@ -13,14 +13,11 @@ public class DoorController : MonoBehaviour
     {
         _objectPool.ReleaseChildren(_doorRoot);
         _roomDoors.Clear();
- 
+
         foreach (var conn in connections)
         {
             PlaceDoor(conn.doorA, conn.corridorWidth);
- 
-            if (conn.doorB.owner != null &&
-                conn.doorB.owner.roomData.roomType != RoomType.Boss)
-                PlaceDoor(conn.doorB, conn.corridorWidth);
+            PlaceDoor(conn.doorB, conn.corridorWidth);
         }
     }
  
@@ -28,12 +25,7 @@ public class DoorController : MonoBehaviour
     {
         if (door == null) return;
  
-        bool isVertical = door.dir == DoorDir.Up || door.dir == DoorDir.Down;
-        float centerOffset = (width - 1) / 2f;
- 
-        Vector3 worldPos = isVertical
-            ? new Vector3(door.wallPos.x + centerOffset, door.wallPos.y, 0f)
-            : new Vector3(door.wallPos.x, door.wallPos.y + centerOffset, 0f);
+        Vector3 worldPos = CalcPos(door, width);
  
         GameObject d = _objectPool.Spawn(_doorPrefab, _doorRoot, worldPos, Quaternion.identity);
  
@@ -48,7 +40,7 @@ public class DoorController : MonoBehaviour
  
         DoorObject doorObj = d.GetComponent<DoorObject>();
         if (doorObj != null)
-            doorObj.Setup(width, isVertical);
+            doorObj.Setup(width);
  
         if (door.owner != null)
         {
@@ -58,6 +50,11 @@ public class DoorController : MonoBehaviour
             if (doorObj != null)
                 _roomDoors[door.owner].Add(doorObj);
         }
+    }
+    
+    private Vector3 CalcPos(DoorCandidate door, int width)
+    {
+        return new Vector3(door.wallPos.x, door.wallPos.y, 0f);
     }
  
     public void CloseDoors(RoomNode room)

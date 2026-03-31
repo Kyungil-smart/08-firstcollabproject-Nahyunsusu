@@ -10,7 +10,7 @@ public class DataManager : MonoBehaviour
 
     [SerializeField] private List<EquipmentData_SO> _equipDataList;
 
-    private Dictionary<string, EquipmentData_SO> _equipDataDictionary = new();
+    private Dictionary<int, EquipmentData_SO> _equipDataDictionary = new();
 
     public Action OnDataLoaded;
 
@@ -29,54 +29,49 @@ public class DataManager : MonoBehaviour
 
     private void SetEquipDatas(char splitSymbol, string[] lines)
     {
-        Debug.Log($"전체 라인 수: {lines.Length}");
+        if (lines == null) return;
 
-        if (lines == null)
+        for (int i = 5; i < lines.Length; i++)
         {
-            Debug.LogError("잘못된 데이터 입력");
-            return;
-        }
+            if (string.IsNullOrWhiteSpace(lines[i])) continue;
 
-        // 모든 장비에 대해 수행해줘야함
-        for (int i = 5; i < lines.Length; i++)
-        {
-            // 줄이 비어있으면 건너뛰기
-            if (string.IsNullOrWhiteSpace(lines[i])) continue;
+            string[] cols = lines[i].Split(splitSymbol);
 
-            // 나누는 문자열 기준(tsv인지 csv인지) 다시 문자열 배열로 쪼개서
-            string[] cols = lines[i].Split(splitSymbol);
+            if (cols.Length < 15) continue;
 
-            // 컬럼 개수가 부족한 줄은 파싱하지 않음
-            if (cols.Length < 12) continue;
+            if (!int.TryParse(cols[0].Trim(), out int EquipID))
+            {
+                Debug.LogWarning($"{i}번 줄: ID 파싱 실패");
+                continue;
+            }
 
             EquipmentData_SO equip;
-            string equipName = cols[1].Trim();
 
-            if (_equipDataDictionary.ContainsKey(equipName))
+            if (_equipDataDictionary.ContainsKey(EquipID))
             {
-                equip = _equipDataDictionary[equipName];
+                equip = _equipDataDictionary[EquipID];
             }
             else
             {
                 equip = ScriptableObject.CreateInstance<EquipmentData_SO>();
-                equip.name = equipName;
-                _equipDataDictionary.Add(equipName, equip);
-                Debug.LogWarning($"<color=yellow>신규 장비 발견: {equipName}</color>");
+                equip.name = EquipID.ToString();
+                _equipDataDictionary.Add(EquipID, equip);
+
+                _equipDataList.Add(equip);
+
+                Debug.LogWarning($"신규 장비 발견: {EquipID}");
             }
-            //Debug.Log($"{i}번 줄 파싱 시도: {cols[1]}");
+
             equip.SetData(cols);
         }
         IsLoaded = true;
-        Debug.Log("<color=green>데이터 로드 완료!</color>");
         OnDataLoaded?.Invoke();
     }
 
     private void InitEquipDataDictionary()
     {
-        _equipDataDictionary = _equipDataList.ToDictionary(data => data.name);
-        //_equipDataList.Clear();
-        //_equipDataList = null;
-    }
+        _equipDataDictionary = _equipDataList.ToDictionary(data => data.EquipID);
+    }
 
     public List<EquipmentData_SO> GetRandomEquips(int count = 2)
     {

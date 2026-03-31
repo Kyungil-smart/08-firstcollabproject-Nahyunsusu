@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9441d7a44eb267c4caea17438a29ee03, type: 3}
+  m_Name: 30000031
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentData_SO
+  <EquipImage>k__BackingField: {fileID: 0}
+  <EquipID>k__BackingField: 30000031
+  <EquipText>k__BackingField: "[\uD2B9\uC218 \uD6A8\uACFC] \uCD94\uAC00 \uC774\uB3D9\uC18D\uB3C4
+    5\uB9C8\uB2E4 \uCD94\uAC00 \uACF5\uACA9\uB825 1\uB85C \uC804\uD658  (\uC774\uB3D9\uC18D\uB3C4\uB294
+    \uAE30\uBCF8\uC73C\uB85C \uACE0\uC815)"
+  <EquipUpgrade>k__BackingField: 6
+  <EquipChance1>k__BackingField: 150
+  <EquipChance2>k__BackingField: 150
+  <EquipChance3>k__BackingField: 150
+  <EquipPrice>k__BackingField: 10
+  <EquipHP>k__BackingField: 0
+  <EquipAttackDamage>k__BackingField: 0
+  <EquipAttackSpeed>k__BackingField: 0
+  <EquipMoveSpeed>k__BackingField: 0
+  <EquipCritChance>k__BackingField: 0
+  <EquipCritDamage>k__BackingField: 0
+  <EquipSpecial>k__BackingField: "\uC774\uC18D\uC744 \uACF5\uACA9\uB825\uC73C\uB85C
+    \uC804\uD658"
+  <EquipName_KO>k__BackingField: "\uBD80\uB3D9"
+  <EquipName_EN>k__BackingField: Immobile Core

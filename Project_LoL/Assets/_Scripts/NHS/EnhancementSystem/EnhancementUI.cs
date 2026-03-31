@@ -1,7 +1,9 @@
+using _Scripts.LYC.Utils;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class EnhancementUI : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class EnhancementUI : MonoBehaviour
     [SerializeField] private Button     _oddButton;
     [SerializeField] private Button    _evenButton;
     [SerializeField] private Button _enhanceButton;
+    [SerializeField] private List<Image>  _selectedImages = new List<Image>(4);
 
     [Header("Current Selection")]
     private Button _selectedEquipment = null;
@@ -29,6 +32,11 @@ public class EnhancementUI : MonoBehaviour
         _evenButton.onClick.AddListener(() => OnSelectOddEven(0));
 
         _enhanceButton.onClick.AddListener(ExecuteEnhancement);
+
+        for (int i = 0; i < _selectedImages.Count; i++)
+        {
+            _selectedImages[i].gameObject.SetActive(false);
+        }
     }
 
     private void OnSelectEquipment(int index)
@@ -36,6 +44,18 @@ public class EnhancementUI : MonoBehaviour
         _selectedEquipment = _equipmentButtons[index];
 
         Debug.Log($"{index}번 무기 선택됨");
+
+        for(int i=0;i<_selectedImages.Count;i++)
+        {
+            if(i==index)
+            {
+                _selectedImages[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                _selectedImages[i].gameObject.SetActive(false);
+            }
+        }
 
         CheckRequirement();
     }

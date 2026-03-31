@@ -5,20 +5,17 @@ public class Boss1Skill : BossSkillBase
 {
     private Rigidbody2D _rb;
     private Animator _animator;
-    
     private bool _isDashing = false;
     private Vector2 _dashDir;
     private float _dashSpeed;
     private float _dashRange;
     private Vector2 _startPos;
-    
     private float _trailTimer;
     private bool _useVfxA = true;
     private bool _hasHit = false;
     private MonsterSkillDataSO _currentSkill;
     private int _finalDamage;
     private float _dashTimer; 
-
     private GameObject _warningObj;
 
     private void Awake()
@@ -52,18 +49,14 @@ public class Boss1Skill : BossSkillBase
         if (_currentSkill.warningPrefab != null && _currentSkill.warningDuration > 0)
         {
             _warningObj = SkillPool.Instance.Spawn(_currentSkill.warningPrefab, warnStartPos, rot);
-            
             float timer = 0f;
             while (timer < _currentSkill.warningDuration)
             {
                 if (_warningObj == null || !_warningObj.activeInHierarchy) yield break;
                 timer += Time.deltaTime;
-                
                 float currentLength = Mathf.Lerp(0, _dashRange, timer / _currentSkill.warningDuration);
                 _warningObj.transform.localScale = new Vector3(currentLength, _currentSkill.damageRangeY, 1f);
-                
                 _warningObj.transform.position = (Vector2)transform.position + (_dashDir * (currentLength * 0.5f));
-                
                 yield return null;
             }
             if (_warningObj != null) 
@@ -72,15 +65,11 @@ public class Boss1Skill : BossSkillBase
                 _warningObj = null;
             }
         }
-        else
-        {
-            yield return new WaitForSeconds(_currentSkill.warningDuration);
-        }
+        else { yield return new WaitForSeconds(_currentSkill.warningDuration); }
 
         _startPos = _rb.position; 
         _isDashing = true; 
         _dashTimer = 0f; 
-
         if (_animator != null) _animator.SetBool("1_Move", true); 
     }
 
@@ -113,10 +102,14 @@ public class Boss1Skill : BossSkillBase
                 if (!hit.CompareTag("Enemy") && !hit.CompareTag("Boss"))
                 {
                     target.TakeDamage(_finalDamage);
+                    
                     if (_currentSkill.hitVfxPrefab != null) 
                     {
                         GameObject vfx = SkillPool.Instance.Spawn(_currentSkill.hitVfxPrefab, hit.transform.position, Quaternion.identity);
-                        SkillPool.Instance.Despawn(vfx, 1.0f);
+                        float scale = _currentSkill.impactScale > 0 ? _currentSkill.impactScale : 1f;
+                        vfx.transform.localScale = new Vector3(scale, scale, 1f);
+                        float duration = _currentSkill.impactTime > 0 ? _currentSkill.impactTime : 1f;
+                        SkillPool.Instance.Despawn(vfx, duration);
                     }
                     _hasHit = true; 
                 }
@@ -126,21 +119,13 @@ public class Boss1Skill : BossSkillBase
         _dashTimer += Time.fixedDeltaTime;
         float maxDashTime = (_dashRange / Mathf.Max(0.1f, _dashSpeed)) + 0.5f;
 
-        if (Vector2.Distance(_startPos, _rb.position) >= _dashRange || _dashTimer > maxDashTime)
-        {
-            StopSkill();
-        }
+        if (Vector2.Distance(_startPos, _rb.position) >= _dashRange || _dashTimer > maxDashTime) StopSkill();
     }
 
     public override void StopSkill()
     {
         base.StopSkill(); 
-        if (_warningObj != null) 
-        {
-            SkillPool.Instance.Despawn(_warningObj);
-            _warningObj = null;
-        }
-        
+        if (_warningObj != null) { SkillPool.Instance.Despawn(_warningObj); _warningObj = null; }
         if (_isDashing)
         {
             _isDashing = false;

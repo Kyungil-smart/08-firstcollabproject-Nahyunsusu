@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59677af5323ac7744b6a508cf5c4d240, type: 3}
   m_Name: Boss1
   m_EditorClassIdentifier: Assembly-CSharp::BossData
+  monsterId: 0
   monsterName: 
   maxHp: 1000
-  moveSpeed: 2
   attackDamage: 25
+  attackSpeed: 1
+  moveSpeed: 2
   detectRange: 12
   attackRange: 3
-  hitDuration: 0.2
-  attackDuration: 0.8
-  attackCooldown: 1.5
+  goldReward: 100
+  expReward: 50
+  chestId: 0
   skills:
   - {fileID: 11400000, guid: e3c63d7e695407d478095e9198412ad5, type: 2}

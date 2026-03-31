@@ -23,7 +23,7 @@ public class StoreItemSlot : MonoBehaviour
     {
         if (data == null) return;
 
-        _descriptionText.text = $"<b>{data.EquipName}</b>";
+        _descriptionText.text = $"<b>{data.EquipName_KO}</b>";
 
         _priceText.text = $"{data.EquipPrice}";
         _currentPrice = data.EquipPrice;
@@ -31,7 +31,7 @@ public class StoreItemSlot : MonoBehaviour
         Debug.Log("장비 세팅됨");
 
         _imageButton.onClick.RemoveAllListeners();
-        _imageButton.onClick.AddListener(() => Debug.Log($"{data.EquipName} 구매"));
+        _imageButton.onClick.AddListener(() => Debug.Log($"{data.EquipName_KO} 구매"));
     }
 
     public void SetSkill(SkillDataSO skillDataSO, int diceValue = 1)

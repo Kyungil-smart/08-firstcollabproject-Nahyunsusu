@@ -6,7 +6,6 @@ public class BossFSM : MonoBehaviour, Damageable
     [Header("데이터 및 설정")]
     public BossData data;
     public GameObject warningSignObj;
-    public int teleportHitThreshold = 5; 
 
     public Rigidbody2D rigid { get; private set; }
     public Animator animator { get; private set; }
@@ -26,15 +25,16 @@ public class BossFSM : MonoBehaviour, Damageable
     public MonsterSkillDataSO selectedSkill { get; set; }
     public Vector2 initialTargetPos { get; set; }
     
+    public RoomNode currentRoom { get; private set; } 
+    
     private int _currentHp;
-    private int _hitCount = 0; 
 
     public bool isPlayerInDetectRange => data != null && playerTransform != null && 
         Vector2.Distance(transform.position, playerTransform.position) <= data.detectRange;
     public bool isPlayerInAttackRange => data != null && playerTransform != null && 
         Vector2.Distance(transform.position, playerTransform.position) <= data.attackRange;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
@@ -63,8 +63,34 @@ public class BossFSM : MonoBehaviour, Damageable
         };
     }
 
-    private void Start() => ChangeState(BossStateType.Idle);
-    private void Update() => _currentState?.Update();
+    private void OnEnable()
+    {
+        if (_states != null) ChangeState(BossStateType.Idle);
+    }
+
+    protected virtual void Update() => _currentState?.Update();
+
+    public void SetRoom(RoomNode room)
+    {
+        currentRoom = room;
+        if (pathfinder != null && room != null)
+            pathfinder.InitGrid(room);
+    }
+
+    public void ResetBoss()
+    {
+        if (data != null) _currentHp = data.maxHp;
+        currentStateType = BossStateType.Idle;
+        StopAllCoroutines();
+
+        if (rigid != null) rigid.bodyType = RigidbodyType2D.Dynamic;
+
+        if (animator != null)
+        {
+            animator.SetBool("1_Move", false);
+            animator.SetBool("isDeath", false);
+        }
+    }
 
     public void ChangeState(BossStateType next)
     {
@@ -75,7 +101,7 @@ public class BossFSM : MonoBehaviour, Damageable
         _currentState.Enter();
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         if (_currentHp <= 0 || currentStateType == BossStateType.Die) return;
         
@@ -88,60 +114,33 @@ public class BossFSM : MonoBehaviour, Damageable
             return;
         }
 
-        if (data != null && !string.IsNullOrEmpty(data.monsterName) && data.monsterName.Contains("3"))
-        {
-            _hitCount++;
-            if (_hitCount >= teleportHitThreshold)
-            {
-                TeleportAway();
-                _hitCount = 0;
-                return;
-            }
-        }
-
         if (currentStateType == BossStateType.Warning || currentStateType == BossStateType.Attack) return;
 
         animator?.SetTrigger("3_Hit");
         ChangeState(BossStateType.Hit);
     }
 
-    private void TeleportAway()
-    {
-        if (playerTransform == null || data == null) return;
-
-        Vector2 awayDir = (transform.position - playerTransform.position).normalized;
-        if (awayDir == Vector2.zero) awayDir = Random.insideUnitCircle.normalized;
-        
-        transform.position = (Vector2)playerTransform.position + (awayDir * data.attackRange);
-        rigid.linearVelocity = Vector2.zero;
-        
-        ChangeState(BossStateType.Idle);
-    }
 
     public void TriggerAttackSkill()
     {
         if (selectedSkill == null) return;
 
-        if (selectedSkill.skillId == "4" && boss3Skill4 != null)
+        if (selectedSkill.skillId == 4 && boss3Skill4 != null)
         {
             boss3Skill4.ExecuteSkill(selectedSkill, initialTargetPos, data.attackDamage);
             return; 
         }
         
-        if (selectedSkill.skillId == "10" && boss3Skill10 != null)
+        if (selectedSkill.skillId == 10 && boss3Skill10 != null)
         {
             boss3Skill10.ExecuteSkill(selectedSkill, initialTargetPos, data.attackDamage);
             return;
         }
 
         if (selectedSkill.skillType == MonsterSkillType.Dash && boss1Skill != null)
-        {
             boss1Skill.ExecuteSkill(selectedSkill, initialTargetPos, data.attackDamage);
-        }
         else if (selectedSkill.skillType == MonsterSkillType.Melee && boss2Skill != null)
-        {
             boss2Skill.ExecuteSkill(selectedSkill, initialTargetPos, data.attackDamage);
-        }
     }
 
     public void StopAllSkills()

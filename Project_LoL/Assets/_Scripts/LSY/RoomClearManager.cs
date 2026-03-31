@@ -8,83 +8,83 @@ public class RoomClearManager : MonoBehaviour
     [Header("참조")]
     [SerializeField] private MapManager _mapManager;
     [SerializeField] private RoomCombatHandler _roomCombatHandler;
-    [SerializeField] private EnemyPool _enemyPool;
     [SerializeField] private RoomSpawnConfigSO _spawnConfig;
+
+    [Header("최종 보스 설정")]
+    [SerializeField] private GameObject _finalBossPrefab;
+
+    [Header("현재 스테이지")]
+    public int currentStage = 0;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
     }
 
     public void StartRoom(RoomNode room)
     {
-        if (room == null)
+        if (room == null || room.roomData == null) return;
+
+        if (room.roomData.roomType == RoomType.Boss && currentStage == 2)
         {
-            Debug.LogWarning("[RoomClearManager] StartRoom 실패: room이 null입니다.");
-            return;
+            SpawnFinalBoss(room);
         }
-
-        if (room.roomData == null || room.roomData.roomType != RoomType.Combat)
-            return;
-
-        if (_roomCombatHandler == null || _enemyPool == null || _spawnConfig == null)
+        else if (room.roomData.roomType == RoomType.Combat)
         {
-            Debug.LogWarning("[RoomClearManager] 필요한 매니저나 설정(SO)이 연결되지 않았습니다.");
-            return;
+            SpawnNormalEnemies(room);
         }
-
-        if (_spawnConfig.enemyPrefabs == null || _spawnConfig.enemyPrefabs.Count == 0)
-        {
-            Debug.LogWarning("[RoomClearManager] RoomSpawnConfigSO에 등록된 프리팹이 없습니다.");
-            return;
-        }
-
-        int totalSpawnCount = Random.Range(_spawnConfig.minSpawnCount, _spawnConfig.maxSpawnCount + 1);
-
-        List<Vector2> positions = _roomCombatHandler.GetSpawnPositions(room, totalSpawnCount);
-
-        if (positions == null || positions.Count == 0)
-        {
-            Debug.LogWarning($"[RoomClearManager] {room.nodeId} 스폰 위치가 없습니다.");
-            return;
-        }
-
-        RoomRuntimeData runtimeData = _mapManager?.GetRuntimeData(room);
-        if (runtimeData == null)
-        {
-            Debug.LogWarning($"[RoomClearManager] {room.nodeId} RoomRuntimeData가 없습니다.");
-            return;
-        }
-
-        runtimeData.StartCombat(positions.Count);
-
-        for (int i = 0; i < positions.Count; i++)
-        {
-            int index = Random.Range(0, _spawnConfig.enemyPrefabs.Count);
-            _enemyPool.Spawn(_spawnConfig.enemyPrefabs[index], positions[i], room);
-        }
-
-        Debug.Log($"[RoomClearManager] {room.nodeId} 전투 시작 / 몬스터 수: {positions.Count}");
     }
 
-    public void OnEnemyDied(RoomNode room)
+    private void SpawnFinalBoss(RoomNode room)
     {
-        if (room == null) return;
+        if (_finalBossPrefab == null) return;
+
+        Vector2 center = room.GetBounds().center;
+        Vector3 spawnPos = new Vector3(center.x, center.y, 0);
 
         RoomRuntimeData runtimeData = _mapManager?.GetRuntimeData(room);
-        if (runtimeData == null) return;
+        runtimeData?.StartCombat(1);
 
-        runtimeData.OnMonsterDead();
-
-        if (runtimeData.state == RoomState.Cleared)
+        GameObject bossObj = Instantiate(_finalBossPrefab, spawnPos, Quaternion.identity);
+        if (bossObj.TryGetComponent(out FinalBossFSM finalBoss))
         {
-            Debug.Log($"[RoomClearManager] {room.nodeId} 클리어! 문 개방 신호 전송");
-            _mapManager?.OnCombatCleared(room);
+            finalBoss.SetRoom(room);
+        }
+    }
+
+    private void SpawnNormalEnemies(RoomNode room)
+    {
+        List<MonsterPoolData> candidates = _spawnConfig.monsterPoolTable.FindAll(x => x.stage == currentStage);
+        if (candidates.Count == 0) return;
+
+        MonsterPoolData selected = candidates[Random.Range(0, candidates.Count)];
+        List<Vector2> positions = _roomCombatHandler.GetSpawnPositions(room, selected.amount);
+
+        RoomRuntimeData runtimeData = _mapManager?.GetRuntimeData(room);
+        runtimeData?.StartCombat(positions.Count);
+
+        foreach (var pos in positions)
+        {
+            EnemyPool.Instance.Spawn(selected.monsterPrefab, pos, room);
+        }
+    }
+
+    public void OnFinalBossDied(RoomNode room)
+    {
+        
+        UpdateProgress(room);
+    }
+
+    public void OnEnemyDied(RoomNode room) => UpdateProgress(room);
+
+    private void UpdateProgress(RoomNode room)
+    {
+        RoomRuntimeData runtimeData = _mapManager?.GetRuntimeData(room);
+        if (runtimeData != null)
+        {
+            runtimeData.OnMonsterDead();
+            if (runtimeData.state == RoomState.Cleared) _mapManager?.OnCombatCleared(room);
         }
     }
 }
