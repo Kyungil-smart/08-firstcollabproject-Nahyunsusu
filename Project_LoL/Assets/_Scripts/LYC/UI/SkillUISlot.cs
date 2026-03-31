@@ -10,16 +10,14 @@ public class SkillUISlot : MonoBehaviour
 	[SerializeField] private Image _coolTimeImage;
 
 	// 쿨타임 시스템
-	private Skill _assignedWeapon;
 	private float _maxCoolTime;
 	private float _currentCoolTime;
-	private bool _isCoolingDown = false;
-	public bool isCoolingDown => _isCoolingDown;
+	private bool _isCoolingDown;
 
 	private Sprite _currentSlotIcon;
 	private Tween _fadeTween;
 
-	public void UpdateSlot(SkillData data)
+	public void UpdateData(SkillData data)
 	{
 		if (data == null) return;
 		_iconImage.sprite = data.SkillImage;
@@ -31,16 +29,15 @@ public class SkillUISlot : MonoBehaviour
 		// _iconImage.DOFade(targetAlpha, 0.25f).SetEase(Ease.OutCubic);
 	}
 
-	public void UpdateAmmoOnly(int count)
+	public void UpdateAmmo(int currentAmmo)
 	{
-		_ammoText.text = count.ToString();
+		_ammoText.text = currentAmmo.ToString();
 		_ammoText.transform.DOComplete();
 		_ammoText.transform.DOScale(1.2f, 0.1f).OnComplete(() => _ammoText.transform.DOScale(1f, 0.1f));
 	}
 
-	public void StartCoolDown(float duration, Skill weapon)
+	public void StartCoolDown(float duration)
 	{
-		_assignedWeapon = weapon;
 		_maxCoolTime = duration;
 		_currentCoolTime = duration;
 		_isCoolingDown = true;
@@ -59,13 +56,6 @@ public class SkillUISlot : MonoBehaviour
 			_isCoolingDown = false;
 			_currentCoolTime = 0;
 			_coolTimeImage.fillAmount = 0;
-
-			if (_assignedWeapon != null)
-			{
-				_assignedWeapon.Reload();
-				UpdateAmmoOnly(_assignedWeapon.CurrentAmmo);
-			}
-
 			_coolTimeImage.gameObject.SetActive(false);
 		}
 		else

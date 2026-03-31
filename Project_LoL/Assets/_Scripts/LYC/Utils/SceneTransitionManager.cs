@@ -19,6 +19,7 @@ public class SceneTransitionManager : MonoBehaviour
 	static readonly int HashTriggerOut = Animator.StringToHash("TransitionOut");
 
 	Animator _animator;
+	UnityEngine.UI.Image _image;
 
 	// 애니메이션 이벤트 완료 신호
 	bool _inCompleted;
@@ -35,6 +36,7 @@ public class SceneTransitionManager : MonoBehaviour
 		Instance = this;
 		DontDestroyOnLoad(gameObject);
 		_animator = GetComponent<Animator>();
+		_image = GetComponentInChildren<UnityEngine.UI.Image>();
 	}
 
 	/// <summary>TransitionIn 클립 마지막 프레임 애니메이션 이벤트에서 호출합니다.</summary>
@@ -74,8 +76,15 @@ public class SceneTransitionManager : MonoBehaviour
 	/// TransitionIn → 씬 로딩 → 씬 로드 완료 → TransitionOut
 	/// </summary>
 	/// <param name="sceneName">전환할 씬 이름</param>
-	public void LoadSceneWithTransition(string sceneName)
+	/// <param name="colorSet">색을 바꿀 경우 해당 매개변수를 true로 전달해야 합니다</param>
+	/// <param name="color">기본 색: Black</param>
+	public void LoadSceneWithTransition(string sceneName, bool colorSet = false, Color color = default)
 	{
+		if (colorSet)
+		{
+			_image.color = color;
+		}
+
 		StartCoroutine(LoadSceneWithTransitionCoroutine(sceneName));
 	}
 
