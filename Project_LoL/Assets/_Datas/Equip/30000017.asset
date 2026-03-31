@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9441d7a44eb267c4caea17438a29ee03, type: 3}
+  m_Name: 30000017
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentData_SO
+  <EquipImage>k__BackingField: {fileID: 0}
+  <EquipID>k__BackingField: 30000017
+  <EquipText>k__BackingField: "\uCD5C\uB300 \uCCB4\uB825 +5, \uACF5\uACA9\uB825 +5,
+    \uACF5\uACA9\uC18D\uB3C4 +10, \uCE58\uBA85\uD0C0 \uD655\uB960 +10, \uCE58\uBA85\uD0C0
+    \uD53C\uD574 +10 \uC774\uC18D +10"
+  <EquipUpgrade>k__BackingField: 3
+  <EquipChance1>k__BackingField: 400
+  <EquipChance2>k__BackingField: 400
+  <EquipChance3>k__BackingField: 400
+  <EquipPrice>k__BackingField: 10
+  <EquipHP>k__BackingField: 5
+  <EquipAttackDamage>k__BackingField: 5
+  <EquipAttackSpeed>k__BackingField: 10
+  <EquipMoveSpeed>k__BackingField: 10
+  <EquipCritChance>k__BackingField: 10
+  <EquipCritDamage>k__BackingField: 10
+  <EquipSpecial>k__BackingField: 0
+  <EquipName_KO>k__BackingField: "\uADE0\uD615\uC758 \uC99D\uD45C"
+  <EquipName_EN>k__BackingField: Balance Mark

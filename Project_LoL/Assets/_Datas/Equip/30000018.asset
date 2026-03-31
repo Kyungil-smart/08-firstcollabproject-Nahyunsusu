@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9441d7a44eb267c4caea17438a29ee03, type: 3}
+  m_Name: 30000018
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentData_SO
+  <EquipImage>k__BackingField: {fileID: 0}
+  <EquipID>k__BackingField: 30000018
+  <EquipText>k__BackingField: "\uCD5C\uB300 \uCCB4\uB825 +66, \uACF5\uACA9\uB825
+    +6, \uACF5\uACA9\uC18D\uB3C4 +66, \uC774\uB3D9\uC18D\uB3C4 +6, \uCE58\uBA85\uD0C0
+    \uD655\uB960 +6, \uCE58\uBA85\uD0C0 \uD53C\uD574 +66"
+  <EquipUpgrade>k__BackingField: 5
+  <EquipChance1>k__BackingField: 250
+  <EquipChance2>k__BackingField: 250
+  <EquipChance3>k__BackingField: 250
+  <EquipPrice>k__BackingField: 10
+  <EquipHP>k__BackingField: 66
+  <EquipAttackDamage>k__BackingField: 6
+  <EquipAttackSpeed>k__BackingField: 66
+  <EquipMoveSpeed>k__BackingField: 6
+  <EquipCritChance>k__BackingField: 6
+  <EquipCritDamage>k__BackingField: 66
+  <EquipSpecial>k__BackingField: 0
+  <EquipName_KO>k__BackingField: "\uCCAB\uBC88\uC9F8 \uC9D0\uC2B9"
+  <EquipName_EN>k__BackingField: First Beast
