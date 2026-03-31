@@ -16,4 +16,7 @@ public class SkillData
 	public int MaxUseCount;
 	public int Cooldown;
 	public int Price;
+
+	public int CurrentAmmo;
+	public int CurrentDice;
 }
