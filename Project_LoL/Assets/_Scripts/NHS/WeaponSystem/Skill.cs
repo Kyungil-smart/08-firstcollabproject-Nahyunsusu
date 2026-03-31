@@ -37,6 +37,7 @@ public class Skill : MonoBehaviour
 
     public void ApplyEnhancement(int num)
     {
+        Debug.Log("무기가 강화되었습니다");
     }
 
     public void Attack()
