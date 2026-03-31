@@ -52,6 +52,7 @@ namespace _Scripts.LYC.States
 
 			while (Vector3.Distance(_dashStartPosition, FSM.transform.position) < _dashDistance)
 			{
+				if (_lastDashTime + _dashTime < Time.time) break;
 				yield return null;
 			}
 

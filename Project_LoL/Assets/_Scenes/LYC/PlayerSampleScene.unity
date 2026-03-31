@@ -502,6 +502,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3024736094218729805, guid: 02d5dae15abc49044a0d864adf9297d7, type: 3}
+      propertyPath: playerSkillHandler
+      value: 
+      objectReference: {fileID: 1215519481}
     - target: {fileID: 3516995597063923291, guid: 02d5dae15abc49044a0d864adf9297d7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -585,18 +589,6 @@ PrefabInstance:
     - target: {fileID: 3635691083460017822, guid: 02d5dae15abc49044a0d864adf9297d7, type: 3}
       propertyPath: m_Name
       value: WeaponUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 5992593114912140016, guid: 02d5dae15abc49044a0d864adf9297d7, type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5992593114912140016, guid: 02d5dae15abc49044a0d864adf9297d7, type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 5992593114912140016, guid: 02d5dae15abc49044a0d864adf9297d7, type: 3}
-      propertyPath: m_ReferenceResolution.y
-      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1943,7 +1935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillInjectionTester
   skillHandler: {fileID: 1215519481}
   injectionArray:
-  - dice: 0
+  - dice: 2
     data: {fileID: 11400000, guid: 2e76ea4d4a36f1b44b635f92c0f5a1ff, type: 2}
   - dice: 1
     data: {fileID: 11400000, guid: e6036d8af2bed714288d8acb16b2a9f5, type: 2}

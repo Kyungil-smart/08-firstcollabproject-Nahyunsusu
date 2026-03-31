@@ -73,9 +73,17 @@ public class PlayerSkillHandler : MonoBehaviour
 		SkillExecuteResult result = Skills[index]?.TryExecute() ?? SkillExecuteResult.NotExist;
 
 		if (result == SkillExecuteResult.Success)
+		{
 			SkillExecuted.Invoke(index);
+		}
+		else if (result == SkillExecuteResult.Rolling)
+		{
+			SkillChanged.Invoke(index);
+		}
 		else
+		{
 			SkillExecutionFailed.Invoke(index, result);
+		}
 	}
 
 	private void ChangeSkillSet()

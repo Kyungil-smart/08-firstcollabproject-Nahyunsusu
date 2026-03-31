@@ -16,6 +16,7 @@ public class SkillDiceEffectGroup
 			3 => dice3Effects,
 			4 => dice4Effects,
 			5 => dice5Effects,
-			_ => dice6Effects
+			6 => dice6Effects,
+			_ => null
 		};
 }
