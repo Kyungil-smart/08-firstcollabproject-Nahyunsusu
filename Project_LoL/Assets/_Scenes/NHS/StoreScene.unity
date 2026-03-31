@@ -288,6 +288,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1554897633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1554897634}
+  m_Layer: 0
+  m_Name: SkillDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1554897634
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554897633}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1148.6093, y: 393.42328, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1772588676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -597,6 +628,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3899481189100960527, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
+      propertyPath: _storeItems.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3899481189100960527, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
+      propertyPath: '_storeItems.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2146546605}
+    - target: {fileID: 3899481189100960527, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
+      propertyPath: '_storeItems.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2146546605}
     - target: {fileID: 5665427434793783814, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
       propertyPath: m_Name
       value: StoreUI
@@ -758,6 +801,17 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &2146546605 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6512311199840375426, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
+  m_PrefabInstance: {fileID: 1801577260}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25f2cbe51458c74985cf031a667d59f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StoreItemSlot
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -768,3 +822,4 @@ SceneRoots:
   - {fileID: 497561285}
   - {fileID: 461519388}
   - {fileID: 374764353}
+  - {fileID: 1554897634}
