@@ -269,60 +269,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170520109}
   m_CullTransparentMesh: 1
---- !u!1 &170835824
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 170835826}
-  - component: {fileID: 170835825}
-  m_Layer: 0
-  m_Name: Skill Injection
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &170835825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170835824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 873aa96a39c779a428c7b74697a9f7b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SkillInjectionTester
-  skillHandler: {fileID: 1215519481}
-  injectionArray:
-  - dice: 0
-    data: {fileID: 11400000, guid: 2e76ea4d4a36f1b44b635f92c0f5a1ff, type: 2}
-  - dice: 1
-    data: {fileID: 11400000, guid: e6036d8af2bed714288d8acb16b2a9f5, type: 2}
-  - dice: 0
-    data: {fileID: 11400000, guid: b0dff5b322be92644a3e3ed67277ec9f, type: 2}
-  - dice: 0
-    data: {fileID: 11400000, guid: 8a8ed706ccf4a5642abfda24e5d13d16, type: 2}
---- !u!4 &170835826
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170835824}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.46285, y: 0.75373, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &572631329
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,51 +433,67 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &861835636
-GameObject:
+--- !u!1001 &957705696
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 861835638}
-  - component: {fileID: 861835637}
-  m_Layer: 0
-  m_Name: Time Scaler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &861835637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861835636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69a614cd241410144bd9928528fb00b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_Scripts.LYC.Tester.TEST_TimeScaler
-  timeMultiplier: 1
---- !u!4 &861835638
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861835636}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1284074691007756985, guid: c3d3286146a49254c92b2b7b14296da3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.02652
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284074691007756985, guid: c3d3286146a49254c92b2b7b14296da3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.14591
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284074691007756985, guid: c3d3286146a49254c92b2b7b14296da3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284074691007756985, guid: c3d3286146a49254c92b2b7b14296da3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284074691007756985, guid: c3d3286146a49254c92b2b7b14296da3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284074691007756985, guid: c3d3286146a49254c92b2b7b14296da3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284074691007756985, guid: c3d3286146a49254c92b2b7b14296da3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284074691007756985, guid: c3d3286146a49254c92b2b7b14296da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284074691007756985, guid: c3d3286146a49254c92b2b7b14296da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284074691007756985, guid: c3d3286146a49254c92b2b7b14296da3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3000537400066330159, guid: c3d3286146a49254c92b2b7b14296da3, type: 3}
+      propertyPath: m_Properties.Array.data[0].m_Injector
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9180391990495036049, guid: c3d3286146a49254c92b2b7b14296da3, type: 3}
+      propertyPath: m_Name
+      value: Scene Transition Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c3d3286146a49254c92b2b7b14296da3, type: 3}
 --- !u!1001 &978531265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1917,6 +1879,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1991420432}
+  - component: {fileID: 1991420435}
+  - component: {fileID: 1991420434}
+  - component: {fileID: 1991420433}
   m_Layer: 0
   m_Name: === TESTER ===
   m_TagString: Untagged
@@ -1939,6 +1904,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1991420433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991420431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490ab3ca137405449a74d6dd48591dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TEST_SceneTransition
+--- !u!114 &1991420434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991420431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a614cd241410144bd9928528fb00b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Scripts.LYC.Tester.TEST_TimeScaler
+  timeMultiplier: 1
+--- !u!114 &1991420435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991420431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 873aa96a39c779a428c7b74697a9f7b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillInjectionTester
+  skillHandler: {fileID: 1215519481}
+  injectionArray:
+  - dice: 0
+    data: {fileID: 11400000, guid: 2e76ea4d4a36f1b44b635f92c0f5a1ff, type: 2}
+  - dice: 1
+    data: {fileID: 11400000, guid: e6036d8af2bed714288d8acb16b2a9f5, type: 2}
+  - dice: 0
+    data: {fileID: 11400000, guid: b0dff5b322be92644a3e3ed67277ec9f, type: 2}
+  - dice: 0
+    data: {fileID: 11400000, guid: 8a8ed706ccf4a5642abfda24e5d13d16, type: 2}
 --- !u!1 &2066877118
 GameObject:
   m_ObjectHideFlags: 0
@@ -2084,22 +2096,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5330624449546311500, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-      propertyPath: <SkillChanged>k__BackingField.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5330624449546311500, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-      propertyPath: <SkillSetChanged>k__BackingField.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5330624449546311500, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-      propertyPath: <SkillChanged>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5330624449546311500, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
-      propertyPath: <SkillSetChanged>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6214984124904572333, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2158,7 +2154,6 @@ SceneRoots:
   - {fileID: 1337478961}
   - {fileID: 1044018683}
   - {fileID: 1554530542}
-  - {fileID: 1991420432}
-  - {fileID: 170835826}
-  - {fileID: 861835638}
   - {fileID: 978531265}
+  - {fileID: 957705696}
+  - {fileID: 1991420432}
