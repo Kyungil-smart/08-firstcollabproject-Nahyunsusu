@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 928597045972814894}
   - component: {fileID: 7947275424986238716}
   - component: {fileID: 7698904211471236959}
+  - component: {fileID: 1633184659188746655}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -137,7 +138,6 @@ MonoBehaviour:
   _objectPool: {fileID: 7698904211471236959}
   _doorPrefab: {fileID: 391623070118702739, guid: f7a7022b352f1ff43b133cda1fd42254, type: 3}
   _doorRoot: {fileID: 8480314937181534272}
-  _doorWallOffset: 0.5
 --- !u!114 &7698904211471236959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +151,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapObjectPool
   _defaultPrewarmCount: 20
+--- !u!114 &1633184659188746655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2754165553543735386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d5cda6cdd3d65428f21a87b91a46b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomCombatHandler
+  _wallMargin: 1
+  _doorExcludeRadius: 3
+  _monsterSpacing: 2
+  _tileGenerator: {fileID: 928597045972814894}
+  _doorController: {fileID: 7947275424986238716}
 --- !u!1 &7734492493679460797
 GameObject:
   m_ObjectHideFlags: 0
