@@ -57,11 +57,14 @@ public class TileMapGenerator_Grid : MonoBehaviour
                 continue;
  
             int width = Mathf.Max(1, conn.corridorWidth);
-            bool isVertical = conn.doorA.dir == DoorDir.Up || conn.doorA.dir == DoorDir.Down;
+            var tiles = conn.corridorTiles;
             int half = width / 2;
  
-            foreach (var pos in conn.corridorTiles)
+            for (int idx = 0; idx < tiles.Count; idx++)
             {
+                Vector2Int pos = tiles[idx];
+                bool isVertical = GetTileDirection(tiles, idx);
+ 
                 for (int i = -half; i < width - half; i++)
                 {
                     Vector2Int tile = isVertical
@@ -72,9 +75,41 @@ public class TileMapGenerator_Grid : MonoBehaviour
                 }
             }
  
-            RegisterDoorWallPositions(conn.doorA, width, isVertical);
-            RegisterDoorWallPositions(conn.doorB, width, isVertical);
+            bool doorAVertical = conn.doorA.dir == DoorDir.Up || conn.doorA.dir == DoorDir.Down;
+            bool doorBVertical = conn.doorB.dir == DoorDir.Up || conn.doorB.dir == DoorDir.Down;
+ 
+            RegisterDoorWallPositions(conn.doorA, width, doorAVertical);
+            RegisterDoorWallPositions(conn.doorB, width, doorBVertical);
         }
+    }
+ 
+    // 타일의 진행 방향을 인접 타일과 비교해서 수직 여부 반환
+    private bool GetTileDirection(List<Vector2Int> tiles, int idx)
+    {
+        if (tiles.Count < 2)
+            return true;
+ 
+        Vector2Int cur = tiles[idx];
+ 
+        if (idx < tiles.Count - 1)
+        {
+            Vector2Int next = tiles[idx + 1];
+            int dx = Mathf.Abs(next.x - cur.x);
+            int dy = Mathf.Abs(next.y - cur.y);
+            if (dx != dy)
+                return dy > dx;
+        }
+ 
+        if (idx > 0)
+        {
+            Vector2Int prev = tiles[idx - 1];
+            int dx = Mathf.Abs(cur.x - prev.x);
+            int dy = Mathf.Abs(cur.y - prev.y);
+            if (dx != dy)
+                return dy > dx;
+        }
+ 
+        return true;
     }
  
     private void RegisterDoorWallPositions(DoorCandidate door, int width, bool isVertical)
@@ -83,9 +118,9 @@ public class TileMapGenerator_Grid : MonoBehaviour
         for (int i = -half; i < width - half; i++)
         {
             Vector2Int pos = isVertical
-                ? new Vector2Int(door.wallPos.x + i, door.wallPos.y)
-                : new Vector2Int(door.wallPos.x, door.wallPos.y + i);
- 
+                ? new Vector2Int(door.tileWallPos.x + i, door.tileWallPos.y)
+                : new Vector2Int(door.tileWallPos.x, door.tileWallPos.y + i);
+
             _doorWallPositions.Add(pos);
         }
     }
