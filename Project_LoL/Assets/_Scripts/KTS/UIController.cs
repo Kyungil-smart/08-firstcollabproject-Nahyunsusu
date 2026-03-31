@@ -6,12 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
-    void Update()
+    public void ActiveOptionUI()
     {
-        if (Input.GetMouseButton(0))
-        {
-            SceneManager.LoadScene("OptionUI");
-        }
+        SceneManager.LoadScene("OptionUI");
     }
 }
 
