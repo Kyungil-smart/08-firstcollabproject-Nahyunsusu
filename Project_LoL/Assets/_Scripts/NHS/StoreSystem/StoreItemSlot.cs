@@ -40,10 +40,12 @@ public class StoreItemSlot : MonoBehaviour
 
         SkillData data = skillDataSO.Get(diceValue);
 
-        _descriptionText.text = $"<b>{data.SkillName}</b>\n{data.SkillDescription}";
+        _descriptionText.text = $"<b>{data.SkillName}</b>";
 
         _priceText.text = $"{data.Price}";
         _currentPrice = data.Price;
+
+        Debug.Log("스킬 세팅됨");
 
         //if (_image != null) _image.sprite = data.SkillImage;
 

@@ -8,8 +8,8 @@ public class GameDataManager : MonoBehaviour
     public DataManager equip => _equip;
     [SerializeField] private DataManager _equip;
 
-    public SkillDataSO skillDataSO => _skillDataSO;
-    [SerializeField] private SkillDataSO _skillDataSO;
+    public SkillDataManager skillDataManager => _skillDataManager;
+    [SerializeField] private SkillDataManager _skillDataManager;
 
 
     private void Awake()
@@ -20,6 +20,7 @@ public class GameDataManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             _equip.Init();
+            _skillDataManager.Init();
 
             _equip.LoadData();
         }
