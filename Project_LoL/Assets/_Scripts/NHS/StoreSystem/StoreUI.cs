@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class StoreUI : MonoBehaviour
 {
     [SerializeField] private List<StoreItemSlot> _storeItems = new List<StoreItemSlot>(4);
-    
 
     private void Start()
     {
@@ -28,16 +27,10 @@ public class StoreUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        // 3. 메모리 누수 방지를 위해 이벤트 해제
         if (GameDataManager.instance != null)
         {
             GameDataManager.instance.equip.OnDataLoaded -= RefreshItem;
         }
-    }
-
-    private SkillData SetSkillDice(int num)
-    {
-        return GameDataManager.instance.skillDataSO.Get(num);
     }
 
     public void RefreshItem()
@@ -45,8 +38,6 @@ public class StoreUI : MonoBehaviour
         Debug.Log("상점 아이템 & 스킬 세팅 시작");
 
         var selectedEquips = GameDataManager.instance.equip.GetRandomEquips(2);
-
-        var skillSO = GameDataManager.instance.skillDataSO;
 
         if (selectedEquips == null || selectedEquips.Count < 2)
         {
@@ -56,6 +47,8 @@ public class StoreUI : MonoBehaviour
 
         _storeItems[0].SetItem(selectedEquips[0]);
         _storeItems[1].SetItem(selectedEquips[1]);
+
+        var skillSO = GameDataManager.instance.skillDataSO;
 
         if (skillSO == null)
         {

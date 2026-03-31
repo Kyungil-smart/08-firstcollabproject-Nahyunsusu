@@ -6,8 +6,8 @@ using DG.Tweening;
 public class Skill_UI : MonoBehaviour
 {
     [Header("UI Components")]
-    [SerializeField] private Image _iconImage;
-    [SerializeField] private TextMeshProUGUI _ammoText;
+    [SerializeField] private Image           _iconImage;
+    [SerializeField] private TextMeshProUGUI  _ammoText;
     //[SerializeField] private GameObject _activeHighlight;
 
     // Cooltime UI
@@ -15,14 +15,14 @@ public class Skill_UI : MonoBehaviour
 
     // 쿨타임 시스템
 
-    private Skill _assignedWeapon;
+    private Skill  _assignedWeapon;
     private float     _maxCoolTime;
     private float _currentCoolTime;
     private bool    _isCoolingDown = false;
     public bool isCoolingDown => _isCoolingDown;
 
     private Sprite _currentSlotIcon;
-    private Tween _fadeTween; 
+    private Tween        _fadeTween; 
 
     public void UpdateUI(Skill weapon, bool isSelectedSet)
     {

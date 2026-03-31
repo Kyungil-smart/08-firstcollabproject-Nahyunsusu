@@ -5,11 +5,11 @@ public class GameDataManager : MonoBehaviour
 {
     public static GameDataManager instance;
 
-    [SerializeField] private DataManager _equip;
     public DataManager equip => _equip;
+    [SerializeField] private DataManager _equip;
 
-    [SerializeField] private SkillDataSO _skillDataSO;
     public SkillDataSO skillDataSO => _skillDataSO;
+    [SerializeField] private SkillDataSO _skillDataSO;
 
 
     private void Awake()
