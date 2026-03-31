@@ -53,7 +53,7 @@ namespace _Scripts.LYC.Skill
 
 		public SkillExecuteResult TryExecute()
 		{
-			if (CurrentSkillData == null) return SkillExecuteResult.NotExist;
+			if (CurrentSkillData == null || SkillDataSO == null) return SkillExecuteResult.NotExist;
 			if (LastExecutedTime + CurrentSkillData.Delay > Time.time) return SkillExecuteResult.OnCooldown;
 			// if(_isRolling) return ...
 
