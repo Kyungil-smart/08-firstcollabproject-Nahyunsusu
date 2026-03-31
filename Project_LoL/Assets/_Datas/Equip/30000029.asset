@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: 30000029
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData_SO
   <EquipImage>k__BackingField: {fileID: 0}
-  <EquipID>k__BackingField: 0
-  <EquipText>k__BackingField: 
-  <EquipUpgrade>k__BackingField: 0
-  <EquipChance1>k__BackingField: 0
-  <EquipChance2>k__BackingField: 0
-  <EquipChance3>k__BackingField: 0
-  <EquipPrice>k__BackingField: 0
-  <EquipHP>k__BackingField: 0
+  <EquipID>k__BackingField: 30000029
+  <EquipText>k__BackingField: "\uCD5C\uB300 \uCCB4\uB825 -20, \uACF5\uACA9\uC18D\uB3C4
+    +10, \uCE58\uBA85\uD0C0 \uD53C\uD574 +100"
+  <EquipUpgrade>k__BackingField: 2
+  <EquipChance1>k__BackingField: 150
+  <EquipChance2>k__BackingField: 150
+  <EquipChance3>k__BackingField: 150
+  <EquipPrice>k__BackingField: 10
+  <EquipHP>k__BackingField: -20
   <EquipAttackDamage>k__BackingField: 0
-  <EquipAttackSpeed>k__BackingField: 0
+  <EquipAttackSpeed>k__BackingField: 10
   <EquipMoveSpeed>k__BackingField: 0
   <EquipCritChance>k__BackingField: 0
-  <EquipCritDamage>k__BackingField: 0
-  <EquipSpecial>k__BackingField: 
-  <EquipName_KO>k__BackingField: 
-  <EquipName_EN>k__BackingField: 
+  <EquipCritDamage>k__BackingField: 100
+  <EquipSpecial>k__BackingField: 0
+  <EquipName_KO>k__BackingField: "\uB4A4\uD2C0\uB9B0 \uC2EC\uC7A5"
+  <EquipName_EN>k__BackingField: Twisted Heart
