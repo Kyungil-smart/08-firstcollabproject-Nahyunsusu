@@ -57,7 +57,7 @@ public class MonsterProjectile : MonoBehaviour
 
         if (other.CompareTag("Enemy") || other.CompareTag("Boss")) return;
 
-        if (other.TryGetComponent(out Damageable target))
+        if (other.TryGetComponent(out PlayerController target))
         {
             target.TakeDamage(_damage);
             

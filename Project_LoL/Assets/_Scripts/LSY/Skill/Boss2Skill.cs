@@ -80,7 +80,7 @@ public class Boss2Skill : BossSkillBase
         
         foreach (var hit in hits)
         {
-            if (!hit.CompareTag("Enemy") && !hit.CompareTag("Boss") && hit.TryGetComponent(out Damageable target))
+            if (!hit.CompareTag("Enemy") && !hit.CompareTag("Boss") && hit.TryGetComponent(out PlayerController target))
             {
                 target.TakeDamage(damage);
                 

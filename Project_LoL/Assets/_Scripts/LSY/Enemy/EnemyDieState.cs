@@ -18,7 +18,7 @@ public class EnemyDieState : EnemyStateBase
 
         if (RoomClearManager.Instance != null)
         {
-            RoomClearManager.Instance.OnEnemyDied(_fsm.currentRoom);
+            RoomClearManager.Instance.OnEnemyDied(_fsm.currentRoom, _fsm.data.goldReward, _fsm.data.expReward);
         }
 
         _fsm.StartCoroutine(DieRoutine());

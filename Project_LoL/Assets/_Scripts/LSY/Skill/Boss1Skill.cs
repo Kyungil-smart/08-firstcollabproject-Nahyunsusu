@@ -97,7 +97,7 @@ public class Boss1Skill : BossSkillBase
             float angle = Mathf.Atan2(_dashDir.y, _dashDir.x) * Mathf.Rad2Deg;
             Collider2D hit = Physics2D.OverlapBox(_rb.position, new Vector2(_currentSkill.damageRangeX, _currentSkill.damageRangeY), angle, _currentSkill.targetLayer);
 
-            if (hit != null && hit.TryGetComponent(out Damageable target))
+            if (hit != null && hit.TryGetComponent(out PlayerController target))
             {
                 if (!hit.CompareTag("Enemy") && !hit.CompareTag("Boss"))
                 {

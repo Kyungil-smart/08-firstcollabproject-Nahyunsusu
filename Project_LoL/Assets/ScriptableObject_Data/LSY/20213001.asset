@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59677af5323ac7744b6a508cf5c4d240, type: 3}
-  m_Name: Boss2
+  m_Name: 20213001
   m_EditorClassIdentifier: Assembly-CSharp::BossData
-  maxHp: 1000
-  moveSpeed: 2
-  attackDamage: 25
-  detectRange: 12
-  attackRange: 3
-  hitDuration: 0.2
-  attackDuration: 0.8
-  attackCooldown: 1.5
+  monsterId: 20213001
+  monsterName: "3\uC2A4\uD14C\uC774\uC9C0 \uBCF4\uC2A4"
+  maxHp: 900
+  attackDamage: 30
+  attackSpeed: 2
+  moveSpeed: 3
+  detectRange: 17
+  attackRange: 20
+  goldReward: 200
+  expReward: 50
+  chestId: 0
   skills:
-  - {fileID: 11400000, guid: d650e3202e3ce1947b23dde73d172ac8, type: 2}
-  - {fileID: 11400000, guid: 0c0cb3cf9a770e548bebe81fdf9fecc3, type: 2}
+  - {fileID: 11400000, guid: df17a2c830d0a854488e3da0e831f519, type: 2}
+  - {fileID: 11400000, guid: 92bf97b47daaae84b8b2c407d0a39743, type: 2}

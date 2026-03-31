@@ -152,6 +152,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: pj1_slash_large_violet
       objectReference: {fileID: 0}
+    - target: {fileID: 7402145047876083356, guid: 80386b65d07e896498e9b6fe4b946491, type: 3}
+      propertyPath: m_Size.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402145047876083356, guid: 80386b65d07e896498e9b6fe4b946491, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
