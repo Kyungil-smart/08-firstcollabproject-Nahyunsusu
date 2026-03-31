@@ -5,9 +5,10 @@ using DG.Tweening;
 
 public class SkillUISlot : MonoBehaviour
 {
-	[Header("UI Components")] [SerializeField] private Image _iconImage;
-	[SerializeField] private TextMeshProUGUI _ammoText;
-	[SerializeField] private Image _coolTimeImage;
+	private Image _iconImage;
+	private Image _coolTimeImage;
+	private TextMeshProUGUI _ammoText;
+	private Image _diceImage;
 
 	// 쿨타임 시스템
 	private float _maxCoolTime;
@@ -17,16 +18,24 @@ public class SkillUISlot : MonoBehaviour
 	private Sprite _currentSlotIcon;
 	private Tween _fadeTween;
 
-	public void UpdateData(SkillData data)
+	private void Awake()
 	{
-		if (data == null) return;
-		_iconImage.sprite = data.SkillImage;
-		_ammoText.text = data.MaxUseCount.ToString();
-		_iconImage.transform.DOComplete();
-		_iconImage.transform.DOPunchScale(Vector3.one * 0.2f, 0.4f, 10, 1f);
+		_iconImage = transform.GetChild(0).GetComponent<Image>();
+		_coolTimeImage = transform.GetChild(1).GetComponent<Image>();
+		_ammoText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+		_diceImage = transform.GetChild(3).GetComponent<Image>();
+	}
 
-		// float targetAlpha = isSelectedSet ? 1.0f : 0.4f;
-		// _iconImage.DOFade(targetAlpha, 0.25f).SetEase(Ease.OutCubic);
+	public void UpdateData(Sprite skillIcon, Sprite dice, int ammo)
+	{
+		_iconImage.sprite = skillIcon;
+		_diceImage.sprite = dice;
+		UpdateAmmo(ammo);
+
+		_iconImage.transform.DOComplete();
+		_iconImage.transform.DOPunchScale(Vector3.one * 0.2f, 0.4f);
+		_diceImage.transform.DOComplete();
+		_diceImage.transform.DOPunchScale(Vector3.one * 0.2f, 0.4f);
 	}
 
 	public void UpdateAmmo(int currentAmmo)

@@ -65,15 +65,7 @@ public class PlayerSkillHandler : MonoBehaviour
 			return;
 		}
 
-		if (dice != 0)
-		{
-			Skills[slotIndex].Set(skillData, dice);
-		}
-		else
-		{
-			Skills[slotIndex].Set(skillData);
-		}
-
+		Skills[slotIndex].Set(skillData, dice);
 		SkillChanged.Invoke(slotIndex);
 	}
 
