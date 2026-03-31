@@ -12,24 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee37b69581552b4a9a243ad5baec6b4, type: 3}
   m_Name: sc0004
   m_EditorClassIdentifier: Assembly-CSharp::MonsterSkillDataSO
-  skillId: sc0004
+  skillId: 0
+  baseDamage: 10
+  projectileSpeed: 2
+  range: 14
+  warningDuration: 0
+  damageRangeX: 1
+  damageRangeY: 1
+  attackCount: 1
+  skillDuration: 1
+  impactScale: 1
+  impactTime: 1
   skillType: 1
   isFixedTarget: 0
-  attackCount: 1
   attackInterval: 0.2
-  baseDamage: 10
-  castVfxPrefab: {fileID: 0}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  skillPrefab: {fileID: 4437968436917643500, guid: 404b3229556f2a04795ed4d21af6c205, type: 3}
+  skillPrefab2: {fileID: 0}
+  warningPrefab: {fileID: 0}
   mainVfxPrefab: {fileID: 0}
   hitVfxPrefab: {fileID: 0}
   trailVfxPrefabA: {fileID: 0}
   trailVfxPrefabB: {fileID: 0}
-  warningDuration: 0
-  warningPrefab: {fileID: 0}
-  skillPrefab: {fileID: 4437968436917643500, guid: 404b3229556f2a04795ed4d21af6c205, type: 3}
-  range: 14
-  damageRangeX: 1
-  damageRangeY: 1
-  projectileSpeed: 2
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 0

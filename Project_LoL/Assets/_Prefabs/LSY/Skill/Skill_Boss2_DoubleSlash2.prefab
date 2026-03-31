@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4217308346660994236}
   - component: {fileID: 6002950326479177900}
+  - component: {fileID: -5440941165297511117}
   m_Layer: 0
   m_Name: Skill_Boss2_DoubleSlash2
   m_TagString: Untagged
@@ -79,6 +80,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-5440941165297511117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707544473937658112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b5296c63c64fa48abd6713749297c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterSkillHitbox
 --- !u!1001 &7563564017851798418
 PrefabInstance:
   m_ObjectHideFlags: 0

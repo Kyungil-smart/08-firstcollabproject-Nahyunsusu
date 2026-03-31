@@ -25,7 +25,8 @@ public class MonsterSkillHitbox : MonoBehaviour
 
         transform.localScale = new Vector3(skill.damageRangeX, skill.damageRangeY, 1f);
 
-        SkillPool.Instance.Despawn(gameObject, 0.2f);
+        float duration = skill.skillDuration > 0 ? skill.skillDuration : 0.2f;
+        SkillPool.Instance.Despawn(gameObject, duration);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -43,11 +44,16 @@ public class MonsterSkillHitbox : MonoBehaviour
                 if (_skill.hitVfxPrefab != null)
                 {
                     GameObject vfx = SkillPool.Instance.Spawn(_skill.hitVfxPrefab, other.transform.position, Quaternion.identity);
-                    SkillPool.Instance.Despawn(vfx, 1.0f);
+                    
+                    float scale = _skill.impactScale > 0 ? _skill.impactScale : 1f;
+                    vfx.transform.localScale = new Vector3(scale, scale, 1f);
+
+                    float impactDuration = _skill.impactTime > 0 ? _skill.impactTime : 1f;
+                    SkillPool.Instance.Despawn(vfx, impactDuration);
                 }
 
                 _hasHit = true;
-
+                
                 SkillPool.Instance.Despawn(gameObject);
             }
         }

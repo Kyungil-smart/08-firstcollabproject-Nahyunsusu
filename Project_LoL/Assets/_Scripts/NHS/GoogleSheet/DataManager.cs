@@ -39,7 +39,6 @@ public class DataManager : MonoBehaviour
 
             if (cols.Length < 15) continue;
 
-            // 1. 여기서 변수 이름을 하나로 통일! (대문자 EquipID)
             if (!int.TryParse(cols[0].Trim(), out int EquipID))
             {
                 Debug.LogWarning($"{i}번 줄: ID 파싱 실패");

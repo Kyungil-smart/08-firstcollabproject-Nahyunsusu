@@ -6,10 +6,7 @@ public class Boss2Skill : BossSkillBase
     private GameObject _warningObj;
     private Animator _animator;
 
-    private void Awake()
-    {
-        _animator = GetComponentInChildren<Animator>();
-    }
+    private void Awake() => _animator = GetComponentInChildren<Animator>();
 
     public override void ExecuteSkill(MonsterSkillDataSO skill, Vector2 targetPos, int baseDamage)
     {
@@ -45,29 +42,30 @@ public class Boss2Skill : BossSkillBase
         }
         else { yield return new WaitForSeconds(skill.warningDuration); }
 
-        if (_animator != null) _animator.SetTrigger("2_Attack");
 
         Vector2 attackPos = startPos + dir * (skill.damageRangeX / 2f);
-        float effectTime = skill.skillDuration > 0 ? skill.skillDuration : 0.2f;
+        float effectTime = skill.skillDuration > 0 ? skill.skillDuration : 0.2f; 
         
+        if (_animator != null) _animator.SetTrigger("2_Attack");
+
         if (skill.skillPrefab != null)
         {
             GameObject obj1 = SkillPool.Instance.Spawn(skill.skillPrefab, attackPos, rot);
-            obj1.transform.right = dir;
+            obj1.transform.right = dir; 
             ApplyHit(obj1, skill, damage, angle);
-            
             SkillPool.Instance.Despawn(obj1, effectTime);
         }
         
         yield return new WaitForSeconds(skill.attackInterval > 0 ? skill.attackInterval : 0.3f);
         
+        if (_animator != null) _animator.SetTrigger("2_Attack");
+
         GameObject prefab2 = skill.skillPrefab2 != null ? skill.skillPrefab2 : skill.skillPrefab;
         if (prefab2 != null)
         {
             GameObject obj2 = SkillPool.Instance.Spawn(prefab2, attackPos, rot);
-            obj2.transform.right = dir;
+            obj2.transform.right = dir; 
             ApplyHit(obj2, skill, damage, angle);
-            
             SkillPool.Instance.Despawn(obj2, effectTime);
         }
     }
@@ -85,10 +83,14 @@ public class Boss2Skill : BossSkillBase
             if (!hit.CompareTag("Enemy") && !hit.CompareTag("Boss") && hit.TryGetComponent(out Damageable target))
             {
                 target.TakeDamage(damage);
+                
                 if (skill.hitVfxPrefab != null) 
                 {
                     GameObject vfx = SkillPool.Instance.Spawn(skill.hitVfxPrefab, hit.transform.position, Quaternion.identity);
-                    SkillPool.Instance.Despawn(vfx, 1.0f);
+                    float scale = skill.impactScale > 0 ? skill.impactScale : 1f;
+                    vfx.transform.localScale = new Vector3(scale, scale, 1f);
+                    float duration = skill.impactTime > 0 ? skill.impactTime : 1f;
+                    SkillPool.Instance.Despawn(vfx, duration);
                 }
             }
         }

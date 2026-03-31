@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94aba4a183355304eaf19330fa0f8421, type: 3}
   m_Name: Enemy2
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  monsterId: 0
+  monsterName: 
   maxHp: 100
-  moveSpeed: 3
   attackDamage: 20
+  attackSpeed: 1
+  moveSpeed: 3
   detectRange: 8
-  attackRange: 2
-  hitDuration: 0.3
-  attackDuration: 1
-  attackCooldown: 1
-  skill: {fileID: 11400000, guid: ab13c8889c3f1414e8cfa31541061d81, type: 2}
-  expReward: 10
+  attackRange: 6
   goldReward: 5
+  expReward: 10
+  chestId: 0
+  skill: {fileID: 11400000, guid: ab13c8889c3f1414e8cfa31541061d81, type: 2}

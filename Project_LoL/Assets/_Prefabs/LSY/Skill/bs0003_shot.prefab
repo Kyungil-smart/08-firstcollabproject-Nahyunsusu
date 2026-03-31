@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9008286428942237510}
   - component: {fileID: 6019981110334991082}
   - component: {fileID: 6274144626300751904}
+  - component: {fileID: 5597319622259769870}
   m_Layer: 0
   m_Name: bs0003_shot
   m_TagString: Untagged
@@ -106,3 +107,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.4}
   m_EdgeRadius: 0
+--- !u!114 &5597319622259769870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155022320169600107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b5296c63c64fa48abd6713749297c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterSkillHitbox

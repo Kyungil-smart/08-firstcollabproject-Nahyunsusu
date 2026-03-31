@@ -6,15 +6,13 @@ public class Boss3Skill10 : BossSkillBase
     private GameObject _warningObj;
     private Animator _bossAnimator;
 
-    private void Awake()
-    {
-        _bossAnimator = GetComponentInChildren<Animator>();
-    }
+    private void Awake() => _bossAnimator = GetComponentInChildren<Animator>();
 
     public override void ExecuteSkill(MonsterSkillDataSO skill, Vector2 targetPos, int baseDamage)
     {
         if (skill == null) return;
-        StartCoroutine(AreaBombChargingRoutine(skill, targetPos, skill.baseDamage + baseDamage));
+        int finalDamage = skill.baseDamage + baseDamage;
+        StartCoroutine(AreaBombChargingRoutine(skill, targetPos, finalDamage));
     }
 
     private IEnumerator AreaBombChargingRoutine(MonsterSkillDataSO skill, Vector2 targetPos, int finalDamage)
@@ -23,21 +21,14 @@ public class Boss3Skill10 : BossSkillBase
         {
             _warningObj = SkillPool.Instance.Spawn(skill.warningPrefab, targetPos, Quaternion.identity);
             
-            Animator warnAnim = _warningObj.GetComponentInChildren<Animator>();
-            if (warnAnim != null) warnAnim.enabled = false;
-
             float timer = 0f;
-            float duration = skill.warningDuration;
-
-            while (timer < duration)
+            while (timer < skill.warningDuration)
             {
                 if (_warningObj == null || !_warningObj.activeInHierarchy) yield break; 
                 timer += Time.deltaTime;
-                float progress = Mathf.Clamp01(timer / duration);
+                float progress = Mathf.Clamp01(timer / skill.warningDuration);
                 
-                float curX = skill.damageRangeX * progress;
-                float curY = skill.damageRangeY * progress;
-                _warningObj.transform.localScale = new Vector3(curX, curY, 1f);
+                _warningObj.transform.localScale = new Vector3(skill.damageRangeX * progress, skill.damageRangeY * progress, 1f);
                 yield return null;
             }
             if (_warningObj != null) { SkillPool.Instance.Despawn(_warningObj); _warningObj = null; }
@@ -49,36 +40,18 @@ public class Boss3Skill10 : BossSkillBase
         if (skill.skillPrefab != null)
         {
             GameObject explosion = SkillPool.Instance.Spawn(skill.skillPrefab, targetPos, Quaternion.identity);
-            explosion.transform.localScale = new Vector3(skill.damageRangeX, skill.damageRangeY, 1f);
             
-            float animTime = GetAnimationClipLength(explosion);
-            SkillPool.Instance.Despawn(explosion, animTime); 
-        }
-
-        Physics2D.SyncTransforms();
-        Collider2D[] hits = Physics2D.OverlapBoxAll(targetPos, new Vector2(skill.damageRangeX, skill.damageRangeY), 0f, skill.targetLayer);
-        
-        foreach (var hit in hits)
-        {
-            if (!hit.CompareTag("Enemy") && !hit.CompareTag("Boss") && hit.TryGetComponent(out Damageable target))
+            if (explosion.TryGetComponent(out MonsterSkillHitbox hitbox))
             {
-                target.TakeDamage(finalDamage);
-                if (skill.hitVfxPrefab != null) 
-                {
-                    GameObject vfx = SkillPool.Instance.Spawn(skill.hitVfxPrefab, hit.transform.position, Quaternion.identity);
-                    SkillPool.Instance.Despawn(vfx, 1.0f);
-                }
+                hitbox.Init(skill, finalDamage);
+            }
+            else
+            {
+                explosion.transform.localScale = new Vector3(skill.damageRangeX, skill.damageRangeY, 1f);
+                float animTime = skill.skillDuration > 0 ? skill.skillDuration : 1.0f;
+                SkillPool.Instance.Despawn(explosion, animTime); 
             }
         }
-    }
-
-    private float GetAnimationClipLength(GameObject obj)
-    {
-        Animator anim = obj.GetComponentInChildren<Animator>();
-        if (anim == null) return 1.0f;
-        RuntimeAnimatorController rac = anim.runtimeAnimatorController;
-        if (rac == null || rac.animationClips.Length == 0) return 1.0f;
-        return rac.animationClips[0].length;
     }
 
     public override void StopSkill()

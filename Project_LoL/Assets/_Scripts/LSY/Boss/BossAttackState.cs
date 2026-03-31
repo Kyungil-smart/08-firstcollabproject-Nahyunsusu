@@ -10,11 +10,13 @@ public class BossAttackState : BossStateBase
     public override void Enter()
     {
         _timer = 0f;
-        _fsm.rigid.linearVelocity = Vector2.zero;
+        _fsm.rigid.linearVelocity = Vector2.zero; 
+
+        float animDuration = GetAnimationClipLength("Attack");
 
         if (_fsm.selectedSkill != null)
         {
-            float skillActionTime = _fsm.data.attackDuration;
+            float skillActionTime = animDuration;
 
             if (_fsm.selectedSkill.skillType == MonsterSkillType.Dash)
             {
@@ -26,7 +28,7 @@ public class BossAttackState : BossStateBase
         }
         else
         {
-            _totalDuration = _fsm.data.attackDuration;
+            _totalDuration = animDuration;
         }
 
         _fsm.TriggerAttackSkill();
@@ -42,7 +44,19 @@ public class BossAttackState : BossStateBase
         }
     }
 
-    public override void Exit()
+    private float GetAnimationClipLength(string keyword)
     {
+        if (_fsm.animator == null || _fsm.animator.runtimeAnimatorController == null) return 1.0f;
+
+        foreach (AnimationClip clip in _fsm.animator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name.ToUpper().Contains(keyword.ToUpper()))
+            {
+                return clip.length;
+            }
+        }
+        return 1.0f;
     }
+
+    public override void Exit() { }
 }
