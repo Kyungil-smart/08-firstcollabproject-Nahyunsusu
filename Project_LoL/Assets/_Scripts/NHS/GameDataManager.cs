@@ -11,6 +11,8 @@ public class GameDataManager : MonoBehaviour
     public SkillDataManager skillDataManager => _skillDataManager;
     [SerializeField] private SkillDataManager _skillDataManager;
 
+    public EquipmentList equipItemList => _equipItemList;
+    [SerializeField] private EquipmentList _equipItemList;
 
     private void Awake()
     {
