@@ -12,21 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee37b69581552b4a9a243ad5baec6b4, type: 3}
   m_Name: bs0001_dash2
   m_EditorClassIdentifier: Assembly-CSharp::MonsterSkillDataSO
-  skillId: bs0001_dash
-  skillType: 2
+  skillId: 0
   baseDamage: 20
-  castVfxPrefab: {fileID: 0}
-  mainVfxPrefab: {fileID: 0}
-  hitVfxPrefab: {fileID: 0}
-  trailVfxPrefabA: {fileID: 481243469601765304, guid: 76710598085e90740aea00c0b340d3d7, type: 3}
-  trailVfxPrefabB: {fileID: 5384174336365020954, guid: 07200196db3507a4d8b35740dc523498, type: 3}
-  warningDuration: 1
-  warningPrefab: {fileID: 3793445430646518522, guid: 0557673a72b8ab248b3f32f8baa524d7, type: 3}
-  skillPrefab: {fileID: 7306099465385864211, guid: 0fef82e77596aa24cad63aff3a21ff0c, type: 3}
+  projectileSpeed: 2
   range: 10
+  warningDuration: 1
   damageRangeX: 3
   damageRangeY: 3
-  projectileSpeed: 2
+  attackCount: 1
+  skillDuration: 1
+  impactScale: 1
+  impactTime: 1
+  skillType: 2
+  isFixedTarget: 0
+  attackInterval: 0.2
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  skillPrefab: {fileID: 7306099465385864211, guid: 0fef82e77596aa24cad63aff3a21ff0c, type: 3}
+  skillPrefab2: {fileID: 0}
+  warningPrefab: {fileID: 3793445430646518522, guid: 0557673a72b8ab248b3f32f8baa524d7, type: 3}
+  mainVfxPrefab: {fileID: 0}
+  hitVfxPrefab: {fileID: 0}
+  trailVfxPrefabA: {fileID: 4764844197211596973, guid: c54214d9434557542884195eac0ec5c7, type: 3}
+  trailVfxPrefabB: {fileID: 5187136433582837513, guid: 9e060a09176305448bcd466c3325bed8, type: 3}

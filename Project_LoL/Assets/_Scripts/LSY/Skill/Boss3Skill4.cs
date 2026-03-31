@@ -29,14 +29,12 @@ public class Boss3Skill4 : BossSkillBase
         if (skill.warningPrefab != null && skill.warningDuration > 0)
         {
             _warningObj = SkillPool.Instance.Spawn(skill.warningPrefab, startPos, rot);
-            
             float timer = 0f;
             while (timer < skill.warningDuration)
             {
                 if (_warningObj == null || !_warningObj.activeInHierarchy) yield break; 
                 timer += Time.deltaTime;
                 float progress = Mathf.Clamp01(timer / skill.warningDuration);
-                
                 float currentLength = maxLen * progress; 
                 _warningObj.transform.localScale = new Vector3(currentLength, width, 1f);
                 _warningObj.transform.position = startPos + (dir * (currentLength * 0.5f));
@@ -44,6 +42,7 @@ public class Boss3Skill4 : BossSkillBase
             }
             if (_warningObj != null) SkillPool.Instance.Despawn(_warningObj);
         }
+        else { yield return new WaitForSeconds(skill.warningDuration); }
 
         if (_bossAnimator != null) _bossAnimator.SetTrigger("2_Attack");
 
@@ -54,10 +53,8 @@ public class Boss3Skill4 : BossSkillBase
             if (skill.mainVfxPrefab != null)
             {
                 GameObject laser = SkillPool.Instance.Spawn(skill.mainVfxPrefab, finalCenterPos, rot);
-                
                 laser.transform.right = dir; 
                 laser.transform.localScale = new Vector3(maxLen, width, 1f);
-                
                 SkillPool.Instance.Despawn(laser, skill.skillDuration); 
             }
 
@@ -69,9 +66,24 @@ public class Boss3Skill4 : BossSkillBase
                 if (!hit.CompareTag("Enemy") && !hit.CompareTag("Boss") && hit.TryGetComponent(out Damageable target))
                 {
                     target.TakeDamage(damage);
+                    
+                    if (skill.hitVfxPrefab != null) 
+                    {
+                        GameObject vfx = SkillPool.Instance.Spawn(skill.hitVfxPrefab, hit.transform.position, Quaternion.identity);
+                        float scale = skill.impactScale > 0 ? skill.impactScale : 1f;
+                        vfx.transform.localScale = new Vector3(scale, scale, 1f);
+                        float duration = skill.impactTime > 0 ? skill.impactTime : 1f;
+                        SkillPool.Instance.Despawn(vfx, duration);
+                    }
                 }
             }
             if (i < skill.attackCount - 1) yield return new WaitForSeconds(skill.attackInterval);
         }
+    }
+
+    public override void StopSkill()
+    {
+        base.StopSkill();
+        if (_warningObj != null) SkillPool.Instance.Despawn(_warningObj);
     }
 }

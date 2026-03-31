@@ -13,25 +13,26 @@ MonoBehaviour:
   m_Name: bs0003_slam_strong
   m_EditorClassIdentifier: Assembly-CSharp::MonsterSkillDataSO
   skillId: 10
+  baseDamage: 20
+  projectileSpeed: 0
+  range: 0
+  warningDuration: 5
+  damageRangeX: 20
+  damageRangeY: 20
+  attackCount: 1
+  skillDuration: 1
+  impactScale: 1
+  impactTime: 1
   skillType: 0
   isFixedTarget: 1
-  attackCount: 1
-  attackInterval: 0.2
-  baseDamage: 20
-  castVfxPrefab: {fileID: 0}
+  attackInterval: 0
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  skillPrefab: {fileID: 1431287343338333511, guid: ae673479bbbb119468c1607a10289f69, type: 3}
+  skillPrefab2: {fileID: 0}
+  warningPrefab: {fileID: 3793445430646518522, guid: 0557673a72b8ab248b3f32f8baa524d7, type: 3}
   mainVfxPrefab: {fileID: 0}
   hitVfxPrefab: {fileID: 0}
   trailVfxPrefabA: {fileID: 0}
   trailVfxPrefabB: {fileID: 0}
-  skillPrefab: {fileID: 1431287343338333511, guid: ae673479bbbb119468c1607a10289f69, type: 3}
-  skillPrefab2: {fileID: 0}
-  warningDuration: 5
-  skillDuration: 1
-  warningPrefab: {fileID: 3793445430646518522, guid: 0557673a72b8ab248b3f32f8baa524d7, type: 3}
-  range: 0
-  damageRangeX: 20
-  damageRangeY: 20
-  projectileSpeed: 0
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 0

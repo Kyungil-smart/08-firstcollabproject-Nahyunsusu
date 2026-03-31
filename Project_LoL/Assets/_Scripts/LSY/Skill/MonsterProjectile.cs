@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class MonsterProjectile : MonoBehaviour
 {
     private MonsterSkillDataSO _skill;
@@ -32,6 +31,7 @@ public class MonsterProjectile : MonoBehaviour
         _damage = dmg;
 
         transform.localScale = new Vector3(skill.damageRangeX, skill.damageRangeY, 1f);
+        
         float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
 
@@ -64,12 +64,17 @@ public class MonsterProjectile : MonoBehaviour
             if (_skill.hitVfxPrefab != null)
             {
                 GameObject vfx = SkillPool.Instance.Spawn(_skill.hitVfxPrefab, transform.position, Quaternion.identity);
-                SkillPool.Instance.Despawn(vfx, 1.0f);
+                
+                float scale = _skill.impactScale > 0 ? _skill.impactScale : 1f;
+                vfx.transform.localScale = new Vector3(scale, scale, 1f);
+                
+                float impactDuration = _skill.impactTime > 0 ? _skill.impactTime : 1f;
+                SkillPool.Instance.Despawn(vfx, impactDuration);
             }
             
             SkillPool.Instance.Despawn(gameObject);
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Ground") || other.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
             SkillPool.Instance.Despawn(gameObject);
         }
