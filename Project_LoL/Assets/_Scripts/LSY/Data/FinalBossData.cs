@@ -1,31 +1,36 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "FinalBossData", menuName = "Monster/Final Boss Data")]
+[CreateAssetMenu(fileName = "FinalBossData", menuName = "Monster/FinalBossData")]
 public class FinalBossData : ScriptableObject
 {
-    [Header("기본 스탯")]
-    public int maxHp        = 1000;
-    public float moveSpeed  = 2f;
-    public int attackDamage = 25;
+    [Header("기본 식별 정보")]
+    [Tooltip("기본키 (ID)")]
+    public int MonsterDataId = 20221001;
 
-    [Header("범위")]
-    public float detectRange = 12f;
-    public float attackRange = 3f;
+    [Header("전투 스탯")]
+    [Tooltip("체력")]
+    public int MonsterHp = 3000;
+    
+    [Tooltip("공격력")]
+    public int MonsterAttack;
+    
+    [Tooltip("공격속도")]
+    public float MonsterAttackSpeed;
 
-    [Header("타이밍 (초)")]
-    public float hitDuration    = 0.2f;
-    public float attackDuration = 0.8f;
-    public float attackCooldown = 1.5f;
+    [Header("탐지 및 사거리")]
+    [Tooltip("감지거리")]
+    public float MonsterMoveRange;
+    
+    [Tooltip("공격사거리")]
+    public float MonsterAttackRange;
 
-    [Header("페이즈 전환")]
-    [Range(0f, 1f)]
-    public float phase2HpRatio = 0.5f;
-    public float phase2SpeedMultiplier  = 1.5f;
-    public int   phase2DamageMultiplier = 2;
-
-    [Header("보스 스킬")]
-    [Tooltip("워닝사인 지속 시간 (초)")]
-    public float warningDuration = 1.5f;
-    [Tooltip("공격 애니메이션 중 데미지 판정 타이밍 (초)")]
-    public float skillFireTime   = 0.4f;
+    [Header("보상 정보")]
+    [Tooltip("지급 골드")]
+    public int MonsterGiveGold;
+    
+    [Tooltip("지급 경험치")]
+    public int MonsterGiveExp;
+    
+    [Tooltip("보물상자 ID")]
+    public int MonsterGiveChestId;
 }

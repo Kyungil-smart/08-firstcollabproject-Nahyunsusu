@@ -12,16 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a5d5d86a6ba84d4792b310f9b7eb2d8, type: 3}
   m_Name: FinalBoss
   m_EditorClassIdentifier: Assembly-CSharp::FinalBossData
-  maxHp: 1000
-  moveSpeed: 2
-  attackDamage: 25
-  detectRange: 12
-  attackRange: 3
-  hitDuration: 0.2
-  attackDuration: 0.8
-  attackCooldown: 1.5
-  phase2HpRatio: 0.5
-  phase2SpeedMultiplier: 1.5
-  phase2DamageMultiplier: 2
-  warningDuration: 1.5
-  skillFireTime: 0.4
+  MonsterDataId: 20221001
+  MonsterHp: 3000
+  MonsterAttack: 1
+  MonsterAttackSpeed: 0
+  MonsterMoveSpeed: 0
+  MonsterMoveRange: 80
+  MonsterAttackRange: 80
+  MonsterGiveGold: 1
+  MonsterGiveExp: 1
+  MonsterGiveChestId: 0

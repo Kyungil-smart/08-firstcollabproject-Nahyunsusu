@@ -11,9 +11,15 @@ GameObject:
   - component: {fileID: 3789674592932009339}
   - component: {fileID: 4133538467320760963}
   - component: {fileID: 7172148600847525088}
+  - component: {fileID: 7575987971907303234}
+  - component: {fileID: 7591189863591985678}
+  - component: {fileID: 8837733535443896162}
+  - component: {fileID: 6655727066071449399}
+  - component: {fileID: 1309011988870387079}
+  - component: {fileID: 6382257667740075050}
   m_Layer: 0
   m_Name: BossAttack_0
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,7 +89,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -7100139421218375167, guid: 54a964eae567b9a4a8d674d170a918a7, type: 3}
+  m_Sprite: {fileID: -2240994688644343673, guid: f2816614ada1d074ca4147a70ec9db62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +109,7 @@ Animator:
   m_GameObject: {fileID: 1089905677452088616}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f9c688eae18f58743a00ac37d73c4c0e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 89974f8b459e88c4098818e5088a7460, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -115,6 +121,101 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7575987971907303234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089905677452088616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f42512940fc30bc46bb169af9e450a3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FinalBossFSM
+  bossData: {fileID: 11400000, guid: e433d6c5ee4ae7e4982fe7baf7492bea, type: 2}
+  animator: {fileID: 7172148600847525088}
+  skillDelayTime: 15
+  roomCenter: {x: 0, y: 0}
+  roomSize: {x: 70, y: 70}
+  bossBlockRange: 4
+--- !u!114 &7591189863591985678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089905677452088616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b78ec4f40033ce7438b1c41b2b526c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FinalBossSkill01
+  skillData: {fileID: 11400000, guid: 8187e4cf13563b048bdcfeabd9673b1a, type: 2}
+  projectilePrefab: {fileID: 2133966454659899028, guid: 3b3ca94eafe3d26488edc5cc4fd5c56a, type: 3}
+  impactPrefab: {fileID: 6745108552061453707, guid: 0fbfe8bad1fefad4ca4da621595fdd58, type: 3}
+--- !u!114 &8837733535443896162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089905677452088616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3cf76df2a34f7546a2219b1fbbf9cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FinalBossSkill02
+  skillData: {fileID: 11400000, guid: ae4c90dbae163f04a9781f21ff433edb, type: 2}
+  projectilePrefab: {fileID: 5456704957309837554, guid: 80c938967b482e74380cb6f7aca1d289, type: 3}
+  aimIndicatorPrefab: {fileID: 8049096730606940630, guid: 47b5d98ba80c3e348a5616d77f63382d, type: 3}
+  impactPrefab: {fileID: 1247018745173646540, guid: fa202c5f8742a1148a74a28a06e479a9, type: 3}
+--- !u!114 &6655727066071449399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089905677452088616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edf4fceeed7f8574cb96864cac50d523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FinalBossSkill03
+  skillData: {fileID: 11400000, guid: 30232dcd7f3964a4e86f4af85ae04eed, type: 2}
+  projectilePrefab: {fileID: 6634671412312160187, guid: 9c1cf162da4033a429f368ed6ee408be, type: 3}
+  impactPrefab: {fileID: 2944896754386488493, guid: 341356e1d9d6c3645bf5c017124d0aa7, type: 3}
+  destroyEffectPrefab: {fileID: 2683065822721279010, guid: 814852f4acca29e43bf5f3eca994445e, type: 3}
+--- !u!114 &1309011988870387079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089905677452088616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83e839d9e36c3e4887509a47f839209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FinalBossSkill04
+  skillData: {fileID: 11400000, guid: 13a7d09abc7cc7e4086ad26be19f6d78, type: 2}
+  aimIndicatorPrefab: {fileID: 4045925262474221548, guid: 93b71ec7a68e34846897fed6a7d84d34, type: 3}
+  impactPrefab: {fileID: 3169161053944746735, guid: 711977dcd1d699645bf7954123d6d367, type: 3}
+--- !u!114 &6382257667740075050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089905677452088616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de54ebc6bd3f2b44bb35889428c00b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FinalBossSkill05
+  skillData: {fileID: 11400000, guid: fa7ff2c2c28498243b000d008a9a7ccd, type: 2}
+  projectilePrefab: {fileID: 5556708420008442417, guid: bda462976c1095140a99261d387c68ae, type: 3}
+  impactPrefab: {fileID: 5873996494580579835, guid: e40bd1f464dc4aa4f8565b134af0158d, type: 3}
 --- !u!1 &5647636943476302269
 GameObject:
   m_ObjectHideFlags: 0
