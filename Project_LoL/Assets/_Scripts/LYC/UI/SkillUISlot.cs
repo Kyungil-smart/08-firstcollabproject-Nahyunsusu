@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class SkillUISlot : MonoBehaviour
 {
+	private static readonly int Stop = Animator.StringToHash("Stop");
+	private static readonly int Start = Animator.StringToHash("Start");
 	private Image _iconImage;
 	private Image _coolTimeImage;
 	private TextMeshProUGUI _ammoText;
@@ -15,6 +17,7 @@ public class SkillUISlot : MonoBehaviour
 	private float _currentCoolTime;
 	private bool _isCoolingDown;
 
+	private Animator _animator;
 	private Sprite _currentSlotIcon;
 	private Tween _fadeTween;
 
@@ -24,6 +27,7 @@ public class SkillUISlot : MonoBehaviour
 		_coolTimeImage = transform.GetChild(1).GetComponent<Image>();
 		_ammoText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 		_diceImage = transform.GetChild(3).GetComponent<Image>();
+		_animator = GetComponent<Animator>();
 	}
 
 	public void UpdateData(Sprite skillIcon, Sprite dice, int ammo)
@@ -52,6 +56,16 @@ public class SkillUISlot : MonoBehaviour
 		_isCoolingDown = true;
 
 		if (_coolTimeImage != null) _coolTimeImage.gameObject.SetActive(true);
+	}
+
+	public void StartRolling()
+	{
+		_animator.SetTrigger(Start);
+	}
+
+	public void StopRolling()
+	{
+		_animator.SetTrigger(Stop);
 	}
 
 	private void Update()

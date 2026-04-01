@@ -43,6 +43,7 @@ public class SkillUIController : MonoBehaviour
 
 	private void OnSkillReloadStarted(int slot)
 	{
+		slots[slot].StartRolling();
 		slots[slot].UpdateAmmo(0);
 		slots[slot].StartCoolDown(playerSkillHandler.Skills[slot].CurrentSkillData.Cooldown);
 	}
@@ -54,6 +55,7 @@ public class SkillUIController : MonoBehaviour
 		Sprite dice = dices[data?.CurrentDice ?? 0];
 		int ammo = data?.CurrentAmmo ?? 0;
 
+		slots[slot].StopRolling();
 		slots[slot].UpdateData(icon, dice, ammo);
 	}
 

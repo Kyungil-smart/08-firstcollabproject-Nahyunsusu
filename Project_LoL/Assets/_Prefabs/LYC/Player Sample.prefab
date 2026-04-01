@@ -358,6 +358,14 @@ PrefabInstance:
       value: PlayerHitParticle
       objectReference: {fileID: 0}
     - target: {fileID: 7870366091091083135, guid: 6eeb47aaf1708844aa88c8410488bb36, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870366091091083135, guid: 6eeb47aaf1708844aa88c8410488bb36, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870366091091083135, guid: 6eeb47aaf1708844aa88c8410488bb36, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
