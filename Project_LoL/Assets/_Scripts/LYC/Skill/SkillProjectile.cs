@@ -8,6 +8,7 @@ namespace _Scripts.LYC.Skill
 		protected Rigidbody2D _rb;
 		protected ParticleSystem _projectile;
 		protected ParticleSystem _explosion;
+		protected ParticleSystem _hitEffect;
 
 		protected Vector2 _direction;
 		protected Vector2 _startPosition;
@@ -24,10 +25,11 @@ namespace _Scripts.LYC.Skill
 
 		public virtual void Init(Vector2 direction, Vector2 startPosition, SkillExecutor executor,
 			ParticleSystem projectileParticle,
-			ParticleSystem explosionParticle = null)
+			ParticleSystem explosionParticle = null, ParticleSystem hitEffect = null)
 		{
 			SkillData skillData = executor.CurrentSkillData;
 			PlayerData playerData = executor.Controller.Data;
+			_hitEffect = hitEffect;
 
 			_direction = direction;
 			_startPosition = startPosition + direction;
@@ -100,10 +102,10 @@ namespace _Scripts.LYC.Skill
 			foreach (Collider2D c in result)
 			{
 				if (!c.TryGetComponent(out Damageable enemy)) continue;
-				if (enemy is not PlayerController)
-				{
-					enemy.TakeDamage(_skillDamage);
-				}
+				if (enemy is PlayerController) continue;
+				enemy.TakeDamage(_skillDamage);
+				var ps = Instantiate(_hitEffect, c.ClosestPoint(transform.position), c.transform.rotation);
+				Destroy(ps, ps.main.duration);
 			}
 
 			// Particle
@@ -111,7 +113,7 @@ namespace _Scripts.LYC.Skill
 			{
 				_explosion.transform.SetParent(null);
 				_explosion.Play();
-				Destroy(_explosion.gameObject, _explosion.main.duration + _explosion.main.startLifetime.constantMax);
+				Destroy(_explosion.gameObject, _explosion.main.duration);
 			}
 
 			Destroy(gameObject);

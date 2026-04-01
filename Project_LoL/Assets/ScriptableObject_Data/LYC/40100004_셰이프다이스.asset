@@ -33,6 +33,7 @@ MonoBehaviour:
   delay: 0.7
   maxUseCount: 3
   cooldown: 5
+  price: 0
   diceEffects:
     dice1Effects:
     - type: 6
@@ -58,6 +59,7 @@ MonoBehaviour:
       amount: 3
     - type: 0
       amount: 30
+  hitEffect: {fileID: 6697917433666999794, guid: 82aba437bcf48194e8ca609a500ec11d, type: 3}
   <ProjectilePrefab>k__BackingField: {fileID: 1840859090483820285, guid: fb3b390fc9bc774458d5e3673e35cccf, type: 3}
   <ProjectileParticleSet>k__BackingField:
     particle1: {fileID: 3976531597976849534, guid: 2c2674c1557d2884291d4a2daf531eb7, type: 3}

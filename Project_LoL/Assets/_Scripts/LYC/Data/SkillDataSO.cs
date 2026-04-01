@@ -85,6 +85,9 @@ public abstract class SkillDataSO : ScriptableObject
 	[SerializeField]
 	protected SkillDiceEffectGroup diceEffects;
 
+	[SerializeField]
+	protected ParticleSystem hitEffect;
+
 	public abstract void Use(SkillExecutor executor);
 
 	protected void SetEffect(SkillData data, int dice = 0)

@@ -41,5 +41,6 @@ MonoBehaviour:
     dice4Effects: []
     dice5Effects: []
     dice6Effects: []
+  hitEffect: {fileID: 431863261433649305, guid: c04436747ebb69c47a2c85f123781845, type: 3}
   <Hitbox>k__BackingField: {fileID: 6328662636636476298, guid: 9e14e3e112be1e449be240194cff6009, type: 3}
   <Effect>k__BackingField: {fileID: 6715582766309951490, guid: f1bb5d2c9c0abc24e946f1e9c17d9a2a, type: 3}

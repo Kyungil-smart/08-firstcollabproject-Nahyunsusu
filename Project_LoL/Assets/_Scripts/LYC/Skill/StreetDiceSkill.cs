@@ -18,7 +18,7 @@ namespace _Scripts.LYC.Skill
 			Vector2 position = executor.Controller.transform.position;
 
 			var hitbox = Instantiate(Hitbox);
-			hitbox.Init(dir, position, executor, 0.3f, ParticleSet.Get(executor.LastDiceResult));
+			hitbox.Init(dir, position, executor, 0.3f, ParticleSet.Get(executor.LastDiceResult), hitEffect);
 		}
 	}
 }

@@ -15,7 +15,7 @@ namespace _Scripts.LYC.Skill
 
 		public override void Use(SkillExecutor executor)
 		{
-			Instantiate(ProjectilePrefab).Init(executor.MouseDir, executor.Position, executor, ProjectileEffect, ExplosionParticle);
+			Instantiate(ProjectilePrefab).Init(executor.MouseDir, executor.Position, executor, ProjectileEffect, ExplosionParticle, hitEffect);
 		}
 	}
 }

@@ -51,6 +51,7 @@ MonoBehaviour:
       amount: 0
     - type: 0
       amount: 0
+  hitEffect: {fileID: 5604566597819159719, guid: 7bac453de46772548bb3b7c570637675, type: 3}
   <ProjectilePrefab>k__BackingField: {fileID: 1840859090483820285, guid: fb3b390fc9bc774458d5e3673e35cccf, type: 3}
   <EffectSet>k__BackingField:
     particle1: {fileID: 7482949198406306212, guid: bbb2b524b1946374eb839115ea45ca45, type: 3}
