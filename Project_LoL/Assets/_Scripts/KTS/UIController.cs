@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
 {
     public void ActiveOptionUI()
     {
-        SceneManager.LoadScene("OptionUI");
+        SceneManager.LoadScene("Procedural map creation");
     }
 
     public void ExitGame()
