@@ -8,6 +8,7 @@ public class DataManager : MonoBehaviour
 {
     public SheetData _sheet;
 
+    public List<EquipmentData_SO> equipDataList => _equipDataList;
     [SerializeField] private List<EquipmentData_SO> _equipDataList;
 
     private Dictionary<int, EquipmentData_SO> _equipDataDictionary = new();

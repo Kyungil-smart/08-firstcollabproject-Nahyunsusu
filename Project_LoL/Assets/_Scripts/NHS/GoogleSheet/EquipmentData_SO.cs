@@ -49,4 +49,8 @@ public class EquipmentData_SO : ScriptableObject
         Debug.Log($"데이터 저장 완료");
     }
 
+    public EquipmentData CreateRuntimeData()
+    {
+        return new EquipmentData(this);
+    }
 }

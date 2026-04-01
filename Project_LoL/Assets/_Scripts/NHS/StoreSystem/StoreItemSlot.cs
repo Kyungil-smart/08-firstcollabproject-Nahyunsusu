@@ -23,15 +23,40 @@ public class StoreItemSlot : MonoBehaviour
     {
         if (data == null) return;
 
-        _descriptionText.text = $"<b>{data.EquipName_KO}</b>";
+        _imageButton.interactable = true;
 
-        _priceText.text = $"{data.EquipPrice}";
-        _currentPrice = data.EquipPrice;
+        _descriptionText.text = $"<b>{data.EquipName_KO}</b>";
+              _priceText.text = $"{data.EquipPrice}";
+                _currentPrice = data.EquipPrice;
 
         Debug.Log("장비 세팅됨");
 
         _imageButton.onClick.RemoveAllListeners();
-        _imageButton.onClick.AddListener(() => Debug.Log($"{data.EquipName_KO} 구매"));
+        _imageButton.onClick.AddListener(() =>
+        {
+            var equipList = GameDataManager.instance.equipItemList;
+
+            if (equipList.MyEquips.Count < 4)
+            {
+                Debug.Log($"{data.EquipName_KO} 바로 구매 및 추가");
+
+                equipList.AddEquip(-1, data.EquipID);
+
+                //MarkAsSold();
+            }
+            else
+            {
+                ReplaceSelectorUI.instance.Open();
+
+                ReplaceSelectorUI.instance.onSlotSelected = (index) =>
+                {
+                    GameDataManager.instance.equipItemList.AddEquip(index, data.EquipID);
+
+                    ReplaceSelectorUI.instance.onSlotSelected = null;
+                };
+                //MarkAsSold();
+            }
+        });
     }
 
     public void SetSkill(SkillDataSO skillDataSO, int diceValue = 1)
@@ -40,15 +65,22 @@ public class StoreItemSlot : MonoBehaviour
 
         SkillData data = skillDataSO.Get(diceValue);
 
-        _descriptionText.text = $"<b>{data.SkillName}</b>\n{data.SkillDescription}";
+        _descriptionText.text = $"<b>{data.SkillName}</b>";
 
         _priceText.text = $"{data.Price}";
-        _currentPrice = data.Price;
+          _currentPrice = data.Price;
+
+        Debug.Log("스킬 세팅됨");
 
         //if (_image != null) _image.sprite = data.SkillImage;
 
         _imageButton.onClick.RemoveAllListeners();
-        _imageButton.onClick.AddListener(() => Debug.Log($"{data.SkillName} 스킬 구매"));
+        _imageButton.onClick.AddListener(() =>
+        {
+            Debug.Log($"{data.SkillName} 스킬 구매");
+
+            MarkAsSold();
+        });
     }
 
     public void OnClickNegotiate()
@@ -74,5 +106,15 @@ public class StoreItemSlot : MonoBehaviour
 
         if (_negoButton != null) 
             _negoButton.interactable = false;
+    }
+
+    private void MarkAsSold()
+    {
+        _imageButton.interactable = false;
+
+        if (_negoButton != null) _negoButton.interactable = false;
+
+        _priceText.text = "<color=red>구매 완료</color>";
+        Debug.Log("아이템 품절 처리됨");
     }
 }
