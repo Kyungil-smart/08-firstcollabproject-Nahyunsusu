@@ -12,14 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9441d7a44eb267c4caea17438a29ee03, type: 3}
   m_Name: 30000011
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData_SO
-  <EquipImage>k__BackingField: {fileID: 0}
+  <EquipImages>k__BackingField:
+    icon0: {fileID: 21300000, guid: 299e4cca4664ed348b4b4db93cf7c292, type: 3}
+    icon1: {fileID: 21300000, guid: 5204e730427422448b96ee80938854be, type: 3}
+    icon2: {fileID: 21300000, guid: 6c39d6bc26d493943b07dd489ae42620, type: 3}
+    icon3: {fileID: 21300000, guid: 14fa15d64af34544da4cb91fb826c516, type: 3}
+    icon4: {fileID: 21300000, guid: 539f0e20f0515d64685235f559da2dfd, type: 3}
+    icon5: {fileID: 21300000, guid: a41f45926292e6241b7e735ea6052399, type: 3}
+    icon6: {fileID: 21300000, guid: c48d0c6017c714d4ca30a1835bee13f6, type: 3}
   <EquipID>k__BackingField: 30000011
   <EquipText>k__BackingField: "\uACF5\uACA9\uC18D\uB3C4 +100"
   <EquipUpgrade>k__BackingField: 2
   <EquipChance1>k__BackingField: 150
   <EquipChance2>k__BackingField: 150
   <EquipChance3>k__BackingField: 150
-  <EquipPrice>k__BackingField: 10
+  <EquipPrice>k__BackingField: 120
   <EquipHP>k__BackingField: 0
   <EquipAttackDamage>k__BackingField: -20
   <EquipAttackSpeed>k__BackingField: 100

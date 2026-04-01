@@ -16,6 +16,10 @@ public class StoreItemSlot : MonoBehaviour
 
     [SerializeField] private EquipInspector equipInspector;
 
+    [SerializeField] private PlayerSkillHandler _skillHandler;
+
+    public System.Action OnPurchaseSuccess;
+
     private void OnMouseEnter()
     {
         Debug.Log("마우스가 버튼 영역에 들어옴");
@@ -83,9 +87,32 @@ public class StoreItemSlot : MonoBehaviour
         _imageButton.onClick.RemoveAllListeners();
         _imageButton.onClick.AddListener(() =>
         {
-            Debug.Log($"{data.SkillName} 스킬 구매");
+            int emptyIndex = -1;
+            for (int i = 0; i < _skillHandler.Skills.Length; i++)
+            {
+                if (_skillHandler.Skills[i] == null)
+                {
+                    emptyIndex = i;
+                    break;
+                }
+            }
 
-            MarkAsSold();
+            if (emptyIndex != -1)
+            {
+                _skillHandler.SetSkill(skillDataSO, emptyIndex, diceValue);
+                MarkAsSold();
+            }
+            else
+            {
+                ReplaceSelectorUI.instance.Open();
+                ReplaceSelectorUI.instance.onSlotSelected = (index) =>
+                {
+                    _skillHandler.SetSkill(skillDataSO, index, diceValue);
+
+                    MarkAsSold();
+                    ReplaceSelectorUI.instance.onSlotSelected = null;
+                };
+            }
         });
     }
 
@@ -122,6 +149,9 @@ public class StoreItemSlot : MonoBehaviour
 
         _priceText.text = "<color=red>매진</color>";
         _priceText.fontSize = 20;
+
+        OnPurchaseSuccess?.Invoke();
+
         Debug.Log("아이템 품절 처리됨");
     }
 }

@@ -41,22 +41,21 @@ public class StoreUI : MonoBehaviour
     public void RefreshItem()
     {
         if (this == null || gameObject == null) return;
+        if (GameDataManager.instance == null) return;
 
         Debug.Log("상점 아이템 & 스킬 세팅 시작");
 
-        if (GameDataManager.instance == null) return;
-
+        // 1. 장비 아이템 세팅
         var selectedEquips = GameDataManager.instance.equip.GetRandomEquips(2);
-
-        if (selectedEquips == null || selectedEquips.Count >= 2)
+        if (selectedEquips != null && selectedEquips.Count >= 2)
         {
             _storeItems[0].SetItem(selectedEquips[0]);
             _storeItems[1].SetItem(selectedEquips[1]);
         }
 
+        // 2. 스킬 아이템 세팅
         var skillManager = GameDataManager.instance.skillDataManager;
         var selectedSkills = skillManager.GetRandomSkills(2);
-
         if (selectedSkills != null && selectedSkills.Count >= 2)
         {
             _storeItems[2].SetSkill(selectedSkills[0], 1);
@@ -64,10 +63,22 @@ public class StoreUI : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("스킬 데이터를 뽑아오지 못했습니다. 리스트를 확인하세요.");
+            Debug.LogWarning("스킬 데이터를 뽑아오지 못했습니다.");
         }
 
-        if (_haveSkillList == null) { _haveSkillList = new List<SkillDataSO>();}
+        foreach (var slot in _storeItems)
+        {
+            slot.OnPurchaseSuccess = null;
+
+            slot.OnPurchaseSuccess += RefreshSkillUI;
+        }
+
+        RefreshSkillUI();
+    }
+
+    public void RefreshSkillUI()
+    {
+        if (_haveSkillList == null) { _haveSkillList = new List<SkillDataSO>(); }
         else { _haveSkillList.Clear(); }
 
         for (int i = 0; i < _skillHandler.Skills.Length; i++)
@@ -95,5 +106,4 @@ public class StoreUI : MonoBehaviour
             }
         }
     }
-
 }
