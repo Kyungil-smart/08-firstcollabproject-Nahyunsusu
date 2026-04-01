@@ -27,7 +27,7 @@ namespace _Scripts.LYC.Skill
 			_damage = skillData.Damage + playerData.AtkDamage;
 			if (Random.Range(0, 100) < playerData.CritRate)
 			{
-				_damage *= playerData.CritDamage;
+				_damage *= (int)(playerData.CritDamage / 100.0f);
 			}
 
 			// Root
@@ -59,7 +59,7 @@ namespace _Scripts.LYC.Skill
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
-			if (other.TryGetComponent(out EnemyFSM enemy))
+			if (other.TryGetComponent(out Damageable enemy))
 			{
 				enemy.TakeDamage(_damage);
 			}
