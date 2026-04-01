@@ -10,39 +10,32 @@ public class EnemyPool : MonoBehaviour
     {
         public GameObject prefab;
         public int initialSize = 5;
+        public int spawnAmount = 3; 
     }
 
-    [Header("풀 설정")]
     public List<PoolConfig> poolConfigs;
-
     private Dictionary<string, Queue<GameObject>> _pools;
     private Dictionary<string, GameObject> _prefabMap;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
-
         InitPools();
     }
 
     private void InitPools()
     {
-        _pools     = new Dictionary<string, Queue<GameObject>>();
+        _pools = new Dictionary<string, Queue<GameObject>>();
         _prefabMap = new Dictionary<string, GameObject>();
 
-        if (poolConfigs == null || poolConfigs.Count == 0) return;
+        if (poolConfigs == null) return;
 
         foreach (var config in poolConfigs)
         {
             if (config.prefab == null) continue;
-
             string key = config.prefab.name;
-            _pools[key]    = new Queue<GameObject>();
+            _pools[key] = new Queue<GameObject>();
             _prefabMap[key] = config.prefab;
 
             for (int i = 0; i < config.initialSize; i++)
@@ -53,70 +46,18 @@ public class EnemyPool : MonoBehaviour
         }
     }
 
-    public GameObject Spawn(GameObject prefab, Vector3 position, RoomNode room = null)
+    public GameObject Spawn(GameObject prefab, Vector3 position, RoomNode room)
     {
-        if (prefab == null)
-        {
-            Debug.LogWarning("[EnemyPool] Spawn 실패: prefab이 null입니다.");
-            return null;
-        }
-
         string key = prefab.name;
-
         if (!_pools.ContainsKey(key))
         {
-            _pools[key]    = new Queue<GameObject>();
+            _pools[key] = new Queue<GameObject>();
             _prefabMap[key] = prefab;
         }
 
-        return SpawnByKey(key, position, room);
-    }
+        GameObject obj = (_pools[key].Count > 0) ? _pools[key].Dequeue() : CreateNewObject(prefab);
 
-    public void Return(GameObject obj)
-    {
-        if (obj == null)
-        {
-            Debug.LogWarning("[EnemyPool] Return 실패: obj가 null입니다.");
-            return;
-        }
-
-        if (!obj.activeSelf)
-        {
-            Debug.LogWarning("[EnemyPool] 이미 반환된 오브젝트입니다.");
-            return;
-        }
-
-        if (obj.TryGetComponent(out EnemyEffectManager effect))
-            effect.RestoreColors();
-
-        obj.SetActive(false);
-
-        string key = obj.name.Replace("(Clone)", "").Trim();
-
-        if (_pools.ContainsKey(key))
-            _pools[key].Enqueue(obj);
-        else
-            Destroy(obj);
-    }
-
-    private GameObject SpawnByKey(string key, Vector3 position, RoomNode room)
-    {
-        GameObject obj;
-
-        if (_pools[key].Count > 0)
-        {
-            obj = _pools[key].Dequeue();
-        }
-        else if (_prefabMap.ContainsKey(key))
-        {
-            obj = CreateNewObject(_prefabMap[key]);
-        }
-        else
-        {
-            Debug.LogWarning($"[EnemyPool] {key} prefab 정보가 없습니다.");
-            return null;
-        }
-
+        // ★ 일반 몬스터 전용 로직
         if (obj.TryGetComponent(out EnemyFSM fsm))
         {
             fsm.ResetEnemy();
@@ -125,8 +66,16 @@ public class EnemyPool : MonoBehaviour
 
         obj.transform.position = position;
         obj.SetActive(true);
-
         return obj;
+    }
+
+    public void Return(GameObject obj)
+    {
+        if (obj == null) return;
+        obj.SetActive(false);
+        string key = obj.name.Replace("(Clone)", "").Trim();
+        if (_pools.ContainsKey(key)) _pools[key].Enqueue(obj);
+        else Destroy(obj);
     }
 
     private GameObject CreateNewObject(GameObject prefab)

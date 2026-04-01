@@ -31,7 +31,7 @@ public class EnemyMeleeSkill : MonoBehaviour
 
         foreach (var hit in results)
         {
-            if (hit.CompareTag("Player") && hit.TryGetComponent(out Damageable target))
+            if (hit.CompareTag("Player") && hit.TryGetComponent(out PlayerController target))
             {
                 target.TakeDamage(skill.baseDamage + baseDamage);
             }

@@ -104,6 +104,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: pj1_slash_small_blue
       objectReference: {fileID: 0}
+    - target: {fileID: 3797576808354258753, guid: b887acecb99f83d4b9563065a788c885, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3797576808354258753, guid: b887acecb99f83d4b9563065a788c885, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6790262230321493948, guid: b887acecb99f83d4b9563065a788c885, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5

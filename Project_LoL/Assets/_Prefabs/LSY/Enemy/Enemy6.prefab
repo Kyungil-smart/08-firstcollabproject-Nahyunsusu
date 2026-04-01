@@ -3840,7 +3840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 590217a9fddda91448bef5b90d528eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFSM
-  data: {fileID: 11400000, guid: d7d660d6eeb33454ea6d124d8b8b5d05, type: 2}
+  data: {fileID: 11400000, guid: 5e91a447c29adf8458f9dd1bd8fa0fab, type: 2}
   currentSkill: {fileID: 11400000, guid: ab13c8889c3f1414e8cfa31541061d81, type: 2}
   _animatorRef: {fileID: 2425418675124922815}
 --- !u!1 &3061349894600051456

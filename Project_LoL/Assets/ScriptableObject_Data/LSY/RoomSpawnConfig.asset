@@ -16,8 +16,8 @@ MonoBehaviour:
   - monsterPoolId: 0
     monsterPrefab: {fileID: 806679725227952471, guid: 47d1de38eae519144972fdabe796997a, type: 3}
     monsterDataId: 0
-    stage: 0
-    amount: 0
+    stage: 1
+    amount: 3
   - monsterPoolId: 0
     monsterPrefab: {fileID: 4513948358015885655, guid: 7602c6ed37523f34d86e42fb9b7f3de0, type: 3}
     monsterDataId: 0
@@ -31,8 +31,8 @@ MonoBehaviour:
   - monsterPoolId: 0
     monsterPrefab: {fileID: 7844854224969159464, guid: e8867224727005c4cbe0d6fd13509594, type: 3}
     monsterDataId: 0
-    stage: 0
-    amount: 0
+    stage: 1
+    amount: 3
   - monsterPoolId: 0
     monsterPrefab: {fileID: 1760341192496350349, guid: 5a7491bbc56735e44bb02d2e411018e2, type: 3}
     monsterDataId: 0

@@ -18,7 +18,7 @@ public class BossDieState : BossStateBase
 
         if (RoomClearManager.Instance != null)
         {
-            RoomClearManager.Instance.OnEnemyDied(null); 
+            RoomClearManager.Instance.OnEnemyDied(null, _fsm.data.goldReward, _fsm.data.expReward);
         }
 
         _fsm.StartCoroutine(DieRoutine());

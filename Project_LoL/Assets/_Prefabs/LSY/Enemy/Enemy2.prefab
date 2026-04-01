@@ -5752,7 +5752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 590217a9fddda91448bef5b90d528eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFSM
-  data: {fileID: 11400000, guid: cd51011cea5e3074e853ae6740228ac4, type: 2}
+  data: {fileID: 11400000, guid: 062796b292553014c8087fed97296861, type: 2}
   currentSkill: {fileID: 11400000, guid: beacfeeba55fc6941a52213a1d14df79, type: 2}
   _animatorRef: {fileID: 9114844883799833572}
 --- !u!1 &4517762260858235783

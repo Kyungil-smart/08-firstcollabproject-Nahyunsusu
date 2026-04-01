@@ -37,7 +37,7 @@ public class MonsterSkillHitbox : MonoBehaviour
 
         if (((1 << other.gameObject.layer) & _skill.targetLayer.value) != 0)
         {
-            if (other.TryGetComponent(out Damageable target))
+            if (other.TryGetComponent(out PlayerController target))
             {
                 target.TakeDamage(_damage);
                 
@@ -53,8 +53,6 @@ public class MonsterSkillHitbox : MonoBehaviour
                 }
 
                 _hasHit = true;
-                
-                SkillPool.Instance.Despawn(gameObject);
             }
         }
     }
