@@ -10,6 +10,13 @@ public class UIController : MonoBehaviour
     {
         SceneManager.LoadScene("OptionUI");
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+        Debug.Log("게임종료");
+    }
+    
 }
 
 
