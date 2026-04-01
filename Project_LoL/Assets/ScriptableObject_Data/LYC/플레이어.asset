@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDataSO
   <PlayerHP>k__BackingField: 50
   <PlayerAttack>k__BackingField: 10
-  <PlayerAttackSpeed>k__BackingField: 1
+  <PlayerAttackSpeed>k__BackingField: 100
   <PlayerMoveSpeed>k__BackingField: 3
-  <PlayerCritRate>k__BackingField: 50
-  <PlayerCritDamage>k__BackingField: 2
+  <PlayerCritRate>k__BackingField: 10
+  <PlayerCritDamage>k__BackingField: 100
   <PlayerDashTime>k__BackingField: 0.2
   <PlayerDashCooldown>k__BackingField: 2
   <PlayerDashInvincTime>k__BackingField: 0.5

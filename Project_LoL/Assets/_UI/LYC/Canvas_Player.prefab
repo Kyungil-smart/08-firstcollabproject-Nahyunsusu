@@ -3043,11 +3043,13 @@ MonoBehaviour:
   _controller: {fileID: 0}
   hpSlider: {fileID: 4382457732745142518}
   expSlider: {fileID: 5256020502439320946}
+  levelText: {fileID: 1068776523586799650}
   atkText: {fileID: 8637092592073359992}
   atkSpeedText: {fileID: 6010583996480672277}
   moveSpeedText: {fileID: 5757733229997613816}
   critRateText: {fileID: 515401668417440461}
   critDamageText: {fileID: 3671634013410743314}
+  goldText: {fileID: 6072186886726207960}
 --- !u!1 &7701086070866481420
 GameObject:
   m_ObjectHideFlags: 0
@@ -3693,7 +3695,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 52, y: -37.7}
+  m_AnchoredPosition: {x: 52, y: -37.69995}
   m_SizeDelta: {x: 140, y: 120}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &4657452914109299116

@@ -61,7 +61,8 @@ namespace _Scripts.LYC.Skill
 		{
 			if (other.TryGetComponent(out Damageable enemy))
 			{
-				enemy.TakeDamage(_damage);
+				if (enemy is not PlayerController)
+					enemy.TakeDamage(_damage);
 			}
 		}
 

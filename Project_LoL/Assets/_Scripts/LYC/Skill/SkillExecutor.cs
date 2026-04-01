@@ -69,6 +69,7 @@ namespace _Scripts.LYC.Skill
 			if (dice == 0)
 				dice = Roll();
 			CurrentSkillData = SkillDataSO.Get(dice);
+			CurrentSkillData.Delay /= (Controller.Data.AtkSpeed / 100.0f);
 			CurrentAmmo = CurrentSkillData.MaxUseCount;
 			LastDiceResult = dice;
 		}

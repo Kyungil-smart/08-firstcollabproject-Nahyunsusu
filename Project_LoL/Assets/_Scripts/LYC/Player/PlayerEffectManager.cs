@@ -25,7 +25,7 @@ public class PlayerEffectManager : MonoBehaviour
 		_animator = GetComponent<Animator>();
 	}
 
-	private void Update()
+	private void LateUpdate()
 	{
 		_animator.SetFloat(_fFacingX, _fsm.FacingDir.x);
 		_animator.SetFloat(_fFacingY, _fsm.FacingDir.y);
@@ -53,5 +53,10 @@ public class PlayerEffectManager : MonoBehaviour
 
 		_playerRenderer.transform.localScale = Vector3.one * 0.93f;
 		_playerRenderer.transform.DOScale(Vector3.one, _actionEffectDuration).SetEase(Ease.InCubic);
+	}
+
+	public void TriggerAttack()
+	{
+		_animator.SetTrigger(_tAttack);
 	}
 }

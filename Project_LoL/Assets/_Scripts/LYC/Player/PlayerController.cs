@@ -1,9 +1,11 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 // 전투 시스템이나 이벤트 또는 플레이어 스탯 관련 기능 등 구현
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, Damageable, IExperience
 {
 	#region Serializable Fields
 
@@ -17,18 +19,6 @@ public class PlayerController : MonoBehaviour
 	public bool AutoInit { get; private set; } = true;
 
 	[field: SerializeField]
-	public int Health { get; private set; }
-
-	[field: SerializeField]
-	public int Level { get; private set; }
-
-	[field: SerializeField]
-	public int Gold { get; private set; }
-
-	[field: SerializeField]
-	public int Exp { get; private set; }
-
-	[field: SerializeField]
 	public bool IsInvincible { get; private set; }
 
 	[Header("Events")] public UnityEvent hit;
@@ -37,6 +27,30 @@ public class PlayerController : MonoBehaviour
 	public UnityEvent<bool> invincibilityChanged;
 
 	#endregion
+
+	public int Health
+	{
+		get => Data.CurrentHp;
+		set => Data.SetHp(value);
+	}
+
+	public int Level
+	{
+		get => Data.CurrentLevel;
+		set => Data.SetLevel(value);
+	}
+
+	public int Gold
+	{
+		get => Data.CurrentGold;
+		set => Data.SetGold(value);
+	}
+
+	public int Exp
+	{
+		get => Data.CurrentExp;
+		set => Data.SetExp(value);
+	}
 
 	public PlayerData Data { get; private set; }
 	public PlayerFSM FSM { get; private set; }
@@ -56,12 +70,14 @@ public class PlayerController : MonoBehaviour
 
 	public void InitPlayer(PlayerDataSO dataSO = null)
 	{
-		// === Player Data ===
 		Data = dataSO == null ? PlayerDataSOSample?.Get() : dataSO.Get();
 
 		if (Data != null)
 		{
 			Health = Data.HP;
+			Level = 1;
+			Gold = 0;
+			Exp = 0;
 		}
 		else
 		{
@@ -77,6 +93,46 @@ public class PlayerController : MonoBehaviour
 		invincibilityChanged.Invoke(enable);
 	}
 
+	#region IExperiences
+
+	public event Action LevelUp;
+
+	public void AddExperience(int exp)
+	{
+		Exp += exp;
+		if (Level >= 10) return;
+
+		if (Exp >= 50 * Level)
+		{
+			Exp = 50 * Level;
+			Level++;
+			LevelUp?.Invoke();
+		}
+	}
+
+	public void KnockBack()
+	{
+		var results = new List<Collider2D>();
+		Physics2D.OverlapCircle(transform.position, 1.5f, ContactFilter2D.noFilter, results);
+		foreach (Collider2D col in results)
+		{
+			if (col.gameObject == gameObject) continue;
+			if (col.TryGetComponent<Damageable>(out _))
+			{
+				Vector2 dir = (col.transform.position - transform.position).normalized;
+				Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
+				if (rb != null)
+					rb.linearVelocity = dir * 1f;
+				else
+					col.transform.position += (Vector3)(dir * 1f);
+			}
+		}
+	}
+
+	#endregion
+
+	#region Damageable
+
 	public void TakeDamage(int damageAmount)
 	{
 		if (IsInvincible) return;
@@ -90,6 +146,8 @@ public class PlayerController : MonoBehaviour
 
 		FSM.ChangeState(FSM.Hit);
 	}
+
+	#endregion
 
 #if UNITY_EDITOR
 	private void OnGUI()
