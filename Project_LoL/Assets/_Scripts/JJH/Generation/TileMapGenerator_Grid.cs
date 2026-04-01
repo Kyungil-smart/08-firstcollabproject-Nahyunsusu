@@ -79,6 +79,9 @@ public class TileMapGenerator_Grid : MonoBehaviour
                 else
                     isVertical = GetTileDirection(tiles, idx);
 
+                bool isBend = idx > 0 && idx < last &&
+                              GetTileDirection(tiles, idx - 1) != GetTileDirection(tiles, idx + 1);
+
                 for (int i = 0; i < width; i++)
                 {
                     Vector2Int tile = isVertical
@@ -86,6 +89,15 @@ public class TileMapGenerator_Grid : MonoBehaviour
                         : new Vector2Int(pos.x, pos.y + i);
 
                     PlaceTile(_corridorPrefab, tile);
+                }
+
+                if (isBend)
+                {
+                    int bendWidth = Mathf.Max(2, width);
+
+                    for (int bx = 0; bx < bendWidth; bx++)
+                    for (int by = 0; by < bendWidth; by++)
+                        PlaceTileForce(_corridorPrefab, new Vector2Int(pos.x + bx, pos.y + by));
                 }
             }
 
@@ -201,5 +213,26 @@ public class TileMapGenerator_Grid : MonoBehaviour
 
         if (prefab == _corridorPrefab)
             _corridorTiles.Add(pos);
+    }
+
+    private void PlaceTileForce(GameObject prefab, Vector2Int pos)
+    {
+        if (prefab == null) return;
+
+        if (!_activeTiles.ContainsKey(pos))
+        {
+            GameObject tile = _objectPool.Spawn(
+                prefab,
+                _tileRoot,
+                new Vector3(pos.x, pos.y, 0f),
+                Quaternion.identity
+            );
+            _activeTiles[pos] = tile;
+            _corridorTiles.Add(pos);
+        }
+        else
+        {
+            _corridorTiles.Add(pos);
+        }
     }
 }
