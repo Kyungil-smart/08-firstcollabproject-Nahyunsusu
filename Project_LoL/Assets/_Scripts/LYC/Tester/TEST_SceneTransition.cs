@@ -7,6 +7,6 @@ public class TEST_SceneTransition : MonoBehaviour
 	public void TryChangeScene()
 	{
 		string name = SceneManager.GetActiveScene().name;
-		SceneTransitionManager.Instance.LoadSceneWithTransition(name);
+		SceneTransitionManager.Instance.LoadSceneWithTransition(name, true, Color.skyBlue);
 	}
 }

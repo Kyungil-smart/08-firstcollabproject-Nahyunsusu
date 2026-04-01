@@ -22,6 +22,12 @@ public class PlayerSkillHandler : MonoBehaviour
 	public UnityEvent<int> SkillExecuted { get; private set; }
 
 	[field: SerializeField]
+	public UnityEvent<int> SkillReloadStarted { get; private set; }
+
+	[field: SerializeField]
+	public UnityEvent<int> SkillReloadFinished { get; private set; }
+
+	[field: SerializeField]
 	public UnityEvent<int, SkillExecuteResult> SkillExecutionFailed { get; private set; }
 
 	private PlayerController _controller;
@@ -34,7 +40,11 @@ public class PlayerSkillHandler : MonoBehaviour
 
 		Skills = new SkillExecutor[4];
 		for (var i = 0; i < Skills.Length; i++)
+		{
 			Skills[i] = new SkillExecutor(_controller);
+			int capturedIndex = i;
+			Skills[i].ReloadFinished += () => SkillReloadFinished.Invoke(capturedIndex);
+		}
 	}
 
 	private void OnEnable()
@@ -55,15 +65,7 @@ public class PlayerSkillHandler : MonoBehaviour
 			return;
 		}
 
-		if (dice != 0)
-		{
-			Skills[slotIndex].Set(skillData, dice);
-		}
-		else
-		{
-			Skills[slotIndex].Set(skillData);
-		}
-
+		Skills[slotIndex].Set(skillData, dice);
 		SkillChanged.Invoke(slotIndex);
 	}
 
@@ -76,14 +78,20 @@ public class PlayerSkillHandler : MonoBehaviour
 		{
 			SkillExecuted.Invoke(index);
 		}
-		else if (result == SkillExecuteResult.Rolling)
+		else if (result == SkillExecuteResult.Reload)
 		{
-			SkillChanged.Invoke(index);
+			SkillReloadStarted.Invoke(index);
 		}
 		else
 		{
 			SkillExecutionFailed.Invoke(index, result);
 		}
+	}
+
+	private void Update()
+	{
+		for (int i = 0; i < Skills.Length; i++)
+			Skills[i].Tick(Time.time);
 	}
 
 	private void ChangeSkillSet()

@@ -5,42 +5,48 @@ using DG.Tweening;
 
 public class SkillUISlot : MonoBehaviour
 {
-	[Header("UI Components")] [SerializeField] private Image _iconImage;
-	[SerializeField] private TextMeshProUGUI _ammoText;
-	[SerializeField] private Image _coolTimeImage;
+	private Image _iconImage;
+	private Image _coolTimeImage;
+	private TextMeshProUGUI _ammoText;
+	private Image _diceImage;
 
 	// 쿨타임 시스템
-	private Skill _assignedWeapon;
 	private float _maxCoolTime;
 	private float _currentCoolTime;
-	private bool _isCoolingDown = false;
-	public bool isCoolingDown => _isCoolingDown;
+	private bool _isCoolingDown;
 
 	private Sprite _currentSlotIcon;
 	private Tween _fadeTween;
 
-	public void UpdateSlot(SkillData data)
+	private void Awake()
 	{
-		if (data == null) return;
-		_iconImage.sprite = data.SkillImage;
-		_ammoText.text = data.MaxUseCount.ToString();
-		_iconImage.transform.DOComplete();
-		_iconImage.transform.DOPunchScale(Vector3.one * 0.2f, 0.4f, 10, 1f);
-
-		// float targetAlpha = isSelectedSet ? 1.0f : 0.4f;
-		// _iconImage.DOFade(targetAlpha, 0.25f).SetEase(Ease.OutCubic);
+		_iconImage = transform.GetChild(0).GetComponent<Image>();
+		_coolTimeImage = transform.GetChild(1).GetComponent<Image>();
+		_ammoText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+		_diceImage = transform.GetChild(3).GetComponent<Image>();
 	}
 
-	public void UpdateAmmoOnly(int count)
+	public void UpdateData(Sprite skillIcon, Sprite dice, int ammo)
 	{
-		_ammoText.text = count.ToString();
+		_iconImage.sprite = skillIcon;
+		_diceImage.sprite = dice;
+		UpdateAmmo(ammo);
+
+		_iconImage.transform.DOComplete();
+		_iconImage.transform.DOPunchScale(Vector3.one * 0.2f, 0.4f);
+		_diceImage.transform.DOComplete();
+		_diceImage.transform.DOPunchScale(Vector3.one * 0.2f, 0.4f);
+	}
+
+	public void UpdateAmmo(int currentAmmo)
+	{
+		_ammoText.text = currentAmmo.ToString();
 		_ammoText.transform.DOComplete();
 		_ammoText.transform.DOScale(1.2f, 0.1f).OnComplete(() => _ammoText.transform.DOScale(1f, 0.1f));
 	}
 
-	public void StartCoolDown(float duration, Skill weapon)
+	public void StartCoolDown(float duration)
 	{
-		_assignedWeapon = weapon;
 		_maxCoolTime = duration;
 		_currentCoolTime = duration;
 		_isCoolingDown = true;
@@ -59,13 +65,6 @@ public class SkillUISlot : MonoBehaviour
 			_isCoolingDown = false;
 			_currentCoolTime = 0;
 			_coolTimeImage.fillAmount = 0;
-
-			if (_assignedWeapon != null)
-			{
-				_assignedWeapon.Reload();
-				UpdateAmmoOnly(_assignedWeapon.CurrentAmmo);
-			}
-
 			_coolTimeImage.gameObject.SetActive(false);
 		}
 		else

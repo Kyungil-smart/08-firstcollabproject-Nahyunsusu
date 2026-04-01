@@ -40,7 +40,7 @@ namespace _Scripts.LYC.Skill
 			_skillDamage = skillData.Damage + playerData.AtkDamage;
 			if (Random.Range(0, 100) < playerData.CritRate)
 			{
-				_skillDamage *= playerData.CritDamage;
+				_skillDamage *= (int)(playerData.CritDamage / 100.0f);
 			}
 
 			// Root
@@ -81,7 +81,7 @@ namespace _Scripts.LYC.Skill
 		{
 			// TODO: 벽 충돌 처리 필요
 
-			if (other.TryGetComponent(out EnemyFSM e))
+			if (other.TryGetComponent(out Damageable e))
 			{
 				DestroyProjectile();
 			}
@@ -98,7 +98,7 @@ namespace _Scripts.LYC.Skill
 
 			foreach (Collider2D c in result)
 			{
-				if (!c.TryGetComponent(out EnemyFSM enemy)) continue;
+				if (!c.TryGetComponent(out Damageable enemy)) continue;
 
 				enemy.TakeDamage(_skillDamage);
 			}
