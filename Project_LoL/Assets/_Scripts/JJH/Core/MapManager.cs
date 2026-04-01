@@ -81,6 +81,9 @@ public class MapManager : MonoBehaviour
 
             if (room.roomData.roomType == RoomType.Combat)
                 PlaceRoomTrigger(room);
+
+            if (room.roomData.roomType == RoomType.Boss)
+                PlaceBossTrigger(room);
         }
     }
 
@@ -98,6 +101,28 @@ public class MapManager : MonoBehaviour
 
         BoxCollider2D col = triggerObj.AddComponent<BoxCollider2D>();
         col.size = new Vector2(b.width, b.height);
+        col.isTrigger = true;
+
+        RoomTrigger rt = triggerObj.AddComponent<RoomTrigger>();
+        rt.room = room;
+        rt.mapManager = this;
+        rt.doorController = _doorController;
+    }
+    
+    private void PlaceBossTrigger(RoomNode room)
+    {
+        RectInt b = room.GetBounds();
+
+        GameObject triggerObj = new GameObject("BossTrigger");
+        triggerObj.transform.SetParent(_tileGenerator.TileRoot);
+        triggerObj.transform.position = new Vector3(
+            b.xMin + b.width / 2f,
+            b.yMin + 1f,
+            0f
+        );
+
+        BoxCollider2D col = triggerObj.AddComponent<BoxCollider2D>();
+        col.size = new Vector2(b.width, 2f);
         col.isTrigger = true;
 
         RoomTrigger rt = triggerObj.AddComponent<RoomTrigger>();
