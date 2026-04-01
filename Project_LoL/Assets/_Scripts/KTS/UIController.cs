@@ -6,9 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
-    public void ActiveOptionUI()
+    public void GameStart()
     {
         SceneManager.LoadScene("Procedural map creation");
+    }
+    public void ActiveOptionUI()
+    {
+        SceneManager.LoadScene("OptionUI");
     }
 
     public void ExitGame()
