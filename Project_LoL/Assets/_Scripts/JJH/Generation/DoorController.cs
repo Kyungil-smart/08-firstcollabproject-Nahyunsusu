@@ -14,21 +14,40 @@ public class DoorController : MonoBehaviour
         _objectPool.ReleaseChildren(_doorRoot);
         _roomDoors.Clear();
 
+        var placed = new HashSet<(RoomNode, Vector2Int)>();
+
         foreach (var conn in connections)
         {
-            PlaceDoor(conn.doorA, conn.corridorWidth);
-            PlaceDoor(conn.doorB, conn.corridorWidth);
+            RegisterDoor(conn.doorA, conn.corridorWidth, placed);
+            RegisterDoor(conn.doorB, conn.corridorWidth, placed);
         }
+    }
+    
+    private void RegisterDoor(DoorCandidate door, int width, HashSet<(RoomNode, Vector2Int)> placed)
+    {
+        if (door == null) return;
+
+        if (door.owner != null)
+        {
+            if (!_roomDoors.ContainsKey(door.owner))
+                _roomDoors[door.owner] = new List<DoorObject>();
+        }
+
+        var key = (door.owner, door.wallPos);
+        if (!placed.Add(key)) return;
+
+        PlaceDoor(door, width);
     }
  
     private void PlaceDoor(DoorCandidate door, int width)
     {
         if (door == null) return;
- 
+
         Vector3 worldPos = CalcPos(door, width);
- 
+        Debug.Log($"dir:{door.dir} wallPos:{door.wallPos} width:{width} owner:{door.owner?.nodeId}");
         GameObject d = _objectPool.Spawn(_doorPrefab, _doorRoot, worldPos, Quaternion.identity);
- 
+        d.SetActive(false);
+
         float angle = door.dir switch
         {
             DoorDir.Up    => 0f,
@@ -36,17 +55,17 @@ public class DoorController : MonoBehaviour
             DoorDir.Left  => 90f,
             _             => -90f
         };
-        d.transform.rotation = Quaternion.Euler(0f, 0f, angle);
- 
+
         DoorObject doorObj = d.GetComponent<DoorObject>();
         if (doorObj != null)
-            doorObj.Setup(width);
- 
+            doorObj.Setup(width, door.dir);
+
+        d.SetActive(true);
+
         if (door.owner != null)
         {
             if (!_roomDoors.ContainsKey(door.owner))
                 _roomDoors[door.owner] = new List<DoorObject>();
- 
             if (doorObj != null)
                 _roomDoors[door.owner].Add(doorObj);
         }

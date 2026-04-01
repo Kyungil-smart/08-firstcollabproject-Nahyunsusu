@@ -22,19 +22,21 @@ public class DoorCandidate
     
     public void RecalcWallPos(int width)
     {
+        int half = width / 2;
+
         switch (dir)
         {
             case DoorDir.Up:
-                wallPos = new Vector2Int(wallPos.x, wallPos.y);
+                wallPos = new Vector2Int(tileWallPos.x + (width - half - 1), tileWallPos.y);
                 break;
             case DoorDir.Down:
-                wallPos = new Vector2Int(wallPos.x + (width - 1), wallPos.y + 1);
-                break;
-            case DoorDir.Left:
-                wallPos = new Vector2Int(wallPos.x + 1, wallPos.y);
+                wallPos = new Vector2Int(tileWallPos.x - half, tileWallPos.y);
                 break;
             case DoorDir.Right:
-                wallPos = new Vector2Int(wallPos.x, wallPos.y + (width - 1));
+                wallPos = new Vector2Int(tileWallPos.x, tileWallPos.y - half);
+                break;
+            case DoorDir.Left:
+                wallPos = new Vector2Int(tileWallPos.x, tileWallPos.y + (width - half - 1));
                 break;
         }
     }

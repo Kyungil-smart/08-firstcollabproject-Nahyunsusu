@@ -151,7 +151,7 @@ public class ConnectionPlanner : MonoBehaviour
         if (!PathClear(tiles, a, b, width, isVertical))
             return null;
  
-        return Wrap(tiles, ca.wallPos, cb.wallPos);
+        return Wrap(tiles, ca.tileWallPos, cb.tileWallPos);
     }
  
     private List<Vector2Int> TryLShape(
@@ -175,7 +175,7 @@ public class ConnectionPlanner : MonoBehaviour
             var tiles = ConcatLines(s, corner, e);
             if (!PathClear(tiles, a, b, width, isVertical)) continue;
  
-            return Wrap(tiles, ca.wallPos, cb.wallPos);
+            return Wrap(tiles, ca.tileWallPos, cb.tileWallPos);
         }
  
         return null;
@@ -208,7 +208,7 @@ public class ConnectionPlanner : MonoBehaviour
             var tiles = ConcatLines(s, p1, p2, e);
             if (!PathClear(tiles, a, b, width, isVertical)) continue;
  
-            return Wrap(tiles, ca.wallPos, cb.wallPos);
+            return Wrap(tiles, ca.tileWallPos, cb.tileWallPos);
         }
  
         for (int midY = yMin; midY <= yMax; midY += yStep)
@@ -222,7 +222,7 @@ public class ConnectionPlanner : MonoBehaviour
             var tiles = ConcatLines(s, p1, p2, e);
             if (!PathClear(tiles, a, b, width, isVertical)) continue;
  
-            return Wrap(tiles, ca.wallPos, cb.wallPos);
+            return Wrap(tiles, ca.tileWallPos, cb.tileWallPos);
         }
  
         return null;
@@ -321,18 +321,22 @@ public class ConnectionPlanner : MonoBehaviour
     {
         RoomNode lower = a.gridOrigin.y < b.gridOrigin.y ? a : b;
         RoomNode upper = lower == a ? b : a;
- 
+
         RectInt lb = _roomBounds[lower];
         RectInt ub = _roomBounds[upper];
- 
+
         int cx = lb.xMin + lb.width / 2;
         var wallLower = new Vector2Int(cx, lb.yMax);
         var wallUpper = new Vector2Int(cx, ub.yMin - 1);
- 
+
         var ca = new DoorCandidate(wallLower, DoorDir.Up, lower);
         var cb = new DoorCandidate(wallUpper, DoorDir.Down, upper);
-        var corridor = Wrap(MakeLine(ca.entrance, cb.entrance), ca.wallPos, cb.wallPos);
- 
+
+        var corridor = Wrap(MakeLine(ca.entrance, cb.entrance), ca.tileWallPos, cb.tileWallPos);
+
+        ca.RecalcWallPos(_bossCorridorWidth);
+        cb.RecalcWallPos(_bossCorridorWidth);
+
         return new ConnectionResult
         {
             roomA = lower,
