@@ -580,11 +580,11 @@ MonoBehaviour:
   skillHandler: {fileID: 1215519481}
   injectionArray:
   - dice: 2
-    data: {fileID: 11400000, guid: 378addabf44469a4983bc65d6f030542, type: 2}
+    data: {fileID: 11400000, guid: 606c753fa52db0047bf618a7ea315223, type: 2}
   - dice: 1
-    data: {fileID: 11400000, guid: 6a55e6117ba10d143b5bf934d4e2e2aa, type: 2}
+    data: {fileID: 11400000, guid: 536eb3bcbbe2d564eba4ec33b5de24e1, type: 2}
   - dice: 3
-    data: {fileID: 11400000, guid: b0dff5b322be92644a3e3ed67277ec9f, type: 2}
+    data: {fileID: 11400000, guid: 6012088aa2a4d9d4db8e20d4c1516d1c, type: 2}
   - dice: 4
     data: {fileID: 11400000, guid: 8a8ed706ccf4a5642abfda24e5d13d16, type: 2}
 --- !u!1 &2066877118

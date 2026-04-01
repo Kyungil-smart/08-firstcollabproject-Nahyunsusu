@@ -47,7 +47,7 @@ MonoBehaviour:
     - type: 0
       amount: 1
     - type: 6
-      amount: 3
+      amount: 1
     dice5Effects:
     - type: 0
       amount: 3

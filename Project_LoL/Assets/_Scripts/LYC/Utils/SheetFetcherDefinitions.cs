@@ -38,8 +38,9 @@ namespace _Scripts.LYC.Utils
 		public string SkillEffectType;
 
 		public int SkillId,
-			PlayerSkillDice,
-			Amount;
+			PlayerSkillDice;
+
+		public float Amount;
 	}
 
 	public class SkillFetcher

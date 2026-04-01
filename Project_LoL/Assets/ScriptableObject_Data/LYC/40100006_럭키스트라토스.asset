@@ -34,22 +34,32 @@ MonoBehaviour:
   cooldown: 5
   price: 40
   diceEffects:
-    dice1Effects: []
-    dice2Effects: []
-    dice3Effects: []
-    dice4Effects: []
-    dice5Effects: []
+    dice1Effects:
+    - type: 6
+      amount: 1
+    dice2Effects:
+    - type: 6
+      amount: 1
+    dice3Effects:
+    - type: 6
+      amount: 1
+    dice4Effects:
+    - type: 6
+      amount: 1
+    dice5Effects:
+    - type: 6
+      amount: 1
     dice6Effects:
+    - type: 6
+      amount: 4
     - type: 0
-      amount: 0
-    - type: 0
-      amount: 0
-    - type: 0
-      amount: 0
-    - type: 0
-      amount: 0
-    - type: 0
-      amount: 0
+      amount: 100
+    - type: 4
+      amount: 6
+    - type: 5
+      amount: -0.5
+    - type: 3
+      amount: 20
   hitEffect: {fileID: 5604566597819159719, guid: 7bac453de46772548bb3b7c570637675, type: 3}
   <ProjectilePrefab>k__BackingField: {fileID: 1840859090483820285, guid: fb3b390fc9bc774458d5e3673e35cccf, type: 3}
   <EffectSet>k__BackingField:

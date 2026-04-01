@@ -36,15 +36,29 @@ MonoBehaviour:
   price: 45
   diceEffects:
     dice1Effects:
+    - type: 3
+      amount: 2
+    dice2Effects:
+    - type: 3
+      amount: 4
+    dice3Effects:
+    - type: 3
+      amount: 6
+    dice4Effects:
     - type: 0
-      amount: 0
-    dice2Effects: []
-    dice3Effects: []
-    dice4Effects: []
-    dice5Effects: []
+      amount: 1
+    - type: 6
+      amount: 1
+    dice5Effects:
+    - type: 0
+      amount: 3
+    - type: 6
+      amount: 2
     dice6Effects:
     - type: 0
-      amount: 0
+      amount: 5
+    - type: 6
+      amount: 3
   hitEffect: {fileID: 1861883633406053615, guid: 3fa8a827138f2924ab0f35b856af4bb6, type: 3}
   <ProjectilePrefab>k__BackingField: {fileID: 1840859090483820285, guid: fb3b390fc9bc774458d5e3673e35cccf, type: 3}
   <ProjectileEffect>k__BackingField: {fileID: 7804617488294263727, guid: 33158ef1d85324d44a18f6cff9f63dbb, type: 3}
