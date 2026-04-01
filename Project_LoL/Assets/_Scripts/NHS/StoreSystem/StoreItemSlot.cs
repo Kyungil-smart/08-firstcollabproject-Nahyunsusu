@@ -14,6 +14,8 @@ public class StoreItemSlot : MonoBehaviour
     [SerializeField] private NegotiationSystem _negoSystem = new();
     private int _currentPrice;
 
+    [SerializeField] private EquipInspector equipInspector;
+
     private void OnMouseEnter()
     {
         Debug.Log("마우스가 버튼 영역에 들어옴");
@@ -24,6 +26,7 @@ public class StoreItemSlot : MonoBehaviour
         if (data == null) return;
 
         _imageButton.interactable = true;
+        _imageButton.image.sprite = data.EquipImages.Get(0);
 
         _descriptionText.text = $"<b>{data.EquipName_KO}</b>";
               _priceText.text = $"{data.EquipPrice}";
@@ -42,7 +45,7 @@ public class StoreItemSlot : MonoBehaviour
 
                 equipList.AddEquip(-1, data.EquipID);
 
-                //MarkAsSold();
+                MarkAsSold();
             }
             else
             {
@@ -54,8 +57,10 @@ public class StoreItemSlot : MonoBehaviour
 
                     ReplaceSelectorUI.instance.onSlotSelected = null;
                 };
-                //MarkAsSold();
+                MarkAsSold();
             }
+
+            equipInspector.RefreshUI();
         });
     }
 
@@ -65,14 +70,15 @@ public class StoreItemSlot : MonoBehaviour
 
         SkillData data = skillDataSO.Get(diceValue);
 
+        _imageButton.interactable = true;
+        _imageButton.image.sprite = data.SkillImage;
+
         _descriptionText.text = $"<b>{data.SkillName}</b>";
 
         _priceText.text = $"{data.Price}";
           _currentPrice = data.Price;
 
         Debug.Log("스킬 세팅됨");
-
-        //if (_image != null) _image.sprite = data.SkillImage;
 
         _imageButton.onClick.RemoveAllListeners();
         _imageButton.onClick.AddListener(() =>
@@ -114,7 +120,8 @@ public class StoreItemSlot : MonoBehaviour
 
         if (_negoButton != null) _negoButton.interactable = false;
 
-        _priceText.text = "<color=red>구매 완료</color>";
+        _priceText.text = "<color=red>매진</color>";
+        _priceText.fontSize = 20;
         Debug.Log("아이템 품절 처리됨");
     }
 }

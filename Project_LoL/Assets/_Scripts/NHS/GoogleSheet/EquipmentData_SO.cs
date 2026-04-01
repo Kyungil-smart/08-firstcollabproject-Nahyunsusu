@@ -3,7 +3,43 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EquipData", menuName = "ScriptableObjects/EquipData")]
 public class EquipmentData_SO : ScriptableObject
 {
-    [field: SerializeField] public UnityEngine.Sprite EquipImage { get; private set; }
+    [System.Serializable]
+    public class DiceEquipIconSet
+    {
+        [Header("Dice 0")]
+        public Sprite icon0;
+        [Header("Dice 1")]
+        public Sprite icon1;
+
+        [Header("Dice 2")]
+        public Sprite icon2;
+
+        [Header("Dice 3")]
+        public Sprite icon3;
+
+        [Header("Dice 4")]
+        public Sprite icon4;
+
+        [Header("Dice 5")]
+        public Sprite icon5;
+
+        [Header("Dice 6")]
+        public Sprite icon6;
+
+        public Sprite Get(int dice = 0) => dice switch
+        {
+            0 => icon0,
+            1 => icon1,
+            2 => icon2,
+            3 => icon3,
+            4 => icon4,
+            5 => icon5,
+            6 => icon6,
+            _ => icon1
+        };
+    }
+
+    [field: SerializeField] public DiceEquipIconSet EquipImages { get; private set; }
     [field: SerializeField] public int    EquipID           { get; private set; }
     [field: SerializeField] public string EquipText         { get; private set; }
     [field: SerializeField] public int    EquipUpgrade      { get; private set; }
