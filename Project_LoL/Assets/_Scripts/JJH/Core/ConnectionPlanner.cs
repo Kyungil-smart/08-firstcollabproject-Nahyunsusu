@@ -294,9 +294,6 @@ public class ConnectionPlanner : MonoBehaviour
         List<Vector2Int> tiles,
         int width)
     {
-        ca.RecalcWallPos(width);
-        cb.RecalcWallPos(width);
-
         return new ConnectionResult
         {
             roomA = a,
@@ -333,9 +330,6 @@ public class ConnectionPlanner : MonoBehaviour
         var cb = new DoorCandidate(wallUpper, DoorDir.Down, upper);
 
         var corridor = Wrap(MakeLine(ca.entrance, cb.entrance), ca.tileWallPos, cb.tileWallPos);
-
-        ca.RecalcWallPos(_bossCorridorWidth);
-        cb.RecalcWallPos(_bossCorridorWidth);
 
         return new ConnectionResult
         {

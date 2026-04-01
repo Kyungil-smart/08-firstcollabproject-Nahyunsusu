@@ -26,43 +26,56 @@ public class DoorObject : MonoBehaviour
             _spriteContainer.rotation = Quaternion.identity;
 
         bool isVertical = dir == DoorDir.Up || dir == DoorDir.Down;
-        float sign = (dir == DoorDir.Up || dir == DoorDir.Left) ? -1f : 1f;
+        float centerOffset = width / 2f - 0.5f;
 
         if (_collider != null)
         {
             if (isVertical)
             {
                 _collider.size = new Vector2(width, _colliderThickness);
-                _collider.offset = new Vector2(sign * (width - 1) / 2f, 0f);
+                _collider.offset = new Vector2(centerOffset, 0f);
             }
             else
             {
                 _collider.size = new Vector2(_colliderThickness, width);
-                _collider.offset = new Vector2(0f, sign * (width - 1) / 2f);
+                _collider.offset = new Vector2(0f, centerOffset);
             }
-            _collider.gameObject.SetActive(false);
         }
 
         int spriteCount = Mathf.CeilToInt(width / 2f);
         _activeSprites = new GameObject[spriteCount];
 
-        for (int i = 1; i <= 3; i++)
+        if (_spriteContainer != null)
         {
-            Transform spriteObj = _spriteTransforms[i - 1];
-            if (spriteObj == null) continue;
+            float spriteMidOffset = (spriteCount - 1) * _spriteSpacing / 2f - 1.5f;
+            float containerPos = centerOffset - spriteMidOffset;
 
-            bool active = i <= spriteCount;
-            spriteObj.gameObject.SetActive(false);
-            if (!active) continue;
+            _spriteContainer.localPosition = isVertical
+                ? new Vector3(containerPos, 0f, 0f)
+                : new Vector3(0f, containerPos, 0f);
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (_spriteTransforms[i] != null)
+                _spriteTransforms[i].gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < spriteCount; i++)
+        {
+            Transform spriteObj = _spriteTransforms[i];
+            if (spriteObj == null) continue;
 
             float localX = (i * _spriteSpacing) - (_spriteSpacing / 2f) - 0.5f;
 
             spriteObj.localPosition = isVertical
-                ? new Vector3(sign * localX, 0f, 0f)
-                : new Vector3(0f, sign * localX, 0f);
+                ? new Vector3(localX, 0f, 0f)
+                : new Vector3(0f, localX, 0f);
 
-            _activeSprites[i - 1] = spriteObj.gameObject;
+            _activeSprites[i] = spriteObj.gameObject;
         }
+
+        Open();
     }
 
     public void Close()
