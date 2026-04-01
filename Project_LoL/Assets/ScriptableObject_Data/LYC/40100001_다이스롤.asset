@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DiceRollSkill
   skillID: 40100001
   skillName: "\uB2E4\uC774\uC2A4 \uB864"
-  description: "\uCEE4\uC11C \uBC29\uD5A5\uC73C\uB85C ({range})\uAC70\uB9AC\uB9CC\uD07C
-    \uACF5\uACA9\uC744 \uB0A0\uB824 \uC801\uC5D0\uAC8C ({damage})\uB9CC\uD07C\uC758
-    \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4"
+  description: "\uC804\uBC29\uC73C\uB85C 7\uCE78 \uC55E\uC5D0 \uACF5\uACA9\uC744
+    \uB0A0\uB824 {PlayerSkillDamage}\uB9CC\uD07C \uB370\uBBF8\uC9C0\uB97C \uC785\uD78C\uB2E4."
   skillType: 2
   skillIconSet:
     icon1: {fileID: 21300000, guid: db0d57ed89165f945af5c5458e152999, type: 3}
@@ -27,13 +26,13 @@ MonoBehaviour:
     icon6: {fileID: 21300000, guid: f6f66257e7ad5054787c72f849732cc7, type: 3}
   damage: 17
   damageRangeX: 1
-  damageRangeY: 7
+  damageRangeY: 1
   projectileSpeed: 30
   range: 7
   delay: 0.2
   maxUseCount: 6
   cooldown: 5
-  price: 0
+  price: 35
   diceEffects:
     dice1Effects:
     - type: 0
