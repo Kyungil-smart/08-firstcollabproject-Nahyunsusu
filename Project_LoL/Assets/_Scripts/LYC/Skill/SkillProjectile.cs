@@ -83,7 +83,8 @@ namespace _Scripts.LYC.Skill
 
 			if (other.TryGetComponent(out Damageable e))
 			{
-				DestroyProjectile();
+				if (e is not PlayerController)
+					DestroyProjectile();
 			}
 		}
 
@@ -99,8 +100,10 @@ namespace _Scripts.LYC.Skill
 			foreach (Collider2D c in result)
 			{
 				if (!c.TryGetComponent(out Damageable enemy)) continue;
-
-				enemy.TakeDamage(_skillDamage);
+				if (enemy is not PlayerController)
+				{
+					enemy.TakeDamage(_skillDamage);
+				}
 			}
 
 			// Particle

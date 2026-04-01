@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7293375523765153097}
   - component: {fileID: 2755732926041506482}
   m_Layer: 0
-  m_Name: BombStay_Explosion1-3
+  m_Name: LuckStratos_Explosion1-5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
