@@ -20,6 +20,8 @@ public class StoreItemSlot : MonoBehaviour
 
     public System.Action OnPurchaseSuccess;
 
+    [SerializeField] private Sprite _healIcon;
+
     private void OnMouseEnter()
     {
         Debug.Log("마우스가 버튼 영역에 들어옴");
@@ -33,8 +35,8 @@ public class StoreItemSlot : MonoBehaviour
         _imageButton.image.sprite = data.EquipImages.Get(0);
 
         _descriptionText.text = $"<b>{data.EquipName_KO}</b>";
-              _priceText.text = $"{data.EquipPrice}";
-                _currentPrice = data.EquipPrice;
+              _priceText.text = $"{   data.EquipPrice}";
+                _currentPrice =       data.EquipPrice;
 
         Debug.Log("장비 세팅됨");
 
@@ -153,5 +155,41 @@ public class StoreItemSlot : MonoBehaviour
         OnPurchaseSuccess?.Invoke();
 
         Debug.Log("아이템 품절 처리됨");
+    }
+
+    public void SetHealItem()
+    {
+        DiceSystem diceSystem = new DiceSystem_Random();
+        int healAmount = diceSystem.RollDice() * 10;
+        int price = 20; // 회복약 고정 가격 (원하는 대로 수정 가능)
+
+        _imageButton.interactable = true;
+        if (_healIcon != null) 
+            _imageButton.image.sprite = _healIcon;
+
+        _descriptionText.text = $"<b>회복약</b>";
+              _priceText.text = $"{price}";
+                _currentPrice = price;
+
+        _imageButton.onClick.RemoveAllListeners();
+        _imageButton.onClick.AddListener(() =>
+        {
+            var player = GameObject.FindWithTag("Player")?.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                Debug.Log("플레이어 찾음");
+                player.Health += healAmount;
+
+                if (player.Health > player.Data.HP)
+                    player.Health = player.Data.HP;
+
+                Debug.Log($"체력 {healAmount} 회복됨! 현재 체력: {player.Health}");
+                MarkAsSold();
+            }
+            else
+            {
+                Debug.Log("플레이어 찾기 못함");
+            }
+        });
     }
 }

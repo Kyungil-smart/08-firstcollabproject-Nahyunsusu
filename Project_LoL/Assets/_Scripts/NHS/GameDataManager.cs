@@ -5,7 +5,7 @@ public class GameDataManager : MonoBehaviour
 {
     public static GameDataManager instance;
 
-    public DataManager equip => _equip;
+    public DataManager equipDataManager => _equip;
     [SerializeField] private DataManager _equip;
 
     public SkillDataManager skillDataManager => _skillDataManager;
