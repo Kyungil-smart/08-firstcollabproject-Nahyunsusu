@@ -16,6 +16,7 @@ public class PlayerUIController : MonoBehaviour
 	public TextMeshProUGUI moveSpeedText;
 	public TextMeshProUGUI critRateText;
 	public TextMeshProUGUI critDamageText;
+	public TextMeshProUGUI goldText;
 
 	private void Awake()
 	{
@@ -37,11 +38,12 @@ public class PlayerUIController : MonoBehaviour
 	{
 		hpSlider.value = _controller.Health / (_controller.Data.HP + 0.001f);
 		expSlider.value = _controller.Exp / 50.0f;
-		levelText.text = _controller.Level.ToString();
-		atkText.text = _controller.Data.AtkDamage.ToString();
-		atkSpeedText.text = _controller.Data.AtkSpeed.ToString();
-		moveSpeedText.text = _controller.Data.MoveSpeed.ToString();
-		critRateText.text = _controller.Data.CritRate.ToString();
-		critDamageText.text = _controller.Data.CritDamage.ToString();
+		levelText.text = $"Lv. {_controller.Level:D2}";
+		atkText.text = $"{_controller.Data.AtkDamage}";
+		atkSpeedText.text = $"{_controller.Data.AtkSpeed}";
+		moveSpeedText.text = $"{_controller.Data.MoveSpeed}";
+		critRateText.text = $"{_controller.Data.CritRate}";
+		critDamageText.text = $"{_controller.Data.CritDamage}";
+		goldText.text = $"{_controller.Gold}";
 	}
 }

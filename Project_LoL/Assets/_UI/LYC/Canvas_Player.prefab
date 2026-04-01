@@ -3049,6 +3049,7 @@ MonoBehaviour:
   moveSpeedText: {fileID: 5757733229997613816}
   critRateText: {fileID: 515401668417440461}
   critDamageText: {fileID: 3671634013410743314}
+  goldText: {fileID: 6072186886726207960}
 --- !u!1 &7701086070866481420
 GameObject:
   m_ObjectHideFlags: 0
