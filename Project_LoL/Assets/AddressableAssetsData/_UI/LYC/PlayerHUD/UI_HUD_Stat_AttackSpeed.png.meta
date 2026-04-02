@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e72ebe1a865cc8e4caf6c1aadb1da22b
+guid: 7696b748dee65e34bb482c4f747dc3fa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1325087067473622929
-    second: UI_HUD_Gold_Panel_0
+      213: 8616270232222718239
+    second: UI_HUD_As_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,17 +109,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_HUD_Gold_Panel_0
+      name: UI_HUD_As_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 281
-        height: 92
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 197ba31daa7a36210800000000000000
-      internalID: 1325087067473622929
+      spriteID: f1958601024239770800000000000000
+      internalID: 8616270232222718239
       vertices: []
       indices: 
       edges: []
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      UI_HUD_Gold_Panel_0: 1325087067473622929
+      UI_HUD_As_0: 8616270232222718239
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

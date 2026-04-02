@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c62113b268df03441bce88c76262b80b
+guid: bb13ded6cb6c7c647ad4d67af99d018d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5479212641261687220
-    second: UI_HUD_Hp_Panel_0
+      213: -2724424009356546820
+    second: UI_Cursor_Normal_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +24,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -46,13 +46,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
+  alignment: 1
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 15
-  spriteBorder: {x: 5, y: 1, z: 5, w: 1}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -109,27 +109,40 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_HUD_Hp_Panel_0
+      name: UI_Cursor_Normal_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 55
-        height: 6
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 2, y: 1, z: 2, w: 1}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4b19b3bfdd21a0c40800000000000000
-      internalID: 5479212641261687220
+      spriteID: cfce1c05cc6e03ad0800000000000000
+      internalID: -2724424009356546820
       vertices: []
       indices: 
       edges: []
@@ -139,7 +152,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      UI_HUD_Hp_Panel_0: 5479212641261687220
+      UI_Cursor_Normal_0: -2724424009356546820
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

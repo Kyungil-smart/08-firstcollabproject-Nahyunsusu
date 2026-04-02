@@ -44,7 +44,7 @@ public class MonsterSkillDataSO : ScriptableObject
     // --- 아래부터는 기획서 데이터가 아닌, 클라이언트 구동용 설정 ---
     // ========================================================
 
-    [Header("내부 시스템 로직 (개발자 설정)")]
+    [Header("내부 시스템 로직")]
     public MonsterSkillType skillType;
     [Tooltip("체크: 플레이어 발밑에 생성 (장판) / 체크 해제: 바라보는 방향 (투사체)")]
     public bool isFixedTarget = false;
@@ -52,7 +52,7 @@ public class MonsterSkillDataSO : ScriptableObject
     public float attackInterval = 0.2f;
     public LayerMask targetLayer;
 
-    [Header("VFX 및 프리팹 (개발자 연결용)")]
+    [Header("VFX 및 프리팹")]
     public GameObject skillPrefab;
     public GameObject skillPrefab2;
     public GameObject warningPrefab;

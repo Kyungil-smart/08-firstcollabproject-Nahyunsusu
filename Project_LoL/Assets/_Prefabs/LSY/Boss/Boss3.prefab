@@ -3259,6 +3259,7 @@ GameObject:
   - component: {fileID: 3430291997909305567}
   - component: {fileID: 109494532403398535}
   - component: {fileID: -3103014241845257288}
+  - component: {fileID: -1341489497969541363}
   m_Layer: 8
   m_Name: Boss3
   m_TagString: Boss
@@ -3366,7 +3367,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossFSM
   data: {fileID: 11400000, guid: 14e6c43d3bcb71948a12da3111fd846b, type: 2}
   warningSignObj: {fileID: 4024756910112493534}
-  teleportHitThreshold: 5
 --- !u!114 &109494532403398535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3391,6 +3391,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4257d9e4e19b941bcfe86f25f0e8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss3Skill10
+--- !u!114 &-1341489497969541363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708284833807399274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a12786234e2834bad2c2e390743a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyEffectManager
 --- !u!1 &1715167647611854706
 GameObject:
   m_ObjectHideFlags: 0

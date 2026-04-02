@@ -14,14 +14,14 @@ public class FinalBossSkill02 : FinalBossSkillBase
 
     protected override int GetCurrentDamage()
     {
-        return base.GetCurrentDamage(); 
+        return base.GetCurrentDamage();
     }
 
     private int GetProjectileCount()
     {
         return _boss.isPhase50
-            ? Random.Range(6, 9)   
-            : Random.Range(4, 7);  
+            ? Random.Range(6, 9)
+            : Random.Range(4, 7);
     }
 
     protected override void OnExecute()
@@ -31,27 +31,44 @@ public class FinalBossSkill02 : FinalBossSkillBase
 
     private IEnumerator SkillRoutine()
     {
-        int              count      = GetProjectileCount();
-        List<GameObject> indicators = new List<GameObject>();
-        Vector2          bossPos    = _boss.transform.position;
+        int              count       = GetProjectileCount();
+        List<GameObject> projObjects = new List<GameObject>();
+        List<GameObject> indicators  = new List<GameObject>();
 
         for (int i = 0; i < count; i++)
         {
+            Vector2 spawnPos = _boss.GetRandomRoomPosition();
+
+            if (projectilePrefab != null)
+            {
+                GameObject projObj = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
+                FinalBossProjectile proj = projObj.GetComponent<FinalBossProjectile>();
+                proj?.Initialize(skillData.monsterSkillProjectileScaleX,
+                                 skillData.monsterSkillProjectileScaleY,
+                                 skillData.projectileSprite);
+                projObjects.Add(projObj);
+            }
+
             if (aimIndicatorPrefab != null)
             {
-                GameObject aimObj = Instantiate(aimIndicatorPrefab, bossPos, Quaternion.identity);
+                GameObject aimObj = Instantiate(aimIndicatorPrefab, spawnPos, Quaternion.identity);
                 FinalBossAimIndicator indicator = aimObj.GetComponent<FinalBossAimIndicator>();
                 indicator?.Initialize(skillData.monsterSkillProjectileScaleX,
                                       skillData.monsterSkillProjectileScaleY,
                                       skillData.indicatorSprite);
-                
                 indicator?.StartTracking(_boss.playerTransform, _trackDuration, null);
                 indicators.Add(aimObj);
             }
         }
 
         yield return new WaitForSeconds(_trackDuration);
+
         yield return new WaitForSeconds(_stopDuration);
+
+        foreach (GameObject projObj in projObjects)
+        {
+            if (projObj != null) Destroy(projObj);
+        }
 
         float currentRange = GetCurrentRange();
 
@@ -60,14 +77,15 @@ public class FinalBossSkill02 : FinalBossSkillBase
             if (aimObj == null) continue;
 
             FinalBossAimIndicator indicator = aimObj.GetComponent<FinalBossAimIndicator>();
-            Vector2 dir = indicator != null ? indicator.lastFacingDir : Vector2.right;
+            Vector2 dir     = indicator != null ? indicator.lastFacingDir : Vector2.right;
+            Vector2 firePos = aimObj.transform.position;
 
             if (indicator != null) indicator.SelfDestroy();
 
             if (impactPrefab != null)
             {
-                GameObject impactObj = Instantiate(impactPrefab, bossPos, Quaternion.identity);
-                FinalBossImpact impact = impactObj.GetComponent<FinalBossImpact>();
+                GameObject      impactObj = Instantiate(impactPrefab, firePos, Quaternion.identity);
+                FinalBossImpact impact    = impactObj.GetComponent<FinalBossImpact>();
 
                 impact?.Initialize(GetCurrentDamage(),
                                    skillData.monsterSkillImpactScaleX,

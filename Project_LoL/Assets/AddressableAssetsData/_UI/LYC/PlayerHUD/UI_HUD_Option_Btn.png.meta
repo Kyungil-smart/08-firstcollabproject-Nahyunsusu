@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4163508f0cda53e40b3f067bc90777b2
+guid: 650766f4765dbbd48a216c35510bdf50
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2846638194168273953
-    second: UI_HUD_Critdmg_0
+      213: -3113346204369368436
+    second: UI_HUD_Option_Btn_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,17 +109,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_HUD_Critdmg_0
+      name: UI_HUD_Option_Btn_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 31
-        height: 31
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 12c957ffa5a418720800000000000000
-      internalID: 2846638194168273953
+      spriteID: c8ac0c15f1c2bc4d0800000000000000
+      internalID: -3113346204369368436
       vertices: []
       indices: 
       edges: []
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      UI_HUD_Critdmg_0: 2846638194168273953
+      UI_HUD_Option_Btn_0: -3113346204369368436
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

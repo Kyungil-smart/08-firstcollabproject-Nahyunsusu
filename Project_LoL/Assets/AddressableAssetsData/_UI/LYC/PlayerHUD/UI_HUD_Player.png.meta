@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 650766f4765dbbd48a216c35510bdf50
+guid: 215eac439edaed1418bbd09a1d08f283
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3113346204369368436
-    second: UI_HUD_Option_Btn_0
+      213: 45878513102919114
+    second: 659278f2dad9772b88d7b1481d66ea80f0d02389_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -109,17 +109,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_HUD_Option_Btn_0
+      name: 659278f2dad9772b88d7b1481d66ea80f0d02389_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 14
-        height: 14
+        width: 276
+        height: 229
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c8ac0c15f1c2bc4d0800000000000000
-      internalID: -3113346204369368436
+      spriteID: ac5925cb34ef2a000800000000000000
+      internalID: 45878513102919114
       vertices: []
       indices: 
       edges: []
@@ -138,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      UI_HUD_Option_Btn_0: -3113346204369368436
+      659278f2dad9772b88d7b1481d66ea80f0d02389_0: 45878513102919114
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

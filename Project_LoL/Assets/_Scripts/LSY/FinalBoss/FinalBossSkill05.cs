@@ -47,6 +47,7 @@ public class FinalBossSkill05 : FinalBossSkillBase
 
         impact?.StopMovement();
         if (projObj1 != null) Destroy(projObj1);
+        if (impObj   != null) Destroy(impObj);
 
         yield return new WaitForSeconds(_respawnDelay);
 
@@ -63,13 +64,16 @@ public class FinalBossSkill05 : FinalBossSkillBase
 
         Vector2 proj2Pos = projObj2 != null ? (Vector2)projObj2.transform.position : newSpawnPos;
 
-        bool impactReached2 = false;
-        impact?.SetMoveToPosition(proj2Pos, speed, () => impactReached2 = true);
+        GameObject impObj2 = SpawnImpact(proj1Pos, damage, skillData.monsterSkillImpactScaleX, skillData.monsterSkillImpactScaleY);
+        FinalBossImpact impact2 = impObj2?.GetComponent<FinalBossImpact>();
 
-        yield return new WaitUntil(() => impactReached2 || impObj == null);
+        bool impactReached2 = false;
+        impact2?.SetMoveToPosition(proj2Pos, speed, () => impactReached2 = true);
+
+        yield return new WaitUntil(() => impactReached2 || impObj2 == null);
 
         if (projObj2 != null) Destroy(projObj2);
-        if (impObj   != null) Destroy(impObj, _finalImpactDelay);
+        if (impObj2  != null) Destroy(impObj2, _finalImpactDelay);
 
         yield return new WaitForSeconds(_finalImpactDelay);
 

@@ -168,6 +168,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 892177222992491286, guid: b0da11cb54621014aba9a0b1f66fa30c, type: 3}
+      propertyPath: scalingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 892177222992491286, guid: b0da11cb54621014aba9a0b1f66fa30c, type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3760744876757335554, guid: b0da11cb54621014aba9a0b1f66fa30c, type: 3}
       propertyPath: m_Name
       value: Ef_15_green_p

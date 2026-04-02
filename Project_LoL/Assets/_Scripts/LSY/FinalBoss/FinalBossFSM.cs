@@ -37,6 +37,8 @@ public class FinalBossFSM : MonoBehaviour, Damageable
     private FinalBossSkillBase[] _skills;
     private Coroutine            _skillDelayCoroutine;
 
+    private EnemyEffectManager   _effectManager;
+
     private Transform _playerTransform;
 
     public FinalBossState currentState    => _currentState;
@@ -55,6 +57,8 @@ public class FinalBossFSM : MonoBehaviour, Damageable
     private void Awake()
     {
         _skills = GetComponents<FinalBossSkillBase>();
+        
+        _effectManager = GetComponent<EnemyEffectManager>();
         
         if (animator == null) 
             animator = GetComponentInChildren<Animator>();
@@ -163,6 +167,8 @@ public class FinalBossFSM : MonoBehaviour, Damageable
 
         _currentHp = Mathf.Max(0, _currentHp - damage);
         CheckHpPhases();
+
+        _effectManager?.PlayHitFlash(); 
 
         if (_currentHp <= 0)
         {

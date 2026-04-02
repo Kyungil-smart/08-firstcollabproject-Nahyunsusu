@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 95ede6348f654f1428985346cfad3221
+guid: 5a1f87c25f37a8f4ba7c1eed244e8938
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6948390101932117923
-    second: UI_Skill_Mouse_Left_0
-  - first:
-      213: 3732447286070557749
-    second: UI_Skill_Mouse_Left_1
-  - first:
-      213: 1005717480503051118
-    second: UI_Skill_Mouse_Left_2
-  - first:
-      213: 8166994827282890499
-    second: UI_Skill_Mouse_Left_3
+      213: -451586988074176724
+    second: Dice_Full_Dragging_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -55,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -118,93 +109,172 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_Skill_Mouse_Left_0
+      name: UI_HUD_Dice_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 38
-        width: 17
-        height: 17
+        x: 0
+        y: 0
+        width: 22
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d50fe75340c529f90800000000000000
-      internalID: -6948390101932117923
+      spriteID: 37724d466eb05084aaccc972309a3a26
+      internalID: 1033502824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_Skill_Mouse_Left_1
+      name: UI_HUD_Dice_1
       rect:
         serializedVersion: 2
-        x: 28
-        y: 33
-        width: 8
-        height: 16
+        x: 22
+        y: 0
+        width: 22
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 53c3b1508015cc330800000000000000
-      internalID: 3732447286070557749
+      spriteID: 6a3ddebc270fd4443bb4eab0a4c80754
+      internalID: -80601703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_Skill_Mouse_Left_2
+      name: UI_HUD_Dice_2
       rect:
         serializedVersion: 2
-        x: 33
-        y: 38
-        width: 17
-        height: 17
+        x: 44
+        y: 0
+        width: 22
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e6309c158b605fd00800000000000000
-      internalID: 1005717480503051118
+      spriteID: 0dca6813378cc5740b90d808881a7fd0
+      internalID: 938764099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_Skill_Mouse_Left_3
+      name: UI_HUD_Dice_3
       rect:
         serializedVersion: 2
-        x: 14
-        y: 9
-        width: 36
-        height: 28
+        x: 66
+        y: 0
+        width: 22
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 30f36aa568ef65170800000000000000
-      internalID: 8166994827282890499
+      spriteID: 7fae333850df9a349bc98dc674703a00
+      internalID: 1072469764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HUD_Dice_4
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 0
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b55670c57bdb8446b51096ef41a9da0
+      internalID: -1310487137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HUD_Dice_5
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 0
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7497e3a3ff2f83349bdd0f3ea5a950e9
+      internalID: -530471277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_HUD_Dice_6
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 0
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d5c482ed333c994bb2f655f2a6193fc
+      internalID: -1267168893
       vertices: []
       indices: 
       edges: []
@@ -213,7 +283,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 206af9e0eb9672b46b4f78e15c1e5ded
     internalID: 0
     vertices: []
     indices: 
@@ -221,12 +291,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":7.0,"y":1.0},"gridSpriteSize":{"x":22.0,"y":24.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      UI_Skill_Mouse_Left_0: -6948390101932117923
-      UI_Skill_Mouse_Left_1: 3732447286070557749
-      UI_Skill_Mouse_Left_2: 1005717480503051118
-      UI_Skill_Mouse_Left_3: 8166994827282890499
+      UI_HUD_Dice_0: 1033502824
+      UI_HUD_Dice_1: -80601703
+      UI_HUD_Dice_2: 938764099
+      UI_HUD_Dice_3: 1072469764
+      UI_HUD_Dice_4: -1310487137
+      UI_HUD_Dice_5: -530471277
+      UI_HUD_Dice_6: -1267168893
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

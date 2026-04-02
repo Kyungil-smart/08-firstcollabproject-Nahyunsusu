@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 25cbdca55b22de042843a34793ee35f2
+guid: 6dd57138ab6b16d40bc060aa720231c5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5433635817444170423
-    second: UI_Skill_Toggle_Btn_0
+      213: 4201291431980732491
+    second: 712039fdc85e8c92c32d47f75fc6efd09fb3fbdd_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,27 +109,40 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_Skill_Toggle_Btn_0
+      name: 712039fdc85e8c92c32d47f75fc6efd09fb3fbdd_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 18
+        y: 13
+        width: 380
+        height: 413
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7ba5991ccf6286b40800000000000000
-      internalID: 5433635817444170423
+      spriteID: b409a194c4cfd4a30800000000000000
+      internalID: 4201291431980732491
       vertices: []
       indices: 
       edges: []
@@ -138,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6a6da1c3aee70e44c8f6aab4cabbf8a2
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      UI_Skill_Toggle_Btn_0: 5433635817444170423
+      712039fdc85e8c92c32d47f75fc6efd09fb3fbdd_0: 4201291431980732491
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 6686be697c00758448a94042701c7387
+guid: 0db01742607d87148969d29a386c3e8a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6611288630138830162
-    second: UI_HUD_Expbar_0
+      213: -7755362719429469387
+    second: UI_Skill_Mouse_Right_0
+  - first:
+      213: -1151766325428290000
+    second: UI_Skill_Mouse_Right_1
+  - first:
+      213: 7207960457411403114
+    second: UI_Skill_Mouse_Right_2
+  - first:
+      213: -7034611554518246330
+    second: UI_Skill_Mouse_Right_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +33,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -46,12 +55,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 15
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,27 +118,106 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_HUD_Expbar_0
+      name: UI_Skill_Mouse_Right_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 53
-        height: 4
+        x: 14
+        y: 38
+        width: 17
+        height: 17
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 1, y: 1, z: 1, w: 1}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 25df0032bf300cb50800000000000000
-      internalID: 6611288630138830162
+      spriteID: 53b591442ba6f5490800000000000000
+      internalID: -7755362719429469387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Skill_Mouse_Right_1
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 33
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03ef69c11aa1400f0800000000000000
+      internalID: -1151766325428290000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Skill_Mouse_Right_2
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 38
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6d911bb8d1d70460800000000000000
+      internalID: 7207960457411403114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Skill_Mouse_Right_3
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 9
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64cd418ef0a006e90800000000000000
+      internalID: -7034611554518246330
       vertices: []
       indices: 
       edges: []
@@ -138,7 +226,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 49f8fb2c9abe710418fc70ec6d8a3f48
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +236,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      UI_HUD_Expbar_0: 6611288630138830162
+      UI_Skill_Mouse_Right_0: -7755362719429469387
+      UI_Skill_Mouse_Right_1: -1151766325428290000
+      UI_Skill_Mouse_Right_2: 7207960457411403114
+      UI_Skill_Mouse_Right_3: -7034611554518246330
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -10485,6 +10485,7 @@ GameObject:
   - component: {fileID: 4471840858063069837}
   - component: {fileID: -4301247225347873235}
   - component: {fileID: 2478748354698004664}
+  - component: {fileID: 1722812554618067136}
   m_Layer: 7
   m_Name: Enemy4
   m_TagString: Enemy
@@ -10604,6 +10605,18 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: d7d660d6eeb33454ea6d124d8b8b5d05, type: 2}
   currentSkill: {fileID: 11400000, guid: ab13c8889c3f1414e8cfa31541061d81, type: 2}
   _animatorRef: {fileID: 2932395034866217991}
+--- !u!114 &1722812554618067136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7844854224969159464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a12786234e2834bad2c2e390743a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyEffectManager
 --- !u!1 &7919065175546456726
 GameObject:
   m_ObjectHideFlags: 0

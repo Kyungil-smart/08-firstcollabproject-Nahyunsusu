@@ -9,7 +9,7 @@ public class EnemyPool : MonoBehaviour
     public class PoolConfig
     {
         public GameObject prefab;
-        public int initialSize = 5;
+        [Tooltip("방마다 소환될 마릿수")]
         public int spawnAmount = 3; 
     }
 
@@ -19,7 +19,11 @@ public class EnemyPool : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(gameObject); 
+            return; 
+        }
         Instance = this;
         InitPools();
     }
@@ -37,12 +41,6 @@ public class EnemyPool : MonoBehaviour
             string key = config.prefab.name;
             _pools[key] = new Queue<GameObject>();
             _prefabMap[key] = config.prefab;
-
-            for (int i = 0; i < config.initialSize; i++)
-            {
-                GameObject obj = CreateNewObject(config.prefab);
-                _pools[key].Enqueue(obj);
-            }
         }
     }
 
@@ -57,7 +55,6 @@ public class EnemyPool : MonoBehaviour
 
         GameObject obj = (_pools[key].Count > 0) ? _pools[key].Dequeue() : CreateNewObject(prefab);
 
-        // ★ 일반 몬스터 전용 로직
         if (obj.TryGetComponent(out EnemyFSM fsm))
         {
             fsm.ResetEnemy();
@@ -74,8 +71,11 @@ public class EnemyPool : MonoBehaviour
         if (obj == null) return;
         obj.SetActive(false);
         string key = obj.name.Replace("(Clone)", "").Trim();
-        if (_pools.ContainsKey(key)) _pools[key].Enqueue(obj);
-        else Destroy(obj);
+        
+        if (_pools.ContainsKey(key)) 
+            _pools[key].Enqueue(obj);
+        else 
+            Destroy(obj);
     }
 
     private GameObject CreateNewObject(GameObject prefab)

@@ -127,6 +127,19 @@ public class EnemyFSM : MonoBehaviour, Damageable
 
         if (_currentHp <= 0)
         {
+            if (data != null && playerTransform != null)
+            {
+                IExperience expInterface = playerTransform.GetComponent<IExperience>();
+                expInterface?.AddExperience(data.expReward);
+
+                PlayerController player = playerTransform.GetComponent<PlayerController>();
+                if (player != null)
+                {
+                    player.Gold += data.goldReward;
+                    Debug.Log($"몬스터 처치! 경험치 +{data.expReward}, 골드 +{data.goldReward} 획득 (현재 골드: {player.Gold})");
+                }
+            }
+
             ChangeState(EnemyStateType.Die);
             return;
         }
