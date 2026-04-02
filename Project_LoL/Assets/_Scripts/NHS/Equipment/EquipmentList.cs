@@ -9,6 +9,8 @@ public class EquipmentList : MonoBehaviour
     public List<EquipmentData> MyEquips => _playersEquip; // UI에 보여주기용
     [SerializeField] List<EquipmentData> _playersEquip = new List<EquipmentData>();
 
+    public Action OnEquipChanged;
+
     public int CurrentCount => _playersEquip.Count; // 현재 장비 개수 확인용
 
     public void AddEquip(int index, int newEqiupId) // 보상이나 상점에서 호출할 함수
@@ -32,6 +34,8 @@ public class EquipmentList : MonoBehaviour
             _playersEquip[index] = so.CreateRuntimeData();
             Debug.Log($"{index}번 슬롯 장비를 {so.EquipName_KO}(으)로 교체 완료");
         }
+
+        OnEquipChanged?.Invoke();
     }
 
     public TotalStat CalculateData() // 플레이어가 가져갈 함수
@@ -55,6 +59,26 @@ public class EquipmentList : MonoBehaviour
     {
         if (index < _playersEquip.Count)
         {
+            switch(_playersEquip[index].EquipUpgrade)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                default:
+                    Debug.Log("옳은 인덱스가 아닙니다");
+                    break;
+
+            }
+                
             _playersEquip[index].EquipAttackDamage += 5;
             _playersEquip[index].CurrentUpgradeLevel += 1;
             Debug.Log($"{_playersEquip[index].EquipName} 강화! 현재 데미지: {_playersEquip[index].EquipAttackDamage}");

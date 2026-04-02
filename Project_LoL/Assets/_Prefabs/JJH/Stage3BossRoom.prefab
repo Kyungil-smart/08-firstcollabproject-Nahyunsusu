@@ -216,7 +216,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1084024351809905459
 GameObject:
@@ -308,7 +308,7 @@ SpriteRenderer:
   m_Size: {x: 0.8125, y: 1.875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!95 &287394857152282710
 Animator:
@@ -685,7 +685,7 @@ SpriteRenderer:
   m_Size: {x: 0.8125, y: 1.875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!95 &8855034300910502327
 Animator:
@@ -718,6 +718,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1050443730249196159}
+  - component: {fileID: 4940228569466518850}
   m_Layer: 0
   m_Name: Stage3BossRoom
   m_TagString: Untagged
@@ -745,6 +746,19 @@ Transform:
   - {fileID: 24866542567198909}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4940228569466518850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2715760069424851018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066db6f950b0eb54c82e7a5ec611ec92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossSpawner
+  bossPrefab: {fileID: 1708284833807399274, guid: 904e1e537d86d2440944739464e131c8, type: 3}
 --- !u!1 &2951191769445734786
 GameObject:
   m_ObjectHideFlags: 0
@@ -25824,7 +25838,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8148826654974547131
 GameObject:
@@ -26056,7 +26070,7 @@ SpriteRenderer:
   m_Size: {x: 0.875, y: 0.9375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!95 &7834826283456155978
 Animator:
