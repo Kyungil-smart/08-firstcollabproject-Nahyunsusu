@@ -159,9 +159,8 @@ public class StoreItemSlot : MonoBehaviour
 
     public void SetHealItem()
     {
-        DiceSystem diceSystem = new DiceSystem_Random();
-        int healAmount = diceSystem.RollDice() * 10;
-        int price = 20; // 회복약 고정 가격 (원하는 대로 수정 가능)
+        int healAmount = DiceSystem.instance.RollDice();
+        int price = 20;
 
         _imageButton.interactable = true;
         if (_healIcon != null) 

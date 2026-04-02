@@ -16,14 +16,19 @@ public class GameDataManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
+
+            if (transform.parent != null)
+            {
+                transform.SetParent(null);
+            }
+
             DontDestroyOnLoad(gameObject);
 
             _equip.Init();
             _skillDataManager.Init();
-
             _equip.LoadData();
         }
         else
