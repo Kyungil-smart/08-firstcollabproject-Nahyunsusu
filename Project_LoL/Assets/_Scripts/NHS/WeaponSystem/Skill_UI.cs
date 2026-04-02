@@ -22,7 +22,32 @@ public class Skill_UI : MonoBehaviour
     public bool isCoolingDown => _isCoolingDown;
 
     private Sprite _currentSlotIcon;
-    private Tween        _fadeTween; 
+    private Tween        _fadeTween;
+
+    private void Update()
+    {
+        if (!_isCoolingDown) return;
+
+        _currentCoolTime -= Time.deltaTime;
+
+        if (_currentCoolTime <= 0)
+        {
+            _isCoolingDown = false;
+            _currentCoolTime = 0;
+            _coolTimeImage.fillAmount = 0;
+
+            if (_assignedWeapon != null)
+            {
+                _assignedWeapon.Reload();
+                UpdateAmmoOnly(_assignedWeapon.CurrentAmmo);
+            }
+            _coolTimeImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            _coolTimeImage.fillAmount = _currentCoolTime / _maxCoolTime;
+        }
+    }
 
     public void UpdateUI(Skill weapon, bool isSelectedSet)
     {
@@ -62,28 +87,5 @@ public class Skill_UI : MonoBehaviour
         if (_coolTimeImage != null) _coolTimeImage.gameObject.SetActive(true);
     }
 
-    private void Update()
-    {
-        if (!_isCoolingDown) return;
-
-        _currentCoolTime -= Time.deltaTime;
-
-        if(_currentCoolTime <=0)
-        {
-                       _isCoolingDown = false;
-                     _currentCoolTime = 0;
-            _coolTimeImage.fillAmount = 0;
-
-            if (_assignedWeapon != null)
-            {
-                _assignedWeapon.Reload();
-                UpdateAmmoOnly(_assignedWeapon.CurrentAmmo);
-            }
-            _coolTimeImage.gameObject.SetActive(false);
-        }
-        else
-        {
-            _coolTimeImage.fillAmount = _currentCoolTime / _maxCoolTime;
-        }
-    }
+    
 }

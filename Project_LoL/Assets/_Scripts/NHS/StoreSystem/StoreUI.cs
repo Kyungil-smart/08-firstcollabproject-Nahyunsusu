@@ -14,19 +14,32 @@ public class StoreUI : MonoBehaviour
 
     [SerializeField] private PlayerSkillHandler _skillHandler;
 
+    private bool _isInitialized = false;
+
     private void Start()
     {
         if (GameDataManager.instance != null)
         {
-            GameDataManager.instance.equip.OnDataLoaded += RefreshItem;
+            GameDataManager.instance.equipDataManager.OnDataLoaded += RefreshItem;
+            //this.gameObject.SetActive(false);
         }
     }
 
     private void OnEnable()
     {
-        if(GameDataManager.instance != null && GameDataManager.instance.equip.IsLoaded)
+        if(GameDataManager.instance != null && GameDataManager.instance.equipDataManager.IsLoaded)
         {
-            RefreshItem();
+            if (!_isInitialized)
+            {
+                RefreshItem();
+                _isInitialized = true;
+                Debug.Log("상점 물건 신규 입고 완료!");
+            }
+            else
+            {
+                RefreshSkillUI();
+                Debug.Log("이전 상점 물건 목록을 유지합니다.");
+            }
         }
     }
 
@@ -34,7 +47,7 @@ public class StoreUI : MonoBehaviour
     {
         if (GameDataManager.instance != null)
         {
-            GameDataManager.instance.equip.OnDataLoaded -= RefreshItem;
+            GameDataManager.instance.equipDataManager.OnDataLoaded -= RefreshItem;
         }
     }
 
@@ -46,7 +59,7 @@ public class StoreUI : MonoBehaviour
         Debug.Log("상점 아이템 & 스킬 세팅 시작");
 
         // 1. 장비 아이템 세팅
-        var selectedEquips = GameDataManager.instance.equip.GetRandomEquips(2);
+        var selectedEquips = GameDataManager.instance.equipDataManager.GetRandomEquips(2);
         if (selectedEquips != null && selectedEquips.Count >= 2)
         {
             _storeItems[0].SetItem(selectedEquips[0]);
@@ -56,20 +69,28 @@ public class StoreUI : MonoBehaviour
         // 2. 스킬 아이템 세팅
         var skillManager = GameDataManager.instance.skillDataManager;
         var selectedSkills = skillManager.GetRandomSkills(2);
-        if (selectedSkills != null && selectedSkills.Count >= 2)
+        if (selectedSkills != null && selectedSkills.Count >= 1)
         {
             _storeItems[2].SetSkill(selectedSkills[0], 1);
-            _storeItems[3].SetSkill(selectedSkills[1], 2);
         }
         else
         {
             Debug.LogWarning("스킬 데이터를 뽑아오지 못했습니다.");
         }
 
+        // 3. 회복 아이템 세팅
+        if (_storeItems.Count > 3 && _storeItems[3] != null)
+        {
+            _storeItems[3].gameObject.SetActive(true);
+
+            _storeItems[3].SetHealItem();
+        }
+
         foreach (var slot in _storeItems)
         {
-            slot.OnPurchaseSuccess = null;
+            if (slot == null) continue;
 
+            slot.OnPurchaseSuccess  = null;
             slot.OnPurchaseSuccess += RefreshSkillUI;
         }
 
