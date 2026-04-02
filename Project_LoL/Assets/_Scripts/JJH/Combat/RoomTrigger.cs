@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-// 방 단위 플레이어 진입 감지
 public class RoomTrigger : MonoBehaviour
 {
     public RoomNode room;
@@ -12,14 +11,20 @@ public class RoomTrigger : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         if (room == null || mapManager == null || doorController == null) return;
-        if (room.roomData.roomType != RoomType.Combat) return;
 
         RoomRuntimeData data = mapManager.GetRuntimeData(room);
         if (data == null) return;
         if (data.state != RoomState.Unvisited) return;
 
-        StartCoroutine(CloseDoorsDelayed());
-        RoomClearManager.Instance?.StartRoom(room);
+        if (room.roomData.roomType == RoomType.Combat)
+        {
+            StartCoroutine(CloseDoorsDelayed());
+            RoomClearManager.Instance?.StartRoom(room);
+        }
+        else if (room.roomData.roomType == RoomType.Boss)
+        {
+            StartCoroutine(CloseDoorsDelayed());
+        }
     }
 
     private IEnumerator CloseDoorsDelayed()

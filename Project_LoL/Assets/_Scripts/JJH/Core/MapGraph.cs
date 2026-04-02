@@ -65,21 +65,25 @@ public class MapGraph
     {
         foreach (var branch in branches)
             if (branch.Count > 0) startRoom.ConnectTo(branch[0]);
- 
+
         foreach (var branch in branches)
             for (int i = 0; i < branch.Count - 1; i++)
                 branch[i].ConnectTo(branch[i + 1]);
- 
+
         MergeBranches(branches);
- 
+
         RoomNode last = branches.OrderByDescending(b => b.Count).First().Last();
- 
-        RoomNode repair = CreateNode(pool.repairData);
-        repair.gridOrigin = new Vector2Int(last.gridOrigin.x, last.gridOrigin.y + last.size.y + _spacing);
-        last.ConnectTo(repair);
- 
+
         bossRoom = CreateNode(pool.bossData);
-        bossRoom.gridOrigin = new Vector2Int(repair.gridOrigin.x, repair.gridOrigin.y + repair.size.y + _spacing);
+        int bossCx = last.gridOrigin.x + last.size.x / 2 - bossRoom.size.x / 2;
+        int bossY = last.gridOrigin.y + last.size.y + _spacing * 2;
+        bossRoom.gridOrigin = new Vector2Int(bossCx, bossY);
+
+        RoomNode repair = CreateNode(pool.repairData);
+        int repairCx = bossCx + bossRoom.size.x / 2 - repair.size.x / 2;
+        repair.gridOrigin = new Vector2Int(repairCx, last.gridOrigin.y + last.size.y + _spacing);
+
+        last.ConnectTo(repair);
         repair.ConnectTo(bossRoom);
     }
  

@@ -322,9 +322,13 @@ public class ConnectionPlanner : MonoBehaviour
         RectInt lb = _roomBounds[lower];
         RectInt ub = _roomBounds[upper];
 
-        int cx = lb.xMin + lb.width / 2;
+        int upperCx = ub.xMin + ub.width / 2 - 1;
+        int cx = Mathf.Clamp(upperCx, lb.xMin, lb.xMax - 1);
+
         var wallLower = new Vector2Int(cx, lb.yMax);
         var wallUpper = new Vector2Int(cx, ub.yMin - 1);
+        
+        Debug.Log($"[ConnectVertical] lower={lower.nodeId} lb={lb} upper={upper.nodeId} ub={ub} cx={cx} wallLower={wallLower} wallUpper={wallUpper}");
 
         var ca = new DoorCandidate(wallLower, DoorDir.Up, lower);
         var cb = new DoorCandidate(wallUpper, DoorDir.Down, upper);
