@@ -7,15 +7,17 @@ using UnityEngine.UI;
 
 public class EnhancementUI : MonoBehaviour
 {
-    [SerializeField] private List<Button> _equipmentButtons = new List<Button>();
+    [SerializeField] private List<Button>  _equipmentButtons = new List<Button>();
+    [SerializeField] private List<Image>   _equipImages;
+    [SerializeField] private List<Image>  _selectedImages = new List<Image>(4);
 
     [SerializeField] private Button     _oddButton;
     [SerializeField] private Button    _evenButton;
     [SerializeField] private Button _enhanceButton;
-    [SerializeField] private List<Image>  _selectedImages = new List<Image>(4);
 
     [SerializeField] private EquipmentList _equipmentList;
 
+    [SerializeField] private Image _selectedImage;
 
     [Header("Current Selection")]
     private int   _selectedIndex = -1;
@@ -23,7 +25,7 @@ public class EnhancementUI : MonoBehaviour
 
     private void Awake()
     {
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -47,22 +49,61 @@ public class EnhancementUI : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (_equipmentList != null)
+        {
+            _equipmentList.OnEquipChanged += RefreshEquipIcons;
+        }
+
+        RefreshEquipIcons();
+        ResetSelection();   
+    }
+
+    public void RefreshEquipIcons()
+    {
+        for (int i = 0; i < _equipImages.Count; i++)
+        {
+            if (i < _equipmentList.MyEquips.Count)
+            {
+                var data = _equipmentList.MyEquips[i];
+                _equipImages[i].sprite = data.EquipIconSet.Get(data.CurrentUpgradeLevel);
+                _equipImages[i].enabled = true;
+
+                _equipmentButtons[i].interactable = true;
+            }
+            else
+            {
+                     _equipImages[i].enabled = false;
+                _equipmentButtons[i].interactable = false;
+
+                _selectedImages[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
     private void OnSelectEquipment(int index)
     {
+        if (index >= _equipmentList.MyEquips.Count) return;
+
         _selectedIndex = index;
+        var selectedData = _equipmentList.MyEquips[index];
 
         Debug.Log($"{index}번 무기 선택됨");
 
         for(int i=0;i<_selectedImages.Count;i++)
         {
-            if(i==index)
+            if(i==index && _equipmentList.MyEquips[i].CurrentUpgradeLevel < 6)
             {
                 _selectedImages[i].gameObject.SetActive(true);
             }
-            else
-            {
-                _selectedImages[i].gameObject.SetActive(false);
-            }
+            
+        }
+
+        if (_selectedImage != null)
+        {
+            _selectedImage.sprite = selectedData.EquipIconSet.Get(selectedData.CurrentUpgradeLevel);
+            _selectedImage.enabled = true;
         }
 
         CheckRequirement();
@@ -88,15 +129,28 @@ public class EnhancementUI : MonoBehaviour
     {
         Debug.Log("강화 시작");
 
-        //_equipmentList
+        _equipmentList.UpgradeEquipment(_selectedIndex);
 
         ResetSelection();
     }
 
     private void ResetSelection()
     {
+          _selectedIndex = -1;
         _selectedOddEven = -1;
 
         _enhanceButton.interactable = false;
+
+        for (int i = 0; i < _selectedImages.Count; i++)
+        {
+            if (_selectedImages[i] != null)
+                _selectedImages[i].gameObject.SetActive(false);
+        }
+
+        if (_selectedImage != null)
+        {
+            _selectedImage.enabled = false;
+            _selectedImage.sprite  = null;
+        }
     }
 }
