@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class SceneLoader
 {
@@ -43,5 +44,18 @@ public static class SceneLoader
     public static void LoadEnding()
     {
         SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Ending);
+    }
+
+    public static void LoadNext()
+    {
+        string current = SceneManager.GetActiveScene().name;
+        switch (current)
+        {
+            case SceneName.Lobby:     SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Stage1); break;
+            case SceneName.Stage1:    SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Stage2); break;
+            case SceneName.Stage2:    SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Stage3); break;
+            case SceneName.Stage3:    SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.FinalBoss); break;
+            case SceneName.FinalBoss: SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Ending); break;
+        }
     }
 }

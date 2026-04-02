@@ -1332,6 +1332,7 @@ MonoBehaviour:
     range: 0.6
   equipInspector: {fileID: 0}
   _skillHandler: {fileID: 0}
+  _healIcon: {fileID: 0}
 --- !u!1 &2349119429812329035
 GameObject:
   m_ObjectHideFlags: 0
@@ -2105,6 +2106,7 @@ MonoBehaviour:
     range: 0.6
   equipInspector: {fileID: 0}
   _skillHandler: {fileID: 0}
+  _healIcon: {fileID: 0}
 --- !u!1 &3289698994884070094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2954,7 +2956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4946573188817909250
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4537,6 +4539,7 @@ MonoBehaviour:
     range: 0.5
   equipInspector: {fileID: 0}
   _skillHandler: {fileID: 0}
+  _healIcon: {fileID: 0}
 --- !u!222 &6319017455324960187
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5472,6 +5475,7 @@ MonoBehaviour:
     range: 0.6
   equipInspector: {fileID: 0}
   _skillHandler: {fileID: 0}
+  _healIcon: {fileID: 0}
 --- !u!1 &8094654157007113931
 GameObject:
   m_ObjectHideFlags: 0
