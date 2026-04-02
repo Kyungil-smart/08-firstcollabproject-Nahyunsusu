@@ -21,7 +21,7 @@ namespace _Scripts.LYC.Skill
 			{
 				Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector2.right;
 				var proj = Instantiate(ProjectilePrefab);
-				proj.Init(dir, position + dir, executor, particle, hitEffect);
+				proj.Init(dir, position + dir, executor, particle, null, hitEffect);
 
 				angle += 45;
 			}

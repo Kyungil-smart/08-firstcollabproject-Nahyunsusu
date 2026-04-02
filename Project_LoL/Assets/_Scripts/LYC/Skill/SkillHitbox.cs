@@ -36,7 +36,8 @@ namespace _Scripts.LYC.Skill
 			transform.right = direction;
 			transform.position = position + direction;
 
-			if (TryGetComponent(out BoxCollider2D boxCollider))
+			BoxCollider2D boxCollider = null;
+			if (TryGetComponent(out boxCollider))
 			{
 				boxCollider.size = new Vector2(skillData.DamageRangeX, skillData.DamageRangeY);
 				// 방향이 있을 때만 offset 적용: pivot을 끝으로 맞춤
@@ -56,10 +57,24 @@ namespace _Scripts.LYC.Skill
 				_effect.Play();
 			}
 
+			if (boxCollider != null)
+				CheckInitialOverlap(boxCollider);
+
 			StartCoroutine(DestroyAfterDuration());
 		}
 
-		private void OnTriggerEnter2D(Collider2D other)
+		private void CheckInitialOverlap(BoxCollider2D boxCollider)
+		{
+			var filter = new ContactFilter2D { useTriggers = true };
+			var results = new Collider2D[16];
+			int count = boxCollider.Overlap(filter, results);
+			for (int i = 0; i < count; i++)
+				ProcessHit(results[i]);
+		}
+
+		private void OnTriggerEnter2D(Collider2D other) => ProcessHit(other);
+
+		private void ProcessHit(Collider2D other)
 		{
 			if (other.TryGetComponent(out Damageable enemy))
 			{
@@ -67,7 +82,8 @@ namespace _Scripts.LYC.Skill
 				enemy.TakeDamage(_damage);
 
 				var ps = Instantiate(_hitEffect, other.ClosestPoint(transform.position), other.transform.rotation);
-				Destroy(ps, ps.main.duration);
+				ps.Play();
+				Destroy(ps.gameObject, ps.main.duration);
 			}
 		}
 

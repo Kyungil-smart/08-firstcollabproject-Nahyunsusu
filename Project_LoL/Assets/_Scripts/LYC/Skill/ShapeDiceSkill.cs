@@ -14,7 +14,7 @@ namespace _Scripts.LYC.Skill
 		public override void Use(SkillExecutor executor)
 		{
 			var particle = ProjectileParticleSet.Get(executor.LastDiceResult);
-			Instantiate(ProjectilePrefab).Init(executor.MouseDir, executor.Position, executor, particle, hitEffect);
+			Instantiate(ProjectilePrefab).Init(executor.MouseDir, executor.Position, executor, particle, null, hitEffect);
 		}
 	}
 }
