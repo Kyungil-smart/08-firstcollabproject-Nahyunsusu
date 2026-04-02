@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,8 +11,7 @@ public class TutorialManager : MonoBehaviour
 	public enum TutorialQuestType
 	{
 		MoveAndDodgeDash,
-		UseSkillSlot,
-		HitEnemy
+		UseSkillSlot
 	}
 
 	[Serializable]
@@ -49,8 +49,8 @@ public class TutorialManager : MonoBehaviour
 	public UnityEvent onTutorialCompleted;
 
 	private int _currentIndex;
-
 	private int _moveAndDodgePhase;
+	private int _lastSkillUsedSlot;
 
 	public void NotifyDashDodge()
 	{
@@ -110,30 +110,38 @@ public class TutorialManager : MonoBehaviour
 	private void OnSkillExecuted(int slotIndex)
 	{
 		if (!IsCurrentType(TutorialQuestType.UseSkillSlot)) return;
-		if (quests[_currentIndex].skillSlotIndex != slotIndex) return;
-		IncrementAndCheck();
+		_lastSkillUsedSlot = slotIndex;
 	}
 
 	private void OnDummyHit(DummyEnemy e)
 	{
-		if (!IsCurrentType(TutorialQuestType.HitEnemy)) return;
-		e.TakeDamage(1);
+		if (!IsCurrentType(TutorialQuestType.UseSkillSlot)) return;
+		int targetSlot = quests[_currentIndex].skillSlotIndex;
+		if (_lastSkillUsedSlot != targetSlot) return;
 
-		IncrementAndCheck();
+		if (targetSlot is 0 or 2 && e == dummyEnemy1)
+		{
+			if (quests[_currentIndex].currentCount == 4) e.TakeDown();
+			IncrementAndCheck();
+		}
+		else if (targetSlot is 1 or 3 && e == dummyEnemy2)
+		{
+			if (quests[_currentIndex].currentCount == 4) e.TakeDown();
+			IncrementAndCheck();
+		}
 	}
 
 	private void IncrementAndCheck()
 	{
+		if (_currentIndex >= quests.Count) return;
 		TutorialQuest quest = quests[_currentIndex];
 		quest.currentCount++;
+		questProgressText.text = $"({quests[_currentIndex].currentCount}/{quests[_currentIndex].requiredCount})";
 
 		if (quest.currentCount >= quest.requiredCount)
 		{
 			CompleteCurrentQuest();
-			return;
 		}
-
-		questProgressText.text = $"({quests[_currentIndex].currentCount}/{quests[_currentIndex].requiredCount})";
 	}
 
 	private void CompleteCurrentQuest()
@@ -144,6 +152,12 @@ public class TutorialManager : MonoBehaviour
 		}
 
 		_currentIndex++;
+		if (_currentIndex >= quests.Count)
+		{
+			onTutorialCompleted?.Invoke();
+			return;
+		}
+
 		ActivateQuest(_currentIndex);
 	}
 
@@ -169,10 +183,10 @@ public class TutorialManager : MonoBehaviour
 		questText.text = quests[index].questName;
 		questProgressText.text = $"({0}/{quests[index].requiredCount})";
 
-		if (IsCurrentType(TutorialQuestType.HitEnemy))
+		if (IsCurrentType(TutorialQuestType.UseSkillSlot))
 		{
-			(quests[index].skillSlotIndex is 0 or 3 ? dummyEnemy1 : dummyEnemy2).targetIndex = quests[index].skillSlotIndex;
-			(quests[index].skillSlotIndex is 0 or 3 ? dummyEnemy1 : dummyEnemy2).ChangeSkillIcon(quests[index].skillSlotIndex);
+			(quests[index].skillSlotIndex is 0 or 2 ? dummyEnemy1 : dummyEnemy2).targetIndex = quests[index].skillSlotIndex;
+			(quests[index].skillSlotIndex is 0 or 2 ? dummyEnemy1 : dummyEnemy2).ChangeSkillIcon(quests[index].skillSlotIndex);
 		}
 	}
 
