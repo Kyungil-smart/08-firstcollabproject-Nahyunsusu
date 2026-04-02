@@ -76,7 +76,7 @@ MonoBehaviour:
   _bendStepCount: 5
   _corridorWidthMin: 2
   _corridorWidthMax: 6
-  _bossCorridorWidth: 4
+  _bossCorridorWidth: 5
 --- !u!114 &9056271599888136448
 MonoBehaviour:
   m_ObjectHideFlags: 0
