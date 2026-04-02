@@ -151,5 +151,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa293751c924d24ca813c5692363b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeInteractable
-  _upgradeUI: {fileID: 0}
-  _interactUI: {fileID: 0}
+  _upgradeUI: {fileID: 5483219858756307622, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
+  _interactUI: {fileID: 4824588890670416539, guid: 2c9a4a7241b3b054392339edc8c126d0, type: 3}

@@ -151,5 +151,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8c3ed7ec49a8c4cb30d2df2d8412f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopInteractable
-  _shopUI: {fileID: 0}
-  _interactUI: {fileID: 0}
+  _shopUI: {fileID: 4007611934414592414, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
+  _interactUI: {fileID: 4824588890670416539, guid: 2c9a4a7241b3b054392339edc8c126d0, type: 3}
