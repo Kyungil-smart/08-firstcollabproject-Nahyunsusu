@@ -8,6 +8,12 @@ public class ShopInteractable : MonoBehaviour
 
     private bool _playerInRange;
 
+    private void Awake()
+    {
+        if (_shopUI != null) _shopUI.SetActive(false);
+        if (_interactUI != null) _interactUI.SetActive(false);
+    }
+
     private void Update()
     {
         if (_playerInRange && Keyboard.current.fKey.wasPressedThisFrame)

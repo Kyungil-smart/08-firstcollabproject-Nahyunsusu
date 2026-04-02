@@ -85,9 +85,6 @@ public class MapManager : MonoBehaviour
                 PlaceRoomTrigger(room);
             
             if (room.roomData.roomType == RoomType.Repair)
-                PlaceShopInteractable(room);
-            
-            if (room.roomData.roomType == RoomType.Repair)
                 PlaceRepairInteractables(room);
 
             if (room.roomData.roomType == RoomType.Boss)

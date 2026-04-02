@@ -8,6 +8,12 @@ public class UpgradeInteractable : MonoBehaviour
 
     private bool _playerInRange;
 
+    private void Awake()
+    {
+        if (_upgradeUI != null) _upgradeUI.SetActive(false);
+        if (_interactUI != null) _interactUI.SetActive(false);
+    }
+
     private void Update()
     {
         if (_playerInRange && Keyboard.current.fKey.wasPressedThisFrame)
