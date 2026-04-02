@@ -47,6 +47,8 @@ public class StoreItemSlot : MonoBehaviour
 
             if (equipList.MyEquips.Count < 4)
             {
+                Debug.Log($"{data.EquipName_KO} 바로 구매 및 추가");
+
                 equipList.AddEquip(-1, data.EquipID);
 
                 MarkAsSold();

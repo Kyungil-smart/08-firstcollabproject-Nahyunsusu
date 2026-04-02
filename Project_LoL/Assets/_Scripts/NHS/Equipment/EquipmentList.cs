@@ -11,8 +11,6 @@ public class EquipmentList : MonoBehaviour
 
     public int CurrentCount => _playersEquip.Count; // 현재 장비 개수 확인용
 
-    public System.Action OnEquipChanged;
-
     public void AddEquip(int index, int newEqiupId) // 보상이나 상점에서 호출할 함수
     {
         EquipmentData_SO so = dataManager.equipDataList.Find(x => x.EquipID == newEqiupId);
@@ -34,8 +32,6 @@ public class EquipmentList : MonoBehaviour
             _playersEquip[index] = so.CreateRuntimeData();
             Debug.Log($"{index}번 슬롯 장비를 {so.EquipName_KO}(으)로 교체 완료");
         }
-
-        OnEquipChanged?.Invoke();
     }
 
     public TotalStat CalculateData() // 플레이어가 가져갈 함수
