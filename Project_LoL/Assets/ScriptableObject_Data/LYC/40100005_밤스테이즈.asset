@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BombStaySkill
   skillID: 40100005
   skillName: "\uBC24 \uC2A4\uD14C\uC774\uC988"
-  description: "\uCEE4\uC11C \uBC29\uD5A5\uC73C\uB85C ({range})\uAC70\uB9AC\uC5D0
-    \uD3ED\uD0C4\uC744 \uBC1C\uC0AC\uD558\uC5EC \uC801\uC5D0\uAC8C ({damage})\uB9CC\uD07C\uC758
-    \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4"
-  skillType: 1
+  description: "\uC804\uBC29\uC73C\uB85C {PlayerSkillRange}\uCE78 \uC55E\uC5D0 \uD3ED\uD0C4\uC744
+    \uB358\uC838 {PlayerSkillDamage}\uB9CC\uD07C \uAD11\uC5ED \uB370\uBBF8\uC9C0\uB97C
+    \uC785\uD78C\uB2E4,"
+  skillType: 14
   skillIconSet:
     icon1: {fileID: 21300000, guid: 044d0e9637f22c54e97c4b8dfcfd32cf, type: 3}
     icon2: {fileID: 21300000, guid: b1496271129f1b54284c5ce57cfbe00a, type: 3}
@@ -33,18 +33,33 @@ MonoBehaviour:
   delay: 0.6
   maxUseCount: 3
   cooldown: 5
-  price: 0
+  price: 45
   diceEffects:
     dice1Effects:
+    - type: 3
+      amount: 2
+    dice2Effects:
+    - type: 3
+      amount: 4
+    dice3Effects:
+    - type: 3
+      amount: 6
+    dice4Effects:
     - type: 0
-      amount: 0
-    dice2Effects: []
-    dice3Effects: []
-    dice4Effects: []
-    dice5Effects: []
+      amount: 1
+    - type: 6
+      amount: 1
+    dice5Effects:
+    - type: 0
+      amount: 3
+    - type: 6
+      amount: 2
     dice6Effects:
     - type: 0
-      amount: 0
+      amount: 5
+    - type: 6
+      amount: 3
+  hitEffect: {fileID: 1861883633406053615, guid: 3fa8a827138f2924ab0f35b856af4bb6, type: 3}
   <ProjectilePrefab>k__BackingField: {fileID: 1840859090483820285, guid: fb3b390fc9bc774458d5e3673e35cccf, type: 3}
   <ProjectileEffect>k__BackingField: {fileID: 7804617488294263727, guid: 33158ef1d85324d44a18f6cff9f63dbb, type: 3}
   <ExplosionParticleSet>k__BackingField:

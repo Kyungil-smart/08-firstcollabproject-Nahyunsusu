@@ -14,7 +14,7 @@ namespace _Scripts.LYC.Skill
 
 		public override void Use(SkillExecutor executor)
 		{
-			Instantiate(Hitbox).Init(Vector2.zero, executor.Position, executor, 0.2f, ParticleSet.Get(executor.LastDiceResult));
+			Instantiate(Hitbox).Init(Vector2.zero, executor.Position, executor, 0.2f, ParticleSet.Get(executor.LastDiceResult), hitEffect);
 		}
 	}
 }

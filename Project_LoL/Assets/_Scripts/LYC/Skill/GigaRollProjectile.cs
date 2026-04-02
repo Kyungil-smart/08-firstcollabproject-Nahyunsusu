@@ -8,10 +8,10 @@ namespace _Scripts.LYC.Skill
 		private CircleCollider2D _collider;
 
 		public override void Init(Vector2 direction, Vector2 startPosition, SkillExecutor executor, ParticleSystem projectileParticle,
-			ParticleSystem explosionParticle = null)
+			ParticleSystem explosionParticle = null, ParticleSystem hitEffect = null)
 		{
 			_collider = GetComponent<CircleCollider2D>();
-			base.Init(direction, startPosition, executor, projectileParticle, explosionParticle);
+			base.Init(direction, startPosition, executor, projectileParticle, explosionParticle, hitEffect);
 		}
 
 		private void FixedUpdate()
