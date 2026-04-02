@@ -21,7 +21,7 @@ public class StoreUI : MonoBehaviour
         if (GameDataManager.instance != null)
         {
             GameDataManager.instance.equipDataManager.OnDataLoaded += RefreshItem;
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
         }
     }
 
