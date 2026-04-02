@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using System;
 
 public class EquipInspector : MonoBehaviour
 {
@@ -9,22 +8,6 @@ public class EquipInspector : MonoBehaviour
 
     [SerializeField] private List<Image> images = new List<Image>(4);
 
-    public void OnEnable()
-    {
-        if (_equipmentList != null)
-        {
-            _equipmentList.OnEquipChanged += RefreshUI;
-        }
-        RefreshUI();
-    }
-
-    public void OnDisable()
-    {
-        if (_equipmentList != null)
-        {
-            _equipmentList.OnEquipChanged -= RefreshUI;
-        }
-    }
 
     public void RefreshUI()
     {

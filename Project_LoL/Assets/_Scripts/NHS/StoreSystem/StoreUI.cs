@@ -16,16 +16,12 @@ public class StoreUI : MonoBehaviour
 
     private bool _isInitialized = false;
 
-    private void Awake()
-    {
-        //this.gameObject.SetActive(false);
-    }
-
     private void Start()
     {
         if (GameDataManager.instance != null)
         {
             GameDataManager.instance.equipDataManager.OnDataLoaded += RefreshItem;
+            this.gameObject.SetActive(false);
         }
     }
 

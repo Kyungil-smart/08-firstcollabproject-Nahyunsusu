@@ -14,8 +14,6 @@ public class EquipmentData
     public int              EquipCritChance;
     public int              EquipCritDamage;
     public string           EquipSpecial;
-    public string           EquipNameEN;
-    public int              EquipUpgrade;
 
     public int CurrentUpgradeLevel = 0;
 
@@ -24,7 +22,6 @@ public class EquipmentData
         this.EquipIconSet        = so.EquipImages;
         this.EquipID             = so.EquipID;
         this.EquipName           = so.EquipName_KO;
-        this.EquipNameEN         = so.EquipName_EN;
         this.EquipHP             = so.EquipHP;
         this.EquipAttackDamage   = so.EquipAttackDamage;
         this.EquipAttackSpeed    = so.EquipAttackSpeed;
@@ -33,6 +30,5 @@ public class EquipmentData
         this.EquipCritDamage     = so.EquipCritDamage;
         this.EquipSpecial        = so.EquipSpecial;
         this.CurrentUpgradeLevel = 0;
-        this.EquipUpgrade        = so.EquipUpgrade;
     }
 }

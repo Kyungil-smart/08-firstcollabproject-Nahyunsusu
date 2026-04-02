@@ -89,7 +89,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!1 &683387677385132296
 GameObject:
@@ -280,7 +280,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4679213899198794632}
   - component: {fileID: 4215702571826234824}
-  - component: {fileID: 6329134041853734666}
   m_Layer: 0
   m_Name: BossSpawnPoint
   m_TagString: Untagged
@@ -349,19 +348,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6329134041853734666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1394717535182688734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 066db6f950b0eb54c82e7a5ec611ec92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossSpawner
-  bossPrefab: {fileID: 8704184050560441645, guid: dbb7034a8e197a34bbcf9893413c3b3e, type: 3}
 --- !u!1 &1648851484767764116
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,7 +614,7 @@ SpriteRenderer:
   m_Size: {x: 0.875, y: 0.9375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!95 &6264233939827723743
 Animator:
@@ -27153,7 +27139,7 @@ SpriteRenderer:
   m_Size: {x: 0.8125, y: 1.875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!95 &8882813827091372120
 Animator:
@@ -31159,7 +31145,7 @@ SpriteRenderer:
   m_Size: {x: 0.8125, y: 1.875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!95 &1898474731236391226
 Animator:
@@ -31272,7 +31258,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!1001 &9184796683036240710
 PrefabInstance:
