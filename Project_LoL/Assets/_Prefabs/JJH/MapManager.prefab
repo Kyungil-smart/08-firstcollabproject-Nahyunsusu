@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccdb7a308ce98584a9d019f3c61f3545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapManager
-  _roomPool: {fileID: 11400000, guid: e23a45cdac0ee6b498006e7f3d481045, type: 2}
+  _roomPool: {fileID: 11400000, guid: 578ce0a5314d35548b582a5d65118092, type: 2}
   _planner: {fileID: 1915048030721137299}
   _tileGenerator: {fileID: 928597045972814894}
   _doorController: {fileID: 7947275424986238716}
