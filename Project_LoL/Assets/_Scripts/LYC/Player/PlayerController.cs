@@ -57,6 +57,14 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 
 	private PlayerDataSO _dataSO;
 
+	private readonly EquipmentData[] _equippedItems = new EquipmentData[4];
+
+	/// <summary>장비 변경 시 발행. (슬롯 인덱스, 장착된 장비 — null이면 해제)</summary>
+	public event Action<int, EquipmentData> EquipmentChanged;
+
+	/// <summary>장비 % 보정 이전의 순수 스탯. 레벨업 보너스까지 포함.</summary>
+	private PlayerData _baseData;
+
 	private void Awake()
 	{
 		FSM = GetComponent<PlayerFSM>();
@@ -77,7 +85,9 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 
 	public void InitPlayer(PlayerDataSO dataSO = null)
 	{
-		Data = dataSO == null ? PlayerDataSOSample?.Get() : dataSO.Get();
+		var so = dataSO ?? PlayerDataSOSample;
+		_baseData = so?.Get();
+		Data      = so?.Get();
 
 		if (Data != null)
 		{
@@ -93,6 +103,67 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 
 		FSM.Init();
 	}
+
+	#region Equipment
+
+	/// <summary>
+	/// 지정 슬롯(0~3)에 장비를 장착합니다.
+	/// 슬롯에 이미 장비가 있으면 교체됩니다.
+	/// </summary>
+	public void Equip(int slot, EquipmentData equipment)
+	{
+		if (slot < 0 || slot >= _equippedItems.Length) return;
+
+		_equippedItems[slot] = equipment;
+		RecalculateStats();
+		EquipmentChanged?.Invoke(slot, equipment);
+	}
+
+	/// <summary>지정 슬롯의 장비를 해제합니다.</summary>
+	public void Unequip(int slot) => Equip(slot, null);
+
+	/// <summary>
+	/// 레벨업 선택지 스탯을 베이스에 합산하고 장비 보정을 재적용합니다.
+	/// LevelUpManager에서 호출합니다.
+	/// </summary>
+	public void AddBaseStat(LevelUpChoiceEntry entry)
+	{
+		_baseData.HP         += entry.hp;
+		_baseData.AtkDamage  += entry.atkDamage;
+		_baseData.AtkSpeed   += (int)entry.atkSpeed;
+		_baseData.MoveSpeed  += entry.moveSpeed;
+		_baseData.CritRate   += entry.critChance;
+		_baseData.CritDamage += entry.critDamage;
+		RecalculateStats();
+	}
+
+	/// <summary>
+	/// 장착된 모든 장비의 % 합산을 베이스 스탯에 곱해 Data를 갱신합니다.
+	/// </summary>
+	private void RecalculateStats()
+	{
+		float hpPct = 0, atkPct = 0, atkSpdPct = 0, movSpdPct = 0, critRatePct = 0, critDmgPct = 0;
+
+		foreach (var eq in _equippedItems)
+		{
+			if (eq == null) continue;
+			hpPct       += eq.EquipHP;
+			atkPct      += eq.EquipAttackDamage;
+			atkSpdPct   += eq.EquipAttackSpeed;
+			movSpdPct   += eq.EquipMoveSpeed;
+			critRatePct += eq.EquipCritChance;
+			critDmgPct  += eq.EquipCritDamage;
+		}
+
+		Data.HP         = _baseData.HP        * (1f + hpPct       / 100f);
+		Data.AtkDamage  = Mathf.RoundToInt(_baseData.AtkDamage  * (1f + atkPct      / 100f));
+		Data.AtkSpeed   = Mathf.RoundToInt(_baseData.AtkSpeed   * (1f + atkSpdPct   / 100f));
+		Data.MoveSpeed  = _baseData.MoveSpeed  * (1f + movSpdPct   / 100f);
+		Data.CritRate   = _baseData.CritRate   * (1f + critRatePct / 100f);
+		Data.CritDamage = Mathf.RoundToInt(_baseData.CritDamage * (1f + critDmgPct  / 100f));
+	}
+
+	#endregion
 
 	public void SetInvincible(bool enable)
 	{

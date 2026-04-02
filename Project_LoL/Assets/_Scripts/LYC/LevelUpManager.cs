@@ -99,13 +99,7 @@ public class LevelUpManager : MonoBehaviour
 
 	private void ApplyStat(LevelUpChoiceEntry entry)
 	{
-		PlayerData data = _player.Data;
-		data.HP += entry.hp;
-		data.AtkDamage += entry.atkDamage;
-		data.AtkSpeed += (int)entry.atkSpeed;
-		data.MoveSpeed += entry.moveSpeed;
-		data.CritRate += entry.critChance;
-		data.CritDamage += entry.critDamage;
+		_player.AddBaseStat(entry);
 	}
 
 	private void SetChildrenActive(bool active)
