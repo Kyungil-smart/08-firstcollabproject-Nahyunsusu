@@ -19,10 +19,10 @@ public class PlayerDataSO : ScriptableObject
 			MoveSpeed = PlayerMoveSpeed
 		};
 
-	[field: SerializeField] public int PlayerHP { get; private set; }
+	[field: SerializeField] public float PlayerHP { get; private set; }
 	[field: SerializeField] public int PlayerAttack { get; private set; }
-	[field: SerializeField] public float PlayerAttackSpeed { get; private set; }
-	[field: SerializeField] public int PlayerMoveSpeed { get; private set; }
+	[field: SerializeField] public int PlayerAttackSpeed { get; private set; }
+	[field: SerializeField] public float PlayerMoveSpeed { get; private set; }
 	[field: SerializeField] public int PlayerCritRate { get; private set; }
 	[field: SerializeField] public int PlayerCritDamage { get; private set; }
 	[field: SerializeField] public float PlayerDashTime { get; private set; }

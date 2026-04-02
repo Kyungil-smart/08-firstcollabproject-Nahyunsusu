@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 
 	#endregion
 
-	public int Health
+	public float Health
 	{
 		get => Data.CurrentHp;
 		set => Data.SetHp(value);
