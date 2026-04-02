@@ -61,6 +61,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ef_20_normal_p
       objectReference: {fileID: 0}
+    - target: {fileID: 4032717880658879061, guid: 795c29b6ac23e9d478e46890f44d158a, type: 3}
+      propertyPath: scalingMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4460983478584611029, guid: 795c29b6ac23e9d478e46890f44d158a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

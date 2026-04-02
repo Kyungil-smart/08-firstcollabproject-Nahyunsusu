@@ -86,8 +86,15 @@ public class FinalBossSkill03 : FinalBossSkillBase
                           false,
                           skillData.impactSprite);
 
-        impact.onPlayerHit    = SpawnImpact2;
+        impact.SetStopOnHit();
         impact.onDestroyEffect = SpawnDestroyEffect;
+
+        FinalBossImpact capturedImpact = impact;
+        impact.onPlayerHit = (pos) =>
+        {
+            SpawnImpact2(pos);
+            Destroy(capturedImpact.gameObject);
+        };
 
         float chaseDuration = skillData.monsterSkillImpactTime - _directionalDuration;
         impact.SetDirectionalThenChase(Vector2.down,

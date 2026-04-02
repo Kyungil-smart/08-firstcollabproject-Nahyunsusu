@@ -6,7 +6,7 @@ public class BossChaseState : BossStateBase
     private List<Vector2> _path = new List<Vector2>();
     private int _pathIndex;
 
-    private const float PATH_UPDATE_INTERVAL = 0.3f;
+    private const float _pathUpdateInterval = 0.3f;
     private float _pathUpdateTimer;
 
     public BossChaseState(BossFSM fsm) : base(fsm) { }
@@ -14,7 +14,7 @@ public class BossChaseState : BossStateBase
     public override void Enter()
     {
         _fsm.animator?.SetBool("1_Move", true);
-        _pathUpdateTimer = Random.Range(0f, PATH_UPDATE_INTERVAL);
+        _pathUpdateTimer = Random.Range(0f, _pathUpdateInterval);
         RequestPath();
     }
 
@@ -32,7 +32,7 @@ public class BossChaseState : BossStateBase
         }
 
         _pathUpdateTimer += Time.deltaTime;
-        if (_pathUpdateTimer >= PATH_UPDATE_INTERVAL)
+        if (_pathUpdateTimer >= _pathUpdateInterval)
         {
             _pathUpdateTimer = 0f;
             RequestPath();

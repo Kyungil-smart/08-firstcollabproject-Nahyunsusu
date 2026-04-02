@@ -42,10 +42,10 @@ public class FinalBossFSM : MonoBehaviour, Damageable
     public FinalBossState currentState    => _currentState;
     public Transform      playerTransform => _playerTransform;
     public int            currentHp       => _currentHp;
-    public float          hpRatio         => bossData != null ? (float)_currentHp / bossData.MonsterHp : 0f;
+    public float          hpRatio         => bossData != null ? (float)_currentHp / bossData.monsterHp : 0f;
     
-    public int            baseAttack      => bossData != null ? bossData.MonsterAttack : 0;
-    public float          attackRange     => bossData != null ? bossData.MonsterAttackRange : 0f;
+    public int            baseAttack      => bossData != null ? bossData.monsterAttack : 0;
+    public float          attackRange     => bossData != null ? bossData.monsterAttackRange : 0f;
 
     public bool           isPhase50       => _phase50;
     public bool           isPhase30       => _phase30;
@@ -61,7 +61,7 @@ public class FinalBossFSM : MonoBehaviour, Damageable
 
         if (bossData != null)
         {
-            _currentHp = bossData.MonsterHp;
+            _currentHp = bossData.monsterHp;
         }
         else
         {
@@ -194,7 +194,7 @@ public class FinalBossFSM : MonoBehaviour, Damageable
     {
         if (bossData != null)
         {
-            Debug.Log($"최종 보스 처치! 골드: {bossData.MonsterGiveGold}, 경험치: {bossData.MonsterGiveExp}");
+            Debug.Log($"최종 보스 처치! 골드: {bossData.monsterGiveGold}, 경험치: {bossData.monsterGiveExp}");
         }
 
         Debug.Log("클리어!");
@@ -237,7 +237,7 @@ public class FinalBossFSM : MonoBehaviour, Damageable
     {
         if (bossData == null) return;
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, bossData.MonsterAttackRange);
+        Gizmos.DrawWireSphere(transform.position, bossData.monsterAttackRange);
     }
 #endif
 }

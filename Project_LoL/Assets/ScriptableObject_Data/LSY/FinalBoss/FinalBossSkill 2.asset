@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterSkillId: 40241002
   monsterSkillDamage: 20
   monsterSkillProjectileSpeed: 20
-  monsterSkillRange: 0
+  monsterSkillRange: 30
   monsterWarningSign: 0
   monsterSkillProjectileScaleX: 1
   monsterSkillProjectileScaleY: 1

@@ -93,6 +93,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5227346866986036176, guid: d2f02bf95aa41a0448a64976f2793680, type: 3}
+      propertyPath: scalingMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8131877742735058628, guid: d2f02bf95aa41a0448a64976f2793680, type: 3}
       propertyPath: m_Name
       value: Ef_20_green_p

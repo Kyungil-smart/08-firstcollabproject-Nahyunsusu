@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,18 +7,18 @@ public class RoomClearManager : MonoBehaviour
 
     private MapManager _mapManager;
     private RoomCombatHandler _roomCombatHandler;
-    private PlayerController _player;
-
-    public static event Action<int, int> OnRewardDropped;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(gameObject); 
+            return; 
+        }
         Instance = this;
 
         _mapManager = FindAnyObjectByType<MapManager>();
         _roomCombatHandler = FindAnyObjectByType<RoomCombatHandler>();
-        _player = FindAnyObjectByType<PlayerController>();
     }
 
     public void StartRoom(RoomNode room)
@@ -29,6 +28,10 @@ public class RoomClearManager : MonoBehaviour
         if (room.roomData.roomType == RoomType.Combat)
         {
             SpawnNormalEnemies(room);
+        }
+        else if (room.roomData.roomType == RoomType.Boss)
+        {
+            SpawnBoss(room);
         }
     }
 
@@ -44,7 +47,6 @@ public class RoomClearManager : MonoBehaviour
         }
 
         List<Vector2> positions = _roomCombatHandler.GetSpawnPositions(room, totalTargetCount);
-        
         int actualSpawnCount = positions.Count;
 
         RoomRuntimeData runtimeData = _mapManager?.GetRuntimeData(room);
@@ -52,9 +54,8 @@ public class RoomClearManager : MonoBehaviour
         if (actualSpawnCount > 0)
         {
             runtimeData?.StartCombat(actualSpawnCount);
-
             int currentPosIndex = 0;
-            
+
             foreach (var config in poolConfigs)
             {
                 for (int i = 0; i < config.spawnAmount; i++)
@@ -68,8 +69,35 @@ public class RoomClearManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"[RoomClearManager] {room.roomData.name} 방에 스폰 공간이 없습니다!");
             ForceClearRoom(room, runtimeData);
+        }
+    }
+
+    private void SpawnBoss(RoomNode room)
+    {
+        BossSpawner bossSpawner = FindAnyObjectByType<BossSpawner>();
+        GameObject spawnedBossObj = null;
+
+        if (bossSpawner != null)
+        {
+            spawnedBossObj = bossSpawner.SpawnBoss();
+            
+        }
+        else
+        {
+            return;
+        }
+
+        RoomRuntimeData runtimeData = _mapManager?.GetRuntimeData(room);
+        
+        if (runtimeData != null)
+        {
+            runtimeData.StartCombat(1);
+        }
+
+        if (spawnedBossObj != null && spawnedBossObj.TryGetComponent(out BossFSM bossFsm))
+        {
+            bossFsm.SetRoom(room);
         }
     }
 
@@ -85,15 +113,24 @@ public class RoomClearManager : MonoBehaviour
 
     public void OnEnemyDied(RoomNode room, int gold, int exp)
     {
-        OnRewardDropped?.Invoke(gold, exp);
+        GiveRewardToPlayer(gold, exp); 
+        UpdateProgress(room);          
+    }
 
-        if (_player != null)
+    private void GiveRewardToPlayer(int gold, int exp)
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) return;
+
+        if (player.TryGetComponent(out IExperience expHandler))
         {
-            _player.Gold += gold;
-            _player.AddExperience(exp);
+            expHandler.AddExperience(exp);
         }
 
-        UpdateProgress(room);
+        if (player.TryGetComponent(out PlayerController playerController))
+        {
+            playerController.Gold += gold;
+        }
     }
 
     private void UpdateProgress(RoomNode room)
@@ -103,11 +140,11 @@ public class RoomClearManager : MonoBehaviour
         RoomRuntimeData runtimeData = _mapManager?.GetRuntimeData(room);
         if (runtimeData != null)
         {
-            runtimeData.OnMonsterDead();
+            runtimeData.OnMonsterDead(); 
             
             if (runtimeData.state == RoomState.Cleared) 
             {
-                _mapManager?.OnCombatCleared(room);
+                _mapManager?.OnCombatCleared(room); 
             }
         }
     }
