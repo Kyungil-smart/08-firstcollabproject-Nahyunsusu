@@ -807,7 +807,7 @@ SpriteRenderer:
   m_Size: {x: 0.8125, y: 1.875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!95 &921150870741896813
 Animator:
@@ -26581,6 +26581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1271945107960082042}
   - component: {fileID: 6033490618248291399}
+  - component: {fileID: 3752544057654294195}
   m_Layer: 0
   m_Name: BossSpawnPoint
   m_TagString: Untagged
@@ -26649,6 +26650,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3752544057654294195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5073054767224828626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066db6f950b0eb54c82e7a5ec611ec92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossSpawner
+  bossPrefab: {fileID: 3668570908561610495, guid: 1c02ad0f40c9146448473fb41b463ecf, type: 3}
 --- !u!1 &5211256169672673730
 GameObject:
   m_ObjectHideFlags: 0
@@ -29132,7 +29146,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7360365218707782787
 GameObject:
@@ -29224,7 +29238,7 @@ SpriteRenderer:
   m_Size: {x: 0.8125, y: 1.875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!95 &9123148017939319796
 Animator:
@@ -29382,7 +29396,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &8602313825358955645
 PrefabInstance:
