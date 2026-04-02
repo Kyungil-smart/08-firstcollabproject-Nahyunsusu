@@ -14,9 +14,17 @@ public class EnhancementUI : MonoBehaviour
     [SerializeField] private Button _enhanceButton;
     [SerializeField] private List<Image>  _selectedImages = new List<Image>(4);
 
+    [SerializeField] private EquipmentList _equipmentList;
+
+
     [Header("Current Selection")]
-    private Button _selectedEquipment = null;
-    private int      _selectedOddEven = -1;
+    private int   _selectedIndex = -1;
+    private int _selectedOddEven = -1;
+
+    private void Awake()
+    {
+        this.gameObject.SetActive(false);
+    }
 
     private void Start()
     {
@@ -41,7 +49,7 @@ public class EnhancementUI : MonoBehaviour
 
     private void OnSelectEquipment(int index)
     {
-        _selectedEquipment = _equipmentButtons[index];
+        _selectedIndex = index;
 
         Debug.Log($"{index}번 무기 선택됨");
 
@@ -70,7 +78,7 @@ public class EnhancementUI : MonoBehaviour
 
     private void CheckRequirement()
     {
-        if (_selectedEquipment != null && _selectedOddEven != -1)
+        if (_selectedIndex != -1 && _selectedOddEven != -1)
         {
             _enhanceButton.interactable = true;
         }
@@ -80,6 +88,15 @@ public class EnhancementUI : MonoBehaviour
     {
         Debug.Log("강화 시작");
 
-        _selectedEquipment = null;
+        //_equipmentList
+
+        ResetSelection();
+    }
+
+    private void ResetSelection()
+    {
+        _selectedOddEven = -1;
+
+        _enhanceButton.interactable = false;
     }
 }
