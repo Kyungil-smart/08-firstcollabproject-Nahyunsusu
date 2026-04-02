@@ -37,7 +37,7 @@ public class PlayerUIController : MonoBehaviour
 	private void LateUpdate()
 	{
 		hpSlider.value = _controller.Health / (_controller.Data.HP + 0.001f);
-		expSlider.value = _controller.Exp / 50.0f;
+		expSlider.value = (_controller.Exp % 50) / 50.0f;
 		levelText.text = $"Lv. {_controller.Level:D2}";
 		atkText.text = $"{_controller.Data.AtkDamage}";
 		atkSpeedText.text = $"{_controller.Data.AtkSpeed}";

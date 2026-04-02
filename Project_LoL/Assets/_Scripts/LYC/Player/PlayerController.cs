@@ -64,8 +64,15 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 
 	private void Start()
 	{
+		LevelUpManager.Instance?.RegisterPlayer(this);
+
 		if (AutoInit)
 			InitPlayer();
+	}
+
+	private void OnDestroy()
+	{
+		LevelUpManager.Instance?.UnregisterPlayer(this);
 	}
 
 	public void InitPlayer(PlayerDataSO dataSO = null)
@@ -104,8 +111,8 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 
 		if (Exp >= 50 * Level)
 		{
-			Exp = 50 * Level;
 			Level++;
+			Exp = 50 * (Level - 1);
 			LevelUp?.Invoke();
 		}
 	}
@@ -163,12 +170,11 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 		{
 			TakeDamage(Random.Range(5, 15));
 		}
-	}
 
-	[ContextMenu("Debug: OnHit")]
-	private void TakeDamage()
-	{
-		TakeDamage(1);
+		if (GUILayout.Button("OnLevelUp", GUILayout.Height(70), GUILayout.Width(100)))
+		{
+			AddExperience(30);
+		}
 	}
 #endif
 }

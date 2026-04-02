@@ -1,0 +1,806 @@
+fileFormatVersion: 2
+guid: 0541dca2d0385f64b92fdcecdfc04730
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9092432575184359067
+    second: ui-wow_0
+  - first:
+      213: -2485531705720160779
+    second: ui-wow_1
+  - first:
+      213: 3739738997898764638
+    second: ui-wow_2
+  - first:
+      213: -7906712741784330745
+    second: ui-wow_3
+  - first:
+      213: 1179143350865192266
+    second: ui-wow_4
+  - first:
+      213: 5547666348260905744
+    second: ui-wow_5
+  - first:
+      213: -5753614540824690822
+    second: ui-wow_6
+  - first:
+      213: -8665458205646899591
+    second: ui-wow_7
+  - first:
+      213: 6561550957450166370
+    second: ui-wow_8
+  - first:
+      213: -7990904485727672683
+    second: ui-wow_9
+  - first:
+      213: 6923221336424644499
+    second: ui-wow_10
+  - first:
+      213: -1576597031345852523
+    second: ui-wow_11
+  - first:
+      213: -1902192021805283793
+    second: ui-wow_12
+  - first:
+      213: 221394994482476313
+    second: ui-wow_13
+  - first:
+      213: 5011996816172471456
+    second: ui-wow_14
+  - first:
+      213: -3103627205087967279
+    second: ui-wow_15
+  - first:
+      213: -5162361437982672693
+    second: ui-wow_16
+  - first:
+      213: 1524210243130656958
+    second: ui-wow_17
+  - first:
+      213: -7575689172812744804
+    second: ui-wow_18
+  - first:
+      213: 5578109767299528437
+    second: ui-wow_19
+  - first:
+      213: 3878050564715497425
+    second: ui-wow_20
+  - first:
+      213: 3856528853332390385
+    second: ui-wow_21
+  - first:
+      213: -3215454985368604745
+    second: ui-wow_22
+  - first:
+      213: -9183929415528505201
+    second: ui-wow_23
+  - first:
+      213: -3641477899749299543
+    second: ui-wow_24
+  - first:
+      213: -3296375489259738157
+    second: ui-wow_25
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ui-wow_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 207
+        width: 81
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9ecd0cd04fce2e70800000000000000
+      internalID: 9092432575184359067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 207
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fd3492251e918dd0800000000000000
+      internalID: -2485531705720160779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_2
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 227
+        width: 44
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e516e6afdc836e330800000000000000
+      internalID: 3739738997898764638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_3
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 230
+        width: 50
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70ed3e427a6b54290800000000000000
+      internalID: -7906712741784330745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_4
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a45659751a82d5010800000000000000
+      internalID: 1179143350865192266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 013da74a6254dfc40800000000000000
+      internalID: 5547666348260905744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_6
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7f3f9f1f0e0720b0800000000000000
+      internalID: -5753614540824690822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 175
+        width: 161
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9763c6c6cab1eb780800000000000000
+      internalID: -8665458205646899591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_8
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 191
+        width: 50
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 260017ac4df4f0b50800000000000000
+      internalID: 6561550957450166370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_9
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 191
+        width: 66
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 596602635ba9a1190800000000000000
+      internalID: -7990904485727672683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_10
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 160
+        width: 47
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39ffefaef19341060800000000000000
+      internalID: 6923221336424644499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_11
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 192
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59fe1b86a5dce1ae0800000000000000
+      internalID: -1576597031345852523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 143
+        width: 218
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f26c6b53f6e0a95e0800000000000000
+      internalID: -1902192021805283793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_13
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 162
+        width: 50
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9157d21139d821300800000000000000
+      internalID: 221394994482476313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 31
+        width: 257
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a45953bc803e8540800000000000000
+      internalID: 5011996816172471456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_15
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 128
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d74e7d2083bde4d0800000000000000
+      internalID: -3103627205087967279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_16
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 127
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc83ede9f9b9b58b0800000000000000
+      internalID: -5162361437982672693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_17
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 98
+        width: 62
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb880d8f325172510800000000000000
+      internalID: 1524210243130656958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_18
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 65
+        width: 64
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9739b5c5debdd690800000000000000
+      internalID: -7575689172812744804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 65
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f6760e774d696d40800000000000000
+      internalID: 5578109767299528437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 33
+        width: 64
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d7ceda117a91d530800000000000000
+      internalID: 3878050564715497425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_21
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1
+        width: 62
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 1, z: 10, w: 8}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f1fbe03f84258530800000000000000
+      internalID: 3856528853332390385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_22
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 0
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bf68dd1ab86063d0800000000000000
+      internalID: -3215454985368604745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_23
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1
+        width: 62
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f80a929ead02c8080800000000000000
+      internalID: -9183929415528505201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_24
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 0
+        width: 33
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9aae100c42fd67dc0800000000000000
+      internalID: -3641477899749299543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-wow_25
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 0
+        width: 56
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3db6e5c15fbe042d0800000000000000
+      internalID: -3296375489259738157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d0408748cd94460469e3276f5725950a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ui-wow_0: 9092432575184359067
+      ui-wow_1: -2485531705720160779
+      ui-wow_10: 6923221336424644499
+      ui-wow_11: -1576597031345852523
+      ui-wow_12: -1902192021805283793
+      ui-wow_13: 221394994482476313
+      ui-wow_14: 5011996816172471456
+      ui-wow_15: -3103627205087967279
+      ui-wow_16: -5162361437982672693
+      ui-wow_17: 1524210243130656958
+      ui-wow_18: -7575689172812744804
+      ui-wow_19: 5578109767299528437
+      ui-wow_2: 3739738997898764638
+      ui-wow_20: 3878050564715497425
+      ui-wow_21: 3856528853332390385
+      ui-wow_22: -3215454985368604745
+      ui-wow_23: -9183929415528505201
+      ui-wow_24: -3641477899749299543
+      ui-wow_25: -3296375489259738157
+      ui-wow_3: -7906712741784330745
+      ui-wow_4: 1179143350865192266
+      ui-wow_5: 5547666348260905744
+      ui-wow_6: -5753614540824690822
+      ui-wow_7: -8665458205646899591
+      ui-wow_8: 6561550957450166370
+      ui-wow_9: -7990904485727672683
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

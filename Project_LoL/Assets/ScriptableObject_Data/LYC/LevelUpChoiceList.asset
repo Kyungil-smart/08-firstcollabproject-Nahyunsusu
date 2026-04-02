@@ -1,0 +1,365 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d04e864dbda90498142d2ea254ef21, type: 3}
+  m_Name: LevelUpChoiceList
+  m_EditorClassIdentifier: Assembly-CSharp::LevelUpChoiceListSO
+  entries:
+  - id: 50000001
+    displayName: "\uCCB4\uB825 1\uBC88"
+    hp: 5
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 6
+    icon: {fileID: 0}
+  - id: 50000002
+    displayName: "\uCCB4\uB825 2\uBC88"
+    hp: 10
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 5
+    icon: {fileID: 0}
+  - id: 50000003
+    displayName: "\uCCB4\uB825 3\uBC88"
+    hp: 15
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 4
+    icon: {fileID: 0}
+  - id: 50000004
+    displayName: "\uCCB4\uB825 4\uBC88"
+    hp: 20
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 4
+    icon: {fileID: 0}
+  - id: 50000005
+    displayName: "\uCCB4\uB825 5\uBC88"
+    hp: 30
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 3
+    icon: {fileID: 0}
+  - id: 50000006
+    displayName: "\uCCB4\uB825 6\uBC88"
+    hp: 50
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 2
+    icon: {fileID: 0}
+  - id: 50000007
+    displayName: "\uCCB4\uB825 7\uBC88"
+    hp: 60
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 2
+    icon: {fileID: 0}
+  - id: 50000008
+    displayName: "\uCCB4\uB825 8\uBC88"
+    hp: 80
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 2
+    icon: {fileID: 0}
+  - id: 50000009
+    displayName: "\uCCB4\uB825 9\uBC88"
+    hp: 100
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 2
+    icon: {fileID: 0}
+  - id: 50000010
+    displayName: "\uCCB4\uB825 10\uBC88"
+    hp: 200
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 1
+    icon: {fileID: 0}
+  - id: 50000011
+    displayName: "\uACF5\uACA9\uB825 1\uBC88"
+    hp: 0
+    atkDamage: 10
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 6
+    icon: {fileID: -6049228864857080796, guid: 6fea403cc9503e947906db544f2caf64, type: 3}
+  - id: 50000012
+    displayName: "\uACF5\uACA9\uB825 2\uBC88"
+    hp: 0
+    atkDamage: 20
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 5
+    icon: {fileID: -6049228864857080796, guid: 6fea403cc9503e947906db544f2caf64, type: 3}
+  - id: 50000013
+    displayName: "\uACF5\uACA9\uB825 3\uBC88"
+    hp: 0
+    atkDamage: 30
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 4
+    icon: {fileID: -6049228864857080796, guid: 6fea403cc9503e947906db544f2caf64, type: 3}
+  - id: 50000014
+    displayName: "\uACF5\uACA9\uB825 4\uBC88"
+    hp: 0
+    atkDamage: 40
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 2
+    icon: {fileID: -6049228864857080796, guid: 6fea403cc9503e947906db544f2caf64, type: 3}
+  - id: 50000015
+    displayName: "\uACF5\uACA9\uB825 5\uBC88"
+    hp: 0
+    atkDamage: 60
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 1
+    icon: {fileID: -6049228864857080796, guid: 6fea403cc9503e947906db544f2caf64, type: 3}
+  - id: 50000016
+    displayName: "\uACF5\uC18D 1\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 10
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 6
+    icon: {fileID: 8246457172663484082, guid: 26aaccd49b50cd84fb017e109db7f4d7, type: 3}
+  - id: 50000017
+    displayName: "\uACF5\uC18D 2\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 20
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 4
+    icon: {fileID: 8246457172663484082, guid: 26aaccd49b50cd84fb017e109db7f4d7, type: 3}
+  - id: 50000018
+    displayName: "\uACF5\uC18D 3\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 30
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 2
+    icon: {fileID: 8246457172663484082, guid: 26aaccd49b50cd84fb017e109db7f4d7, type: 3}
+  - id: 50000019
+    displayName: "\uACF5\uC18D 4\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 40
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 2
+    icon: {fileID: 8246457172663484082, guid: 26aaccd49b50cd84fb017e109db7f4d7, type: 3}
+  - id: 50000020
+    displayName: "\uACF5\uC18D 5\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 50
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 1
+    icon: {fileID: 8246457172663484082, guid: 26aaccd49b50cd84fb017e109db7f4d7, type: 3}
+  - id: 50000021
+    displayName: "\uC774\uC18D 1\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 10
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 6
+    icon: {fileID: -8744168174191781655, guid: 3da68bfdaf384904381a83a5fae96c85, type: 3}
+  - id: 50000022
+    displayName: "\uC774\uC18D 2\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 20
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 4
+    icon: {fileID: -8744168174191781655, guid: 3da68bfdaf384904381a83a5fae96c85, type: 3}
+  - id: 50000023
+    displayName: "\uC774\uC18D 3\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 30
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 3
+    icon: {fileID: -8744168174191781655, guid: 3da68bfdaf384904381a83a5fae96c85, type: 3}
+  - id: 50000024
+    displayName: "\uC774\uC18D 4\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 50
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 2
+    icon: {fileID: -8744168174191781655, guid: 3da68bfdaf384904381a83a5fae96c85, type: 3}
+  - id: 50000025
+    displayName: "\uC774\uC18D 5\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 70
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 1
+    icon: {fileID: -8744168174191781655, guid: 3da68bfdaf384904381a83a5fae96c85, type: 3}
+  - id: 50000026
+    displayName: "\uCE58\uD655 1\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 5
+    critDamage: 0
+    spawnWeight: 4
+    icon: {fileID: 5494694198514985034, guid: 7944f3e605140774989a2676d7aab207, type: 3}
+  - id: 50000027
+    displayName: "\uCE58\uD655 2\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 10
+    critDamage: 0
+    spawnWeight: 2
+    icon: {fileID: 5494694198514985034, guid: 7944f3e605140774989a2676d7aab207, type: 3}
+  - id: 50000028
+    displayName: "\uCE58\uD655 3\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 15
+    critDamage: 0
+    spawnWeight: 1
+    icon: {fileID: 5494694198514985034, guid: 7944f3e605140774989a2676d7aab207, type: 3}
+  - id: 50000029
+    displayName: "\uCE58\uD53C 1\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 5
+    spawnWeight: 4
+    icon: {fileID: -9047006209447983689, guid: 81a8b7adc6fdbf44d9f0e35651ab8e57, type: 3}
+  - id: 50000030
+    displayName: "\uCE58\uD53C 2\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 10
+    spawnWeight: 2
+    icon: {fileID: -9047006209447983689, guid: 81a8b7adc6fdbf44d9f0e35651ab8e57, type: 3}
+  - id: 50000031
+    displayName: "\uCE58\uD53C 3\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 20
+    spawnWeight: 2
+    icon: {fileID: -9047006209447983689, guid: 81a8b7adc6fdbf44d9f0e35651ab8e57, type: 3}
+  - id: 50000032
+    displayName: "\uCE58\uD53C 4\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 50
+    spawnWeight: 1
+    icon: {fileID: -9047006209447983689, guid: 81a8b7adc6fdbf44d9f0e35651ab8e57, type: 3}
+  - id: 50000033
+    displayName: "\uCE58\uD53C 5\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 100
+    spawnWeight: 1
+    icon: {fileID: -9047006209447983689, guid: 81a8b7adc6fdbf44d9f0e35651ab8e57, type: 3}
+  - id: 50000034
+    displayName: "- \uACF5 + \uACF5\uC18D 1\uBC88"
+    hp: 0
+    atkDamage: -20
+    atkSpeed: 50
+    moveSpeed: 0
+    critChance: 0
+    critDamage: 0
+    spawnWeight: 2
+    icon: {fileID: 8246457172663484082, guid: 26aaccd49b50cd84fb017e109db7f4d7, type: 3}
+  - id: 50000035
+    displayName: "- \uCE58\uD53C + \uCE58\uD655 1\uBC88"
+    hp: 0
+    atkDamage: 0
+    atkSpeed: 0
+    moveSpeed: 0
+    critChance: 20
+    critDamage: -20
+    spawnWeight: 1
+    icon: {fileID: 5494694198514985034, guid: 7944f3e605140774989a2676d7aab207, type: 3}
