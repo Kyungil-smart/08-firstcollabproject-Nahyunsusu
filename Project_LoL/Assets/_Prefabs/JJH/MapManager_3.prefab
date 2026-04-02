@@ -90,6 +90,7 @@ MonoBehaviour:
   _roomSpacing: 30
   _shopInteractablePrefab: {fileID: 4645050035123953515, guid: 224e720bde4721e4e8aa4ceca653d226, type: 3}
   _upgradeInteractablePrefab: {fileID: 926007559099983755, guid: a64af2be3ddd7064bb10c686ffd9f22d, type: 3}
+  _miniMapUI: {fileID: 4191774999497175751, guid: b0a5c157c1c3789429a1a4ba3978466a, type: 3}
 --- !u!114 &499399639381565478
 MonoBehaviour:
   m_ObjectHideFlags: 0

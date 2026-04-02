@@ -6,6 +6,7 @@ public class RoomTrigger : MonoBehaviour
     public RoomNode room;
     public MapManager mapManager;
     public DoorController doorController;
+    public MiniMapUI miniMapUI;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -25,6 +26,8 @@ public class RoomTrigger : MonoBehaviour
         {
             StartCoroutine(CloseDoorsDelayed());
         }
+        
+        miniMapUI?.UpdateMiniMap(room);
     }
 
     private IEnumerator CloseDoorsDelayed()
