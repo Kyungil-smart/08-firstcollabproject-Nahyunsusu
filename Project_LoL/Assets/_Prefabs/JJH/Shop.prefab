@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3202959474362769806}
   - component: {fileID: 1762738466865153902}
   - component: {fileID: 6969787977924933045}
+  - component: {fileID: -6396011468525573368}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 0.9844841, b: 0, a: 1}
@@ -153,3 +154,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopInteractable
   _shopUI: {fileID: 4007611934414592414, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
   _interactUI: {fileID: 4824588890670416539, guid: 2c9a4a7241b3b054392339edc8c126d0, type: 3}
+--- !u!114 &-6396011468525573368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4645050035123953515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864124a9fd39d5848b9b32035957ebbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PooledObject

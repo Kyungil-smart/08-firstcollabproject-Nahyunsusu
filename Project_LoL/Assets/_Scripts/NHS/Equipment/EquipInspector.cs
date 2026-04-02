@@ -8,6 +8,27 @@ public class EquipInspector : MonoBehaviour
 
     [SerializeField] private List<Image> images = new List<Image>(4);
 
+    private void OnEnable()
+    {
+        if (GameDataManager.instance != null)
+        {
+            _equipmentList = GameDataManager.instance.equipItemList;
+        }
+
+        if (_equipmentList != null)
+        {
+            _equipmentList.OnEquipChanged += RefreshUI;
+        }
+        RefreshUI();
+    }
+
+    private void OnDisable()
+    {
+        if (_equipmentList != null)
+        {
+            _equipmentList.OnEquipChanged -= RefreshUI;
+        }
+    }
 
     public void RefreshUI()
     {
@@ -27,5 +48,7 @@ public class EquipInspector : MonoBehaviour
             images[i].sprite = data.EquipIconSet.Get(data.CurrentUpgradeLevel);
             images[i].enabled = true;
         }
+
+        Debug.Log("장비 추가됨");
     }
 }
