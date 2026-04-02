@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4045925262474221548}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.70763, y: 2.71706, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -57,17 +57,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flame
       objectReference: {fileID: 0}
+    - target: {fileID: 2493375255857760867, guid: 11dbf2c9c92d5014982ddbe0edde470e, type: 3}
+      propertyPath: scalingMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2757911032942342386, guid: 11dbf2c9c92d5014982ddbe0edde470e, type: 3}
       propertyPath: m_RenderAlignment
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2998785573474179689, guid: 11dbf2c9c92d5014982ddbe0edde470e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.70763
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2998785573474179689, guid: 11dbf2c9c92d5014982ddbe0edde470e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.71706
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2998785573474179689, guid: 11dbf2c9c92d5014982ddbe0edde470e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -79,15 +83,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2998785573474179689, guid: 11dbf2c9c92d5014982ddbe0edde470e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2998785573474179689, guid: 11dbf2c9c92d5014982ddbe0edde470e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2998785573474179689, guid: 11dbf2c9c92d5014982ddbe0edde470e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2998785573474179689, guid: 11dbf2c9c92d5014982ddbe0edde470e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -9,7 +9,7 @@ public class EnemyPool : MonoBehaviour
     public class PoolConfig
     {
         public GameObject prefab;
-        public int spawnAmount = 3; 
+        public int spawnAmount = 3;
     }
 
     public List<PoolConfig> poolConfigs;

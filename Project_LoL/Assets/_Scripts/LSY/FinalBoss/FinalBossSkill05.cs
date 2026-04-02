@@ -7,10 +7,10 @@ public class FinalBossSkill05 : FinalBossSkillBase
     public GameObject projectilePrefab;
     public GameObject impactPrefab;
 
-    private const float _chaseDuration    = 2f;   
-    private const float _delayBeforeShoot = 0.5f; 
-    private const float _respawnDelay     = 0.2f; 
-    private const float _finalImpactDelay = 0.1f; 
+    private const float _chaseDuration    = 2f;
+    private const float _delayBeforeShoot = 0.5f;
+    private const float _respawnDelay     = 0.2f;
+    private const float _finalImpactDelay = 0.1f;
 
     protected override void OnExecute()
     {
@@ -19,10 +19,10 @@ public class FinalBossSkill05 : FinalBossSkillBase
 
     private IEnumerator SkillRoutine()
     {
-        Transform player    = _boss.playerTransform;
-        Vector2   bossPos   = _boss.transform.position;
-        float     speed     = skillData.monsterSkillProjectileSpeed; 
-        int       damage    = skillData.monsterSkillDamage;          
+        Transform player  = _boss.playerTransform;
+        Vector2   bossPos = _boss.transform.position;
+        float     speed   = skillData.monsterSkillProjectileSpeed;
+        int       damage  = skillData.monsterSkillDamage;
 
         Vector2 spawnPos    = player != null ? (Vector2)player.position : bossPos;
         GameObject projObj1 = SpawnProjectile(spawnPos);
@@ -32,20 +32,19 @@ public class FinalBossSkill05 : FinalBossSkillBase
         proj1?.StartChasing(player, speed, _chaseDuration, () => proj1Stopped = true);
 
         yield return new WaitUntil(() => proj1Stopped || projObj1 == null);
-
         yield return new WaitForSeconds(_delayBeforeShoot);
 
         Vector2 proj1Pos = projObj1 != null ? (Vector2)projObj1.transform.position : spawnPos;
 
-        GameObject impObj = SpawnImpact(bossPos, damage, skillData.monsterSkillImpactScaleX, skillData.monsterSkillImpactScaleY);
-        FinalBossImpact impact = impObj?.GetComponent<FinalBossImpact>();
+        GameObject impObj1 = SpawnImpact(bossPos, damage, skillData.monsterSkillImpactScaleX, skillData.monsterSkillImpactScaleY);
+        FinalBossImpact impact1 = impObj1?.GetComponent<FinalBossImpact>();
 
-        bool impactReached = false;
-        impact?.SetMoveToPosition(proj1Pos, speed, () => impactReached = true);
+        bool impactReached1 = false;
+        impact1?.SetMoveToPosition(proj1Pos, speed, () => impactReached1 = true);
 
-        yield return new WaitUntil(() => impactReached || impObj == null);
+        yield return new WaitUntil(() => impactReached1 || impObj1 == null);
 
-        impact?.StopMovement();
+        impact1?.StopMovement();
         if (projObj1 != null) Destroy(projObj1);
 
         yield return new WaitForSeconds(_respawnDelay);
@@ -58,18 +57,22 @@ public class FinalBossSkill05 : FinalBossSkillBase
         proj2?.StartChasing(player, speed, _chaseDuration, () => proj2Stopped = true);
 
         yield return new WaitUntil(() => proj2Stopped || projObj2 == null);
-
         yield return new WaitForSeconds(_delayBeforeShoot);
 
         Vector2 proj2Pos = projObj2 != null ? (Vector2)projObj2.transform.position : newSpawnPos;
 
-        bool impactReached2 = false;
-        impact?.SetMoveToPosition(proj2Pos, speed, () => impactReached2 = true);
+        if (impObj1 != null) Destroy(impObj1);
 
-        yield return new WaitUntil(() => impactReached2 || impObj == null);
+        GameObject impObj2 = SpawnImpact(proj1Pos, damage, skillData.monsterSkillImpactScaleX, skillData.monsterSkillImpactScaleY);
+        FinalBossImpact impact2 = impObj2?.GetComponent<FinalBossImpact>();
+
+        bool impactReached2 = false;
+        impact2?.SetMoveToPosition(proj2Pos, speed, () => impactReached2 = true);
+
+        yield return new WaitUntil(() => impactReached2 || impObj2 == null);
 
         if (projObj2 != null) Destroy(projObj2);
-        if (impObj   != null) Destroy(impObj, _finalImpactDelay);
+        if (impObj2  != null) Destroy(impObj2, _finalImpactDelay);
 
         yield return new WaitForSeconds(_finalImpactDelay);
 

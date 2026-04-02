@@ -4,9 +4,10 @@ using System.Collections;
 
 public class FinalBossImpact : MonoBehaviour
 {
-    private int _damage;
+    private int  _damage;
     private bool _passThrough;
-    private bool _isActive = true;
+    private bool _isActive  = true;
+    private bool _stopOnHit = false;
 
     private SpriteRenderer _spriteRenderer;
     private Collider2D _col;
@@ -133,6 +134,8 @@ public class FinalBossImpact : MonoBehaviour
 
     public void StopMovement() => StopAllCoroutines();
 
+    public void SetStopOnHit() => _stopOnHit = true;
+
     public void ForceDestroy()
     {
         _isActive = false;
@@ -161,7 +164,13 @@ public class FinalBossImpact : MonoBehaviour
             damageable.TakeDamage(_damage);
         }
 
-        if (!_passThrough)
+        if (_stopOnHit)
+        {
+            StopMovement();
+            _col.enabled = false;
+            onPlayerHit?.Invoke(transform.position);
+        }
+        else if (!_passThrough)
         {
             onPlayerHit?.Invoke(transform.position);
             DestroyWithEffect();

@@ -180,6 +180,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 650962224175914970, guid: a706cbdcc813fb64ca000dba3ac95e57, type: 3}
+      propertyPath: scalingMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 996562554068804939, guid: a706cbdcc813fb64ca000dba3ac95e57, type: 3}
       propertyPath: m_RenderAlignment
       value: 2

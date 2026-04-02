@@ -40,9 +40,6 @@ public class MonsterSkillDataSO : ScriptableObject
     [Tooltip("MonsterSkillImpactTime (데미지박스 이펙트 존재 시간)")]
     public float impactTime = 1f;
 
-    // ========================================================
-    // --- 아래부터는 기획서 데이터가 아닌, 클라이언트 구동용 설정 ---
-    // ========================================================
 
     [Header("내부 시스템 로직 (개발자 설정)")]
     public MonsterSkillType skillType;
