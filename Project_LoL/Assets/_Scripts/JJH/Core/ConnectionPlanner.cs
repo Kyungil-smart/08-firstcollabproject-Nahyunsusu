@@ -8,7 +8,7 @@ public class ConnectionPlanner : MonoBehaviour
     [SerializeField] private int _bendStepCount = 5;
     [SerializeField] private int _corridorWidthMin = 2;
     [SerializeField] private int _corridorWidthMax = 6;
-    [SerializeField] private int _bossCorridorWidth = 4;
+    [SerializeField] private int _bossCorridorWidth = 5;
  
     private HashSet<Vector2Int> _roomCells = new HashSet<Vector2Int>();
     private Dictionary<RoomNode, RectInt> _roomBounds = new Dictionary<RoomNode, RectInt>();
@@ -326,7 +326,7 @@ public class ConnectionPlanner : MonoBehaviour
         int cx = Mathf.Clamp(upperCx, lb.xMin, lb.xMax - 1);
 
         var wallLower = new Vector2Int(cx, lb.yMax);
-        var wallUpper = new Vector2Int(cx, ub.yMin - 1);
+        var wallUpper = new Vector2Int(cx, ub.yMin -1);
         
         Debug.Log($"[ConnectVertical] lower={lower.nodeId} lb={lb} upper={upper.nodeId} ub={ub} cx={cx} wallLower={wallLower} wallUpper={wallUpper}");
 

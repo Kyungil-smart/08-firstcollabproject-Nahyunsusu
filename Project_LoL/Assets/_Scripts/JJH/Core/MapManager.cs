@@ -68,6 +68,15 @@ public class MapManager : MonoBehaviour
                 {
                     _objectPool.Spawn(room.roomData.floorPrefab, _tileGenerator.TileRoot, Vector3.zero, Quaternion.identity);
                 }
+                else if (room.roomData.roomType == RoomType.Boss)
+                {
+                    Vector3 pos = new Vector3(
+                        room.gridOrigin.x + room.size.x * 0.5f,
+                        room.gridOrigin.y + room.size.y * 0.5f - 1.0f,
+                        0f
+                    );
+                    _objectPool.Spawn(room.roomData.floorPrefab, _tileGenerator.TileRoot, pos, Quaternion.identity);
+                }
                 else
                 {
                     Vector3 pos = new Vector3(
@@ -83,7 +92,7 @@ public class MapManager : MonoBehaviour
 
             if (room.roomData.roomType == RoomType.Combat)
                 PlaceRoomTrigger(room);
-            
+        
             if (room.roomData.roomType == RoomType.Repair)
                 PlaceRepairInteractables(room);
 

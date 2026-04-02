@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
   roomName: Stage1_Boss
   roomType: 3
-  fixedSize: {x: 52, y: 52}
+  fixedSize: {x: 51, y: 51}
   minSize: {x: 0, y: 0}
   maxSize: {x: 0, y: 0}
   floorPrefab: {fileID: 1821396690789507152, guid: fdeb07226e447f448910446f093089c3, type: 3}
   useFixedDoor: 0
   fixedDoorDirection: 1
-  fixedDoorLocalPosition: {x: 26, y: -1}
+  fixedDoorLocalPosition: {x: 25, y: -1}
