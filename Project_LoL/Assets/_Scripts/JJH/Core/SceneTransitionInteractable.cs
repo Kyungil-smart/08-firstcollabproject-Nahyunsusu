@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 
 public class SceneTransitionInteractable : MonoBehaviour
 {
-    [SerializeField] private int _targetStage;
     [SerializeField] private GameObject _interactUI;
 
     private bool _playerInRange;
@@ -11,7 +10,7 @@ public class SceneTransitionInteractable : MonoBehaviour
     private void Update()
     {
         if (_playerInRange && Keyboard.current.fKey.wasPressedThisFrame)
-            SceneLoader.LoadStage(_targetStage);
+            SceneLoader.LoadNext();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
