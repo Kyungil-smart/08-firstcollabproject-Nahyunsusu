@@ -3,23 +3,23 @@ using UnityEngine;
 
 public class BossDieState : BossStateBase
 {
-    private const float DEFAULT_DEATH_DURATION = 2.0f; 
+    private const float DEFAULT_DEATH_DURATION = 2.0f;
+    
+    public static event System.Action OnBossDied;
 
     public BossDieState(BossFSM fsm) : base(fsm) { }
 
     public override void Enter()
     {
         _fsm.rigid.linearVelocity = Vector2.zero;
-        
         _fsm.rigid.bodyType = RigidbodyType2D.Kinematic;
-
         _fsm.animator?.SetTrigger("4_Death");
         _fsm.animator?.SetBool("isDeath", true);
 
         if (RoomClearManager.Instance != null)
-        {
             RoomClearManager.Instance.OnEnemyDied(null, _fsm.data.goldReward, _fsm.data.expReward);
-        }
+
+        OnBossDied?.Invoke();
 
         _fsm.StartCoroutine(DieRoutine());
     }

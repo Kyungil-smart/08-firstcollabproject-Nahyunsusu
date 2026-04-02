@@ -4,12 +4,12 @@ public class BossRewardChest : MonoBehaviour
 {
     private void Awake()
     {
-        // BossDieState.OnBossDied += Activate;
+        BossDieState.OnBossDied += Activate;
     }
 
     private void OnDestroy()
     {
-        // BossDieState.OnBossDied -= Activate;
+        BossDieState.OnBossDied -= Activate;
     }
 
     private void Activate()
