@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SceneTransitionInteractable : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class SceneTransitionInteractable : MonoBehaviour
 
     private void Update()
     {
-        if (_playerInRange && Input.GetKeyDown(KeyCode.F))
+        if (_playerInRange && Keyboard.current.fKey.wasPressedThisFrame)
             SceneLoader.LoadStage(_targetStage);
     }
 

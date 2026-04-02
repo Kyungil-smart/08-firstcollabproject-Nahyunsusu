@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UpgradeInteractable : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class UpgradeInteractable : MonoBehaviour
 
     private void Update()
     {
-        if (_playerInRange && Input.GetKeyDown(KeyCode.F))
+        if (_playerInRange && Keyboard.current.fKey.wasPressedThisFrame)
         {
             if (_upgradeUI != null)
                 _upgradeUI.SetActive(true);
