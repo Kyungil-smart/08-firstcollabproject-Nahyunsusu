@@ -11,6 +11,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private int _roomSpacing = 30;
     [SerializeField] private GameObject _shopInteractablePrefab;
     [SerializeField] private GameObject _upgradeInteractablePrefab;
+    [SerializeField] private MiniMapUI _miniMapUI;
 
     private MapGraph _graph;
     private Dictionary<RoomNode, RoomRuntimeData> _runtimeDataMap = new Dictionary<RoomNode, RoomRuntimeData>();
@@ -38,6 +39,9 @@ public class MapManager : MonoBehaviour
 
         PlaceRooms();
         PlaceConnections(connections);
+        
+        if (_miniMapUI != null)
+            _miniMapUI.BuildMiniMap(_graph.allRooms);
     }
 
     public RoomRuntimeData GetRuntimeData(RoomNode room)
@@ -121,6 +125,7 @@ public class MapManager : MonoBehaviour
         rt.room = room;
         rt.mapManager = this;
         rt.doorController = _doorController;
+        rt.miniMapUI = _miniMapUI;
     }
     
     private void PlaceBossTrigger(RoomNode room)
@@ -143,6 +148,7 @@ public class MapManager : MonoBehaviour
         rt.room = room;
         rt.mapManager = this;
         rt.doorController = _doorController;
+        rt.miniMapUI = _miniMapUI;
     }
 
     private void PlaceConnections(List<ConnectionResult> connections)
