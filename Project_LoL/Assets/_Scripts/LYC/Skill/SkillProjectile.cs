@@ -111,9 +111,7 @@ namespace _Scripts.LYC.Skill
 				if (enemy is PlayerController) continue;
 				enemy.TakeDamage(_skillDamage);
 
-				var ps = Instantiate(_hitEffect, c.ClosestPoint(transform.position), c.transform.rotation);
-				ps.Play();
-				Destroy(ps.gameObject, ps.main.duration);
+				ParticlePool.Play(_hitEffect, c.ClosestPoint(transform.position), c.transform.rotation);
 			}
 
 			// Particle
