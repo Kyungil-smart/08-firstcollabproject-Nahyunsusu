@@ -25,9 +25,9 @@ namespace _Scripts.LYC.Skill
 			var upperProj = Instantiate(ProjectilePrefab);
 			var centerProj = Instantiate(ProjectilePrefab);
 			var lowerProj = Instantiate(ProjectilePrefab);
-			upperProj.Init(upperDir, position + upperDir, executor, particle, hitEffect);
-			centerProj.Init(dir, position + dir, executor, particle, hitEffect);
-			lowerProj.Init(lowerDir, position + lowerDir, executor, particle, hitEffect);
+			upperProj.Init(upperDir, position + upperDir, executor, particle, null, hitEffect);
+			centerProj.Init(dir, position + dir, executor, particle, null, hitEffect);
+			lowerProj.Init(lowerDir, position + lowerDir, executor, particle, null, hitEffect);
 		}
 	}
 }
