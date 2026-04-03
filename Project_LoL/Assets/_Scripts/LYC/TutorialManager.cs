@@ -33,6 +33,7 @@ public class TutorialManager : MonoBehaviour
 	[Header("References")] [SerializeField] private PlayerController player;
 	[SerializeField] private TextMeshProUGUI questText;
 	[SerializeField] private TextMeshProUGUI questProgressText;
+	[SerializeField] public TextMeshProUGUI questStepText;
 	[SerializeField] private PlayerInputHandler inputHandler;
 	[SerializeField] private PlayerSkillHandler skillHandler;
 	[SerializeField] private DummyEnemy dummyEnemy1;
@@ -182,6 +183,7 @@ public class TutorialManager : MonoBehaviour
 
 		questText.text = quests[index].questName;
 		questProgressText.text = $"({0}/{quests[index].requiredCount})";
+		questStepText.text = $"STEP {index + 1}/{quests.Count}";
 
 		if (IsCurrentType(TutorialQuestType.UseSkillSlot))
 		{

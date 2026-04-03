@@ -10,6 +10,7 @@ public class SkillData
 	public int Damage;
 	public int DamageRangeX;
 	public int DamageRangeY;
+	public float ProjectileScale;
 	public float ProjectileSpeed;
 	public int Range;
 	public float Delay;

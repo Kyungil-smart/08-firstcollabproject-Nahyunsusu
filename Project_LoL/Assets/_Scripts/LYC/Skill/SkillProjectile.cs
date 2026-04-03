@@ -39,19 +39,25 @@ namespace _Scripts.LYC.Skill
 			_explosionY = skillData.DamageRangeY;
 
 			// Damage
-			_skillDamage = skillData.Damage + playerData.AtkDamage;
-			if (Random.Range(0, 100) < playerData.CritRate)
-			{
-				_skillDamage *= (int)(playerData.CritDamage / 100.0f);
-			}
+			_skillDamage = SkillDamageCalculator.Calculate(skillData, playerData);
 
 			// Root
 			transform.right = _direction;
 			transform.position = _startPosition;
 
+			// Collider
+			float colliderScale = skillData.ProjectileScale;
+			if (TryGetComponent(out CapsuleCollider2D cap))
+				cap.size = new Vector2(colliderScale, colliderScale * 0.5f);
+			else if (TryGetComponent(out CircleCollider2D cc))
+				cc.radius = colliderScale * 0.5f;
+			else if (TryGetComponent(out BoxCollider2D bc))
+				bc.size = Vector2.one * colliderScale;
+
 			// Projectile Particle
 			_projectile = Instantiate(projectileParticle, transform);
 			_projectile.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+			_projectile.transform.localScale = Vector3.one * colliderScale;
 			ParticleSystem.MainModule main = _projectile.main;
 			float remainTime = _range / _speed + 0.2f; // 자연스러운 스킬 표현을 위한 오프셋
 			main.startLifetime = remainTime;
@@ -62,9 +68,9 @@ namespace _Scripts.LYC.Skill
 			if (explosionParticle != null)
 			{
 				_explosion = Instantiate(explosionParticle, transform);
-				float scale = Mathf.Max(_explosionX, _explosionY);
+				float particleScale = Mathf.Max(_explosionX, _explosionY);
 				_explosion.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-				_explosion.transform.localScale = Vector3.one * scale;
+				_explosion.transform.localScale = Vector3.one * particleScale;
 			}
 		}
 
@@ -105,9 +111,7 @@ namespace _Scripts.LYC.Skill
 				if (enemy is PlayerController) continue;
 				enemy.TakeDamage(_skillDamage);
 
-				var ps = Instantiate(_hitEffect, c.ClosestPoint(transform.position), c.transform.rotation);
-				ps.Play();
-				Destroy(ps.gameObject, ps.main.duration);
+				ParticlePool.Play(_hitEffect, c.ClosestPoint(transform.position), c.transform.rotation);
 			}
 
 			// Particle

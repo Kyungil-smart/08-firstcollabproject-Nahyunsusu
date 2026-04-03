@@ -1,4 +1,5 @@
 using System;
+using _Scripts.LYC.Data;
 using UnityEngine;
 
 namespace _Scripts.LYC.Skill
@@ -108,7 +109,7 @@ namespace _Scripts.LYC.Skill
 			ReloadFinished?.Invoke();
 		}
 
-		public static int Roll(int min = 1, int max = 6)
+		public static int Roll(int min = DiceConst.MIN, int max = DiceConst.MAX)
 			=> UnityEngine.Random.Range(min, max + 1);
 	}
 }

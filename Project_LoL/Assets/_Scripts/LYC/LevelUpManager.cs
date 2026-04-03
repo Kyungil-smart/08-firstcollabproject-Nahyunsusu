@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using _Scripts.LYC.Data;
+using _Scripts.LYC.Skill;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -45,7 +47,7 @@ public class LevelUpManager : MonoBehaviour
 
 	private void HandleLevelUp()
 	{
-		int dice = Random.Range(1, 7);
+		int dice = SkillExecutor.Roll();
 		int selectCount = dice switch
 		{
 			1 or 2 => 1,
@@ -72,7 +74,7 @@ public class LevelUpManager : MonoBehaviour
 			LevelUpChoiceEntry entry = choices[i];
 			LevelUpPanel panel = panels[i];
 
-			panel.diceImage.sprite = diceImages[Mathf.Clamp(entry.spawnWeight, 1, 6) - 1];
+			panel.diceImage.sprite = diceImages[Mathf.Clamp(entry.spawnWeight, DiceConst.MIN, DiceConst.MAX) - 1];
 			panel.titleText.text = entry.displayName;
 			panel.statImage.sprite = entry.icon;
 			panel.descriptionText.text = entry.BuildDescription();
