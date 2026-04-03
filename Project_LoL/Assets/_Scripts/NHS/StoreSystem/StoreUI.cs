@@ -103,8 +103,15 @@ public class StoreUI : MonoBehaviour
 
     public void RefreshSkillUI()
     {
-        if (_haveSkillList == null) { _haveSkillList = new List<SkillDataSO>(); }
-        else { _haveSkillList.Clear(); }
+        if (_haveSkillList == null) 
+        { 
+            _haveSkillList = new List<SkillDataSO>(); 
+        }
+
+        else 
+        { 
+            _haveSkillList.Clear(); 
+        }
 
         for (int i = 0; i < _skillHandler.Skills.Length; i++)
         {
@@ -119,6 +126,17 @@ public class StoreUI : MonoBehaviour
                 {
                     _skillButtonList[i].gameObject.SetActive(true);
                     _skillButtonList[i].image.sprite = currentSO.Get(1).SkillImage;
+
+                    var tooltipData = _skillButtonList[i].GetComponent<SkillTooltipData>();
+
+                    if (tooltipData == null) 
+                        tooltipData = _skillButtonList[i].gameObject.AddComponent<SkillTooltipData>();
+
+                    tooltipData.Setup(currentSO);
+
+                    var trigger = _skillButtonList[i].GetComponent<TooltipTrigger>();
+                    if (trigger == null) 
+                        trigger = _skillButtonList[i].gameObject.AddComponent<TooltipTrigger>();
                 }
                 Debug.Log($"{i}번 슬롯 스킬 세팅됨: {currentSO.name}");
             }

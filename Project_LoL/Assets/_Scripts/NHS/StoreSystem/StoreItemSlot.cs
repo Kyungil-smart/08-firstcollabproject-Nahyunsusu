@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StoreItemSlot : MonoBehaviour
+public class StoreItemSlot : TooltipComponent
 {
     [SerializeField] private Button _imageButton;
 
@@ -22,9 +22,9 @@ public class StoreItemSlot : MonoBehaviour
 
     [SerializeField] private Sprite _healIcon;
 
-    private void OnMouseEnter()
+    public override string GetTooltipText()
     {
-        Debug.Log("마우스가 버튼 영역에 들어옴");
+        return $"아이템: {_descriptionText.text}\n가격: {_priceText.text}G";
     }
 
     public void SetItem(EquipmentData_SO data)
@@ -191,4 +191,6 @@ public class StoreItemSlot : MonoBehaviour
             }
         });
     }
+
+    
 }
