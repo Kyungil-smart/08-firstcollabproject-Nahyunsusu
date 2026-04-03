@@ -7,10 +7,12 @@ public class EquipInspector : MonoBehaviour
 {
     [SerializeField] private EquipmentList _equipmentList;
 
-    [SerializeField] private List<Button> images = new List<Button>(4);
+    [SerializeField] private List<Image> images = new List<Image>(4);
 
     public void OnEnable()
     {
+        if (GameDataManager.instance == null) return;
+
         if (_equipmentList != null)
         {
             _equipmentList.OnEquipChanged += RefreshUI;
@@ -41,7 +43,7 @@ public class EquipInspector : MonoBehaviour
 
             var data = _equipmentList.MyEquips[i];
 
-            images[i].image.sprite = data.EquipIconSet.Get(data.CurrentUpgradeLevel);
+            images[i].sprite = data.EquipIconSet.Get(data.CurrentUpgradeLevel);
             images[i].enabled = true;
         }
     }
