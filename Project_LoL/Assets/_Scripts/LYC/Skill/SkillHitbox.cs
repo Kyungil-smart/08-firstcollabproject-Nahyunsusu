@@ -22,15 +22,10 @@ namespace _Scripts.LYC.Skill
 			PlayerData playerData = executor.Controller.Data;
 			_hitEffect = hitEffect;
 
-			_damage = skillData.Damage + playerData.AtkDamage;
 			_duration = duration;
 
 			// Damage
-			_damage = skillData.Damage + playerData.AtkDamage;
-			if (Random.Range(0, 100) < playerData.CritRate)
-			{
-				_damage *= (int)(playerData.CritDamage / 100.0f);
-			}
+			_damage = SkillDamageCalculator.Calculate(skillData, playerData);
 
 			// Root
 			transform.right = direction;

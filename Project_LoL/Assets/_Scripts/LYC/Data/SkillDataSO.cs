@@ -53,6 +53,7 @@ public abstract class SkillDataSO : ScriptableObject
 			Damage = damage,
 			DamageRangeX = damageRangeX,
 			DamageRangeY = damageRangeY,
+			ProjectileScale = projectileScale,
 			ProjectileSpeed = projectileSpeed,
 			Range = range,
 			Delay = delay,
@@ -74,6 +75,7 @@ public abstract class SkillDataSO : ScriptableObject
 	[SerializeField] protected int damage;
 	[SerializeField] protected int damageRangeX;
 	[SerializeField] protected int damageRangeY;
+	[SerializeField] protected float projectileScale = 1f;
 	[SerializeField] protected float projectileSpeed;
 	[SerializeField] protected int range;
 	[SerializeField] protected float delay;
@@ -124,7 +126,7 @@ public abstract class SkillDataSO : ScriptableObject
 						data.MaxUseCount += (int)effect.amount;
 						break;
 					case SkillBonusType.Cooldown:
-						data.Delay += effect.amount;
+						data.Cooldown += (int)effect.amount;
 						break;
 					default:
 						throw new System.ArgumentOutOfRangeException();

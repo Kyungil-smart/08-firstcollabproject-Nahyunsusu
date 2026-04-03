@@ -31,25 +31,25 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	public float Health
 	{
 		get => Data.CurrentHp;
-		set => Data.SetHp(value);
+		set { Data.SetHp(value); HealthChanged?.Invoke(); }
 	}
 
 	public int Level
 	{
 		get => Data.CurrentLevel;
-		set => Data.SetLevel(value);
+		set { Data.SetLevel(value); LevelChanged?.Invoke(); }
 	}
 
 	public int Gold
 	{
 		get => Data.CurrentGold;
-		set => Data.SetGold(value);
+		set { Data.SetGold(value); GoldChanged?.Invoke(); }
 	}
 
 	public int Exp
 	{
 		get => Data.CurrentExp;
-		set => Data.SetExp(value);
+		set { Data.SetExp(value); ExpChanged?.Invoke(); }
 	}
 
 	public PlayerData Data { get; private set; }
@@ -61,6 +61,12 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 
 	/// <summary>장비 변경 시 발행. (슬롯 인덱스, 장착된 장비 — null이면 해제)</summary>
 	public event Action<int, EquipmentData> EquipmentChanged;
+
+	public event Action HealthChanged;
+	public event Action ExpChanged;
+	public event Action LevelChanged;
+	public event Action StatsChanged;
+	public event Action GoldChanged;
 
 	/// <summary>장비 % 보정 이전의 순수 스탯. 레벨업 보너스까지 포함.</summary>
 	private PlayerData _baseData;
@@ -161,6 +167,7 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 		Data.MoveSpeed  = _baseData.MoveSpeed  * (1f + movSpdPct   / 100f);
 		Data.CritRate   = _baseData.CritRate   * (1f + critRatePct / 100f);
 		Data.CritDamage = Mathf.RoundToInt(_baseData.CritDamage * (1f + critDmgPct  / 100f));
+		StatsChanged?.Invoke();
 	}
 
 	#endregion
