@@ -97,6 +97,7 @@ public class LevelUpManager : MonoBehaviour
 
 		SetChildrenActive(false);
 		Time.timeScale = 1f;
+		_player.KnockBack();
 	}
 
 	private void ApplyStat(LevelUpChoiceEntry entry)

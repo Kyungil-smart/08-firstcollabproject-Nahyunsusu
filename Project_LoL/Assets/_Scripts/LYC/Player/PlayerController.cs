@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	public void KnockBack()
 	{
 		var results = new List<Collider2D>();
-		Physics2D.OverlapCircle(transform.position, 1.5f, ContactFilter2D.noFilter, results);
+		Physics2D.OverlapCircle(transform.position, 2f, ContactFilter2D.noFilter, results);
 		foreach (Collider2D col in results)
 		{
 			if (col.gameObject == gameObject) continue;

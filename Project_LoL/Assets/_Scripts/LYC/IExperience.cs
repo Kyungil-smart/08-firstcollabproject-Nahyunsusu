@@ -10,4 +10,7 @@
 	/// </summary>
 	/// <param name="exp">경험치 양</param>
 	public void AddExperience(int exp);
+
+
+	public void KnockBack();
 }
