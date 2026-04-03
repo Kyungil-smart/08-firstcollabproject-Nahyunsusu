@@ -4,20 +4,13 @@ using System.Collections;
 
 public class FinalBossProjectile : MonoBehaviour
 {
-    private SpriteRenderer _spriteRenderer;
-    private Coroutine      _chaseCoroutine;
+    private Coroutine _chaseCoroutine;
 
     public Vector2 position => transform.position;
 
-    private void Awake()
-    {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    public void Initialize(float scaleX, float scaleY, Sprite sprite = null)
+    public void Initialize(float scaleX, float scaleY)
     {
         transform.localScale = new Vector3(scaleX, scaleY, 1f);
-        if (sprite != null) _spriteRenderer.sprite = sprite;
     }
 
     public void StartChasing(Transform target, float speed, float chaseDuration, Action onStopped)

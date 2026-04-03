@@ -9,7 +9,6 @@ public class FinalBossImpact : MonoBehaviour
     private bool _isActive  = true;
     private bool _stopOnHit = false;
 
-    private SpriteRenderer _spriteRenderer;
     private Collider2D _col;
 
     public Action<Vector2> onDestroyEffect;
@@ -19,17 +18,15 @@ public class FinalBossImpact : MonoBehaviour
 
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         _col = GetComponent<Collider2D>();
-        _col.isTrigger = true;
+        if (_col != null) _col.isTrigger = true;
     }
 
-    public void Initialize(int damage, float scaleX, float scaleY, bool passThrough = false, Sprite sprite = null)
+    public void Initialize(int damage, float scaleX, float scaleY, bool passThrough = false)
     {
         _damage = damage;
         _passThrough = passThrough;
         transform.localScale = new Vector3(scaleX, scaleY, 1f);
-        if (sprite != null) _spriteRenderer.sprite = sprite;
     }
 
     public void SetStatic(float lifetime)
@@ -73,15 +70,12 @@ public class FinalBossImpact : MonoBehaviour
         }
     }
 
-    public void SetDirectionalThenChase(Vector2 startDir, float speed, float directionalDuration, Transform chaseTarget,
-        float chaseDuration)
+    public void SetDirectionalThenChase(Vector2 startDir, float speed, float directionalDuration, Transform chaseTarget, float chaseDuration)
     {
-        StartCoroutine(DirectionalThenChaseRoutine(startDir.normalized, speed, directionalDuration, chaseTarget,
-            chaseDuration));
+        StartCoroutine(DirectionalThenChaseRoutine(startDir.normalized, speed, directionalDuration, chaseTarget, chaseDuration));
     }
 
-    private IEnumerator DirectionalThenChaseRoutine(Vector2 dir, float speed, float directionalDuration,
-        Transform chaseTarget, float chaseDuration)
+    private IEnumerator DirectionalThenChaseRoutine(Vector2 dir, float speed, float directionalDuration, Transform chaseTarget, float chaseDuration)
     {
         float elapsed = 0f;
         while (_isActive && elapsed < directionalDuration)
@@ -167,7 +161,7 @@ public class FinalBossImpact : MonoBehaviour
         if (_stopOnHit)
         {
             StopMovement();
-            _col.enabled = false;
+            if (_col != null) _col.enabled = false;
             onPlayerHit?.Invoke(transform.position);
         }
         else if (!_passThrough)
