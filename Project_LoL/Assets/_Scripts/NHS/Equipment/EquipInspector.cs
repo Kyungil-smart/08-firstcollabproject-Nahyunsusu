@@ -7,7 +7,7 @@ public class EquipInspector : MonoBehaviour
 {
     [SerializeField] private EquipmentList _equipmentList;
 
-    [SerializeField] private List<Image> images = new List<Image>(4);
+    [SerializeField] private List<Button> images = new List<Button>(4);
 
     public void OnEnable()
     {
@@ -41,7 +41,7 @@ public class EquipInspector : MonoBehaviour
 
             var data = _equipmentList.MyEquips[i];
 
-            images[i].sprite = data.EquipIconSet.Get(data.CurrentUpgradeLevel);
+            images[i].image.sprite = data.EquipIconSet.Get(data.CurrentUpgradeLevel);
             images[i].enabled = true;
         }
     }
