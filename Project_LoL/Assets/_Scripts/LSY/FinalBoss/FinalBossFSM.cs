@@ -11,7 +11,7 @@ public enum FinalBossState
 
 public class FinalBossFSM : MonoBehaviour, Damageable
 {
-    [Header("데이터 (ScriptableObject 연결)")]
+    [Header("데이터")]
     public FinalBossData bossData;
 
     [Header("애니메이터")]
@@ -22,10 +22,9 @@ public class FinalBossFSM : MonoBehaviour, Damageable
     [Tooltip("스킬 발동 직후 다음 스킬까지의 대기 시간")]
     public float skillDelayTime = 15f;
 
-    [Header("방 범위")]
-    public Vector2 roomCenter;
-    public Vector2 roomSize      = new Vector2(70f, 70f);
-    public float   bossBlockRange = 4f;   
+    [Header("스폰/위치 설정")]
+    [Tooltip("보스 주변에 스킬이 생성되지 않는 안전 거리")]
+    public float bossBlockRange = 4f;
 
     private int  _currentHp;
     private bool _phase50;
@@ -65,7 +64,6 @@ public class FinalBossFSM : MonoBehaviour, Damageable
         }
         else
         {
-            Debug.LogWarning("FinalBossData가 인스펙터에 할당되지 않았습니다! 임시 체력 3000을 부여합니다.");
             _currentHp = 3000;
         }
 
@@ -82,11 +80,17 @@ public class FinalBossFSM : MonoBehaviour, Damageable
     {
         if (_currentState == FinalBossState.Idle && _playerTransform != null)
         {
-            float dist = Vector2.Distance(transform.position, _playerTransform.position);
+            Vector2 toPlayer = (Vector2)_playerTransform.position - (Vector2)transform.position;
+            float dist = toPlayer.magnitude;
             
             if (dist <= attackRange)
             {
-                StartBattle();
+                Vector2 dirToPlayer = toPlayer.normalized;
+                
+                if (Vector2.Dot(Vector2.down, dirToPlayer) >= 0f)
+                {
+                    StartBattle();
+                }
             }
         }
     }
@@ -192,32 +196,23 @@ public class FinalBossFSM : MonoBehaviour, Damageable
 
     private void OnDead()
     {
-        if (bossData != null)
-        {
-            Debug.Log($"최종 보스 처치! 골드: {bossData.monsterGiveGold}, 경험치: {bossData.monsterGiveExp}");
-        }
-
         Debug.Log("클리어!");
-    }
-
-    public void SetRoomBounds(Vector2 center, Vector2 size)
-    {
-        roomCenter = center;
-        roomSize   = size;
     }
 
     public Vector2 GetRandomRoomPosition()
     {
         Vector2 pos;
         int maxTries = 100;
-        float halfW = roomSize.x * 0.5f;
-        float halfH = roomSize.y * 0.5f;
-
+        
         do
         {
-            float x = Random.Range(roomCenter.x - halfW, roomCenter.x + halfW);
-            float y = Random.Range(roomCenter.y - halfH, roomCenter.y + halfH);
-            pos = new Vector2(x, y);
+            float angle = Random.Range(180f, 360f) * Mathf.Deg2Rad;
+            float radius = Random.Range(0f, attackRange);
+
+            float x = Mathf.Cos(angle) * radius;
+            float y = Mathf.Sin(angle) * radius;
+
+            pos = (Vector2)transform.position + new Vector2(x, y);
             maxTries--;
         }
         while (IsInBossBlockZone(pos) && maxTries > 0);
@@ -236,8 +231,17 @@ public class FinalBossFSM : MonoBehaviour, Damageable
     private void OnDrawGizmosSelected()
     {
         if (bossData == null) return;
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, bossData.monsterAttackRange);
+
+        Vector2 pos = transform.position;
+        float range = bossData.monsterAttackRange;
+
+        Vector3 startDir = Quaternion.Euler(0, 0, -90) * Vector2.down;
+
+        UnityEditor.Handles.color = new Color(1f, 0f, 0f, 0.15f);
+        UnityEditor.Handles.DrawSolidArc(pos, Vector3.forward, startDir, 180f, range);
+
+        UnityEditor.Handles.color = Color.red;
+        UnityEditor.Handles.DrawWireArc(pos, Vector3.forward, startDir, 180f, range);
     }
 #endif
 }

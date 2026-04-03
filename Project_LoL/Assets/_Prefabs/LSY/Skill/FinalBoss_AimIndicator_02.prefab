@@ -67,11 +67,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2221870518383405288, guid: 91871ddbbf043d44bb889012483dc0fe, type: 3}
       propertyPath: moveWithTransform
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2221870518383405289, guid: 91871ddbbf043d44bb889012483dc0fe, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2221870518383405289, guid: 91871ddbbf043d44bb889012483dc0fe, type: 3}
       propertyPath: m_LocalScale.y
