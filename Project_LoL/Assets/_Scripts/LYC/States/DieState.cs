@@ -20,6 +20,7 @@ namespace _Scripts.LYC.States
 
 		public override void OnDied()
 		{
+
 		}
 	}
 }
