@@ -6,7 +6,10 @@ public class MiniMapUI : MonoBehaviour
 {
     [SerializeField] private RectTransform _mapContainer;
     [SerializeField] private GameObject _roomIconPrefab;
-    [SerializeField] private float _scale = 2f;
+    [SerializeField] private float _positionScale = 0.5f;
+    [SerializeField] private float _iconSize = 8f;
+    
+    [SerializeField] private float _panelBottomMargin = 20f;
 
     [SerializeField] private Color _colorUnvisited = new Color(0.3f, 0.3f, 0.3f, 1f);
     [SerializeField] private Color _colorInProgress = new Color(1f, 0.9f, 0f, 1f);
@@ -24,29 +27,45 @@ public class MiniMapUI : MonoBehaviour
 
     public void BuildMiniMap(List<RoomNode> rooms)
     {
+        if (_mapContainer == null || _roomIconPrefab == null) return;
+
         foreach (Transform child in _mapContainer)
             Destroy(child.gameObject);
         _roomIcons.Clear();
 
-        Vector2 offset = GetOffset(rooms);
+        RoomNode startRoom = null;
+        foreach (var room in rooms)
+        {
+            if (room.roomData.roomType == RoomType.Start)
+            {
+                startRoom = room;
+                break;
+            }
+        }
+
+        Vector2 startCenter = startRoom != null
+            ? new Vector2(startRoom.gridOrigin.x + startRoom.size.x * 0.5f, startRoom.gridOrigin.y + startRoom.size.y * 0.5f)
+            : Vector2.zero;
 
         foreach (var room in rooms)
         {
-            if (room.roomData.roomType == RoomType.Start) continue;
+            GameObject icon = Instantiate(_roomIconPrefab, _mapContainer, false);
+            if (icon == null) continue;
 
-            GameObject icon = Instantiate(_roomIconPrefab, _mapContainer);
             RectTransform rt = icon.GetComponent<RectTransform>();
+            if (rt == null) continue;
 
             Vector2 center = new Vector2(
                 room.gridOrigin.x + room.size.x * 0.5f,
                 room.gridOrigin.y + room.size.y * 0.5f
             );
 
-            rt.anchoredPosition = (center + offset) * _scale;
-            rt.sizeDelta = new Vector2(
-                Mathf.Max(8f, room.size.x * _scale * 0.4f),
-                Mathf.Max(8f, room.size.y * _scale * 0.4f)
+            Vector2 relative = (center - startCenter) * _positionScale;
+            rt.anchoredPosition = new Vector2(
+                relative.x,
+                _panelBottomMargin + relative.y
             );
+            rt.sizeDelta = new Vector2(_iconSize, _iconSize);
 
             Image img = icon.GetComponent<Image>();
             img.color = _colorUnvisited;
