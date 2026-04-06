@@ -14,6 +14,9 @@ public class GameDataManager : MonoBehaviour
     public EquipmentList equipItemList => _equipItemList;
     [SerializeField] private EquipmentList _equipItemList;
 
+    public PlayerController playerController => _playerController;
+    [SerializeField] private PlayerController _playerController;
+
     private void Awake()
     {
         if (instance == null)
