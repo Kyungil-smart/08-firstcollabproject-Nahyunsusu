@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class PlayerUIController : MonoBehaviour
 
 	public Slider hpSlider;
 	public Slider expSlider;
+	public Slider dashSlider;
 
 	public Image equipment1;
 	public Image equipment2;
@@ -39,6 +41,7 @@ public class PlayerUIController : MonoBehaviour
 
 		hpSlider.maxValue = 1;
 		expSlider.maxValue = 1;
+		dashSlider.maxValue = 1;
 
 		_equipmentSlots = new[] { equipment1, equipment2, equipment3, equipment4 };
 		foreach (var slot in _equipmentSlots)
@@ -50,6 +53,26 @@ public class PlayerUIController : MonoBehaviour
 		_controller.LevelChanged += RefreshLevel;
 		_controller.StatsChanged += RefreshStats;
 		_controller.GoldChanged += RefreshGold;
+		_controller.dashed.AddListener(RefreshDash);
+	}
+
+	private void RefreshDash()
+	{
+		StartCoroutine(DashRoutine());
+	}
+
+	private IEnumerator DashRoutine()
+	{
+		dashSlider.value = 0;
+		float time = 0;
+		while (time < _controller.Data.DashCooldown)
+		{
+			time += Time.deltaTime;
+			dashSlider.value = time / _controller.Data.DashCooldown;
+			yield return null;
+		}
+
+		dashSlider.value = 1;
 	}
 
 	private void Start()
@@ -72,6 +95,7 @@ public class PlayerUIController : MonoBehaviour
 		_controller.LevelChanged -= RefreshLevel;
 		_controller.StatsChanged -= RefreshStats;
 		_controller.GoldChanged -= RefreshGold;
+		_controller.dashed.RemoveListener(RefreshDash);
 	}
 
 	private void OnEquipmentChanged(int slot, EquipmentData equipment)
