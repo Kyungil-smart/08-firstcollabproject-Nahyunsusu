@@ -185,8 +185,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 650962224175914970, guid: a706cbdcc813fb64ca000dba3ac95e57, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 650962224175914970, guid: a706cbdcc813fb64ca000dba3ac95e57, type: 3}
       propertyPath: InitialModule.startRotation.scalar
       value: -1.5707963
+      objectReference: {fileID: 0}
+    - target: {fileID: 650962224175914970, guid: a706cbdcc813fb64ca000dba3ac95e57, type: 3}
+      propertyPath: InitialModule.startLifetime.minMaxState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 650962224175914970, guid: a706cbdcc813fb64ca000dba3ac95e57, type: 3}
       propertyPath: InitialModule.randomizeRotationDirection
