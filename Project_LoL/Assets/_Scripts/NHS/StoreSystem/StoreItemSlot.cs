@@ -43,9 +43,17 @@ public class StoreItemSlot : TooltipComponent
         _imageButton.onClick.RemoveAllListeners();
         _imageButton.onClick.AddListener(() =>
         {
-            if (_playerController == null) return;
+            if (_playerController == null)
+            {
+                Debug.LogError("플레이어를 찾을 수 없습니다!");
+                return;
+            }
 
-            if (_playerController.Gold < _currentPrice) return;
+            //if (_playerController.Gold < _currentPrice)
+            //{
+            //    Debug.Log("골드가 부족합니다.");
+            //    return;
+            //}
 
             _playerController.Gold -= _currentPrice;
 
@@ -80,7 +88,17 @@ public class StoreItemSlot : TooltipComponent
 
     public void SetSkill(SkillDataSO skillDataSO, int diceValue = 1)
     {
-        if (skillDataSO == null) return;
+        if (_playerController == null)
+        {
+            Debug.LogError("플레이어를 찾을 수 없습니다!");
+            return;
+        }
+
+        if (_playerController.Gold < _currentPrice)
+        {
+            Debug.Log("골드가 부족합니다.");
+            return;
+        }
 
         SkillData data = skillDataSO.Get(diceValue);
 
