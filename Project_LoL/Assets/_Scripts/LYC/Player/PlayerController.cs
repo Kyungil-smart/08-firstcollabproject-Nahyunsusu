@@ -56,8 +56,7 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	public PlayerFSM FSM { get; private set; }
 
 	private PlayerDataSO _dataSO;
-
-	private readonly EquipmentData[] _equippedItems = new EquipmentData[4];
+	private EquipmentList _equipmentList;
 
 	/// <summary>장비 변경 시 발행. (슬롯 인덱스, 장착된 장비 — null이면 해제)</summary>
 	public event Action<int, EquipmentData> EquipmentChanged;
@@ -74,6 +73,9 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	private void Awake()
 	{
 		FSM = GetComponent<PlayerFSM>();
+		_equipmentList = GetComponent<EquipmentList>();
+		if (_equipmentList != null)
+			_equipmentList.OnEquipChanged += OnEquipmentListChanged;
 	}
 
 	private void Start()
@@ -87,6 +89,8 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	private void OnDestroy()
 	{
 		LevelUpManager.Instance?.UnregisterPlayer(this);
+		if (_equipmentList != null)
+			_equipmentList.OnEquipChanged -= OnEquipmentListChanged;
 	}
 
 	public void InitPlayer(PlayerDataSO dataSO = null)
@@ -113,20 +117,19 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	#region Equipment
 
 	/// <summary>
-	/// 지정 슬롯(0~3)에 장비를 장착합니다.
-	/// 슬롯에 이미 장비가 있으면 교체됩니다.
+	/// EquipmentList.OnEquipChanged 구독 핸들러.
+	/// 슬롯별 EquipmentChanged 이벤트를 발행하고 스탯을 재계산합니다.
 	/// </summary>
-	public void Equip(int slot, EquipmentData equipment)
+	private void OnEquipmentListChanged()
 	{
-		if (slot < 0 || slot >= _equippedItems.Length) return;
-
-		_equippedItems[slot] = equipment;
+		var equips = _equipmentList.MyEquips;
+		for (int i = 0; i < 4; i++)
+		{
+			var eq = i < equips.Count ? equips[i] : null;
+			EquipmentChanged?.Invoke(i, eq);
+		}
 		RecalculateStats();
-		EquipmentChanged?.Invoke(slot, equipment);
 	}
-
-	/// <summary>지정 슬롯의 장비를 해제합니다.</summary>
-	public void Unequip(int slot) => Equip(slot, null);
 
 	/// <summary>
 	/// 레벨업 선택지 스탯을 베이스에 합산하고 장비 보정을 재적용합니다.
@@ -144,21 +147,21 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	}
 
 	/// <summary>
-	/// 장착된 모든 장비의 % 합산을 베이스 스탯에 곱해 Data를 갱신합니다.
+	/// EquipmentList의 % 합산을 베이스 스탯에 곱해 Data를 갱신합니다.
 	/// </summary>
 	private void RecalculateStats()
 	{
 		float hpPct = 0, atkPct = 0, atkSpdPct = 0, movSpdPct = 0, critRatePct = 0, critDmgPct = 0;
 
-		foreach (var eq in _equippedItems)
+		if (_equipmentList != null)
 		{
-			if (eq == null) continue;
-			hpPct       += eq.EquipHP;
-			atkPct      += eq.EquipAttackDamage;
-			atkSpdPct   += eq.EquipAttackSpeed;
-			movSpdPct   += eq.EquipMoveSpeed;
-			critRatePct += eq.EquipCritChance;
-			critDmgPct  += eq.EquipCritDamage;
+			var total = _equipmentList.CalculateData();
+			hpPct       = total.HP;
+			atkPct      = total.AttackDamage;
+			atkSpdPct   = total.AttackSpeed;
+			movSpdPct   = total.MoveSpeed;
+			critRatePct = total.CritChance;
+			critDmgPct  = total.CritDamage;
 		}
 
 		Data.HP         = _baseData.HP        * (1f + hpPct       / 100f);
