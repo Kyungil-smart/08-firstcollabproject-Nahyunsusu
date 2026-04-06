@@ -3,6 +3,19 @@ using UnityEngine.InputSystem;
 
 public class SceneTransitionInteractable : MonoBehaviour
 {
+    public enum Destination
+    {
+        Next,
+        Tutorial,
+        Lobby,
+        Stage1,
+        Stage2,
+        Stage3,
+        FinalBoss,
+        Ending
+    }
+
+    [SerializeField] private Destination _destination = Destination.Next;
     [SerializeField] private GameObject _interactUI;
 
     private bool _playerInRange;
@@ -10,7 +23,22 @@ public class SceneTransitionInteractable : MonoBehaviour
     private void Update()
     {
         if (_playerInRange && Keyboard.current.fKey.wasPressedThisFrame)
-            SceneLoader.LoadNext();
+            Transit();
+    }
+
+    private void Transit()
+    {
+        switch (_destination)
+        {
+            case Destination.Next:      SceneLoader.LoadNext(); break;
+            case Destination.Tutorial:  SceneLoader.LoadTutorial(); break;
+            case Destination.Lobby:     SceneLoader.LoadLobby(); break;
+            case Destination.Stage1:    SceneLoader.LoadStage(1); break;
+            case Destination.Stage2:    SceneLoader.LoadStage(2); break;
+            case Destination.Stage3:    SceneLoader.LoadStage(3); break;
+            case Destination.FinalBoss: SceneLoader.LoadFinalBoss(); break;
+            case Destination.Ending:    SceneLoader.LoadEnding(); break;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
