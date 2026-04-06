@@ -2355,6 +2355,7 @@ MonoBehaviour:
   - {fileID: 373254898805300655}
   - {fileID: 563948425439821886}
   - {fileID: 7781361316377583524}
+  isSkill: 0
 --- !u!1 &7523152238447049125
 GameObject:
   m_ObjectHideFlags: 0
@@ -3173,6 +3174,38 @@ PrefabInstance:
     - target: {fileID: 284861815861970788, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
       propertyPath: m_Name
       value: TooltipSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 749066649008480163, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 749066649008480163, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 909909660741045690, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: cb57decab2203584f8162ffccee71769, type: 2}
+    - target: {fileID: 909909660741045690, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 909909660741045690, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 909909660741045690, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 909909660741045690, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8939910074952518872, guid: cb57decab2203584f8162ffccee71769, type: 2}
+    - target: {fileID: 909909660741045690, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
       objectReference: {fileID: 0}
     - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
       propertyPath: m_Pivot.x

@@ -6,8 +6,11 @@ using System;
 public class EquipInspector : MonoBehaviour
 {
     [SerializeField] private EquipmentList _equipmentList;
+    [SerializeField] private PlayerSkillHandler _skillList;
 
     [SerializeField] private List<Image> images = new List<Image>(4);
+
+    private bool _currentIsSkillMode = false;
 
     public void OnEnable()
     {
@@ -15,7 +18,7 @@ public class EquipInspector : MonoBehaviour
 
         if (_equipmentList != null)
         {
-            _equipmentList.OnEquipChanged += RefreshUI;
+            _equipmentList.OnEquipChanged += HandleEquipChanged;
         }
         RefreshUI();
     }
@@ -24,42 +27,59 @@ public class EquipInspector : MonoBehaviour
     {
         if (_equipmentList != null)
         {
-            _equipmentList.OnEquipChanged -= RefreshUI;
+            _equipmentList.OnEquipChanged -= HandleEquipChanged;
         }
     }
 
-    public void RefreshUI()
+    private void HandleEquipChanged(bool isSkill)
     {
-        // 1. 초기화
+        RefreshUI(isSkill);
+    }
+
+    public void RefreshUI(bool isSkillMode = false)
+    {
+        _currentIsSkillMode = isSkillMode;
+
         for (int i = 0; i < images.Count; i++)
         {
             images[i].enabled = false;
-
-            var trigger = images[i].GetComponent<TooltipTrigger>();
-            if (trigger != null) trigger.enabled = false;
         }
 
-        // 2. 장비 그리기
-        for (int i = 0; i < _equipmentList.CurrentCount; i++)
+        if (isSkillMode == false)
         {
-            if (i >= images.Count) break;
+            if (_equipmentList == null) return;
 
-            var data = _equipmentList.MyEquips[i];
+            for (int i = 0; i < _equipmentList.CurrentCount; i++)
+            {
+                if (i >= images.Count) break;
+                var data = _equipmentList.MyEquips[i];
+                if (data == null) continue;
 
-            images[i].sprite = data.EquipIconSet.Get(data.CurrentUpgradeLevel);
-            images[i].enabled = true;
+                images[i].sprite = data.EquipIconSet.Get(data.CurrentUpgradeLevel);
+                images[i].enabled = true;
+            }
+        }
+        else
+        {
+            Debug.Log("스킬을 그립니다");
+            if (_skillList == null) return;
 
-            var tooltipData = images[i].GetComponent<EquipTooltipData>();
-            if (tooltipData == null) 
-                tooltipData = images[i].gameObject.AddComponent<EquipTooltipData>();
+            // 2. 스킬 그리기
+            for (int i = 0; i < _skillList.Skills.Length; i++)
+            {
+                if (i >= images.Count) break;
 
-            tooltipData.Setup(data);
+                var skillExecutor = _skillList.Skills[i];
+                if (skillExecutor == null || skillExecutor.SkillDataSO == null)
+                {
+                    continue; 
+                }
 
-            var trigger = images[i].GetComponent<TooltipTrigger>();
-            if (trigger == null) 
-                trigger = images[i].gameObject.AddComponent<TooltipTrigger>();
+                SkillDataSO currentSO = skillExecutor.SkillDataSO;
 
-            trigger.enabled = true;
+                images[i].sprite = currentSO.Get(1).SkillImage;
+                images[i].enabled = true;
+            }
         }
     }
 }

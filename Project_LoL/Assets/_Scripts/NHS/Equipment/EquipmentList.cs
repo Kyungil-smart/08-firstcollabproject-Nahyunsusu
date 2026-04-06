@@ -9,7 +9,7 @@ public class EquipmentList : MonoBehaviour
     public List<EquipmentData> MyEquips => _playersEquip; // UI에 보여주기용
     [SerializeField] List<EquipmentData> _playersEquip = new List<EquipmentData>();
 
-    public Action OnEquipChanged;
+    public Action<bool> OnEquipChanged;
 
     public int CurrentCount => _playersEquip.Count; // 현재 장비 개수 확인용
 
@@ -35,7 +35,7 @@ public class EquipmentList : MonoBehaviour
             Debug.Log($"{index}번 슬롯 장비를 {so.EquipName_KO}(으)로 교체 완료");
         }
 
-        OnEquipChanged?.Invoke();
+        OnEquipChanged?.Invoke(false);
     }
 
     public TotalStat CalculateData() // 플레이어가 가져갈 함수

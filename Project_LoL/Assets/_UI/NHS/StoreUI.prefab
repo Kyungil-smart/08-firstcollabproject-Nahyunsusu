@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -694,6 +694,8 @@ GameObject:
   - component: {fileID: 8752719047883496229}
   - component: {fileID: 5893329731431377622}
   - component: {fileID: 7258212872592054439}
+  - component: {fileID: 8495089284856300994}
+  - component: {fileID: 2573243095222401064}
   m_Layer: 5
   m_Name: EquipmentButton1
   m_TagString: Untagged
@@ -758,6 +760,30 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8495089284856300994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629344786347765032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7823294d9f7eda248820b8f1aed2c0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
+--- !u!114 &2573243095222401064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629344786347765032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7f3a6b19384714ba74c167c1c03c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipTooltipData
 --- !u!1 &1636529128387071337
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,7 +922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1203,6 +1229,8 @@ GameObject:
   - component: {fileID: 5531263962434444952}
   - component: {fileID: 9204689689343395635}
   - component: {fileID: 6512311199840375426}
+  - component: {fileID: 7608593541777127232}
+  - component: {fileID: 7764326666363464522}
   m_Layer: 5
   m_Name: EquipmentButton2
   m_TagString: Untagged
@@ -1333,6 +1361,30 @@ MonoBehaviour:
   equipInspector: {fileID: 3089693862991266583}
   _skillHandler: {fileID: 0}
   _healIcon: {fileID: 0}
+--- !u!114 &7608593541777127232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2182094245688519445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7823294d9f7eda248820b8f1aed2c0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
+--- !u!114 &7764326666363464522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2182094245688519445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7f3a6b19384714ba74c167c1c03c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipTooltipData
 --- !u!1 &2349119429812329035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,6 +2029,8 @@ GameObject:
   - component: {fileID: 171244472126286599}
   - component: {fileID: 7947940404255923903}
   - component: {fileID: 741002506638531975}
+  - component: {fileID: 1500955845366438990}
+  - component: {fileID: 8816838881431643525}
   m_Layer: 5
   m_Name: SkillButton1
   m_TagString: Untagged
@@ -2107,6 +2161,30 @@ MonoBehaviour:
   equipInspector: {fileID: 0}
   _skillHandler: {fileID: 0}
   _healIcon: {fileID: 0}
+--- !u!114 &1500955845366438990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3184598486709267513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7823294d9f7eda248820b8f1aed2c0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
+--- !u!114 &8816838881431643525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3184598486709267513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349d3caa0e400404898c3fbb105bb580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillTooltipData
 --- !u!1 &3289698994884070094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2572,7 +2650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2972,6 +3050,7 @@ RectTransform:
   - {fileID: 1709485879900214039}
   - {fileID: 818551595503926365}
   - {fileID: 1574947131847823255}
+  - {fileID: 6351538420842410611}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3003,6 +3082,7 @@ MonoBehaviour:
   - {fileID: 2638843226933307870}
   - {fileID: 9045068227966140161}
   _skillHandler: {fileID: 0}
+  _itemInspector: {fileID: 0}
 --- !u!223 &5075998352545069361
 Canvas:
   m_ObjectHideFlags: 0
@@ -3365,6 +3445,8 @@ GameObject:
   - component: {fileID: 1562222176481239353}
   - component: {fileID: 2557659467967936716}
   - component: {fileID: 5217532192310242047}
+  - component: {fileID: 5104087737562880540}
+  - component: {fileID: 8994555049387163234}
   m_Layer: 5
   m_Name: SkillButton2
   m_TagString: Untagged
@@ -3473,6 +3555,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5104087737562880540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4858353317409011641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7823294d9f7eda248820b8f1aed2c0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
+--- !u!114 &8994555049387163234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4858353317409011641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349d3caa0e400404898c3fbb105bb580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillTooltipData
 --- !u!1 &5040433285961533335
 GameObject:
   m_ObjectHideFlags: 0
@@ -3485,6 +3591,8 @@ GameObject:
   - component: {fileID: 3856509703943523452}
   - component: {fileID: 972293658697509558}
   - component: {fileID: 9045068227966140161}
+  - component: {fileID: 5128507747274604576}
+  - component: {fileID: 6641943277692575151}
   m_Layer: 5
   m_Name: SkillButton4
   m_TagString: Untagged
@@ -3593,6 +3701,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5128507747274604576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040433285961533335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7823294d9f7eda248820b8f1aed2c0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
+--- !u!114 &6641943277692575151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040433285961533335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349d3caa0e400404898c3fbb105bb580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillTooltipData
 --- !u!1 &5180134639611978962
 GameObject:
   m_ObjectHideFlags: 0
@@ -3656,7 +3788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3684,6 +3816,8 @@ GameObject:
   - component: {fileID: 3855281093802803936}
   - component: {fileID: 6914047458767161264}
   - component: {fileID: 2638843226933307870}
+  - component: {fileID: 19172916661916509}
+  - component: {fileID: 1320205909734585709}
   m_Layer: 5
   m_Name: SkillButton3
   m_TagString: Untagged
@@ -3792,6 +3926,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &19172916661916509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5256839690637519058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7823294d9f7eda248820b8f1aed2c0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
+--- !u!114 &1320205909734585709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5256839690637519058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349d3caa0e400404898c3fbb105bb580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillTooltipData
 --- !u!1 &5498033846012185775
 GameObject:
   m_ObjectHideFlags: 0
@@ -3803,6 +3961,8 @@ GameObject:
   - component: {fileID: 7769317314870839205}
   - component: {fileID: 524954472518198269}
   - component: {fileID: 4854019981991399573}
+  - component: {fileID: 2370535026004058084}
+  - component: {fileID: 4167360056143904082}
   m_Layer: 5
   m_Name: EquipmentButton3
   m_TagString: Untagged
@@ -3867,6 +4027,30 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2370535026004058084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5498033846012185775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7823294d9f7eda248820b8f1aed2c0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
+--- !u!114 &4167360056143904082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5498033846012185775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7f3a6b19384714ba74c167c1c03c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipTooltipData
 --- !u!1 &5593966487424924280
 GameObject:
   m_ObjectHideFlags: 0
@@ -4492,6 +4676,8 @@ GameObject:
   - component: {fileID: 6319017455324960187}
   - component: {fileID: 7434264753153664656}
   - component: {fileID: 5422899962305730774}
+  - component: {fileID: 1667059546404638343}
+  - component: {fileID: 520650615460248334}
   m_Layer: 5
   m_Name: EquipmentButton1
   m_TagString: Untagged
@@ -4634,6 +4820,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1667059546404638343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081684132726987352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7823294d9f7eda248820b8f1aed2c0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
+--- !u!114 &520650615460248334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081684132726987352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7f3a6b19384714ba74c167c1c03c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipTooltipData
 --- !u!1 &7118141507153372499
 GameObject:
   m_ObjectHideFlags: 0
@@ -5346,6 +5556,7 @@ GameObject:
   - component: {fileID: 3173952651538937839}
   - component: {fileID: 103266515814776512}
   - component: {fileID: 1566412648880276758}
+  - component: {fileID: 8560777448495985024}
   m_Layer: 5
   m_Name: SkillButton2
   m_TagString: Untagged
@@ -5476,6 +5687,18 @@ MonoBehaviour:
   equipInspector: {fileID: 0}
   _skillHandler: {fileID: 0}
   _healIcon: {fileID: 21300000, guid: 996fc212cf78c794889929b393d24adf, type: 3}
+--- !u!114 &8560777448495985024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7958315037708162677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7823294d9f7eda248820b8f1aed2c0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
 --- !u!1 &8094654157007113931
 GameObject:
   m_ObjectHideFlags: 0
@@ -5818,6 +6041,7 @@ MonoBehaviour:
   - {fileID: 1074926668983823420}
   - {fileID: 4854019981991399573}
   - {fileID: 7690983943434633494}
+  isSkill: 0
 --- !u!1 &8692772216673044068
 GameObject:
   m_ObjectHideFlags: 0
@@ -5829,6 +6053,8 @@ GameObject:
   - component: {fileID: 8997360018267751986}
   - component: {fileID: 5952016043708284575}
   - component: {fileID: 7690983943434633494}
+  - component: {fileID: 4134609010828276705}
+  - component: {fileID: 3624506544304553743}
   m_Layer: 5
   m_Name: EquipmentButton4
   m_TagString: Untagged
@@ -5893,6 +6119,30 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4134609010828276705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8692772216673044068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7823294d9f7eda248820b8f1aed2c0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
+--- !u!114 &3624506544304553743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8692772216673044068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7f3a6b19384714ba74c167c1c03c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipTooltipData
 --- !u!1 &8923731640133102618
 GameObject:
   m_ObjectHideFlags: 0
@@ -5905,6 +6155,8 @@ GameObject:
   - component: {fileID: 2006008642545534375}
   - component: {fileID: 5099607500517311095}
   - component: {fileID: 1696287071516517425}
+  - component: {fileID: 6748451738597368932}
+  - component: {fileID: 7457622922504163425}
   m_Layer: 5
   m_Name: SkillButton1
   m_TagString: Untagged
@@ -6013,6 +6265,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6748451738597368932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8923731640133102618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7823294d9f7eda248820b8f1aed2c0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
+--- !u!114 &7457622922504163425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8923731640133102618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349d3caa0e400404898c3fbb105bb580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillTooltipData
 --- !u!1 &8995672444726278331
 GameObject:
   m_ObjectHideFlags: 0
@@ -6024,6 +6300,8 @@ GameObject:
   - component: {fileID: 5868459703745662699}
   - component: {fileID: 5765905414241963767}
   - component: {fileID: 1074926668983823420}
+  - component: {fileID: 702681918273021069}
+  - component: {fileID: 1382248603795964106}
   m_Layer: 5
   m_Name: EquipmentButton2
   m_TagString: Untagged
@@ -6088,3 +6366,153 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &702681918273021069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8995672444726278331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7823294d9f7eda248820b8f1aed2c0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
+--- !u!114 &1382248603795964106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8995672444726278331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7f3a6b19384714ba74c167c1c03c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipTooltipData
+--- !u!1001 &801116306235083402
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4946573188817909250}
+    m_Modifications:
+    - target: {fileID: 284861815861970788, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_Name
+      value: TooltipSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 749066649008480163, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 749066649008480163, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 749066649008480163, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 165
+      objectReference: {fileID: 0}
+    - target: {fileID: 749066649008480163, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -152
+      objectReference: {fileID: 0}
+    - target: {fileID: 909909660741045690, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: cb57decab2203584f8162ffccee71769, type: 2}
+    - target: {fileID: 909909660741045690, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8939910074952518872, guid: cb57decab2203584f8162ffccee71769, type: 2}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -85.2796
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 153.3869
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+--- !u!224 &6351538420842410611 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+  m_PrefabInstance: {fileID: 801116306235083402}
+  m_PrefabAsset: {fileID: 0}

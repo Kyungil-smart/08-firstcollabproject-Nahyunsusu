@@ -60,7 +60,7 @@ public class EnhancementUI : MonoBehaviour
         ResetSelection();   
     }
 
-    public void RefreshEquipIcons()
+    public void RefreshEquipIcons(bool isSkillMode = false)
     {
         for (int i = 0; i < _equipImages.Count; i++)
         {

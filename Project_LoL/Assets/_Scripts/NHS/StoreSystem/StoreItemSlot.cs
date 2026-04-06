@@ -38,7 +38,7 @@ public class StoreItemSlot : TooltipComponent
               _priceText.text = $"{   data.EquipPrice}";
                 _currentPrice =       data.EquipPrice;
 
-        Debug.Log("장비 세팅됨");
+        //Debug.Log("장비 세팅됨");
 
         _imageButton.onClick.RemoveAllListeners();
         _imageButton.onClick.AddListener(() =>
@@ -55,7 +55,7 @@ public class StoreItemSlot : TooltipComponent
             }
             else
             {
-                ReplaceSelectorUI.instance.Open();
+                ReplaceSelectorUI.instance.Open(false);
 
                 ReplaceSelectorUI.instance.onSlotSelected = (index) =>
                 {
@@ -67,6 +67,8 @@ public class StoreItemSlot : TooltipComponent
             }
 
             equipInspector.RefreshUI();
+
+            equipInspector.RefreshUI(false);
         });
     }
 
@@ -106,7 +108,7 @@ public class StoreItemSlot : TooltipComponent
             }
             else
             {
-                ReplaceSelectorUI.instance.Open();
+                ReplaceSelectorUI.instance.Open(true);
                 ReplaceSelectorUI.instance.onSlotSelected = (index) =>
                 {
                     _skillHandler.SetSkill(skillDataSO, index, diceValue);
@@ -114,6 +116,8 @@ public class StoreItemSlot : TooltipComponent
                     MarkAsSold();
                     ReplaceSelectorUI.instance.onSlotSelected = null;
                 };
+
+                //equipInspector.RefreshUI(true);
             }
         });
     }
@@ -191,6 +195,4 @@ public class StoreItemSlot : TooltipComponent
             }
         });
     }
-
-    
 }
