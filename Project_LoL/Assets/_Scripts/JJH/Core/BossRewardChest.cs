@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BossRewardChest : MonoBehaviour
 {
+    [SerializeField] private GameObject _visuals;
+
     private void Awake()
     {
         BossDieState.OnBossDied += Activate;
@@ -14,6 +16,6 @@ public class BossRewardChest : MonoBehaviour
 
     private void Activate()
     {
-        gameObject.SetActive(true);
+        if (_visuals != null) _visuals.SetActive(true);
     }
 }

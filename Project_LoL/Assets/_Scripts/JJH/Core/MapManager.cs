@@ -9,8 +9,6 @@ public class MapManager : MonoBehaviour
     [SerializeField] private DoorController _doorController;
     [SerializeField] private MapObjectPool _objectPool;
     [SerializeField] private int _roomSpacing = 30;
-    [SerializeField] private GameObject _shopInteractablePrefab;
-    [SerializeField] private GameObject _upgradeInteractablePrefab;
     [SerializeField] private MiniMapUI _miniMapUI;
 
     private MapGraph _graph;
@@ -96,9 +94,6 @@ public class MapManager : MonoBehaviour
 
             if (room.roomData.roomType == RoomType.Combat)
                 PlaceRoomTrigger(room);
-        
-            if (room.roomData.roomType == RoomType.Repair)
-                PlaceRepairInteractables(room);
 
             if (room.roomData.roomType == RoomType.Boss)
                 PlaceBossTrigger(room);
@@ -188,39 +183,6 @@ public class MapManager : MonoBehaviour
                 pivot = tileWallPos,
                 width = width
             };
-        }
-    }
-    
-    private void PlaceShopInteractable(RoomNode room)
-    {
-        if (_shopInteractablePrefab == null) return;
-
-        RectInt b = room.GetBounds();
-        Vector3 pos = new Vector3(
-            b.xMin + b.width / 2f,
-            b.yMin + b.height / 2f,
-            0f
-        );
-
-        _objectPool.Spawn(_shopInteractablePrefab, _tileGenerator.TileRoot, pos, Quaternion.identity);
-    }
-    
-    private void PlaceRepairInteractables(RoomNode room)
-    {
-        RectInt b = room.GetBounds();
-        float centerX = b.xMin + b.width / 2f;
-        float centerY = b.yMin + b.height / 2f;
-
-        if (_shopInteractablePrefab != null)
-        {
-            Vector3 shopPos = new Vector3(centerX - 3f, centerY, 0f);
-            _objectPool.Spawn(_shopInteractablePrefab, _tileGenerator.TileRoot, shopPos, Quaternion.identity);
-        }
-
-        if (_upgradeInteractablePrefab != null)
-        {
-            Vector3 upgradePos = new Vector3(centerX + 3f, centerY, 0f);
-            _objectPool.Spawn(_upgradeInteractablePrefab, _tileGenerator.TileRoot, upgradePos, Quaternion.identity);
         }
     }
 }

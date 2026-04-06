@@ -309,9 +309,9 @@ public class ConnectionPlanner : MonoBehaviour
     {
         bool aBoss = a.roomData.roomType == RoomType.Boss;
         bool bBoss = b.roomData.roomType == RoomType.Boss;
-        bool aRepair = a.roomData.roomType == RoomType.Repair;
-        bool bRepair = b.roomData.roomType == RoomType.Repair;
-        return (aBoss && bRepair) || (aRepair && bBoss);
+        bool aCombat = a.roomData.roomType == RoomType.Combat;
+        bool bCombat = b.roomData.roomType == RoomType.Combat;
+        return (aBoss && bCombat) || (aCombat && bBoss);
     }
  
     private ConnectionResult ConnectVertical(RoomNode a, RoomNode b)
@@ -326,9 +326,7 @@ public class ConnectionPlanner : MonoBehaviour
         int cx = Mathf.Clamp(upperCx, lb.xMin, lb.xMax - 1);
 
         var wallLower = new Vector2Int(cx, lb.yMax);
-        var wallUpper = new Vector2Int(cx, ub.yMin -1);
-        
-        Debug.Log($"[ConnectVertical] lower={lower.nodeId} lb={lb} upper={upper.nodeId} ub={ub} cx={cx} wallLower={wallLower} wallUpper={wallUpper}");
+        var wallUpper = new Vector2Int(cx, ub.yMin - 1);
 
         var ca = new DoorCandidate(wallLower, DoorDir.Up, lower);
         var cb = new DoorCandidate(wallUpper, DoorDir.Down, upper);

@@ -79,12 +79,7 @@ public class MapGraph
         int bossY = last.gridOrigin.y + last.size.y + _spacing * 2;
         bossRoom.gridOrigin = new Vector2Int(bossCx, bossY);
 
-        RoomNode repair = CreateNode(pool.repairData);
-        int repairCx = bossCx + bossRoom.size.x / 2 - repair.size.x / 2;
-        repair.gridOrigin = new Vector2Int(repairCx, last.gridOrigin.y + last.size.y + _spacing);
-
-        last.ConnectTo(repair);
-        repair.ConnectTo(bossRoom);
+        last.ConnectTo(bossRoom);
     }
  
     private void MergeBranches(List<List<RoomNode>> branches)
