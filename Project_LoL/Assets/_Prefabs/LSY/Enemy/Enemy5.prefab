@@ -1927,6 +1927,7 @@ GameObject:
   - component: {fileID: 6540334173693460483}
   - component: {fileID: 3419647106724566544}
   - component: {fileID: 1611611619547363351}
+  - component: {fileID: -5785777995611527149}
   m_Layer: 7
   m_Name: Enemy5
   m_TagString: Enemy
@@ -2058,6 +2059,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a12786234e2834bad2c2e390743a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyEffectManager
+--- !u!114 &-5785777995611527149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760341192496350349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a50719e26f42bc24aa7d533dfdc27825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPathfinder
+  nodeSize: 1
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1792557896735801133
 GameObject:
   m_ObjectHideFlags: 0

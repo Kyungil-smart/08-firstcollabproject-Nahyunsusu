@@ -15,11 +15,9 @@ public class FinalBossFSM : MonoBehaviour, Damageable
     public FinalBossData bossData;
 
     [Header("애니메이터")]
-    [Tooltip("보스의 Animator")]
     public Animator animator;
 
     [Header("전투 설정")]
-    [Tooltip("스킬 발동 직후 다음 스킬까지의 대기 시간")]
     public float skillDelayTime = 15f;
 
     [Header("스폰/위치 설정")]
@@ -37,6 +35,8 @@ public class FinalBossFSM : MonoBehaviour, Damageable
     private Coroutine            _skillDelayCoroutine;
 
     private Transform _playerTransform;
+    
+    private MonsterEffectManager _effectManager;
 
     public FinalBossState currentState    => _currentState;
     public Transform      playerTransform => _playerTransform;
@@ -44,7 +44,9 @@ public class FinalBossFSM : MonoBehaviour, Damageable
     public float          hpRatio         => bossData != null ? (float)_currentHp / bossData.monsterHp : 0f;
     
     public int            baseAttack      => bossData != null ? bossData.monsterAttack : 0;
-    public float          attackRange     => bossData != null ? bossData.monsterAttackRange : 0f;
+    
+    public float          attackRangeX    => bossData != null ? bossData.monsterAttackRangeX : 15f;
+    public float          attackRangeY    => bossData != null ? bossData.monsterAttackRangeY : 8f;
 
     public bool           isPhase50       => _phase50;
     public bool           isPhase30       => _phase30;
@@ -54,6 +56,8 @@ public class FinalBossFSM : MonoBehaviour, Damageable
     private void Awake()
     {
         _skills = GetComponents<FinalBossSkillBase>();
+        
+        _effectManager = GetComponent<MonsterEffectManager>();
         
         if (animator == null) 
             animator = GetComponentInChildren<Animator>();
@@ -81,16 +85,14 @@ public class FinalBossFSM : MonoBehaviour, Damageable
         if (_currentState == FinalBossState.Idle && _playerTransform != null)
         {
             Vector2 toPlayer = (Vector2)_playerTransform.position - (Vector2)transform.position;
-            float dist = toPlayer.magnitude;
             
-            if (dist <= attackRange)
+            float normalizedX = toPlayer.x / attackRangeX;
+            float normalizedY = toPlayer.y / attackRangeY;
+            float ellipticalDistance = (normalizedX * normalizedX) + (normalizedY * normalizedY);
+
+            if (ellipticalDistance <= 1f && toPlayer.y <= 0f)
             {
-                Vector2 dirToPlayer = toPlayer.normalized;
-                
-                if (Vector2.Dot(Vector2.down, dirToPlayer) >= 0f)
-                {
-                    StartBattle();
-                }
+                StartBattle();
             }
         }
     }
@@ -109,9 +111,6 @@ public class FinalBossFSM : MonoBehaviour, Damageable
                     break;
                 case FinalBossState.SkillExecute:
                     animator.SetTrigger("doAttack");
-                    break;
-                case FinalBossState.Dead:
-                    animator.SetTrigger("doDie");
                     break;
             }
         }
@@ -167,6 +166,8 @@ public class FinalBossFSM : MonoBehaviour, Damageable
 
         _currentHp = Mathf.Max(0, _currentHp - damage);
         CheckHpPhases();
+        
+        _effectManager?.PlayHitFlash();
 
         if (_currentHp <= 0)
         {
@@ -207,10 +208,10 @@ public class FinalBossFSM : MonoBehaviour, Damageable
         do
         {
             float angle = Random.Range(180f, 360f) * Mathf.Deg2Rad;
-            float radius = Random.Range(0f, attackRange);
+            float r = Mathf.Sqrt(Random.Range(0f, 1f));
 
-            float x = Mathf.Cos(angle) * radius;
-            float y = Mathf.Sin(angle) * radius;
+            float x = Mathf.Cos(angle) * r * attackRangeX;
+            float y = Mathf.Sin(angle) * r * attackRangeY;
 
             pos = (Vector2)transform.position + new Vector2(x, y);
             maxTries--;
@@ -230,18 +231,19 @@ public class FinalBossFSM : MonoBehaviour, Damageable
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
-        if (bossData == null) return;
-
         Vector2 pos = transform.position;
-        float range = bossData.monsterAttackRange;
-
         Vector3 startDir = Quaternion.Euler(0, 0, -90) * Vector2.down;
 
+        Matrix4x4 oldMatrix = UnityEditor.Handles.matrix;
+        UnityEditor.Handles.matrix = Matrix4x4.TRS(pos, Quaternion.identity, new Vector3(attackRangeX, attackRangeY, 1f));
+
         UnityEditor.Handles.color = new Color(1f, 0f, 0f, 0.15f);
-        UnityEditor.Handles.DrawSolidArc(pos, Vector3.forward, startDir, 180f, range);
+        UnityEditor.Handles.DrawSolidArc(Vector3.zero, Vector3.forward, startDir, 180f, 1f);
 
         UnityEditor.Handles.color = Color.red;
-        UnityEditor.Handles.DrawWireArc(pos, Vector3.forward, startDir, 180f, range);
+        UnityEditor.Handles.DrawWireArc(Vector3.zero, Vector3.forward, startDir, 180f, 1f);
+
+        UnityEditor.Handles.matrix = oldMatrix;
     }
 #endif
 }

@@ -18,7 +18,8 @@ MonoBehaviour:
   monsterAttackSpeed: 0
   monsterMoveSpeed: 0
   monsterMoveRange: 0
-  monsterAttackRange: 50
+  monsterAttackRangeX: 55
+  monsterAttackRangeY: 39
   monsterGiveGold: 0
   monsterGiveExp: 0
   monsterGiveChestId: 0

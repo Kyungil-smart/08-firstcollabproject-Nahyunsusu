@@ -14,7 +14,7 @@ public class EnemyFSM : MonoBehaviour, Damageable
     [SerializeField] private Animator _animatorRef;
 
     private Rigidbody2D _rigid;
-    private EnemyEffectManager _effectManager;
+    private MonsterEffectManager _effectManager;
     private EnemyPathfinder _pathfinder;
     private Animator _animator;
     
@@ -45,7 +45,7 @@ public class EnemyFSM : MonoBehaviour, Damageable
     private void Awake()
     {
         _rigid         = GetComponent<Rigidbody2D>();
-        _effectManager = GetComponent<EnemyEffectManager>();
+        _effectManager = GetComponent<MonsterEffectManager>();
         _pathfinder    = GetComponent<EnemyPathfinder>();
 
         meleeSkill = GetComponent<EnemyMeleeSkill>();
