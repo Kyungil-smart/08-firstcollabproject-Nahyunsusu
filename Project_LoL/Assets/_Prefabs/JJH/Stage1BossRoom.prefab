@@ -1343,7 +1343,7 @@ Transform:
   m_GameObject: {fileID: 714094923706409591}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.61, y: 79.5, z: 0}
+  m_LocalPosition: {x: 0.5, y: 79.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20249,6 +20249,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossRewardChest
   _visuals: {fileID: 5312466301829788723}
+  _animator: {fileID: 8614953243261270889}
+  _equipmentList: {fileID: 0}
+  _dataManager: {fileID: 0}
+  _interactUI: {fileID: 0}
 --- !u!1 &8654729792139111947
 GameObject:
   m_ObjectHideFlags: 0
