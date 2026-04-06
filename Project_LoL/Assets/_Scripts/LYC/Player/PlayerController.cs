@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	/// EquipmentList.OnEquipChanged 구독 핸들러.
 	/// 슬롯별 EquipmentChanged 이벤트를 발행하고 스탯을 재계산합니다.
 	/// </summary>
-	private void OnEquipmentListChanged()
+	private void OnEquipmentListChanged(bool temp = false)
 	{
 		var equips = _equipmentList.MyEquips;
 		for (int i = 0; i < 4; i++)

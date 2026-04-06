@@ -20,7 +20,7 @@ public class StoreUI : MonoBehaviour
 
     private void Awake()
     {
-        //this.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
     private void Start()

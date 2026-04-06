@@ -3034,7 +3034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4946573188817909250
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6036,12 +6036,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipInspector
   _equipmentList: {fileID: 0}
+  _skillList: {fileID: 0}
   images:
   - {fileID: 7258212872592054439}
   - {fileID: 1074926668983823420}
   - {fileID: 4854019981991399573}
   - {fileID: 7690983943434633494}
-  isSkill: 0
 --- !u!1 &8692772216673044068
 GameObject:
   m_ObjectHideFlags: 0
