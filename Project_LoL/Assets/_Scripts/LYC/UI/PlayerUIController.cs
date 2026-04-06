@@ -146,6 +146,10 @@ public class PlayerUIController : MonoBehaviour
 		moveSpeedText.text = $"{_controller.Data.MoveSpeed}";
 		critRateText.text = $"{_controller.Data.CritRate}";
 		critDamageText.text = $"{_controller.Data.CritDamage}";
+		
+		RefreshHealth();
+		RefreshExp();
+		RefreshLevel();
 	}
 
 	private void RefreshGold() =>

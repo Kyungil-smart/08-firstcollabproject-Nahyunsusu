@@ -12,12 +12,29 @@ public class LevelUpPanel : MonoBehaviour
 	public TextMeshProUGUI titleText;
 	public TextMeshProUGUI descriptionText;
 
-	public void OnButtonClicked()
+	private Button _button;
+
+	private void Awake()
 	{
-		DOTween.Sequence()
-			.Append(transform.DOPunchScale(Vector3.one * -0.15f, 0.25f, 5, 0.5f))
-			.Join(transform.DOPunchPosition(Vector3.up * 8f, 0.25f, 5, 0.5f))
-			.SetUpdate(true)
-			.OnComplete(() => Clicked?.Invoke());
+		_button = GetComponent<Button>();
+	}
+
+	private void OnEnable()
+	{
+		transform.localScale = Vector3.one;
+		_button.onClick.AddListener(OnButtonClicked);
+		_button.interactable = true;
+	}
+
+	private void OnDisable()
+	{
+		_button.onClick.RemoveListener(OnButtonClicked);
+		_button.interactable = false;
+	}
+
+	void OnButtonClicked()
+	{
+		_button.interactable = false;
+		transform.DOScale(Vector3.one * 0.7f, 0.1f).SetEase(Ease.InOutExpo).SetUpdate(true).OnComplete(() => Clicked?.Invoke());
 	}
 }

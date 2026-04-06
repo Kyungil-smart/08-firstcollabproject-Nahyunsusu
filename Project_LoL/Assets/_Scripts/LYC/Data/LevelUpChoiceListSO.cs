@@ -36,12 +36,12 @@ public class LevelUpChoiceEntry
 	public string BuildDescription()
 	{
 		var parts = new List<string>();
-		if (hp != 0)         parts.Add($"체력 {hp:+#;-#;0}");
-		if (atkDamage != 0)  parts.Add($"공격력 {atkDamage:+#;-#;0}");
-		if (atkSpeed != 0)   parts.Add($"공속 {atkSpeed:+#;-#;0}");
-		if (moveSpeed != 0)  parts.Add($"이속 {moveSpeed:+#;-#;0}");
-		if (critChance != 0) parts.Add($"치확 {critChance:+#;-#;0}");
-		if (critDamage != 0) parts.Add($"치피 {critDamage:+#;-#;0}");
-		return string.Join(" / ", parts);
+		if (hp != 0) parts.Add($"체력 {hp:+#;-#;0}");
+		if (atkDamage != 0) parts.Add($"공격력 {atkDamage:+#;-#;0}");
+		if (atkSpeed != 0) parts.Add($"공격 속도 {atkSpeed:+#;-#;0}");
+		if (moveSpeed != 0) parts.Add($"이동 속도 {moveSpeed:+#;-#;0}");
+		if (critChance != 0) parts.Add($"치명타 확률 {critChance:+#;-#;0}");
+		if (critDamage != 0) parts.Add($"치명타 피해 {critDamage:+#;-#;0}");
+		return string.Join("\n", parts);
 	}
 }
