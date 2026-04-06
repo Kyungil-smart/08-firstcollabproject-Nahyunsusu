@@ -4,21 +4,20 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "BossData", menuName = "Monster/Boss Data")]
 public class BossData : ScriptableObject
 {
-    [Header("식별 정보 (DataTable)")]
+    [Header("식별 정보")]
     public int monsterId;
-    public string monsterName;
 
-    [Header("기본 스탯 (DataTable)")]
+    [Header("기본 스탯")]
     public int maxHp = 1000;
     public int attackDamage = 25;
     public float attackSpeed = 1f; 
     public float moveSpeed = 2f;
 
-    [Header("범위 설정 (DataTable)")]
+    [Header("범위 설정")]
     public float detectRange = 12f;
     public float attackRange = 3f;
 
-    [Header("보상 (DataTable)")]
+    [Header("보상")]
     public int goldReward = 100;
     public int expReward = 50;
     public int chestId = 0;

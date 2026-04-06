@@ -3260,6 +3260,7 @@ GameObject:
   - component: {fileID: 109494532403398535}
   - component: {fileID: -3103014241845257288}
   - component: {fileID: -7612721267367842195}
+  - component: {fileID: 1621507828513069011}
   m_Layer: 8
   m_Name: Boss3
   m_TagString: Boss
@@ -3403,6 +3404,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a12786234e2834bad2c2e390743a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyEffectManager
+--- !u!114 &1621507828513069011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708284833807399274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a50719e26f42bc24aa7d533dfdc27825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPathfinder
+  nodeSize: 1
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1715167647611854706
 GameObject:
   m_ObjectHideFlags: 0
@@ -4099,7 +4116,7 @@ SpriteRenderer:
   m_Size: {x: 0.875, y: 0.65625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2625061261685023531
 GameObject:
@@ -6212,7 +6229,7 @@ SpriteRenderer:
   m_Size: {x: 0.875, y: 0.65625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!1 &4951237971242276322
 GameObject:
@@ -12089,7 +12106,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!1 &9114959912919834373
 GameObject:

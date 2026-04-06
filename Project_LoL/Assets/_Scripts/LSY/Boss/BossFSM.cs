@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class BossFSM : MonoBehaviour, Damageable
 {
-    [Header("데이터 및 설정")]
+    [Header("데이터")]
     public BossData data;
     public GameObject warningSignObj;
 
     public Rigidbody2D rigid { get; private set; }
     public Animator animator { get; private set; }
     public EnemyPathfinder pathfinder { get; private set; }
-    private EnemyEffectManager _effectManager;
+    private MonsterEffectManager _effectManager;
 
     public Boss1Skill boss1Skill { get; private set; }
     public Boss2Skill boss2Skill { get; private set; }
-    public Boss3Skill4 boss3Skill4 { get; private set; }
-    public Boss3Skill10 boss3Skill10 { get; private set; }
+    public Boss3Skill1 boss3Skill1 { get; private set; }
+    public Boss3Skill2 boss3Skill2 { get; private set; }
 
     private Dictionary<BossStateType, BossStateBase> _states;
     private BossStateBase _currentState;
@@ -38,13 +38,13 @@ public class BossFSM : MonoBehaviour, Damageable
     {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
-        _effectManager = GetComponent<EnemyEffectManager>();
+        _effectManager = GetComponent<MonsterEffectManager>();
         pathfinder = GetComponent<EnemyPathfinder>();
 
         boss1Skill = GetComponent<Boss1Skill>();
         boss2Skill = GetComponent<Boss2Skill>();
-        boss3Skill4 = GetComponent<Boss3Skill4>();
-        boss3Skill10 = GetComponent<Boss3Skill10>();
+        boss3Skill1 = GetComponent<Boss3Skill1>();
+        boss3Skill2 = GetComponent<Boss3Skill2>();
 
         if (data != null) _currentHp = data.maxHp;
 
@@ -125,15 +125,15 @@ public class BossFSM : MonoBehaviour, Damageable
     {
         if (selectedSkill == null) return;
 
-        if (selectedSkill.skillId == 4 && boss3Skill4 != null)
+        if (selectedSkill.skillId == 4 && boss3Skill1 != null)
         {
-            boss3Skill4.ExecuteSkill(selectedSkill, initialTargetPos, data.attackDamage);
+            boss3Skill1.ExecuteSkill(selectedSkill, initialTargetPos, data.attackDamage);
             return; 
         }
         
-        if (selectedSkill.skillId == 10 && boss3Skill10 != null)
+        if (selectedSkill.skillId == 10 && boss3Skill2 != null)
         {
-            boss3Skill10.ExecuteSkill(selectedSkill, initialTargetPos, data.attackDamage);
+            boss3Skill2.ExecuteSkill(selectedSkill, initialTargetPos, data.attackDamage);
             return;
         }
 
@@ -147,8 +147,8 @@ public class BossFSM : MonoBehaviour, Damageable
     {
         if (boss1Skill != null) boss1Skill.StopSkill();
         if (boss2Skill != null) boss2Skill.StopSkill();
-        if (boss3Skill4 != null) boss3Skill4.StopSkill();
-        if (boss3Skill10 != null) boss3Skill10.StopSkill();
+        if (boss3Skill1 != null) boss3Skill1.StopSkill();
+        if (boss3Skill2 != null) boss3Skill2.StopSkill();
     }
 
     public void SelectRandomSkill()
