@@ -25,7 +25,7 @@ public class EnhancementUI : MonoBehaviour
 
     private void Awake()
     {
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
     }
 
     private void Start()
