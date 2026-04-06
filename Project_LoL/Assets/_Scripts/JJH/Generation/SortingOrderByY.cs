@@ -3,7 +3,7 @@ using UnityEngine;
 public class SortingOrderByY : MonoBehaviour
 {
     [SerializeField] private bool _isStatic = false;
-    [SerializeField] private int _offset = 0;
+    private const int _baseOffset = 500;
 
     private SpriteRenderer[] _renderers;
 
@@ -26,7 +26,7 @@ public class SortingOrderByY : MonoBehaviour
 
     private void UpdateSortingOrder()
     {
-        int order = Mathf.RoundToInt(-transform.position.y * 10) + _offset;
+        int order = Mathf.RoundToInt(-transform.position.y) + _baseOffset;
         foreach (var sr in _renderers)
             sr.sortingOrder = order;
     }

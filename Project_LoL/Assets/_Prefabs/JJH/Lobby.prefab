@@ -3666,7 +3666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6775537398880186184}
   - component: {fileID: 4074578460061672393}
-  - component: {fileID: 3492375016424022226}
+  - component: {fileID: 4514977382501624526}
   m_Layer: 0
   m_Name: TutorialPortal
   m_TagString: Untagged
@@ -3736,7 +3736,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.5, y: 2.5}
   m_EdgeRadius: 0
---- !u!114 &3492375016424022226
+--- !u!114 &4514977382501624526
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3745,10 +3745,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4804918812358919615}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1986c667b4c0f804ab7a874da3966c8b, type: 3}
+  m_Script: {fileID: 11500000, guid: 78516a3f72d622042b853ac1cc6f9ce5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Portal
-  _destination: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionInteractable
+  _destination: 1
   _interactUI: {fileID: 4824588890670416539, guid: 2c9a4a7241b3b054392339edc8c126d0, type: 3}
 --- !u!1 &4967264440090411288
 GameObject:
@@ -3889,7 +3889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78516a3f72d622042b853ac1cc6f9ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionInteractable
-  _targetStage: 1
+  _destination: 0
   _interactUI: {fileID: 4824588890670416539, guid: 2c9a4a7241b3b054392339edc8c126d0, type: 3}
 --- !u!1 &5221688871508222652
 GameObject:

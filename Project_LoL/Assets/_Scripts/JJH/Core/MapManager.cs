@@ -8,9 +8,8 @@ public class MapManager : MonoBehaviour
     [SerializeField] private TileMapGenerator_Grid _tileGenerator;
     [SerializeField] private DoorController _doorController;
     [SerializeField] private MapObjectPool _objectPool;
+    [SerializeField] private Transform _spawnedPrefabRoot;
     [SerializeField] private int _roomSpacing = 30;
-    [SerializeField] private GameObject _shopInteractablePrefab;
-    [SerializeField] private GameObject _upgradeInteractablePrefab;
     [SerializeField] private MiniMapUI _miniMapUI;
 
     private MapGraph _graph;
@@ -39,7 +38,7 @@ public class MapManager : MonoBehaviour
 
         PlaceRooms();
         PlaceConnections(connections);
-        
+
         if (_miniMapUI != null)
             _miniMapUI.BuildMiniMap(_graph.allRooms);
     }
@@ -57,9 +56,11 @@ public class MapManager : MonoBehaviour
 
     private void ClearMap()
     {
-        _objectPool.ReleaseChildren(_tileGenerator.TileRoot);
         _tileGenerator.Clear();
         _runtimeDataMap.Clear();
+
+        if (_spawnedPrefabRoot != null)
+            _objectPool.ReleaseChildren(_spawnedPrefabRoot);
     }
 
     private void PlaceRooms()
@@ -70,7 +71,7 @@ public class MapManager : MonoBehaviour
             {
                 if (room.roomData.roomType == RoomType.Start)
                 {
-                    _objectPool.Spawn(room.roomData.floorPrefab, _tileGenerator.TileRoot, Vector3.zero, Quaternion.identity);
+                    _objectPool.Spawn(room.roomData.floorPrefab, _spawnedPrefabRoot, Vector3.zero, Quaternion.identity);
                 }
                 else if (room.roomData.roomType == RoomType.Boss)
                 {
@@ -79,7 +80,7 @@ public class MapManager : MonoBehaviour
                         room.gridOrigin.y + room.size.y * 0.5f - 1.0f,
                         0f
                     );
-                    _objectPool.Spawn(room.roomData.floorPrefab, _tileGenerator.TileRoot, pos, Quaternion.identity);
+                    _objectPool.Spawn(room.roomData.floorPrefab, _spawnedPrefabRoot, pos, Quaternion.identity);
                 }
                 else
                 {
@@ -88,7 +89,7 @@ public class MapManager : MonoBehaviour
                         room.gridOrigin.y + room.size.y * 0.5f,
                         0f
                     );
-                    _objectPool.Spawn(room.roomData.floorPrefab, _tileGenerator.TileRoot, pos, Quaternion.identity);
+                    _objectPool.Spawn(room.roomData.floorPrefab, _spawnedPrefabRoot, pos, Quaternion.identity);
                 }
             }
 
@@ -96,9 +97,6 @@ public class MapManager : MonoBehaviour
 
             if (room.roomData.roomType == RoomType.Combat)
                 PlaceRoomTrigger(room);
-        
-            if (room.roomData.roomType == RoomType.Repair)
-                PlaceRepairInteractables(room);
 
             if (room.roomData.roomType == RoomType.Boss)
                 PlaceBossTrigger(room);
@@ -110,7 +108,7 @@ public class MapManager : MonoBehaviour
         RectInt b = room.GetBounds();
 
         GameObject triggerObj = new GameObject("RoomTrigger");
-        triggerObj.transform.SetParent(_tileGenerator.TileRoot);
+        triggerObj.transform.SetParent(_spawnedPrefabRoot);
         triggerObj.transform.position = new Vector3(
             b.xMin + b.width / 2f,
             b.yMin + b.height / 2f,
@@ -127,13 +125,13 @@ public class MapManager : MonoBehaviour
         rt.doorController = _doorController;
         rt.miniMapUI = _miniMapUI;
     }
-    
+
     private void PlaceBossTrigger(RoomNode room)
     {
         RectInt b = room.GetBounds();
 
         GameObject triggerObj = new GameObject("BossTrigger");
-        triggerObj.transform.SetParent(_tileGenerator.TileRoot);
+        triggerObj.transform.SetParent(_spawnedPrefabRoot);
         triggerObj.transform.position = new Vector3(
             b.xMin + b.width / 2f,
             b.yMin + 1f,
@@ -188,39 +186,6 @@ public class MapManager : MonoBehaviour
                 pivot = tileWallPos,
                 width = width
             };
-        }
-    }
-    
-    private void PlaceShopInteractable(RoomNode room)
-    {
-        if (_shopInteractablePrefab == null) return;
-
-        RectInt b = room.GetBounds();
-        Vector3 pos = new Vector3(
-            b.xMin + b.width / 2f,
-            b.yMin + b.height / 2f,
-            0f
-        );
-
-        _objectPool.Spawn(_shopInteractablePrefab, _tileGenerator.TileRoot, pos, Quaternion.identity);
-    }
-    
-    private void PlaceRepairInteractables(RoomNode room)
-    {
-        RectInt b = room.GetBounds();
-        float centerX = b.xMin + b.width / 2f;
-        float centerY = b.yMin + b.height / 2f;
-
-        if (_shopInteractablePrefab != null)
-        {
-            Vector3 shopPos = new Vector3(centerX - 3f, centerY, 0f);
-            _objectPool.Spawn(_shopInteractablePrefab, _tileGenerator.TileRoot, shopPos, Quaternion.identity);
-        }
-
-        if (_upgradeInteractablePrefab != null)
-        {
-            Vector3 upgradePos = new Vector3(centerX + 3f, centerY, 0f);
-            _objectPool.Spawn(_upgradeInteractablePrefab, _tileGenerator.TileRoot, upgradePos, Quaternion.identity);
         }
     }
 }
