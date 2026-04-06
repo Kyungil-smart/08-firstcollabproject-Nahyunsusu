@@ -8,15 +8,20 @@ public class PlayerUIController : MonoBehaviour
 {
 	public PlayerController _controller;
 
+	[Header("Slider")]
 	public Slider hpSlider;
+
 	public Slider expSlider;
 	public Slider dashSlider;
 
+	[Header("Image")]
 	public Image equipment1;
+
 	public Image equipment2;
 	public Image equipment3;
 	public Image equipment4;
 
+	[Header("Text")] public TextMeshProUGUI healthText;
 	public TextMeshProUGUI levelText;
 	public TextMeshProUGUI atkText;
 	public TextMeshProUGUI atkSpeedText;
@@ -77,7 +82,25 @@ public class PlayerUIController : MonoBehaviour
 
 	private void Start()
 	{
-		if (_controller.Data == null) return;
+		if (_controller.Data == null)
+		{
+			StartCoroutine(LateUpdateRoutine());
+			return;
+		}
+
+		RefreshHealth();
+		RefreshExp();
+		RefreshLevel();
+		RefreshStats();
+		RefreshGold();
+	}
+
+	private IEnumerator LateUpdateRoutine()
+	{
+		while (_controller.Data == null)
+		{
+			yield return null;
+		}
 
 		RefreshHealth();
 		RefreshExp();
@@ -104,8 +127,11 @@ public class PlayerUIController : MonoBehaviour
 		_equipmentSlots[slot].enabled = equipment != null;
 	}
 
-	private void RefreshHealth() =>
+	private void RefreshHealth()
+	{
 		hpSlider.value = _controller.Health / (_controller.Data.HP + 0.001f);
+		healthText.text = $"{_controller.Health:F0}/{_controller.Data.HP:F0}";
+	}
 
 	private void RefreshExp() =>
 		expSlider.value = (_controller.Exp % 50) / 50.0f;

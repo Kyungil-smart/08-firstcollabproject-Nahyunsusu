@@ -1,5 +1,4 @@
-﻿using System;
-using _Scripts.LYC.Skill;
+﻿using _Scripts.LYC.Skill;
 using _Scripts.LYC.States;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -36,6 +35,7 @@ public class PlayerFSM : MonoBehaviour
 	private BaseState _currentState;
 
 	private Camera _mainCamera;
+	private bool _isInitiated;
 
 	private void Awake()
 	{
@@ -63,11 +63,14 @@ public class PlayerFSM : MonoBehaviour
 		Hit = new(this, _inputHandler, stunDuration);
 
 		_mainCamera = Camera.main;
+		_isInitiated = true;
 		ChangeState(Idle);
 	}
 
 	private void Update()
 	{
+		if (!_isInitiated) return;
+
 		var mousePosition = Mouse.current.position.ReadValue();
 		var worldPosition = _mainCamera.ScreenToWorldPoint(mousePosition);
 		MouseDir = (worldPosition - transform.position).normalized;
