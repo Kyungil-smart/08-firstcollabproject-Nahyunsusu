@@ -1,8 +1,11 @@
 using _Scripts.LYC.Utils;
+using DG.Tweening;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class EnhancementUI : MonoBehaviour
@@ -22,6 +25,13 @@ public class EnhancementUI : MonoBehaviour
     [Header("Current Selection")]
     private int   _selectedIndex = -1;
     private int _selectedOddEven = -1;
+
+    [Header("Dice Animation Settings")]
+    private List<Image>    _diceImage;
+    private List<Animator> _animator;
+
+    private static readonly int _stop  = Animator.StringToHash("Stop");
+    private static readonly int _start = Animator.StringToHash("Start");
 
     private void Awake()
     {
@@ -103,7 +113,6 @@ public class EnhancementUI : MonoBehaviour
             {
                 _selectedImages[i].gameObject.SetActive(false);
             }
-
         }
 
         if (_selectedImage != null)
@@ -131,15 +140,6 @@ public class EnhancementUI : MonoBehaviour
         }
     }
 
-    private void ExecuteEnhancement()
-    {
-        Debug.Log("강화 시작");
-
-        _equipmentList.UpgradeEquipment(_selectedIndex);
-
-        ResetSelection();
-    }
-
     private void ResetSelection()
     {
           _selectedIndex = -1;
@@ -158,5 +158,23 @@ public class EnhancementUI : MonoBehaviour
             _selectedImage.enabled = false;
             _selectedImage.sprite  = null;
         }
+    }
+
+    public void UpdateDatas(Sprite skillIcon, Sprite dice, int ammo)
+    {
+        _diceImage[0].sprite = dice;
+
+        _diceImage[0].transform.DOComplete();
+        _diceImage[0].transform.DOPunchScale(Vector3.one * 0.2f, 0.4f);
+    }
+
+    public void StartRolling()
+    {
+        _animator[0].SetTrigger(Start);
+    }
+
+    public void StopRolling()
+    {
+        _animator.SetTrigger(Stop);
     }
 }

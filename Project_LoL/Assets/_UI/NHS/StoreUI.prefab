@@ -1360,6 +1360,7 @@ MonoBehaviour:
     range: 0.6
   equipInspector: {fileID: 3089693862991266583}
   _skillHandler: {fileID: 0}
+  _playerController: {fileID: 0}
   _healIcon: {fileID: 0}
 --- !u!114 &7608593541777127232
 MonoBehaviour:
@@ -2160,6 +2161,7 @@ MonoBehaviour:
     range: 0.6
   equipInspector: {fileID: 0}
   _skillHandler: {fileID: 0}
+  _playerController: {fileID: 0}
   _healIcon: {fileID: 0}
 --- !u!114 &1500955845366438990
 MonoBehaviour:
@@ -3034,7 +3036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4946573188817909250
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3081,8 +3083,10 @@ MonoBehaviour:
   - {fileID: 5217532192310242047}
   - {fileID: 2638843226933307870}
   - {fileID: 9045068227966140161}
-  _skillHandler: {fileID: 0}
   _itemInspector: {fileID: 0}
+  _skillHandler: {fileID: 0}
+  _playerController: {fileID: 0}
+  _curGold: {fileID: 7426521409559530923}
 --- !u!223 &5075998352545069361
 Canvas:
   m_ObjectHideFlags: 0
@@ -3158,7 +3162,7 @@ GameObject:
   - component: {fileID: 8511805006261315890}
   - component: {fileID: 7426521409559530923}
   m_Layer: 5
-  m_Name: Description1_2
+  m_Name: CurGold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4725,6 +4729,7 @@ MonoBehaviour:
     range: 0.5
   equipInspector: {fileID: 3089693862991266583}
   _skillHandler: {fileID: 0}
+  _playerController: {fileID: 0}
   _healIcon: {fileID: 0}
 --- !u!222 &6319017455324960187
 CanvasRenderer:
@@ -5686,6 +5691,7 @@ MonoBehaviour:
     range: 0.6
   equipInspector: {fileID: 0}
   _skillHandler: {fileID: 0}
+  _playerController: {fileID: 0}
   _healIcon: {fileID: 21300000, guid: 996fc212cf78c794889929b393d24adf, type: 3}
 --- !u!114 &8560777448495985024
 MonoBehaviour:
@@ -5994,7 +6000,7 @@ GameObject:
   - component: {fileID: 7789103722152917544}
   - component: {fileID: 3089693862991266583}
   m_Layer: 5
-  m_Name: EquipmentList
+  m_Name: Equipment_List
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

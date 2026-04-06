@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentList
   dataManager: {fileID: 0}
+  _playersEquip: []

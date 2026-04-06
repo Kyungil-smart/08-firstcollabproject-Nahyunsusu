@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UnityEditor.Build.Pipeline;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,7 @@ public class StoreItemSlot : TooltipComponent
     [SerializeField] private EquipInspector equipInspector;
 
     [SerializeField] private PlayerSkillHandler _skillHandler;
+    [SerializeField] private PlayerController   _playerController;
 
     public System.Action OnPurchaseSuccess;
 
@@ -38,11 +40,15 @@ public class StoreItemSlot : TooltipComponent
               _priceText.text = $"{   data.EquipPrice}";
                 _currentPrice =       data.EquipPrice;
 
-        //Debug.Log("장비 세팅됨");
-
         _imageButton.onClick.RemoveAllListeners();
         _imageButton.onClick.AddListener(() =>
         {
+            if (_playerController == null) return;
+
+            if (_playerController.Gold < _currentPrice) return;
+
+            _playerController.Gold -= _currentPrice;
+
             var equipList = GameDataManager.instance.equipItemList;
 
             if (equipList.MyEquips.Count < 4)
@@ -91,6 +97,12 @@ public class StoreItemSlot : TooltipComponent
         _imageButton.onClick.RemoveAllListeners();
         _imageButton.onClick.AddListener(() =>
         {
+            if (_playerController == null) return;
+
+            if (_playerController.Gold < _currentPrice) return;
+
+            _playerController.Gold -= _currentPrice;
+
             int emptyIndex = -1;
             for (int i = 0; i < _skillHandler.Skills.Length; i++)
             {
@@ -130,16 +142,16 @@ public class StoreItemSlot : TooltipComponent
 
     private void NegotiatePrice()
     {
-        if (_negoSystem.SetTable())
-        {
-            _currentPrice = _negoSystem.DecreasePrice(_currentPrice);
-            Debug.Log("협상 성공!");
-        }
-        else
-        {
-            _currentPrice = _negoSystem.IncreasePrice(_currentPrice);
-            Debug.Log("협상 실패!");
-        }
+        //if (_negoSystem.SetTable())
+        //{
+        //    _currentPrice = _negoSystem.DecreasePrice(_currentPrice);
+        //    Debug.Log("협상 성공!");
+        //}
+        //else
+        //{
+        //    _currentPrice = _negoSystem.IncreasePrice(_currentPrice);
+        //    Debug.Log("협상 실패!");
+        //}
 
         _priceText.text = _currentPrice.ToString();
 
@@ -177,22 +189,25 @@ public class StoreItemSlot : TooltipComponent
         _imageButton.onClick.RemoveAllListeners();
         _imageButton.onClick.AddListener(() =>
         {
-            var player = GameObject.FindWithTag("Player")?.GetComponent<PlayerController>();
-            if (player != null)
+            if (_playerController == null)
             {
-                Debug.Log("플레이어 찾음");
-                player.Health += healAmount;
-
-                if (player.Health > player.Data.HP)
-                    player.Health = player.Data.HP;
-
-                Debug.Log($"체력 {healAmount} 회복됨! 현재 체력: {player.Health}");
-                MarkAsSold();
+                Debug.LogError("플레이어를 찾을 수 없습니다!");
+                return;
             }
-            else
+
+            if (_playerController.Gold < _currentPrice)
             {
-                Debug.Log("플레이어 찾기 못함");
+                Debug.Log("골드가 부족합니다.");
+                return;
             }
+
+            _playerController.Gold -= _currentPrice;
+            _playerController.Health += healAmount * 10;
+            
+            if (_playerController.Health > _playerController.Data.HP)
+                _playerController.Health = _playerController.Data.HP;
+            
+            MarkAsSold();
         });
     }
 }
