@@ -64,6 +64,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a14e730affbbba34e8882d518b9eab98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReplaceSelectorUI
+  _inspector: {fileID: 0}
+  _popupSlotImages:
+  - {fileID: 1426952418254683132}
+  - {fileID: 1208960068844439836}
+  - {fileID: 8985409387481535246}
+  - {fileID: 5827105705265187024}
+  _skillHandler: {fileID: 0}
 --- !u!223 &8237834125264899029
 Canvas:
   m_ObjectHideFlags: 0

@@ -436,47 +436,6 @@ Transform:
   - {fileID: 868743405}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &320529010
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: UI/RoundedCorners/RoundedCorners
-  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _OuterUV: {r: 0, g: 0, b: 1, a: 1}
-    - _WidthHeightRadius: {r: 140, g: 120, b: 40, a: 0}
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1 &435174403
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,11 +469,11 @@ MonoBehaviour:
   injectionArray:
   - dice: 1
     data: {fileID: 11400000, guid: 2e76ea4d4a36f1b44b635f92c0f5a1ff, type: 2}
-  - dice: 0
+  - dice: 1
     data: {fileID: 11400000, guid: e6036d8af2bed714288d8acb16b2a9f5, type: 2}
-  - dice: 0
+  - dice: 1
     data: {fileID: 11400000, guid: 378addabf44469a4983bc65d6f030542, type: 2}
-  - dice: 0
+  - dice: 1
     data: {fileID: 11400000, guid: b0dff5b322be92644a3e3ed67277ec9f, type: 2}
 --- !u!4 &435174405
 Transform:
@@ -1226,17 +1185,6 @@ MonoBehaviour:
   - {fileID: 1615639978}
   - {fileID: 926829607}
   - {fileID: 1375364032}
---- !u!114 &917390137 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5827105705265187024, guid: bc0f51d0bc70a1948b657123132d7558, type: 3}
-  m_PrefabInstance: {fileID: 2083231843}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &923934631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1249,6 +1197,18 @@ PrefabInstance:
       propertyPath: _skillHandler
       value: 
       objectReference: {fileID: 823296594}
+    - target: {fileID: 741002506638531975, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
+      propertyPath: _playerController
+      value: 
+      objectReference: {fileID: 1339862535}
+    - target: {fileID: 1566412648880276758, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
+      propertyPath: _skillHandler
+      value: 
+      objectReference: {fileID: 823296594}
+    - target: {fileID: 1566412648880276758, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
+      propertyPath: _playerController
+      value: 
+      objectReference: {fileID: 1339862535}
     - target: {fileID: 3089693862991266583, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
       propertyPath: _equipmentList
       value: 
@@ -1258,9 +1218,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 823296594}
     - target: {fileID: 3899481189100960527, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
-      propertyPath: _itemInspector
+      propertyPath: _playerController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1339862535}
     - target: {fileID: 4007611934414592414, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
       propertyPath: m_Name
       value: StoreUI
@@ -1352,15 +1312,19 @@ PrefabInstance:
     - target: {fileID: 6389381764052893963, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
       propertyPath: _skillHandler
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 823296594}
     - target: {fileID: 6389381764052893963, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
-      propertyPath: equipInspector
+      propertyPath: _playerController
       value: 
-      objectReference: {fileID: 1935409008}
-    - target: {fileID: 8466729945077393175, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
-      propertyPath: m_Name
-      value: Equipment_List
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1339862535}
+    - target: {fileID: 6512311199840375426, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
+      propertyPath: _skillHandler
+      value: 
+      objectReference: {fileID: 823296594}
+    - target: {fileID: 6512311199840375426, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
+      propertyPath: _playerController
+      value: 
+      objectReference: {fileID: 1339862535}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2661,10 +2625,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6679561807036726272, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
-      propertyPath: _skillList
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6679561807036726272, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
       propertyPath: _equipmentList
       value: 
       objectReference: {fileID: 1578596203}
@@ -2684,17 +2644,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2021daf6b25a974bb9dffb64a5f7ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
---- !u!114 &1365097089 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1208960068844439836, guid: bc0f51d0bc70a1948b657123132d7558, type: 3}
-  m_PrefabInstance: {fileID: 2083231843}
+--- !u!21 &1346742097
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Name: UI/RoundedCorners/RoundedCorners
+  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _OuterUV: {r: 0, g: 0, b: 1, a: 1}
+    - _WidthHeightRadius: {r: 140, g: 120, b: 40, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &1375364030
 GameObject:
   m_ObjectHideFlags: 0
@@ -2875,17 +2865,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3d3286146a49254c92b2b7b14296da3, type: 3}
---- !u!114 &1488957064 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8985409387481535246, guid: bc0f51d0bc70a1948b657123132d7558, type: 3}
-  m_PrefabInstance: {fileID: 2083231843}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1495281451
 GameObject:
   m_ObjectHideFlags: 0
@@ -3030,17 +3009,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37bb776a3751b04ea04757820593c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentList
---- !u!114 &1594130247 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1426952418254683132, guid: bc0f51d0bc70a1948b657123132d7558, type: 3}
-  m_PrefabInstance: {fileID: 2083231843}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1615639976
 GameObject:
   m_ObjectHideFlags: 0
@@ -3418,17 +3386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f118af44fd294cb908dc78d9b7329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiceSystem_Random
---- !u!114 &1935409008 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3089693862991266583, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
-  m_PrefabInstance: {fileID: 923934631}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 659c73f817a86e84a8c2fbccc9f97804, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EquipInspector
 --- !u!1001 &1994896043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3480,10 +3437,6 @@ PrefabInstance:
     - target: {fileID: 3227565408119757668, guid: 957e383ee57debd4cb5b55ed70723c58, type: 3}
       propertyPath: m_Name
       value: EquipmentList
-      objectReference: {fileID: 0}
-    - target: {fileID: 3227565408119757668, guid: 957e383ee57debd4cb5b55ed70723c58, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7454494164900188995, guid: 957e383ee57debd4cb5b55ed70723c58, type: 3}
       propertyPath: dataManager
@@ -3680,26 +3633,6 @@ PrefabInstance:
       propertyPath: _skillHandler
       value: 
       objectReference: {fileID: 823296594}
-    - target: {fileID: 3402326291233973705, guid: bc0f51d0bc70a1948b657123132d7558, type: 3}
-      propertyPath: _popupSlotImages.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402326291233973705, guid: bc0f51d0bc70a1948b657123132d7558, type: 3}
-      propertyPath: '_popupSlotImages.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1594130247}
-    - target: {fileID: 3402326291233973705, guid: bc0f51d0bc70a1948b657123132d7558, type: 3}
-      propertyPath: '_popupSlotImages.Array.data[1]'
-      value: 
-      objectReference: {fileID: 1365097089}
-    - target: {fileID: 3402326291233973705, guid: bc0f51d0bc70a1948b657123132d7558, type: 3}
-      propertyPath: '_popupSlotImages.Array.data[2]'
-      value: 
-      objectReference: {fileID: 1488957064}
-    - target: {fileID: 3402326291233973705, guid: bc0f51d0bc70a1948b657123132d7558, type: 3}
-      propertyPath: '_popupSlotImages.Array.data[3]'
-      value: 
-      objectReference: {fileID: 917390137}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

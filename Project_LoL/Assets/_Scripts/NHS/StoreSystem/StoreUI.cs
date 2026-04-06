@@ -12,15 +12,19 @@ public class StoreUI : MonoBehaviour
     [SerializeField] private List<SkillDataSO>   _haveSkillList = new List<SkillDataSO>();
     [SerializeField] private List<Button>      _skillButtonList = new List<Button>();
 
-    [SerializeField] private PlayerSkillHandler _skillHandler;
-
     private bool _isInitialized = false;
 
-    [SerializeField] private EquipInspector _itemInspector; // 인스펙터에서 EquipInspector 오브젝트 연결
+    [SerializeField] private EquipInspector _itemInspector;
+
+    [Header("Player")]
+    [SerializeField] private PlayerSkillHandler     _skillHandler;
+    [SerializeField] private PlayerController   _playerController;
+
+    [SerializeField] private TextMeshProUGUI _curGold;
 
     private void Awake()
     {
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -47,6 +51,18 @@ public class StoreUI : MonoBehaviour
                 Debug.Log("이전 상점 물건 목록을 유지합니다.");
             }
         }
+
+        if (_playerController != null)
+        {
+            UpdateGoldText();
+
+            _playerController.GoldChanged += UpdateGoldText;
+        }
+    }
+
+    public void OnDisable()
+    {
+        _playerController.GoldChanged -= UpdateGoldText;
     }
 
     private void OnDestroy()
@@ -149,6 +165,14 @@ public class StoreUI : MonoBehaviour
 
                 //Debug.Log($"{i}번 슬롯 비어있음");
             }
+        }
+    }
+
+    private void UpdateGoldText()
+    {
+        if (_curGold != null && _playerController != null)
+        {
+            _curGold.text = $"{_playerController.Gold}";
         }
     }
 }
