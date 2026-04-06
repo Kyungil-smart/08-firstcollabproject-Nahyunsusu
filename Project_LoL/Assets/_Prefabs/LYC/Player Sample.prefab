@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2182956623213678347}
   - component: {fileID: 5330624449546311500}
   - component: {fileID: 8029321941257662386}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player Sample
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -357,6 +357,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHitParticle
       objectReference: {fileID: 0}
+    - target: {fileID: 5932481832478426116, guid: 6eeb47aaf1708844aa88c8410488bb36, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7870366091091083135, guid: 6eeb47aaf1708844aa88c8410488bb36, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -479,6 +483,10 @@ PrefabInstance:
     - target: {fileID: 7515784795754229108, guid: cf037382cc6f2184b862599db7861ef1, type: 3}
       propertyPath: m_Name
       value: DashVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 7515784795754229108, guid: cf037382cc6f2184b862599db7861ef1, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7855120256579363672, guid: cf037382cc6f2184b862599db7861ef1, type: 3}
       propertyPath: InitialModule.startLifetime.scalar

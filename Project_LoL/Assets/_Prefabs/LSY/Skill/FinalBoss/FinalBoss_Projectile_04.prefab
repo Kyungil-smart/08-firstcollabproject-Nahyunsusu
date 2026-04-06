@@ -102,6 +102,10 @@ PrefabInstance:
       value: Ef_20_green_p
       objectReference: {fileID: 0}
     - target: {fileID: 8962325684348958904, guid: d2f02bf95aa41a0448a64976f2793680, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962325684348958904, guid: d2f02bf95aa41a0448a64976f2793680, type: 3}
       propertyPath: m_RenderAlignment
       value: 2
       objectReference: {fileID: 0}
