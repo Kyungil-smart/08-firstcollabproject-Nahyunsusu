@@ -80,6 +80,15 @@ public class EnhancementUI : MonoBehaviour
 
         _timer -= Time.deltaTime;
 
+        for (int i = 0; i < _diceImage.Count; i++)
+        {
+            if (_diceImage[i] != null && _diceSprites.Length > 0)
+            {
+                int tempIndex = UnityEngine.Random.Range(0, _diceSprites.Length);
+                _diceImage[i].sprite = _diceSprites[tempIndex];
+            }
+        }
+
         if (_timer <= 0)
         {
             StopRollingAndCheckResult();
@@ -106,8 +115,8 @@ public class EnhancementUI : MonoBehaviour
         {
             if (anim != null)
             {
+                anim.enabled = true;
                 anim.SetTrigger(_start);
-                Debug.Log($"{anim.gameObject.name}에게 Start 트리거 전달됨"); // 로그 추가
             }
         }
     }
@@ -126,6 +135,8 @@ public class EnhancementUI : MonoBehaviour
 
             if (i < _diceImage.Count && _diceSprites.Length >= 6)
             {
+                if (_animator[i] != null) _animator[i].enabled = false;
+
                 _diceImage[i].sprite = _diceSprites[diceValue - 1];
                 _diceImage[i].transform.DOComplete();
                 _diceImage[i].transform.DOPunchScale(Vector3.one * 0.2f, 0.4f);
