@@ -25,7 +25,7 @@ public class EnhancementUI : MonoBehaviour
 
     private void Awake()
     {
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -93,11 +93,17 @@ public class EnhancementUI : MonoBehaviour
 
         for(int i=0;i<_selectedImages.Count;i++)
         {
-            if(i==index && _equipmentList.MyEquips[i].CurrentUpgradeLevel < 6)
+            if (_selectedImages[i] == null) continue;
+
+            if (i==index && _equipmentList.MyEquips[i].CurrentUpgradeLevel < 6)
             {
                 _selectedImages[i].gameObject.SetActive(true);
             }
-            
+            else
+            {
+                _selectedImages[i].gameObject.SetActive(false);
+            }
+
         }
 
         if (_selectedImage != null)

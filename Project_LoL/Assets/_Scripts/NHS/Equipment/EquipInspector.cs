@@ -34,6 +34,9 @@ public class EquipInspector : MonoBehaviour
         for (int i = 0; i < images.Count; i++)
         {
             images[i].enabled = false;
+
+            var trigger = images[i].GetComponent<TooltipTrigger>();
+            if (trigger != null) trigger.enabled = false;
         }
 
         // 2. 장비 그리기
@@ -45,6 +48,18 @@ public class EquipInspector : MonoBehaviour
 
             images[i].sprite = data.EquipIconSet.Get(data.CurrentUpgradeLevel);
             images[i].enabled = true;
+
+            var tooltipData = images[i].GetComponent<EquipTooltipData>();
+            if (tooltipData == null) 
+                tooltipData = images[i].gameObject.AddComponent<EquipTooltipData>();
+
+            tooltipData.Setup(data);
+
+            var trigger = images[i].GetComponent<TooltipTrigger>();
+            if (trigger == null) 
+                trigger = images[i].gameObject.AddComponent<TooltipTrigger>();
+
+            trigger.enabled = true;
         }
     }
 }

@@ -215,6 +215,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnforcementUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5483219858756307622, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

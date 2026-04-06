@@ -9,12 +9,17 @@ public class EndingUI : MonoBehaviour
 
     [SerializeField] private PlayerSkillHandler _skillHandler;
 
+    [SerializeField] private Text _infoText;
+    [SerializeField] private Text _statText;
+
     private void Start()
     {
         RefreshSkillUI();
+        SetInfoText();
+        SetStatText();
     }
 
-    public void RefreshSkillUI()
+    private void RefreshSkillUI()
     {
         if (_haveSkillList == null)
         {
@@ -47,5 +52,15 @@ public class EndingUI : MonoBehaviour
                     _skillImageList[i].gameObject.SetActive(false);
             }
         }
+    }
+
+    private void SetInfoText()
+    {
+        _infoText.text = $"최고 도달 층 수 : {1} 층\r\n최대 생존 시간 : {00: 00 : 38}\r\n처치한 적 : {1} 마리\r\n획득한 골드 : {0} Gold\r\n강화 성공 횟수 : {0} 회\r\n가장 강력한 일격 : {10}";
+    }
+
+    private void SetStatText()
+    {
+        _statText.text = $"공격력 : {10}\r\n공격 속도 : {1.0}\r\n이동 속도 : {8}\r\n치명타 확률 : {0} %\r\n치명타 피해 : {0} %";
     }
 }
