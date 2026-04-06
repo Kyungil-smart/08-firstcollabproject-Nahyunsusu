@@ -7,6 +7,7 @@ public static class SceneLoader
     {
         public const string MainMenu = "MainMenu";
         public const string Lobby = "Lobby";
+        public const string Tutorial = "Tutorial";
         public const string Stage1 = "Stage1";
         public const string Stage2 = "Stage2";
         public const string Stage3 = "Stage3";
@@ -22,6 +23,11 @@ public static class SceneLoader
     public static void LoadLobby()
     {
         SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Lobby);
+    }
+    
+    public static void LoadTutorial()
+    {
+        SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Tutorial);
     }
 
     public static void LoadStage(int stage)
