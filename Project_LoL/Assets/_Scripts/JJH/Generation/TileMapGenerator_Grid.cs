@@ -1,17 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class TileMapGenerator_Grid : MonoBehaviour
 {
-    [SerializeField] private MapObjectPool _objectPool;
-    [SerializeField] private GameObject _floorPrefab;
-    [SerializeField] private GameObject _corridorPrefab;
-    [SerializeField] private GameObject _wallPrefab;
+    [SerializeField] private Tilemap _floorTilemap;
+    [SerializeField] private Tilemap _corridorTilemap;
+    [SerializeField] private Tilemap _wallTilemap;
+    [SerializeField] private TileBase _floorTile;
+    [SerializeField] private TileBase _corridorTile;
+    [SerializeField] private TileBase _wallTile;
     [SerializeField] private Transform _tileRoot;
 
     public Transform TileRoot => _tileRoot;
 
-    private Dictionary<Vector2Int, GameObject> _activeTiles = new Dictionary<Vector2Int, GameObject>();
+    private HashSet<Vector2Int> _activeTiles = new HashSet<Vector2Int>();
     private HashSet<Vector2Int> _doorWallPositions = new HashSet<Vector2Int>();
     private HashSet<Vector2Int> _bossRoomCells = new HashSet<Vector2Int>();
     private HashSet<Vector2Int> _corridorTiles = new HashSet<Vector2Int>();
@@ -22,6 +25,10 @@ public class TileMapGenerator_Grid : MonoBehaviour
         _doorWallPositions.Clear();
         _bossRoomCells.Clear();
         _corridorTiles.Clear();
+
+        if (_floorTilemap != null) _floorTilemap.ClearAllTiles();
+        if (_corridorTilemap != null) _corridorTilemap.ClearAllTiles();
+        if (_wallTilemap != null) _wallTilemap.ClearAllTiles();
     }
 
     public bool IsCorridor(Vector2Int pos) => _corridorTiles.Contains(pos);
@@ -43,14 +50,14 @@ public class TileMapGenerator_Grid : MonoBehaviour
         {
             for (int x = bounds.xMin; x < bounds.xMax; x++)
             for (int y = bounds.yMin; y < bounds.yMax; y++)
-                _activeTiles[new Vector2Int(x, y)] = null;
+                _activeTiles.Add(new Vector2Int(x, y));
 
             return;
         }
 
         for (int x = bounds.xMin; x < bounds.xMax; x++)
         for (int y = bounds.yMin; y < bounds.yMax; y++)
-            PlaceTile(_floorPrefab, new Vector2Int(x, y));
+            PlaceFloorTile(new Vector2Int(x, y));
     }
 
     public void GenerateCorridors(List<ConnectionResult> connections)
@@ -88,7 +95,7 @@ public class TileMapGenerator_Grid : MonoBehaviour
                         ? new Vector2Int(pos.x + i, pos.y)
                         : new Vector2Int(pos.x, pos.y + i);
 
-                    PlaceTile(_corridorPrefab, tile);
+                    PlaceCorridorTile(tile);
                 }
 
                 if (isBend)
@@ -97,7 +104,7 @@ public class TileMapGenerator_Grid : MonoBehaviour
 
                     for (int bx = 0; bx < bendWidth; bx++)
                     for (int by = 0; by < bendWidth; by++)
-                        PlaceTileForce(_corridorPrefab, new Vector2Int(pos.x + bx, pos.y + by));
+                        PlaceCorridorTile(new Vector2Int(pos.x + bx, pos.y + by));
                 }
             }
 
@@ -162,12 +169,12 @@ public class TileMapGenerator_Grid : MonoBehaviour
             new Vector2Int(-1, -1)
         };
 
-        foreach (var pos in _activeTiles.Keys)
+        foreach (var pos in _activeTiles)
         {
             foreach (var dir in dirs)
             {
                 Vector2Int check = pos + dir;
-                if (!_activeTiles.ContainsKey(check))
+                if (!_activeTiles.Contains(check))
                     candidates.Add(check);
             }
         }
@@ -176,7 +183,7 @@ public class TileMapGenerator_Grid : MonoBehaviour
         {
             if (_doorWallPositions.Contains(pos)) continue;
             if (_bossRoomCells.Contains(pos)) continue;
-            PlaceTile(_wallPrefab, pos);
+            PlaceWallTile(pos);
         }
     }
 
@@ -189,50 +196,32 @@ public class TileMapGenerator_Grid : MonoBehaviour
         for (int y = bounds.yMin; y < bounds.yMax; y++)
         {
             Vector2Int pos = new Vector2Int(x, y);
-            if (_activeTiles.ContainsKey(pos))
+            if (_activeTiles.Contains(pos))
                 result.Add(pos);
         }
 
         return result;
     }
 
-    private void PlaceTile(GameObject prefab, Vector2Int pos)
+    private void PlaceFloorTile(Vector2Int pos)
     {
-        if (prefab == null) return;
-
-        if (_activeTiles.TryGetValue(pos, out var existing) && existing != null) return;
-
-        GameObject tile = _objectPool.Spawn(
-            prefab,
-            _tileRoot,
-            new Vector3(pos.x, pos.y, 0f),
-            Quaternion.identity
-        );
-
-        _activeTiles[pos] = tile;
-
-        if (prefab == _corridorPrefab)
-            _corridorTiles.Add(pos);
+        if (_activeTiles.Contains(pos)) return;
+        _activeTiles.Add(pos);
+        _floorTilemap.SetTile(new Vector3Int(pos.x, pos.y, 0), _floorTile);
     }
 
-    private void PlaceTileForce(GameObject prefab, Vector2Int pos)
+    private void PlaceCorridorTile(Vector2Int pos)
     {
-        if (prefab == null) return;
+        if (!_activeTiles.Contains(pos))
+        {
+            _activeTiles.Add(pos);
+            _corridorTilemap.SetTile(new Vector3Int(pos.x, pos.y, 0), _corridorTile);
+        }
+        _corridorTiles.Add(pos);
+    }
 
-        if (!_activeTiles.ContainsKey(pos))
-        {
-            GameObject tile = _objectPool.Spawn(
-                prefab,
-                _tileRoot,
-                new Vector3(pos.x, pos.y, 0f),
-                Quaternion.identity
-            );
-            _activeTiles[pos] = tile;
-            _corridorTiles.Add(pos);
-        }
-        else
-        {
-            _corridorTiles.Add(pos);
-        }
+    private void PlaceWallTile(Vector2Int pos)
+    {
+        _wallTilemap.SetTile(new Vector3Int(pos.x, pos.y, 0), _wallTile);
     }
 }

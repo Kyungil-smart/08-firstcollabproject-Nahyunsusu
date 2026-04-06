@@ -8,6 +8,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private TileMapGenerator_Grid _tileGenerator;
     [SerializeField] private DoorController _doorController;
     [SerializeField] private MapObjectPool _objectPool;
+    [SerializeField] private Transform _spawnedPrefabRoot;
     [SerializeField] private int _roomSpacing = 30;
     [SerializeField] private MiniMapUI _miniMapUI;
 
@@ -37,7 +38,7 @@ public class MapManager : MonoBehaviour
 
         PlaceRooms();
         PlaceConnections(connections);
-        
+
         if (_miniMapUI != null)
             _miniMapUI.BuildMiniMap(_graph.allRooms);
     }
@@ -55,9 +56,11 @@ public class MapManager : MonoBehaviour
 
     private void ClearMap()
     {
-        _objectPool.ReleaseChildren(_tileGenerator.TileRoot);
         _tileGenerator.Clear();
         _runtimeDataMap.Clear();
+
+        if (_spawnedPrefabRoot != null)
+            _objectPool.ReleaseChildren(_spawnedPrefabRoot);
     }
 
     private void PlaceRooms()
@@ -68,7 +71,7 @@ public class MapManager : MonoBehaviour
             {
                 if (room.roomData.roomType == RoomType.Start)
                 {
-                    _objectPool.Spawn(room.roomData.floorPrefab, _tileGenerator.TileRoot, Vector3.zero, Quaternion.identity);
+                    _objectPool.Spawn(room.roomData.floorPrefab, _spawnedPrefabRoot, Vector3.zero, Quaternion.identity);
                 }
                 else if (room.roomData.roomType == RoomType.Boss)
                 {
@@ -77,7 +80,7 @@ public class MapManager : MonoBehaviour
                         room.gridOrigin.y + room.size.y * 0.5f - 1.0f,
                         0f
                     );
-                    _objectPool.Spawn(room.roomData.floorPrefab, _tileGenerator.TileRoot, pos, Quaternion.identity);
+                    _objectPool.Spawn(room.roomData.floorPrefab, _spawnedPrefabRoot, pos, Quaternion.identity);
                 }
                 else
                 {
@@ -86,7 +89,7 @@ public class MapManager : MonoBehaviour
                         room.gridOrigin.y + room.size.y * 0.5f,
                         0f
                     );
-                    _objectPool.Spawn(room.roomData.floorPrefab, _tileGenerator.TileRoot, pos, Quaternion.identity);
+                    _objectPool.Spawn(room.roomData.floorPrefab, _spawnedPrefabRoot, pos, Quaternion.identity);
                 }
             }
 
@@ -105,7 +108,7 @@ public class MapManager : MonoBehaviour
         RectInt b = room.GetBounds();
 
         GameObject triggerObj = new GameObject("RoomTrigger");
-        triggerObj.transform.SetParent(_tileGenerator.TileRoot);
+        triggerObj.transform.SetParent(_spawnedPrefabRoot);
         triggerObj.transform.position = new Vector3(
             b.xMin + b.width / 2f,
             b.yMin + b.height / 2f,
@@ -122,13 +125,13 @@ public class MapManager : MonoBehaviour
         rt.doorController = _doorController;
         rt.miniMapUI = _miniMapUI;
     }
-    
+
     private void PlaceBossTrigger(RoomNode room)
     {
         RectInt b = room.GetBounds();
 
         GameObject triggerObj = new GameObject("BossTrigger");
-        triggerObj.transform.SetParent(_tileGenerator.TileRoot);
+        triggerObj.transform.SetParent(_spawnedPrefabRoot);
         triggerObj.transform.position = new Vector3(
             b.xMin + b.width / 2f,
             b.yMin + 1f,

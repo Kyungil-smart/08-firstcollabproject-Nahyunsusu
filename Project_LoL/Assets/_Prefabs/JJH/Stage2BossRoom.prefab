@@ -537,6 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78516a3f72d622042b853ac1cc6f9ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionInteractable
+  _destination: 0
   _interactUI: {fileID: 4824588890670416539, guid: 2c9a4a7241b3b054392339edc8c126d0, type: 3}
 --- !u!1 &1809294439140788165
 GameObject:
@@ -697,6 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e8cb4e3e3c47a4e8c363d8b21cfc1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossRewardChest
+  _visuals: {fileID: 1809294439140788165}
 --- !u!1 &2376064120001621409
 GameObject:
   m_ObjectHideFlags: 0
@@ -31300,11 +31302,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3680887234311865853, guid: 3ead964f204f02444848d7814a8462e3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.45
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 3680887234311865853, guid: 3ead964f204f02444848d7814a8462e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -24.51
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 3680887234311865853, guid: 3ead964f204f02444848d7814a8462e3, type: 3}
       propertyPath: m_LocalPosition.z
