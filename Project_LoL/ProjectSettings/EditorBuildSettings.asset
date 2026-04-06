@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/SceneManager/FinalBoss.unity
     guid: b8637428a36e06c46aadc7030397a567
   - enabled: 1
-    path: Assets/_Scenes/SceneManager/Ending.unity
+    path: Assets/_Scenes/SceneManager/EndingGameOver.unity
     guid: cbf61c718c2f423488ebcdcf98451e86
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: c054d064ade0c504e8fd8acdb74be5a0, type: 2}

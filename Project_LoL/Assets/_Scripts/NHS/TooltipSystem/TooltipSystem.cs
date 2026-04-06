@@ -25,12 +25,6 @@ public class TooltipSystem : MonoBehaviour
 
     private void Update()
     {
-        if (_tooltipWindow.activeSelf)
-        {
-            Vector2 mousePos = Mouse.current.position.ReadValue();
-
-            transform.position = (Vector3)mousePos + (Vector3)_offset;
-        }
     }
 
     public void Show(string content)

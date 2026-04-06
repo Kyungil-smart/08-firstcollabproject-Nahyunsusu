@@ -16,6 +16,8 @@ public class StoreUI : MonoBehaviour
 
     private bool _isInitialized = false;
 
+    [SerializeField] private EquipInspector _itemInspector; // 인스펙터에서 EquipInspector 오브젝트 연결
+
     private void Awake()
     {
         //this.gameObject.SetActive(false);
@@ -138,14 +140,14 @@ public class StoreUI : MonoBehaviour
                     if (trigger == null) 
                         trigger = _skillButtonList[i].gameObject.AddComponent<TooltipTrigger>();
                 }
-                Debug.Log($"{i}번 슬롯 스킬 세팅됨: {currentSO.name}");
+                //Debug.Log($"{i}번 슬롯 스킬 세팅됨: {currentSO.name}");
             }
             else
             {
                 if (i < _skillButtonList.Count && _skillButtonList[i] != null)
                     _skillButtonList[i].gameObject.SetActive(false);
 
-                Debug.Log($"{i}번 슬롯 비어있음");
+                //Debug.Log($"{i}번 슬롯 비어있음");
             }
         }
     }
