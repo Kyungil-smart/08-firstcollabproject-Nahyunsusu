@@ -34,4 +34,25 @@
 	{
 		CurrentGold = value;
 	}
+
+	public PlayerData Clone()
+	{
+		var clone = new PlayerData
+		{
+			HP            = HP,
+			AtkDamage     = AtkDamage,
+			AtkSpeed      = AtkSpeed,
+			MoveSpeed     = MoveSpeed,
+			CritRate      = CritRate,
+			CritDamage    = CritDamage,
+			DashTime      = DashTime,
+			DashCooldown  = DashCooldown,
+			DashInvincTime = DashInvincTime,
+		};
+		clone.SetHp(CurrentHp);
+		clone.SetExp(CurrentExp);
+		clone.SetLevel(CurrentLevel);
+		clone.SetGold(CurrentGold);
+		return clone;
+	}
 }

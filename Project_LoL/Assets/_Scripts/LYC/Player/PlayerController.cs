@@ -91,24 +91,47 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 		LevelUpManager.Instance?.UnregisterPlayer(this);
 		if (_equipmentList != null)
 			_equipmentList.OnEquipChanged -= OnEquipmentListChanged;
+
+		// 씬 전환 시 현재 스탯과 장비를 저장
+		if (Data != null)
+			PlayerPersistentData.Instance?.Save(_baseData, Data, _equipmentList?.MyEquips);
 	}
 
 	public void InitPlayer(PlayerDataSO dataSO = null)
 	{
-		var so = dataSO ?? PlayerDataSOSample;
-		_baseData = so?.Get();
-		Data      = so?.Get();
+		var persistent = PlayerPersistentData.Instance;
 
-		if (Data != null)
+		if (persistent != null && persistent.HasData)
 		{
-			Health = Data.HP;
-			Level = 1;
-			Gold = 0;
-			Exp = 0;
+			// 이전 씬에서 저장된 데이터로 복원
+			_baseData = persistent.SavedBaseData;
+			Data      = persistent.SavedRuntimeData;
+
+			// UI 이벤트 발행 및 장비 보정 재계산
+			HealthChanged?.Invoke();
+			LevelChanged?.Invoke();
+			GoldChanged?.Invoke();
+			ExpChanged?.Invoke();
+			RecalculateStats();
 		}
 		else
 		{
-			Debug.LogWarning($"{nameof(PlayerDataSO)} is null");
+			// 최초 게임 시작: 기본값으로 초기화
+			var so = dataSO ?? PlayerDataSOSample;
+			_baseData = so?.Get();
+			Data      = so?.Get();
+
+			if (Data != null)
+			{
+				Health = Data.HP;
+				Level  = 1;
+				Gold   = 0;
+				Exp    = 0;
+			}
+			else
+			{
+				Debug.LogWarning($"{nameof(PlayerDataSO)} is null");
+			}
 		}
 
 		FSM.Init();

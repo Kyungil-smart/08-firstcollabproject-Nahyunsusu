@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using _Scripts.LYC.Data;
 using _Scripts.LYC.Skill;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -17,6 +18,7 @@ public class LevelUpManager : MonoBehaviour
 	[SerializeField] private LevelUpPanel[] panels = new LevelUpPanel[3];
 	[SerializeField] private Sprite[] diceImages = new Sprite[6];
 	[SerializeField] private Image selectionDice;
+	[SerializeField] private TextMeshProUGUI selectionText;
 
 	private PlayerController _player;
 	private int _remainingSelections;
@@ -56,6 +58,7 @@ public class LevelUpManager : MonoBehaviour
 		};
 
 		Time.timeScale = 0f;
+		selectionText.text = $"남은 선택 가능 횟수: {selectCount}";
 		SetChildrenActive(true);
 
 		var choices = PickChoices(3);
@@ -74,7 +77,7 @@ public class LevelUpManager : MonoBehaviour
 			LevelUpChoiceEntry entry = choices[i];
 			LevelUpPanel panel = panels[i];
 
-			panel.diceImage.sprite = diceImages[Mathf.Clamp(entry.spawnWeight, DiceConst.MIN, DiceConst.MAX) - 1];
+			panel.diceImage.sprite = diceImages[Mathf.Clamp(7 - entry.spawnWeight, DiceConst.MIN, DiceConst.MAX) - 1];
 			panel.titleText.text = entry.displayName;
 			panel.statImage.sprite = entry.icon;
 			panel.descriptionText.text = entry.BuildDescription();
@@ -89,6 +92,7 @@ public class LevelUpManager : MonoBehaviour
 	{
 		ApplyStat(entry);
 		_remainingSelections--;
+		selectionText.text = $"남은 선택 가능 횟수: {_remainingSelections}";
 
 		if (_remainingSelections > 0) return;
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,14 +8,20 @@ public class PlayerUIController : MonoBehaviour
 {
 	public PlayerController _controller;
 
+	[Header("Slider")]
 	public Slider hpSlider;
-	public Slider expSlider;
 
+	public Slider expSlider;
+	public Slider dashSlider;
+
+	[Header("Image")]
 	public Image equipment1;
+
 	public Image equipment2;
 	public Image equipment3;
 	public Image equipment4;
 
+	[Header("Text")] public TextMeshProUGUI healthText;
 	public TextMeshProUGUI levelText;
 	public TextMeshProUGUI atkText;
 	public TextMeshProUGUI atkSpeedText;
@@ -39,6 +46,7 @@ public class PlayerUIController : MonoBehaviour
 
 		hpSlider.maxValue = 1;
 		expSlider.maxValue = 1;
+		dashSlider.maxValue = 1;
 
 		_equipmentSlots = new[] { equipment1, equipment2, equipment3, equipment4 };
 		foreach (var slot in _equipmentSlots)
@@ -50,11 +58,50 @@ public class PlayerUIController : MonoBehaviour
 		_controller.LevelChanged += RefreshLevel;
 		_controller.StatsChanged += RefreshStats;
 		_controller.GoldChanged += RefreshGold;
+		_controller.dashed.AddListener(RefreshDash);
+	}
+
+	private void RefreshDash()
+	{
+		StartCoroutine(DashRoutine());
+	}
+
+	private IEnumerator DashRoutine()
+	{
+		dashSlider.value = 0;
+		float time = 0;
+		while (time < _controller.Data.DashCooldown)
+		{
+			time += Time.deltaTime;
+			dashSlider.value = time / _controller.Data.DashCooldown;
+			yield return null;
+		}
+
+		dashSlider.value = 1;
 	}
 
 	private void Start()
 	{
-		// 현재 상태로 초기값 반영
+		if (_controller.Data == null)
+		{
+			StartCoroutine(LateUpdateRoutine());
+			return;
+		}
+
+		RefreshHealth();
+		RefreshExp();
+		RefreshLevel();
+		RefreshStats();
+		RefreshGold();
+	}
+
+	private IEnumerator LateUpdateRoutine()
+	{
+		while (_controller.Data == null)
+		{
+			yield return null;
+		}
+
 		RefreshHealth();
 		RefreshExp();
 		RefreshLevel();
@@ -71,6 +118,7 @@ public class PlayerUIController : MonoBehaviour
 		_controller.LevelChanged -= RefreshLevel;
 		_controller.StatsChanged -= RefreshStats;
 		_controller.GoldChanged -= RefreshGold;
+		_controller.dashed.RemoveListener(RefreshDash);
 	}
 
 	private void OnEquipmentChanged(int slot, EquipmentData equipment)
@@ -79,8 +127,11 @@ public class PlayerUIController : MonoBehaviour
 		_equipmentSlots[slot].enabled = equipment != null;
 	}
 
-	private void RefreshHealth() =>
+	private void RefreshHealth()
+	{
 		hpSlider.value = _controller.Health / (_controller.Data.HP + 0.001f);
+		healthText.text = $"{_controller.Health:F0}/{_controller.Data.HP:F0}";
+	}
 
 	private void RefreshExp() =>
 		expSlider.value = (_controller.Exp % 50) / 50.0f;
@@ -95,6 +146,10 @@ public class PlayerUIController : MonoBehaviour
 		moveSpeedText.text = $"{_controller.Data.MoveSpeed}";
 		critRateText.text = $"{_controller.Data.CritRate}";
 		critDamageText.text = $"{_controller.Data.CritDamage}";
+		
+		RefreshHealth();
+		RefreshExp();
+		RefreshLevel();
 	}
 
 	private void RefreshGold() =>
