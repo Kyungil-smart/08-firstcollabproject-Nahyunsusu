@@ -11,6 +11,17 @@ public class EquipmentList : MonoBehaviour
 
     public Action<bool> OnEquipChanged;
 
+    private void Awake()
+    {
+        // 이전 씬에서 저장된 장비가 있으면 조용히 복원 (이벤트 미발행)
+        // PlayerController.Start() → InitPlayer() → RecalculateStats() 에서 반영됨
+        var persistent = PlayerPersistentData.Instance;
+        if (persistent != null && persistent.HasData && persistent.SavedEquipments?.Count > 0)
+        {
+            _playersEquip = new List<EquipmentData>(persistent.SavedEquipments);
+        }
+    }
+
     public int CurrentCount => _playersEquip.Count; // 현재 장비 개수 확인용
 
     public void AddEquip(int index, int newEqiupId) // 보상이나 상점에서 호출할 함수

@@ -54,7 +54,8 @@ public class PlayerUIController : MonoBehaviour
 
 	private void Start()
 	{
-		// 현재 상태로 초기값 반영
+		if (_controller.Data == null) return;
+
 		RefreshHealth();
 		RefreshExp();
 		RefreshLevel();
