@@ -602,7 +602,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortingOrderByY
   _isStatic: 1
-  _offset: 0
 --- !u!1 &1015499309647379569
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,7 +757,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortingOrderByY
   _isStatic: 1
-  _offset: 0
 --- !u!1 &1435661178846170971
 GameObject:
   m_ObjectHideFlags: 0
@@ -10673,7 +10671,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -10956,7 +10954,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortingOrderByY
   _isStatic: 1
-  _offset: 0
 --- !u!1 &6407291692142393846
 GameObject:
   m_ObjectHideFlags: 0
@@ -11550,7 +11547,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortingOrderByY
   _isStatic: 1
-  _offset: 0
 --- !u!1 &7473391482649401278
 GameObject:
   m_ObjectHideFlags: 0
@@ -11962,7 +11958,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortingOrderByY
   _isStatic: 1
-  _offset: 0
 --- !u!1 &8198870821295939895
 GameObject:
   m_ObjectHideFlags: 0
@@ -12108,7 +12103,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortingOrderByY
   _isStatic: 1
-  _offset: 0
 --- !u!1 &8391749539344314865
 GameObject:
   m_ObjectHideFlags: 0
@@ -12249,7 +12243,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortingOrderByY
   _isStatic: 1
-  _offset: 0
 --- !u!1 &8555320523080665216
 GameObject:
   m_ObjectHideFlags: 0
