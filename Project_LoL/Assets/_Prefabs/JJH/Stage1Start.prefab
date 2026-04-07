@@ -1856,7 +1856,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortingOrderByY
   _isStatic: 1
-  _offset: 0
 --- !u!1 &3087412679704079385
 GameObject:
   m_ObjectHideFlags: 0
@@ -3178,7 +3177,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortingOrderByY
   _isStatic: 1
-  _offset: 0
 --- !u!1 &6591744025460270235
 GameObject:
   m_ObjectHideFlags: 0
@@ -3228,7 +3226,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortingOrderByY
   _isStatic: 1
-  _offset: 0
 --- !u!1 &6963383578538430772
 GameObject:
   m_ObjectHideFlags: 0
@@ -7569,7 +7566,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortingOrderByY
   _isStatic: 1
-  _offset: 0
 --- !u!1 &7728283691244136945
 GameObject:
   m_ObjectHideFlags: 0
