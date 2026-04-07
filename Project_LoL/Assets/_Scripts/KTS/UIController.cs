@@ -9,6 +9,8 @@ public class UIController : MonoBehaviour
     public void GameStart()
     {
         SceneManager.LoadScene("Lobby");
+        PlayerPersistentData.Instance?.Clear();
+
     }
     public void ActiveOptionUI()
     {
