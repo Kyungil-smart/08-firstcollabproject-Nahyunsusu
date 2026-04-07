@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: sc0004
   m_EditorClassIdentifier: Assembly-CSharp::MonsterSkillDataSO
   skillId: 0
-  baseDamage: 10
+  baseDamage: 0
   projectileSpeed: 2
   range: 14
   warningDuration: 0
