@@ -21,9 +21,11 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	[field: SerializeField]
 	public bool IsInvincible { get; private set; }
 
-	[Header("Events")] public UnityEvent hit;
-	public UnityEvent dashed;
-	public UnityEvent died;
+	[Header("Events")]
+	public UnityEvent hit;
+
+	public UnityEvent       dashed;
+	public UnityEvent       died;
 	public UnityEvent<bool> invincibilityChanged;
 
 	#endregion
@@ -31,31 +33,47 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	public float Health
 	{
 		get => Data.CurrentHp;
-		set { Data.SetHp(value); HealthChanged?.Invoke(); }
+		set
+		{
+			Data.SetHp(value);
+			HealthChanged?.Invoke();
+		}
 	}
 
 	public int Level
 	{
 		get => Data.CurrentLevel;
-		set { Data.SetLevel(value); LevelChanged?.Invoke(); }
+		set
+		{
+			Data.SetLevel(value);
+			LevelChanged?.Invoke();
+		}
 	}
 
 	public int Gold
 	{
 		get => Data.CurrentGold;
-		set { Data.SetGold(value); GoldChanged?.Invoke(); }
+		set
+		{
+			Data.SetGold(value);
+			GoldChanged?.Invoke();
+		}
 	}
 
 	public int Exp
 	{
 		get => Data.CurrentExp;
-		set { Data.SetExp(value); ExpChanged?.Invoke(); }
+		set
+		{
+			Data.SetExp(value);
+			ExpChanged?.Invoke();
+		}
 	}
 
 	public PlayerData Data { get; private set; }
-	public PlayerFSM FSM { get; private set; }
+	public PlayerFSM  FSM  { get; private set; }
 
-	private PlayerDataSO _dataSO;
+	private PlayerDataSO  _dataSO;
 	private EquipmentList _equipmentList;
 
 	/// <summary>장비 변경 시 발행. (슬롯 인덱스, 장착된 장비 — null이면 해제)</summary>
@@ -72,7 +90,7 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 
 	private void Awake()
 	{
-		FSM = GetComponent<PlayerFSM>();
+		FSM            = GetComponent<PlayerFSM>();
 		_equipmentList = GetComponent<EquipmentList>();
 		if (_equipmentList != null)
 			_equipmentList.OnEquipChanged += OnEquipmentListChanged;
@@ -151,6 +169,7 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 			var eq = i < equips.Count ? equips[i] : null;
 			EquipmentChanged?.Invoke(i, eq);
 		}
+
 		RecalculateStats();
 	}
 
@@ -187,12 +206,12 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 			critDmgPct  = total.CritDamage;
 		}
 
-		Data.HP         = _baseData.HP        * (1f + hpPct       / 100f);
-		Data.AtkDamage  = Mathf.RoundToInt(_baseData.AtkDamage  * (1f + atkPct      / 100f));
-		Data.AtkSpeed   = Mathf.RoundToInt(_baseData.AtkSpeed   * (1f + atkSpdPct   / 100f));
-		Data.MoveSpeed  = _baseData.MoveSpeed  * (1f + movSpdPct   / 100f);
-		Data.CritRate   = _baseData.CritRate   * (1f + critRatePct / 100f);
-		Data.CritDamage = Mathf.RoundToInt(_baseData.CritDamage * (1f + critDmgPct  / 100f));
+		Data.HP         = _baseData.HP * (1f + hpPct / 100f);
+		Data.AtkDamage  = Mathf.RoundToInt(_baseData.AtkDamage * (1f + atkPct / 100f));
+		Data.AtkSpeed   = Mathf.RoundToInt(_baseData.AtkSpeed * (1f + atkSpdPct / 100f));
+		Data.MoveSpeed  = _baseData.MoveSpeed * (1f + movSpdPct / 100f);
+		Data.CritRate   = _baseData.CritRate * (1f + critRatePct / 100f);
+		Data.CritDamage = Mathf.RoundToInt(_baseData.CritDamage * (1f + critDmgPct / 100f));
 		StatsChanged?.Invoke();
 	}
 
@@ -210,13 +229,30 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 
 	public void AddExperience(int exp)
 	{
+		const int   firstBaseExp   = 50;
+		const int   secondBaseExp  = 50;
+		const int   thirdBaseExp   = 50;
+		const float firstExponent  = 1;
+		const float secondExponent = 1;
+		const float thirdExponent  = 1;
+		const int   expDefault     = 50;
+		const int   firstBasis     = -1;
+		const int   secondBasis    = 0;
+
+		int expRequired = (int)(Level switch
+		{
+			<= firstBasis  => firstBaseExp * Mathf.Pow(Level, firstExponent),
+			<= secondBasis => secondBaseExp * Mathf.Pow(Level, secondExponent),
+			_              => secondBaseExp * Mathf.Pow(Level, thirdExponent)
+		});
+
 		Exp += exp;
 		if (Level >= 10) return;
 
-		if (Exp >= 50 * Level)
+		if (Exp >= expRequired)
 		{
+			Exp = expRequired;
 			Level++;
-			Exp = 50 * (Level - 1);
 			LevelUp?.Invoke();
 		}
 	}
@@ -230,8 +266,8 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 			if (col.gameObject == gameObject) continue;
 			if (col.TryGetComponent<Damageable>(out _))
 			{
-				Vector2 dir = (col.transform.position - transform.position).normalized;
-				Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
+				Vector2     dir = (col.transform.position - transform.position).normalized;
+				Rigidbody2D rb  = col.GetComponent<Rigidbody2D>();
 				if (rb != null)
 					rb.linearVelocity = dir * 1f;
 				else

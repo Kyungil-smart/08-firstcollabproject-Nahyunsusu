@@ -164,7 +164,7 @@ MonoBehaviour:
     spawnWeight: 1
     icon: {fileID: -6049228864857080796, guid: 6fea403cc9503e947906db544f2caf64, type: 3}
   - id: 50000016
-    displayName: "\uACF5\uC18D 1\uBC88"
+    displayName: "\uACF5\uACA9\uC18D\uB3C4 1\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 10
@@ -174,7 +174,7 @@ MonoBehaviour:
     spawnWeight: 6
     icon: {fileID: 8246457172663484082, guid: 26aaccd49b50cd84fb017e109db7f4d7, type: 3}
   - id: 50000017
-    displayName: "\uACF5\uC18D 2\uBC88"
+    displayName: "\uACF5\uACA9\uC18D\uB3C4 2\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 20
@@ -184,7 +184,7 @@ MonoBehaviour:
     spawnWeight: 4
     icon: {fileID: 8246457172663484082, guid: 26aaccd49b50cd84fb017e109db7f4d7, type: 3}
   - id: 50000018
-    displayName: "\uACF5\uC18D 3\uBC88"
+    displayName: "\uACF5\uACA9\uC18D\uB3C4 3\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 30
@@ -194,7 +194,7 @@ MonoBehaviour:
     spawnWeight: 2
     icon: {fileID: 8246457172663484082, guid: 26aaccd49b50cd84fb017e109db7f4d7, type: 3}
   - id: 50000019
-    displayName: "\uACF5\uC18D 4\uBC88"
+    displayName: "\uACF5\uACA9\uC18D\uB3C4 4\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 40
@@ -204,7 +204,7 @@ MonoBehaviour:
     spawnWeight: 2
     icon: {fileID: 8246457172663484082, guid: 26aaccd49b50cd84fb017e109db7f4d7, type: 3}
   - id: 50000020
-    displayName: "\uACF5\uC18D 5\uBC88"
+    displayName: "\uACF5\uACA9\uC18D\uB3C4 5\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 50
@@ -214,7 +214,7 @@ MonoBehaviour:
     spawnWeight: 1
     icon: {fileID: 8246457172663484082, guid: 26aaccd49b50cd84fb017e109db7f4d7, type: 3}
   - id: 50000021
-    displayName: "\uC774\uC18D 1\uBC88"
+    displayName: "\uC774\uB3D9\uC18D\uB3C4 1\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 0
@@ -224,7 +224,7 @@ MonoBehaviour:
     spawnWeight: 6
     icon: {fileID: -8744168174191781655, guid: 3da68bfdaf384904381a83a5fae96c85, type: 3}
   - id: 50000022
-    displayName: "\uC774\uC18D 2\uBC88"
+    displayName: "\uC774\uB3D9\uC18D\uB3C4 2\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 0
@@ -234,7 +234,7 @@ MonoBehaviour:
     spawnWeight: 4
     icon: {fileID: -8744168174191781655, guid: 3da68bfdaf384904381a83a5fae96c85, type: 3}
   - id: 50000023
-    displayName: "\uC774\uC18D 3\uBC88"
+    displayName: "\uC774\uB3D9\uC18D\uB3C4 3\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 0
@@ -244,7 +244,7 @@ MonoBehaviour:
     spawnWeight: 3
     icon: {fileID: -8744168174191781655, guid: 3da68bfdaf384904381a83a5fae96c85, type: 3}
   - id: 50000024
-    displayName: "\uC774\uC18D 4\uBC88"
+    displayName: "\uC774\uB3D9\uC18D\uB3C4 4\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 0
@@ -254,7 +254,7 @@ MonoBehaviour:
     spawnWeight: 2
     icon: {fileID: -8744168174191781655, guid: 3da68bfdaf384904381a83a5fae96c85, type: 3}
   - id: 50000025
-    displayName: "\uC774\uC18D 5\uBC88"
+    displayName: "\uC774\uB3D9\uC18D\uB3C4 5\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 0
@@ -264,7 +264,7 @@ MonoBehaviour:
     spawnWeight: 1
     icon: {fileID: -8744168174191781655, guid: 3da68bfdaf384904381a83a5fae96c85, type: 3}
   - id: 50000026
-    displayName: "\uCE58\uD655 1\uBC88"
+    displayName: "\uCE58\uBA85\uD0C0\uD655\uB960 1\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 0
@@ -274,7 +274,7 @@ MonoBehaviour:
     spawnWeight: 4
     icon: {fileID: 5494694198514985034, guid: 7944f3e605140774989a2676d7aab207, type: 3}
   - id: 50000027
-    displayName: "\uCE58\uD655 2\uBC88"
+    displayName: "\uCE58\uBA85\uD0C0\uD655\uB960 2\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 0
@@ -284,7 +284,7 @@ MonoBehaviour:
     spawnWeight: 2
     icon: {fileID: 5494694198514985034, guid: 7944f3e605140774989a2676d7aab207, type: 3}
   - id: 50000028
-    displayName: "\uCE58\uD655 3\uBC88"
+    displayName: "\uCE58\uBA85\uD0C0\uD655\uB960 3\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 0
@@ -294,7 +294,7 @@ MonoBehaviour:
     spawnWeight: 1
     icon: {fileID: 5494694198514985034, guid: 7944f3e605140774989a2676d7aab207, type: 3}
   - id: 50000029
-    displayName: "\uCE58\uD53C 1\uBC88"
+    displayName: "\uCE58\uBA85\uD0C0\uD53C\uD574 1\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 0
@@ -304,7 +304,7 @@ MonoBehaviour:
     spawnWeight: 4
     icon: {fileID: -9047006209447983689, guid: 81a8b7adc6fdbf44d9f0e35651ab8e57, type: 3}
   - id: 50000030
-    displayName: "\uCE58\uD53C 2\uBC88"
+    displayName: "\uCE58\uBA85\uD0C0\uD53C\uD574 2\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 0
@@ -314,7 +314,7 @@ MonoBehaviour:
     spawnWeight: 2
     icon: {fileID: -9047006209447983689, guid: 81a8b7adc6fdbf44d9f0e35651ab8e57, type: 3}
   - id: 50000031
-    displayName: "\uCE58\uD53C 3\uBC88"
+    displayName: "\uCE58\uBA85\uD0C0\uD53C\uD574 3\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 0
@@ -324,7 +324,7 @@ MonoBehaviour:
     spawnWeight: 2
     icon: {fileID: -9047006209447983689, guid: 81a8b7adc6fdbf44d9f0e35651ab8e57, type: 3}
   - id: 50000032
-    displayName: "\uCE58\uD53C 4\uBC88"
+    displayName: "\uCE58\uBA85\uD0C0\uD53C\uD574 4\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 0
@@ -334,7 +334,7 @@ MonoBehaviour:
     spawnWeight: 1
     icon: {fileID: -9047006209447983689, guid: 81a8b7adc6fdbf44d9f0e35651ab8e57, type: 3}
   - id: 50000033
-    displayName: "\uCE58\uD53C 5\uBC88"
+    displayName: "\uCE58\uBA85\uD0C0\uD53C\uD574 5\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 0
@@ -344,7 +344,7 @@ MonoBehaviour:
     spawnWeight: 1
     icon: {fileID: -9047006209447983689, guid: 81a8b7adc6fdbf44d9f0e35651ab8e57, type: 3}
   - id: 50000034
-    displayName: "- \uACF5 + \uACF5\uC18D 1\uBC88"
+    displayName: "-\uACF5\uACA9\uB825+\uACF5\uACA9\uC18D\uB3C4 1\uBC88"
     hp: 0
     atkDamage: -20
     atkSpeed: 50
@@ -354,7 +354,8 @@ MonoBehaviour:
     spawnWeight: 2
     icon: {fileID: 8246457172663484082, guid: 26aaccd49b50cd84fb017e109db7f4d7, type: 3}
   - id: 50000035
-    displayName: "- \uCE58\uD53C + \uCE58\uD655 1\uBC88"
+    displayName: "-\uCE58\uBA85\uD0C0\uD53C\uD574+\uCE58\uBA85\uCC28\uD655\uB960
+      1\uBC88"
     hp: 0
     atkDamage: 0
     atkSpeed: 0
