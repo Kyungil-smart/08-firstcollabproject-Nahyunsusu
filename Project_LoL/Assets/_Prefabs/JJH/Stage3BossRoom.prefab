@@ -16023,7 +16023,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa293751c924d24ca813c5692363b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeInteractable
-  _upgradeUI: {fileID: 5483219858756307622, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
   _interactUI: {fileID: 0}
 --- !u!1 &4973245297221517039
 GameObject:
@@ -16666,7 +16665,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8c3ed7ec49a8c4cb30d2df2d8412f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopInteractable
-  _shopUI: {fileID: 4007611934414592414, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
   _interactUI: {fileID: 0}
 --- !u!1 &7421532063444693143
 GameObject:
