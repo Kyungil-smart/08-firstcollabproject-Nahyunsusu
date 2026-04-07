@@ -8,6 +8,16 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
+enum EnhancePrice
+{
+    Level1 = 5,
+    Level2 = 10,
+    Level3 = 15,
+    Level4 = 20,
+    Level5 = 30,
+    Level6 = 40
+}
+
 public class EnhancementUI : MonoBehaviour
 {
     [SerializeField] private List<Button>  _equipmentButtons = new List<Button>();
@@ -38,9 +48,15 @@ public class EnhancementUI : MonoBehaviour
     private float _timer = 0f;
     private bool _isRolling = false;
 
+    [Header("EnhancePriceSetting")]
+    private int[] _enhancePrices = { 5, 10, 15, 20, 30, 40 };
+    private int[] _enhanceSum = { 4, 5, 6, 8, 10, 12 };
+    [SerializeField] private PlayerController _playerController;
+
+
     private void Awake()
     {
-        //this.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -105,6 +121,17 @@ public class EnhancementUI : MonoBehaviour
 
     public void ExecuteEnhancement()
     {
+        int currentLevel = _equipmentList.MyEquips[_selectedIndex].CurrentUpgradeLevel;
+        int cost = _enhancePrices[Mathf.Clamp(currentLevel, 0, _enhancePrices.Length - 1)];
+
+        if (_playerController.Gold < cost)
+        {
+            Debug.Log("골드가 부족합니다!");
+            return;
+        }
+
+        _playerController.Gold -= cost;
+
         Debug.Log("주사위 굴리기 시작!");
         _enhanceButton.interactable = false;
 
@@ -126,6 +153,10 @@ public class EnhancementUI : MonoBehaviour
         _isRolling = false;
         int totalSum = 0;
 
+        int currentLevel = _equipmentList.MyEquips[_selectedIndex].CurrentUpgradeLevel;
+
+        int levelIndex = Mathf.Clamp(currentLevel, 0, _enhanceSum.Length - 1);
+
         for (int i = 0; i < _animator.Count; i++)
         {
             if (_animator[i] != null) _animator[i].SetTrigger(_stop);
@@ -143,15 +174,11 @@ public class EnhancementUI : MonoBehaviour
             }
         }
 
-        int resultOddEven = totalSum % 2;
-        if (resultOddEven == _selectedOddEven)
+        bool isSumEnough = (totalSum >= _enhanceSum[levelIndex]);
+
+        if (isSumEnough)
         {
-            Debug.Log($"강화 성공! 합계: {totalSum}");
             _equipmentList.UpgradeEquipment(_selectedIndex);
-        }
-        else
-        {
-            Debug.Log($"강화 실패... 합계: {totalSum}");
         }
 
         ResetSelection();

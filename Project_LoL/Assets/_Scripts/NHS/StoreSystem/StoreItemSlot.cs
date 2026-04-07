@@ -35,9 +35,17 @@ public class StoreItemSlot : TooltipComponent
         _imageButton.interactable = true;
         _imageButton.image.sprite = data.EquipImages.Get(0);
 
-        _descriptionText.text = $"<b>{data.EquipName_KO}</b>";
-              _priceText.text = $"{   data.EquipPrice}";
-                _currentPrice =       data.EquipPrice;
+        if (LanguageManager.Instance.currentLanguage == Language.Korean)
+        {
+            _descriptionText.text = $"<b>{data.EquipName_KO}</b>";
+        }
+        else
+        {
+            _descriptionText.text = $"<b>{data.EquipName_EN}</b>";
+        }
+
+        _priceText.text = $"{data.EquipPrice}";
+        _currentPrice   =    data.EquipPrice;
 
         _imageButton.onClick.RemoveAllListeners();
         _imageButton.onClick.AddListener(() =>
@@ -48,11 +56,11 @@ public class StoreItemSlot : TooltipComponent
                 return;
             }
 
-            //if (_playerController.Gold < _currentPrice)
-            //{
-            //    Debug.Log("골드가 부족합니다.");
-            //    return;
-            //}
+            if (_playerController.Gold < _currentPrice)
+            {
+                Debug.Log("골드가 부족합니다.");
+                return;
+            }
 
             _playerController.Gold -= _currentPrice;
 
@@ -76,6 +84,7 @@ public class StoreItemSlot : TooltipComponent
 
                     ReplaceSelectorUI.instance.onSlotSelected = null;
                 };
+
                 MarkAsSold();
             }
 
@@ -142,11 +151,12 @@ public class StoreItemSlot : TooltipComponent
                 {
                     _skillHandler.SetSkill(skillDataSO, index, diceValue);
 
+                    Mathf.RoundToInt(skillDataSO.Get(1).Price * 0.3f);
                     MarkAsSold();
                     ReplaceSelectorUI.instance.onSlotSelected = null;
                 };
 
-                //equipInspector.RefreshUI(true);
+                equipInspector.RefreshUI(true);
             }
         });
     }
@@ -159,16 +169,16 @@ public class StoreItemSlot : TooltipComponent
 
     private void NegotiatePrice()
     {
-        //if (_negoSystem.SetTable())
-        //{
-        //    _currentPrice = _negoSystem.DecreasePrice(_currentPrice);
-        //    Debug.Log("협상 성공!");
-        //}
-        //else
-        //{
-        //    _currentPrice = _negoSystem.IncreasePrice(_currentPrice);
-        //    Debug.Log("협상 실패!");
-        //}
+        if (_negoSystem.SetTable())
+        {
+            _currentPrice = _negoSystem.DecreasePrice(_currentPrice);
+            Debug.Log("협상 성공!");
+        }
+        else
+        {
+            _currentPrice = _negoSystem.IncreasePrice(_currentPrice);
+            Debug.Log("협상 실패!");
+        }
 
         _priceText.text = _currentPrice.ToString();
 

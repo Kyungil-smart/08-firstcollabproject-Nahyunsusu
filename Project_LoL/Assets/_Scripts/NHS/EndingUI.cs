@@ -56,11 +56,25 @@ public class EndingUI : MonoBehaviour
 
     private void SetInfoText()
     {
-        _infoText.text = $"최고 도달 층 수 : {1} 층\r\n최대 생존 시간 : {00: 00 : 38}\r\n처치한 적 : {1} 마리\r\n획득한 골드 : {0} Gold\r\n강화 성공 횟수 : {0} 회\r\n가장 강력한 일격 : {10}";
+        if (LanguageManager.Instance.currentLanguage == Language.Korean)
+        {
+            _infoText.text = $"최고 도달 층 수 : {1} 층\r\n최대 생존 시간 : {00: 00 : 38}\r\n처치한 적 : {1} 마리\r\n획득한 골드 : {0} Gold\r\n강화 성공 횟수 : {0} 회\r\n가장 강력한 일격 : {10}";
+        }
+        else
+        {
+            _infoText.text = $"Highest Floor: {1}\r\nMax Survival Time: {"00:00:38"}\r\nEnemies Defeated: {1}\r\nGold Earned: {0} Gold\r\nEnhancement Successes: {0}\r\nStrongest Hit: {10}";
+        }
     }
 
     private void SetStatText()
     {
-        _statText.text = $"공격력 : {10}\r\n공격 속도 : {1.0}\r\n이동 속도 : {8}\r\n치명타 확률 : {0} %\r\n치명타 피해 : {0} %";
+        if (LanguageManager.Instance.currentLanguage == Language.Korean)
+        {
+            _statText.text = $"공격력 : {10}\r\n공격 속도 : {1.0}\r\n이동 속도 : {8}\r\n치명타 확률 : {0} %\r\n치명타 피해 : {0} %";
+        }
+        else
+        {
+            _statText.text = $"Attack Power: {10}\r\nAttack Speed: {1.0}\r\nMove Speed: {8}\r\nCrit Rate: {0} %\r\nCrit Damage: {0} %";
+        }
     }
 }
