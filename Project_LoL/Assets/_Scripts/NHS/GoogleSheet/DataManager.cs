@@ -81,7 +81,7 @@ public class DataManager : MonoBehaviour
         if (!IsLoaded || _equipDataList.Count < count) return null;
 
         List<EquipmentData_SO> result = new List<EquipmentData_SO>();
-        List<EquipmentData_SO> pool = new List<EquipmentData_SO>(_equipDataList);
+        List<EquipmentData_SO>   pool = new List<EquipmentData_SO>(_equipDataList);
 
         for (int i = 0; i < count; i++)
         {
