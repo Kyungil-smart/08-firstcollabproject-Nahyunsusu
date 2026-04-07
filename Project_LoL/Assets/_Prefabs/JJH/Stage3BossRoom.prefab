@@ -16163,8 +16163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossRewardChest
   _visuals: {fileID: 8422422230661791598}
   _animator: {fileID: 7834826283456155978}
-  _equipmentList: {fileID: 0}
-  _dataManager: {fileID: 0}
+  _equipmentList: {fileID: 7454494164900188995, guid: 957e383ee57debd4cb5b55ed70723c58, type: 3}
+  _dataManager: {fileID: 2360425075972459873, guid: 3ea1bcd8c69a5894c8d7b431dfba28b5, type: 3}
   _interactUI: {fileID: 0}
 --- !u!1 &6737433220823242698
 GameObject:
@@ -16991,6 +16991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionInteractable
   _destination: 0
   _interactUI: {fileID: 4824588890670416539, guid: 2c9a4a7241b3b054392339edc8c126d0, type: 3}
+  _requireTutorialComplete: 0
 --- !u!1 &8422422230661791598
 GameObject:
   m_ObjectHideFlags: 0
