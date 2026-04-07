@@ -902,8 +902,8 @@ MonoBehaviour:
   dummyEnemy1: {fileID: 1383464666}
   dummyEnemy2: {fileID: 1308773626}
   quests:
-  - questName: "\uC774\uB3D9 \uBC0F \uB300\uC2DC \uC870\uC791\uC73C\uB85C\\n\uACF5\uACA9
-      \uD68C\uD53C\uD558\uAE30"
+  - questName: "[SHIFT]\uD0A4\uB85C \uB300\uC2DC\uD558\uC5EC\\n\uBD89\uC740 \uC7A5\uC560\uBB3C\uC744\\n\uBE60\uB974\uAC8C
+      \uB118\uC5B4\uBCF4\uC138\uC694."
     type: 0
     GameObjects:
     - {fileID: 674454201}
@@ -911,8 +911,8 @@ MonoBehaviour:
     requiredCount: 3
     skillSlotIndex: 0
     currentCount: 0
-  - questName: "\uB300\uC0C1 \uC2A4\uD0AC\uC744 5\uD68C \uC0AC\uC6A9\uD574\uC11C\\n\uD5C8\uC218\uC544\uBE44
-      \uCC98\uCE58\uD558\uAE30"
+  - questName: "[TAB]\uD0A4\uB85C \uC2A4\uD0AC\uC744 \uC804\uD658\uD558\uACE0\\n\uD574\uB2F9
+      \uC2A4\uD0AC\uB85C \uD5C8\uC218\uC544\uBE44\uB97C\\n\uCC98\uCE58\uD574\uBCF4\uC138\uC694."
     type: 1
     GameObjects:
     - {fileID: 1383464663}
@@ -920,8 +920,8 @@ MonoBehaviour:
     requiredCount: 5
     skillSlotIndex: 0
     currentCount: 0
-  - questName: "\uB300\uC0C1 \uC2A4\uD0AC\uC744 5\uD68C \uC0AC\uC6A9\uD574\uC11C\\n\uD5C8\uC218\uC544\uBE44
-      \uCC98\uCE58\uD558\uAE30"
+  - questName: "[TAB]\uD0A4\uB85C \uC2A4\uD0AC\uC744 \uC804\uD658\uD558\uACE0\\n\uD574\uB2F9
+      \uC2A4\uD0AC\uB85C \uD5C8\uC218\uC544\uBE44\uB97C\\n\uCC98\uCE58\uD574\uBCF4\uC138\uC694."
     type: 1
     GameObjects:
     - {fileID: 1308773623}
@@ -929,8 +929,8 @@ MonoBehaviour:
     requiredCount: 5
     skillSlotIndex: 1
     currentCount: 0
-  - questName: "\uB300\uC0C1 \uC2A4\uD0AC\uC744 5\uD68C \uC0AC\uC6A9\uD574\uC11C\\n\uD5C8\uC218\uC544\uBE44
-      \uCC98\uCE58\uD558\uAE30"
+  - questName: "\uB208\uAE08\uC774 \uB192\uC740 \uC2A4\uD0AC\uC744\\n\uD65C\uC6A9\uD574
+      \uD5C8\uC218\uC544\uBE44\uB97C\\n\uCC98\uCE58\uD574\uBCF4\uC138\uC694."
     type: 1
     GameObjects:
     - {fileID: 1383464663}
@@ -938,8 +938,8 @@ MonoBehaviour:
     requiredCount: 5
     skillSlotIndex: 2
     currentCount: 0
-  - questName: "\uB300\uC0C1 \uC2A4\uD0AC\uC744 5\uD68C \uC0AC\uC6A9\uD574\uC11C\\n\uD5C8\uC218\uC544\uBE44
-      \uCC98\uCE58\uD558\uAE30"
+  - questName: "\uB208\uAE08\uC774 \uB192\uC740 \uC2A4\uD0AC\uC744\\n\uD65C\uC6A9\uD574
+      \uD5C8\uC218\uC544\uBE44\uB97C\\n\uCC98\uCE58\uD574\uBCF4\uC138\uC694."
     type: 1
     GameObjects:
     - {fileID: 1308773623}
@@ -1872,47 +1872,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3680887234311865853, guid: 3ead964f204f02444848d7814a8462e3, type: 3}
   m_PrefabInstance: {fileID: 424956419}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &447022912
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: UI/RoundedCorners/RoundedCorners
-  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _OuterUV: {r: 0, g: 0, b: 1, a: 1}
-    - _WidthHeightRadius: {r: 140, g: 120, b: 40, a: 0}
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1001 &449014255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1923,11 +1882,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6214984124904572333, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.12
+      value: -9.12
       objectReference: {fileID: 0}
     - target: {fileID: 6214984124904572333, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.02
+      value: -4.02
       objectReference: {fileID: 0}
     - target: {fileID: 6214984124904572333, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4042,7 +4001,7 @@ Transform:
   m_GameObject: {fileID: 1291779158}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.9, y: -0.54, z: 0}
+  m_LocalPosition: {x: -0.099999905, y: -0.54, z: 0}
   m_LocalScale: {x: 0.3, y: 8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4120,7 +4079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   tutorialManager: {fileID: 319431365}
-  rangeX: 2.5
+  rangeX: 5
 --- !u!61 &1291779162
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5776,6 +5735,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907874809}
   m_CullTransparentMesh: 1
+--- !u!21 &1979700449
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI/RoundedCorners/RoundedCorners
+  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _OuterUV: {r: 0, g: 0, b: 1, a: 1}
+    - _WidthHeightRadius: {r: 140, g: 120, b: 40, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &2020513152
 GameObject:
   m_ObjectHideFlags: 0
@@ -6153,7 +6153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionInteractable
   _destination: 3
   _interactUI: {fileID: 4824588890670416539, guid: 2c9a4a7241b3b054392339edc8c126d0, type: 3}
-  _requireTutorialComplete: 1
+  _requireTutorialComplete: 0
 --- !u!61 &2123193516
 BoxCollider2D:
   m_ObjectHideFlags: 0
