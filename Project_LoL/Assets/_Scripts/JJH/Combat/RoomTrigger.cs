@@ -15,6 +15,9 @@ public class RoomTrigger : MonoBehaviour
 
         RoomRuntimeData data = mapManager.GetRuntimeData(room);
         if (data == null) return;
+
+        miniMapUI?.UpdateMiniMap(room);
+
         if (data.state != RoomState.Unvisited) return;
 
         if (room.roomData.roomType == RoomType.Combat)
@@ -26,8 +29,6 @@ public class RoomTrigger : MonoBehaviour
         {
             StartCoroutine(CloseDoorsDelayed());
         }
-        
-        miniMapUI?.UpdateMiniMap(room);
     }
 
     private IEnumerator CloseDoorsDelayed()

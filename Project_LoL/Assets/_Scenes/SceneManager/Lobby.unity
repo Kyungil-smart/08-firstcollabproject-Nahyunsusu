@@ -393,7 +393,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1743223632992420675, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
       propertyPath: m_SortingOrder
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2849550972814742650, guid: c01ff21428f9c654383b96f88b7c3e2f, type: 3}
       propertyPath: m_Size.x
