@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: 20111001
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   monsterId: 20111001
-  monsterName: "\uADFC\uAC70\uB9AC 1\uC2A4\uD14C\uC774\uC9C0"
-  maxHp: 50
-  attackDamage: 10
+  maxHp: 150
+  attackDamage: 20
   attackSpeed: 1
-  moveSpeed: 1
-  detectRange: 8
+  moveSpeed: 2
+  detectRange: 11
   attackRange: 1.5
-  goldReward: 10
+  goldReward: 15
   expReward: 10
   chestId: 0
   skill: {fileID: 11400000, guid: beacfeeba55fc6941a52213a1d14df79, type: 2}

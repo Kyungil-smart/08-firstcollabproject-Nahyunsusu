@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPool
   poolConfigs:
   - prefab: {fileID: 806679725227952471, guid: 47d1de38eae519144972fdabe796997a, type: 3}
-    spawnAmount: 3
+    spawnAmount: 10
   - prefab: {fileID: 7844854224969159464, guid: e8867224727005c4cbe0d6fd13509594, type: 3}
-    spawnAmount: 3
+    spawnAmount: 8
