@@ -101,6 +101,6 @@ InitTestScene*.unity*
 # Ignore imported assets
 Assets/Imports/**
 
-# TextMeshPro SDF 폰트 에셋 (대용량, 충돌 방지)
-Assets/TextMesh Pro/Resources/Fonts & Materials/*.asset
-Assets/TextMesh Pro/Resources/Fonts & Materials/*.asset.meta
+# TextMesh Pro 자동 생성 폰트 에셋
+Assets/TextMesh Pro/Resources/Fonts & Materials/__UI__GalmuriMono SDF.asset
+Assets/TextMesh Pro/Resources/Fonts & Materials/__UI__GalmuriMono SDF.asset.meta

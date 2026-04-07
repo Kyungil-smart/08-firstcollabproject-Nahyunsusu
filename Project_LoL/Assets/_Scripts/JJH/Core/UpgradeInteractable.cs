@@ -3,13 +3,18 @@ using UnityEngine.InputSystem;
 
 public class UpgradeInteractable : MonoBehaviour
 {
-    [SerializeField] private GameObject _upgradeUI;
     [SerializeField] private GameObject _interactUI;
 
     private bool _playerInRange;
+    private GameObject _upgradeUI;
 
-    private void Awake()
+    private void Start()
     {
+        Canvas canvas = GetComponentInChildren<Canvas>();
+        if (canvas != null)
+            canvas.worldCamera = Camera.main;
+        
+        _upgradeUI = GameObject.Find("Upgrade");
         if (_upgradeUI != null) _upgradeUI.SetActive(false);
         if (_interactUI != null) _interactUI.SetActive(false);
     }

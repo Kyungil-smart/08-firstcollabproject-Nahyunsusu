@@ -3,13 +3,18 @@ using UnityEngine.InputSystem;
 
 public class ShopInteractable : MonoBehaviour
 {
-    [SerializeField] private GameObject _shopUI;
     [SerializeField] private GameObject _interactUI;
 
     private bool _playerInRange;
+    private GameObject _shopUI;
 
-    private void Awake()
+    private void Start()
     {
+        Canvas canvas = GetComponentInChildren<Canvas>();
+        if (canvas != null)
+            canvas.worldCamera = Camera.main;
+        
+        _shopUI = GameObject.Find("Store");
         if (_shopUI != null) _shopUI.SetActive(false);
         if (_interactUI != null) _interactUI.SetActive(false);
     }

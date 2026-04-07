@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stage3_Boss
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
   roomName: Stage3_Boss
-  roomType: 3
+  roomType: 2
   fixedSize: {x: 51, y: 51}
   minSize: {x: 0, y: 0}
   maxSize: {x: 0, y: 0}

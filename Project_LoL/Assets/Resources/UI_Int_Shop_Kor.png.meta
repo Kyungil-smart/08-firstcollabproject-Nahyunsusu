@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fb6ac53ebe3584a46ad17dae665452ae
+guid: 9c9e0af2641c5e1418e58bbf2e478553
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4741819913983669445
-    second: Gemini_Generated_Image_jubersjubersjube_0
+      213: -3922696578050664414
+    second: UI_Int_Shop_Kor_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +24,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -48,14 +48,14 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 68
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gemini_Generated_Image_jubersjubersjube_0
+      name: UI_Int_Shop_Kor_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 607
-        width: 68
-        height: 67
+        x: 0
+        y: 0
+        width: 100
+        height: 45
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3b412659eba13eb0800000000000000
-      internalID: -4741819913983669445
+      spriteID: 22856afde38cf89c0800000000000000
+      internalID: -3922696578050664414
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8463f24246bd36f498011f8821afc471
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -159,11 +159,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":16.0,"y":16.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Gemini_Generated_Image_jubersjubersjube_0: -4741819913983669445
+      UI_Int_Shop_Kor_0: -3922696578050664414
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

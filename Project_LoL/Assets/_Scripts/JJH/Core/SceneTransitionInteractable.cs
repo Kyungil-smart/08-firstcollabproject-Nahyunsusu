@@ -17,8 +17,30 @@ public class SceneTransitionInteractable : MonoBehaviour
 
     [SerializeField] private Destination _destination = Destination.Next;
     [SerializeField] private GameObject _interactUI;
+    [SerializeField] private bool _requireTutorialComplete = false;
 
     private bool _playerInRange;
+
+    private void Start()
+    {
+        Canvas canvas = GetComponentInChildren<Canvas>();
+        if (canvas != null)
+            canvas.worldCamera = Camera.main;
+        
+        if (_requireTutorialComplete)
+        {
+            gameObject.SetActive(false);
+
+            TutorialManager tm = FindAnyObjectByType<TutorialManager>();
+            if (tm != null)
+                tm.onTutorialCompleted.AddListener(OnTutorialCompleted);
+        }
+    }
+
+    private void OnTutorialCompleted()
+    {
+        gameObject.SetActive(true);
+    }
 
     private void Update()
     {
@@ -26,7 +48,7 @@ public class SceneTransitionInteractable : MonoBehaviour
             Transit();
     }
 
-    private void Transit()
+    public void Transit()
     {
         switch (_destination)
         {

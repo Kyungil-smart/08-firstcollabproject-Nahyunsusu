@@ -40,7 +40,10 @@ public class MapManager : MonoBehaviour
         PlaceConnections(connections);
 
         if (_miniMapUI != null)
+        {
             _miniMapUI.BuildMiniMap(_graph.allRooms);
+            _miniMapUI.UpdateMiniMap(_graph.startRoom);
+        }
     }
 
     public RoomRuntimeData GetRuntimeData(RoomNode room)

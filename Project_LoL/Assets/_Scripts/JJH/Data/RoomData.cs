@@ -21,7 +21,7 @@ public class RoomData : ScriptableObject
  
     public Vector2Int GetRandomSize()
     {
-        if (roomType == RoomType.Combat || roomType == RoomType.Repair)
+        if (roomType == RoomType.Combat)
         {
             return new Vector2Int(
                 Random.Range(minSize.x, maxSize.x + 1),
