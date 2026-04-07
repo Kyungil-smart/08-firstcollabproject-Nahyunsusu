@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FinalBoss
   m_EditorClassIdentifier: Assembly-CSharp::FinalBossData
   monsterDataId: 20221001
-  monsterHp: 3000
-  monsterAttack: 1
+  monsterHp: 5000
+  monsterAttack: 0
   monsterAttackRangeX: 33
   monsterAttackRangeY: 28

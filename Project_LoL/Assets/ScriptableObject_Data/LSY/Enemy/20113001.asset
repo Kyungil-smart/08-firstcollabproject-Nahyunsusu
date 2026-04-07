@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: 20113001
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   monsterId: 20113001
-  monsterName: "\uADFC\uAC70\uB9AC 3\uC2A4\uD14C\uC774\uC9C0"
-  maxHp: 70
-  attackDamage: 20
+  maxHp: 350
+  attackDamage: 50
   attackSpeed: 1
   moveSpeed: 2
-  detectRange: 10
+  detectRange: 11
   attackRange: 2
   goldReward: 20
   expReward: 10
