@@ -10,6 +10,10 @@ public class ShopInteractable : MonoBehaviour
 
     private void Start()
     {
+        Canvas canvas = GetComponentInChildren<Canvas>();
+        if (canvas != null)
+            canvas.worldCamera = Camera.main;
+        
         _shopUI = GameObject.Find("Store");
         if (_shopUI != null) _shopUI.SetActive(false);
         if (_interactUI != null) _interactUI.SetActive(false);

@@ -3,11 +3,7 @@ using UnityEngine;
 
 public class MapObjectPool : MonoBehaviour
 {
-    [SerializeField] private int _defaultPrewarmCount = 0;
-
-    private Dictionary<int, Queue<GameObject>> _poolMap
-        = new Dictionary<int, Queue<GameObject>>();
-
+    private Dictionary<int, Queue<GameObject>> _poolMap = new Dictionary<int, Queue<GameObject>>();
     private Transform _poolRoot;
 
     private void Awake()
@@ -21,9 +17,8 @@ public class MapObjectPool : MonoBehaviour
 
     public void Prewarm(GameObject prefab, int count)
     {
-        // 프리팹 체크
         Debug.Assert(prefab != null, "Prewarm prefab null");
-        
+
         if (prefab == null || count <= 0)
             return;
 
@@ -41,9 +36,8 @@ public class MapObjectPool : MonoBehaviour
 
     public GameObject Spawn(GameObject prefab, Transform parent, Vector3 position, Quaternion rotation)
     {
-        // 풀링 대상 프리팹 null 체크
         Debug.Assert(prefab != null, "Spawn prefab null");
-        
+
         if (prefab == null)
             return null;
 
@@ -114,9 +108,7 @@ public class MapObjectPool : MonoBehaviour
             pooledObject = obj.AddComponent<PooledObject>();
 
         pooledObject.SetSourcePrefab(prefab);
-
-        if (_defaultPrewarmCount >= 0)
-            obj.transform.SetParent(_poolRoot, false);
+        obj.transform.SetParent(_poolRoot, false);
 
         return obj;
     }

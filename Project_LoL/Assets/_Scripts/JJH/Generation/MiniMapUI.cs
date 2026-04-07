@@ -6,9 +6,10 @@ public class MiniMapUI : MonoBehaviour
 {
     [SerializeField] private RectTransform _mapContainer;
     [SerializeField] private GameObject _roomIconPrefab;
+    [SerializeField] private GameObject _startIconPrefab;
+    [SerializeField] private GameObject _bossIconPrefab;
     [SerializeField] private float _positionScale = 0.5f;
     [SerializeField] private float _iconSize = 8f;
-    
     [SerializeField] private float _panelBottomMargin = 20f;
 
     [SerializeField] private Color _colorUnvisited = new Color(0.3f, 0.3f, 0.3f, 1f);
@@ -18,7 +19,6 @@ public class MiniMapUI : MonoBehaviour
 
     private MapManager _mapManager;
     private Dictionary<RoomNode, Image> _roomIcons = new Dictionary<RoomNode, Image>();
-    private RoomNode _currentRoom;
 
     private void Awake()
     {
@@ -49,7 +49,8 @@ public class MiniMapUI : MonoBehaviour
 
         foreach (var room in rooms)
         {
-            GameObject icon = Instantiate(_roomIconPrefab, _mapContainer, false);
+            GameObject prefab = GetIconPrefab(room.roomData.roomType);
+            GameObject icon = Instantiate(prefab, _mapContainer, false);
             if (icon == null) continue;
 
             RectTransform rt = icon.GetComponent<RectTransform>();
@@ -75,13 +76,10 @@ public class MiniMapUI : MonoBehaviour
 
     public void UpdateMiniMap(RoomNode currentRoom)
     {
-        _currentRoom = currentRoom;
-
         foreach (var pair in _roomIcons)
         {
             RoomNode room = pair.Key;
             Image img = pair.Value;
-            RoomRuntimeData data = _mapManager.GetRuntimeData(room);
 
             if (room == currentRoom)
             {
@@ -89,6 +87,7 @@ public class MiniMapUI : MonoBehaviour
                 continue;
             }
 
+            RoomRuntimeData data = _mapManager.GetRuntimeData(room);
             if (data == null)
             {
                 img.color = _colorUnvisited;
@@ -104,18 +103,10 @@ public class MiniMapUI : MonoBehaviour
         }
     }
 
-    private Vector2 GetOffset(List<RoomNode> rooms)
+    private GameObject GetIconPrefab(RoomType type) => type switch
     {
-        float minX = float.MaxValue;
-        float minY = float.MaxValue;
-
-        foreach (var room in rooms)
-        {
-            if (room.roomData.roomType == RoomType.Start) continue;
-            minX = Mathf.Min(minX, room.gridOrigin.x);
-            minY = Mathf.Min(minY, room.gridOrigin.y);
-        }
-
-        return new Vector2(-minX, -minY);
-    }
+        RoomType.Start => _startIconPrefab != null ? _startIconPrefab : _roomIconPrefab,
+        RoomType.Boss  => _bossIconPrefab  != null ? _bossIconPrefab  : _roomIconPrefab,
+        _              => _roomIconPrefab
+    };
 }
