@@ -11,9 +11,18 @@ public class SkillTooltipData : TooltipComponent
 
     public override string GetTooltipText()
     {
-        if (_skillData == null) return "정보 없음";
+        if (_skillData == null) 
+            return "정보 없음";
 
         var data = _skillData.Get(1);
-        return $"<b>{data.SkillName}</b>";
+
+        if (LanguageManager.Instance.currentLanguage == Language.Korean)
+        {
+            return $"<b>{data.SkillName}</b>";
+        }
+        else
+        {
+            return $"<b>{data.SkillName}</b>";
+        }
     }
 }

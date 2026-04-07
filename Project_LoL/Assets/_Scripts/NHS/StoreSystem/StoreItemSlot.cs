@@ -48,11 +48,11 @@ public class StoreItemSlot : TooltipComponent
                 return;
             }
 
-            //if (_playerController.Gold < _currentPrice)
-            //{
-            //    Debug.Log("골드가 부족합니다.");
-            //    return;
-            //}
+            if (_playerController.Gold < _currentPrice)
+            {
+                Debug.Log("골드가 부족합니다.");
+                return;
+            }
 
             _playerController.Gold -= _currentPrice;
 
@@ -76,6 +76,7 @@ public class StoreItemSlot : TooltipComponent
 
                     ReplaceSelectorUI.instance.onSlotSelected = null;
                 };
+
                 MarkAsSold();
             }
 
@@ -146,7 +147,7 @@ public class StoreItemSlot : TooltipComponent
                     ReplaceSelectorUI.instance.onSlotSelected = null;
                 };
 
-                //equipInspector.RefreshUI(true);
+                equipInspector.RefreshUI(true);
             }
         });
     }
@@ -159,16 +160,16 @@ public class StoreItemSlot : TooltipComponent
 
     private void NegotiatePrice()
     {
-        //if (_negoSystem.SetTable())
-        //{
-        //    _currentPrice = _negoSystem.DecreasePrice(_currentPrice);
-        //    Debug.Log("협상 성공!");
-        //}
-        //else
-        //{
-        //    _currentPrice = _negoSystem.IncreasePrice(_currentPrice);
-        //    Debug.Log("협상 실패!");
-        //}
+        if (_negoSystem.SetTable())
+        {
+            _currentPrice = _negoSystem.DecreasePrice(_currentPrice);
+            Debug.Log("협상 성공!");
+        }
+        else
+        {
+            _currentPrice = _negoSystem.IncreasePrice(_currentPrice);
+            Debug.Log("협상 실패!");
+        }
 
         _priceText.text = _currentPrice.ToString();
 
