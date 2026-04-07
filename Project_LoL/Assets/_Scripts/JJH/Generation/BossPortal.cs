@@ -9,9 +9,12 @@ public class BossPortal : MonoBehaviour
 
     private bool _playerInRange;
     private float _holdTimer;
+    private SceneTransitionInteractable _transition;
 
     private void Awake()
     {
+        _transition = GetComponent<SceneTransitionInteractable>();
+
         if (_visuals != null) _visuals.SetActive(false);
         BossDieState.OnBossDied += Activate;
     }
@@ -34,7 +37,7 @@ public class BossPortal : MonoBehaviour
         {
             _holdTimer += Time.deltaTime;
             if (_holdTimer >= _interactHoldTime)
-                GetComponent<SceneTransitionInteractable>()?.Transit();
+                _transition?.Transit();
         }
         else
         {

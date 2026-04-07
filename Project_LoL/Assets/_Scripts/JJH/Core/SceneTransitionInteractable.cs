@@ -20,7 +20,6 @@ public class SceneTransitionInteractable : MonoBehaviour
     [SerializeField] private bool _requireTutorialComplete = false;
 
     private bool _playerInRange;
-    private bool _tutorialComplete = false;
 
     private void Start()
     {
@@ -36,7 +35,6 @@ public class SceneTransitionInteractable : MonoBehaviour
 
     private void OnTutorialCompleted()
     {
-        _tutorialComplete = true;
         gameObject.SetActive(true);
     }
 
