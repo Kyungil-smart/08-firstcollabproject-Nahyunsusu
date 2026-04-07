@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] private GameObject _interactUI;
+    [SerializeField] private InteractUI _interactUI;
     [SerializeField] private GameObject _targetUI;
 
     private bool _playerInRange;
@@ -15,7 +15,7 @@ public class Interactable : MonoBehaviour
             canvas.worldCamera = Camera.main;
 
         if (_targetUI != null) _targetUI.SetActive(false);
-        if (_interactUI != null) _interactUI.SetActive(false);
+        if (_interactUI != null) _interactUI.SetVisible(false);
     }
 
     private void Update()
@@ -31,13 +31,13 @@ public class Interactable : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         _playerInRange = true;
-        if (_interactUI != null) _interactUI.SetActive(true);
+        if (_interactUI != null) _interactUI.SetVisible(true);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
         _playerInRange = false;
-        if (_interactUI != null) _interactUI.SetActive(false);
+        if (_interactUI != null) _interactUI.SetVisible(false);
     }
 }

@@ -16,17 +16,12 @@ public class SceneTransitionInteractable : MonoBehaviour
     }
 
     [SerializeField] private Destination _destination = Destination.Next;
-    [SerializeField] private GameObject _interactUI;
     [SerializeField] private bool _requireTutorialComplete = false;
 
     private bool _playerInRange;
 
     private void Start()
     {
-        Canvas canvas = GetComponentInChildren<Canvas>();
-        if (canvas != null)
-            canvas.worldCamera = Camera.main;
-        
         if (_requireTutorialComplete)
         {
             gameObject.SetActive(false);
@@ -67,13 +62,11 @@ public class SceneTransitionInteractable : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         _playerInRange = true;
-        if (_interactUI != null) _interactUI.SetActive(true);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
         _playerInRange = false;
-        if (_interactUI != null) _interactUI.SetActive(false);
     }
 }

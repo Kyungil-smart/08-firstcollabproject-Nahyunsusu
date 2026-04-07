@@ -5,7 +5,7 @@ public class BossPortal : MonoBehaviour
 {
     [SerializeField] private GameObject _visuals;
     [SerializeField] private float _interactHoldTime = 2f;
-    [SerializeField] private GameObject _interactUI;
+    [SerializeField] private InteractUI _interactUI;
 
     private bool _playerInRange;
     private float _holdTimer;
@@ -17,13 +17,6 @@ public class BossPortal : MonoBehaviour
 
         if (_visuals != null) _visuals.SetActive(false);
         BossDieState.OnBossDied += Activate;
-    }
-
-    private void Start()
-    {
-        Canvas canvas = GetComponentInChildren<Canvas>();
-        if (canvas != null)
-            canvas.worldCamera = Camera.main;
     }
 
     private void OnDestroy()
@@ -56,7 +49,7 @@ public class BossPortal : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         _playerInRange = true;
-        if (_interactUI != null) _interactUI.SetActive(true);
+        if (_interactUI != null) _interactUI.SetVisible(true);
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -64,6 +57,6 @@ public class BossPortal : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         _playerInRange = false;
         _holdTimer = 0f;
-        if (_interactUI != null) _interactUI.SetActive(false);
+        if (_interactUI != null) _interactUI.SetVisible(false);
     }
 }
