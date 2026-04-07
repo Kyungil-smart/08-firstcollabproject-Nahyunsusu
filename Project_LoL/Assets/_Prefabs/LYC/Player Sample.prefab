@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2182956623213678347}
   - component: {fileID: 5330624449546311500}
   - component: {fileID: 8029321941257662386}
+  - component: {fileID: 5321710963636870876}
   m_Layer: 6
   m_Name: Player Sample
   m_TagString: Player
@@ -333,6 +334,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _dashParticle: {fileID: 3676572154924073671}
   _hitAnimator: {fileID: 7447508255099829773}
+--- !u!114 &5321710963636870876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167816319944070453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b217010bfed754eba2963efd5738e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SortingOrderByY
+  _isStatic: 0
 --- !u!1001 &5871172399285496917
 PrefabInstance:
   m_ObjectHideFlags: 0
