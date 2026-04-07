@@ -60,6 +60,7 @@ public class BossRewardChest : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log($"Trigger Enter: {other.name} / {other.tag}");
         if (!other.CompareTag("Player")) return;
         _playerInRange = true;
         if (_interactUI != null) _interactUI.SetActive(true);

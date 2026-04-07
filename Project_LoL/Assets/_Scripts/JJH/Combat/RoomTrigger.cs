@@ -28,7 +28,24 @@ public class RoomTrigger : MonoBehaviour
         else if (room.roomData.roomType == RoomType.Boss)
         {
             StartCoroutine(CloseDoorsDelayed());
+            PlayBossBGM();
         }
+    }
+
+    private void PlayBossBGM()
+    {
+        // 현재 씬 이름 기준으로 스테이지 인덱스 파악
+        string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        int stageIndex = sceneName switch
+        {
+            "Stage1" => 1,
+            "Stage2" => 2,
+            "Stage3" => 3,
+            _        => 0
+        };
+
+        if (stageIndex > 0)
+            BGMManager.Instance?.PlayBossBGM(stageIndex);
     }
 
     private IEnumerator CloseDoorsDelayed()
