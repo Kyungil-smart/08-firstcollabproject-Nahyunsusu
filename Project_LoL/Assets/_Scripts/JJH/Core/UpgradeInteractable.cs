@@ -10,6 +10,10 @@ public class UpgradeInteractable : MonoBehaviour
 
     private void Start()
     {
+        Canvas canvas = GetComponentInChildren<Canvas>();
+        if (canvas != null)
+            canvas.worldCamera = Camera.main;
+        
         _upgradeUI = GameObject.Find("Upgrade");
         if (_upgradeUI != null) _upgradeUI.SetActive(false);
         if (_interactUI != null) _interactUI.SetActive(false);
