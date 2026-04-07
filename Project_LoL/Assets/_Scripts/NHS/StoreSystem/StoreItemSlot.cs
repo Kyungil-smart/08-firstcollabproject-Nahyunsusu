@@ -35,9 +35,17 @@ public class StoreItemSlot : TooltipComponent
         _imageButton.interactable = true;
         _imageButton.image.sprite = data.EquipImages.Get(0);
 
-        _descriptionText.text = $"<b>{data.EquipName_KO}</b>";
-              _priceText.text = $"{   data.EquipPrice}";
-                _currentPrice =       data.EquipPrice;
+        if (LanguageManager.Instance.currentLanguage == Language.Korean)
+        {
+            _descriptionText.text = $"<b>{data.EquipName_KO}</b>";
+        }
+        else
+        {
+            _descriptionText.text = $"<b>{data.EquipName_EN}</b>";
+        }
+
+        _priceText.text = $"{data.EquipPrice}";
+        _currentPrice   =    data.EquipPrice;
 
         _imageButton.onClick.RemoveAllListeners();
         _imageButton.onClick.AddListener(() =>
@@ -143,6 +151,7 @@ public class StoreItemSlot : TooltipComponent
                 {
                     _skillHandler.SetSkill(skillDataSO, index, diceValue);
 
+                    Mathf.RoundToInt(skillDataSO.Get(1).Price * 0.3f);
                     MarkAsSold();
                     ReplaceSelectorUI.instance.onSlotSelected = null;
                 };

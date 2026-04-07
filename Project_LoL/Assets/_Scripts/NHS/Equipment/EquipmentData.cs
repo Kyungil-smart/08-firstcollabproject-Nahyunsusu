@@ -16,6 +16,7 @@ public class EquipmentData
     public string           EquipSpecial;
     public string           EquipNameEN;
     public int              EquipUpgrade;
+    public int              EquipPrice;
 
     public int CurrentUpgradeLevel = 0;
 
@@ -34,5 +35,6 @@ public class EquipmentData
         this.EquipSpecial        = so.EquipSpecial;
         this.CurrentUpgradeLevel = 0;
         this.EquipUpgrade        = so.EquipUpgrade;
+        this.EquipPrice          = so.EquipPrice;
     }
 }

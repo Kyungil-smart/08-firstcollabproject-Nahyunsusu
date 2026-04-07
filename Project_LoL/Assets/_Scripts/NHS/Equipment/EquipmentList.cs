@@ -8,6 +8,7 @@ public class EquipmentList : MonoBehaviour
 
     public List<EquipmentData> MyEquips => _playersEquip; // UI에 보여주기용
     [SerializeField] List<EquipmentData> _playersEquip = new List<EquipmentData>();
+    [SerializeField] private PlayerController _playerController;
 
     public Action<bool> OnEquipChanged;
 
@@ -27,7 +28,9 @@ public class EquipmentList : MonoBehaviour
     public void AddEquip(int index, int newEqiupId) // 보상이나 상점에서 호출할 함수
     {
         EquipmentData_SO so = dataManager.equipDataList.Find(x => x.EquipID == newEqiupId);
+
         if (so == null) return;
+
         Debug.Log("AddEquip실행");
 
         if(_playersEquip.Count < 4)
@@ -42,6 +45,7 @@ public class EquipmentList : MonoBehaviour
                 Debug.LogWarning("교체할 슬롯 번호가 잘못되었습니다.");
                 return;
             }
+            _playerController.Gold += Mathf.RoundToInt(_playersEquip[index].EquipPrice * 0.3f);
             _playersEquip[index] = so.CreateRuntimeData();
             Debug.Log($"{index}번 슬롯 장비를 {so.EquipName_KO}(으)로 교체 완료");
         }
