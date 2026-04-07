@@ -11065,7 +11065,6 @@ GameObject:
   - component: {fileID: -1247606315648044321}
   - component: {fileID: 6540977858024909022}
   - component: {fileID: -4572453801008819108}
-  - component: {fileID: 5792751896647167501}
   m_Layer: 8
   m_Name: Boss2
   m_TagString: Boss
@@ -11209,22 +11208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a12786234e2834bad2c2e390743a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyEffectManager
---- !u!114 &5792751896647167501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8704184050560441645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a50719e26f42bc24aa7d533dfdc27825, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyPathfinder
-  nodeSize: 1
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1 &8709158844503779026
 GameObject:
   m_ObjectHideFlags: 0

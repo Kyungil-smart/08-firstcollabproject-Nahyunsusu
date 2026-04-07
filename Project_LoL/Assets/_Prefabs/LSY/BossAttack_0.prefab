@@ -91,7 +91,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2240994688644343673, guid: f2816614ada1d074ca4147a70ec9db62, type: 3}
+  m_Sprite: {fileID: 6409228007315581776, guid: d475dabebc16d41459033e1e8da1ec6f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -139,7 +139,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.312531, y: 4.0099998}
+    oldSize: {x: 5.321134, y: 4.01}
     newSize: {x: 5.3813133, y: 4.02}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -183,8 +183,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FinalBossFSM
   bossData: {fileID: 11400000, guid: e433d6c5ee4ae7e4982fe7baf7492bea, type: 2}
   animator: {fileID: 7172148600847525088}
-  skillDelayTime: 15
-  bossBlockRange: 4
+  skillDelayTime: 1
+  bossBlockRange: 9
 --- !u!114 &7591189863591985678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,13 +255,13 @@ MonoBehaviour:
   destroyEffectPrefab: {fileID: 2683065822721279010, guid: 814852f4acca29e43bf5f3eca994445e, type: 3}
   damage: 10
   defaultOffsets:
-  - 2
-  - -2
-  phase50Offsets:
   - 4
-  - 2
-  - -2
   - -4
+  phase50Offsets:
+  - 6
+  - 4
+  - -4
+  - -6
   projectileScaleX: 1
   projectileScaleY: 1
   projectileTime: 2

@@ -15,11 +15,5 @@ MonoBehaviour:
   monsterDataId: 20221001
   monsterHp: 3000
   monsterAttack: 1
-  monsterAttackSpeed: 0
-  monsterMoveSpeed: 0
-  monsterMoveRange: 0
-  monsterAttackRangeX: 55
-  monsterAttackRangeY: 39
-  monsterGiveGold: 0
-  monsterGiveExp: 0
-  monsterGiveChestId: 0
+  monsterAttackRangeX: 33
+  monsterAttackRangeY: 28
