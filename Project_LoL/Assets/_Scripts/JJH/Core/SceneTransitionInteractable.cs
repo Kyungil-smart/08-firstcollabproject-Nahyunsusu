@@ -23,6 +23,10 @@ public class SceneTransitionInteractable : MonoBehaviour
 
     private void Start()
     {
+        Canvas canvas = GetComponentInChildren<Canvas>();
+        if (canvas != null)
+            canvas.worldCamera = Camera.main;
+        
         if (_requireTutorialComplete)
         {
             gameObject.SetActive(false);

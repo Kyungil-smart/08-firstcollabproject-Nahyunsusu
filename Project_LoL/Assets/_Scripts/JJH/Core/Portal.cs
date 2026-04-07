@@ -11,6 +11,10 @@ public class Portal : MonoBehaviour
 
     private void Start()
     {
+        Canvas canvas = GetComponentInChildren<Canvas>();
+        if (canvas != null)
+            canvas.worldCamera = Camera.main;
+        
         _player = GameObject.FindWithTag("Player");
     }
 

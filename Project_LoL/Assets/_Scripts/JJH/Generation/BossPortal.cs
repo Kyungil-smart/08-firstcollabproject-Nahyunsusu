@@ -19,6 +19,13 @@ public class BossPortal : MonoBehaviour
         BossDieState.OnBossDied += Activate;
     }
 
+    private void Start()
+    {
+        Canvas canvas = GetComponentInChildren<Canvas>();
+        if (canvas != null)
+            canvas.worldCamera = Camera.main;
+    }
+
     private void OnDestroy()
     {
         BossDieState.OnBossDied -= Activate;
