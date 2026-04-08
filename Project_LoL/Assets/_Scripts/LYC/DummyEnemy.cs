@@ -1,13 +1,20 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class DummyEnemy : MonoBehaviour, Damageable
 {
-	public PlayerSkillHandler handler;
 	public event Action<DummyEnemy> OnHit;
-	public ParticleSystem particle;
-	public SpriteRenderer spriteRenderer;
-	public int targetIndex = 0;
+
+	public PlayerSkillHandler handler;
+	public Animator           animator;
+
+	public ParticleSystem  particle;
+	public SpriteRenderer  spriteRenderer;
+	public TextMeshProUGUI damageUI;
+	public int             targetIndex = 0;
+
+	private bool _tutorialEnd;
 
 	private void Start()
 	{
@@ -24,18 +31,28 @@ public class DummyEnemy : MonoBehaviour, Damageable
 	public void ChangeSkillIcon(int slot)
 	{
 		if (slot != targetIndex) return;
-
+		if (_tutorialEnd) return;
 		spriteRenderer.sprite = handler.Skills[slot].CurrentSkillData.SkillImage;
+	}
+
+	public void TutorialEnd()
+	{
+		_tutorialEnd = true;
+		Destroy(spriteRenderer.gameObject);
 	}
 
 	public void TakeDamage(int damage)
 	{
+		damageUI.SetText(damage.ToString());
+		animator.SetTrigger("Hit");
 		OnHit?.Invoke(this);
 	}
 
 	public void TakeDown()
 	{
 		particle.Play();
+		damageUI.text = "";
+
 		gameObject.SetActive(false);
 	}
 }

@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	[field: SerializeField]
 	public bool IsInvincible { get; private set; }
 
+	[Header("Interact")]
+	[SerializeField] private Vector2 _interactSize = new Vector2(1.5f, 1.5f);
+
+	[SerializeField] private LayerMask _interactLayer = Physics2D.AllLayers;
+
 	[Header("Events")]
 	public UnityEvent hit;
 
@@ -35,7 +40,7 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 		get => Data.CurrentHp;
 		set
 		{
-			Data.SetHp(value);
+			Data.SetHp(Mathf.Max(value, 0));
 			HealthChanged?.Invoke();
 		}
 	}
@@ -73,8 +78,9 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	public PlayerData Data { get; private set; }
 	public PlayerFSM  FSM  { get; private set; }
 
-	private PlayerDataSO  _dataSO;
-	private EquipmentList _equipmentList;
+	private PlayerDataSO       _dataSO;
+	private EquipmentList      _equipmentList;
+	private PlayerInputHandler _inputHandler;
 
 	/// <summary>장비 변경 시 발행. (슬롯 인덱스, 장착된 장비 — null이면 해제)</summary>
 	public event Action<int, EquipmentData> EquipmentChanged;
@@ -92,6 +98,8 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	{
 		FSM            = GetComponent<PlayerFSM>();
 		_equipmentList = GetComponent<EquipmentList>();
+		_inputHandler  = GetComponent<PlayerInputHandler>();
+
 		if (_equipmentList != null)
 			_equipmentList.OnEquipChanged += OnEquipmentListChanged;
 	}
@@ -99,6 +107,7 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	private void Start()
 	{
 		LevelUpManager.Instance?.RegisterPlayer(this);
+		_inputHandler.Interacted += Interact;
 
 		if (AutoInit)
 			InitPlayer();
@@ -107,6 +116,8 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	private void OnDestroy()
 	{
 		LevelUpManager.Instance?.UnregisterPlayer(this);
+		if (_inputHandler != null) _inputHandler.Interacted -= Interact;
+
 		if (_equipmentList != null)
 			_equipmentList.OnEquipChanged -= OnEquipmentListChanged;
 
@@ -155,6 +166,21 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 		FSM.Init();
 	}
 
+	private readonly List<RaycastHit2D> _interactHits = new List<RaycastHit2D>();
+
+	public void Interact()
+	{
+		var filter = new ContactFilter2D { layerMask = _interactLayer, useLayerMask = true };
+		int count  = Physics2D.BoxCast(transform.position, _interactSize, 0f, Vector2.zero, filter, _interactHits, 0f);
+		for (int i = 0; i < count; i++)
+		{
+			if (_interactHits[i].collider.TryGetComponent<IInteract>(out var interactable))
+			{
+				interactable.OnInteracted();
+			}
+		}
+	}
+
 	#region Equipment
 
 	/// <summary>
@@ -179,12 +205,12 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	/// </summary>
 	public void AddBaseStat(LevelUpChoiceEntry entry)
 	{
-		_baseData.HP         += entry.hp;
-		_baseData.AtkDamage  += entry.atkDamage;
-		_baseData.AtkSpeed   += (int)entry.atkSpeed;
-		_baseData.MoveSpeed  += entry.moveSpeed;
-		_baseData.CritRate   += entry.critChance;
-		_baseData.CritDamage += entry.critDamage;
+		_baseData.HP         += _baseData.HP * (entry.hp / 100f);
+		_baseData.AtkDamage  += Mathf.RoundToInt(_baseData.AtkDamage * (entry.atkDamage / 100f));
+		_baseData.AtkSpeed   += (int)(_baseData.AtkSpeed * (entry.atkSpeed / 100f));
+		_baseData.MoveSpeed  += _baseData.MoveSpeed * (entry.moveSpeed / 100f);
+		_baseData.CritRate   += _baseData.CritRate * (entry.critChance / 100f);
+		_baseData.CritDamage += (int)(_baseData.CritDamage * (entry.critDamage / 100f));
 		RecalculateStats();
 	}
 
@@ -251,7 +277,6 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 
 		if (Exp >= expRequired)
 		{
-			Exp = expRequired;
 			Level++;
 			LevelUp?.Invoke();
 		}

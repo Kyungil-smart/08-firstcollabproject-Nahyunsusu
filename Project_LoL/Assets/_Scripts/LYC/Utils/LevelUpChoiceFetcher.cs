@@ -46,13 +46,15 @@ namespace _Scripts.LYC.Utils
 		private const int ProbabilityIndex = 9;
 
 		// 아이콘 Addressables 키 (sprite 이름 "image" 고정)
-		private static readonly (string key, Func<int, float, int, int, int, float> selector)[] IconCandidates =
+		// selector 파라미터 순서: (hp, atk, spd, mv, cc, cd)
+		private static readonly (string key, Func<int, int, float, int, int, int, float> selector)[] IconCandidates =
 		{
-			("LvUp_AD[image]", (atk, _, __, ___, ____) => Mathf.Abs(atk)),
-			("LvUp_AS[image]", (_, spd, __, ___, ____) => Mathf.Abs(spd)),
-			("LvUp_Speed[image]", (_, __, mv, ___, ____) => Mathf.Abs(mv)),
-			("LvUp_Critrate[image]", (_, __, ___, cc, ____) => Mathf.Abs(cc)),
-			("LvUp_CritDmg[image]", (_, __, ___, ____, cd) => Mathf.Abs(cd)),
+			("LvUp_HP[image]",       (hp, atk, spd, mv, cc, cd) => Mathf.Abs(hp)),
+			("LvUp_AD[image]",       (hp, atk, spd, mv, cc, cd) => Mathf.Abs(atk)),
+			("LvUp_AS[image]",       (hp, atk, spd, mv, cc, cd) => Mathf.Abs(spd)),
+			("LvUp_Speed[image]",    (hp, atk, spd, mv, cc, cd) => Mathf.Abs(mv)),
+			("LvUp_Critrate[image]", (hp, atk, spd, mv, cc, cd) => Mathf.Abs(cc)),
+			("LvUp_CritDmg[image]",  (hp, atk, spd, mv, cc, cd) => Mathf.Abs(cd)),
 		};
 
 		private LevelUpChoiceListSO _targetSO;
@@ -140,17 +142,17 @@ namespace _Scripts.LYC.Utils
 		}
 
 		/// <summary>
-		/// atkDamage, atkSpeed, moveSpeed, critChance, critDamage 중
-		/// 절댓값이 가장 큰 스탯의 Addressables 키를 반환합니다. (HP는 아이콘 없음)
+		/// hp, atkDamage, atkSpeed, moveSpeed, critChance, critDamage 중
+		/// 절댓값이 가장 큰 스탯의 Addressables 키를 반환합니다.
 		/// </summary>
-		private static string GetIconKey(int atkDamage, float atkSpeed, int moveSpeed, int critChance, int critDamage)
+		private static string GetIconKey(int hp, int atkDamage, float atkSpeed, int moveSpeed, int critChance, int critDamage)
 		{
 			string bestKey = null;
 			float bestAbs = 0f;
 
 			foreach (var (key, selector) in IconCandidates)
 			{
-				float abs = selector(atkDamage, atkSpeed, moveSpeed, critChance, critDamage);
+				float abs = selector(hp, atkDamage, atkSpeed, moveSpeed, critChance, critDamage);
 				if (abs > bestAbs)
 				{
 					bestAbs = abs;
@@ -220,7 +222,7 @@ namespace _Scripts.LYC.Utils
 					element.FindPropertyRelative("critDamage").intValue = critDamage;
 					element.FindPropertyRelative("spawnWeight").intValue = spawnWeight;
 
-					string iconKey = GetIconKey(atkDamage, atkSpeed, moveSpeed, critChance, critDamage);
+					string iconKey = GetIconKey(hp, atkDamage, atkSpeed, moveSpeed, critChance, critDamage);
 					if (iconKey != null && sprites.TryGetValue(iconKey, out Sprite icon))
 						element.FindPropertyRelative("icon").objectReferenceValue = icon;
 
