@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	public event Action StatsChanged;
 	public event Action GoldChanged;
 
-	/// <summary>장비 % 보정 이전의 순수 스탯. 레벨업 보너스까지 포함.</summary>
+	/// <summary>장비 보너스 합산 이전의 순수 스탯. 레벨업 보너스까지 포함.</summary>
 	private PlayerData _baseData;
 
 	private void Awake()
@@ -224,39 +224,39 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	/// </summary>
 	public void AddBaseStat(LevelUpChoiceEntry entry)
 	{
-		_baseData.HP         += _baseData.HP * (entry.hp / 100f);
-		_baseData.AtkDamage  += Mathf.RoundToInt(_baseData.AtkDamage * (entry.atkDamage / 100f));
-		_baseData.AtkSpeed   += (int)(_baseData.AtkSpeed * (entry.atkSpeed / 100f));
-		_baseData.MoveSpeed  += _baseData.MoveSpeed * (entry.moveSpeed / 100f);
-		_baseData.CritRate   += _baseData.CritRate * (entry.critChance / 100f);
-		_baseData.CritDamage += (int)(_baseData.CritDamage * (entry.critDamage / 100f));
+		_baseData.HP         += entry.hp;
+		_baseData.AtkDamage  += entry.atkDamage;
+		_baseData.AtkSpeed   += Mathf.RoundToInt(entry.atkSpeed);
+		_baseData.MoveSpeed  += entry.moveSpeed;
+		_baseData.CritRate   += entry.critChance;
+		_baseData.CritDamage += entry.critDamage;
 		RecalculateStats();
 	}
 
 	/// <summary>
-	/// EquipmentList의 % 합산을 베이스 스탯에 곱해 Data를 갱신합니다.
+	/// EquipmentList의 절대 수치 합산을 베이스 스탯에 더해 Data를 갱신합니다.
 	/// </summary>
 	private void RecalculateStats()
 	{
-		float hpPct = 0, atkPct = 0, atkSpdPct = 0, movSpdPct = 0, critRatePct = 0, critDmgPct = 0;
+		float hpBonus = 0, atkBonus = 0, atkSpdBonus = 0, movSpdBonus = 0, critRateBonus = 0, critDmgBonus = 0;
 
 		if (_equipmentList != null)
 		{
 			var total = _equipmentList.CalculateData();
-			hpPct       = total.HP;
-			atkPct      = total.AttackDamage;
-			atkSpdPct   = total.AttackSpeed;
-			movSpdPct   = total.MoveSpeed;
-			critRatePct = total.CritChance;
-			critDmgPct  = total.CritDamage;
+			hpBonus       = total.HP;
+			atkBonus      = total.AttackDamage;
+			atkSpdBonus   = total.AttackSpeed;
+			movSpdBonus   = total.MoveSpeed;
+			critRateBonus = total.CritChance;
+			critDmgBonus  = total.CritDamage;
 		}
 
-		Data.HP         = _baseData.HP * (1f + hpPct / 100f);
-		Data.AtkDamage  = Mathf.RoundToInt(_baseData.AtkDamage * (1f + atkPct / 100f));
-		Data.AtkSpeed   = Mathf.RoundToInt(_baseData.AtkSpeed * (1f + atkSpdPct / 100f));
-		Data.MoveSpeed  = _baseData.MoveSpeed * (1f + movSpdPct / 100f);
-		Data.CritRate   = _baseData.CritRate * (1f + critRatePct / 100f);
-		Data.CritDamage = Mathf.RoundToInt(_baseData.CritDamage * (1f + critDmgPct / 100f));
+		Data.HP         = _baseData.HP + hpBonus;
+		Data.AtkDamage  = _baseData.AtkDamage + (int)atkBonus;
+		Data.AtkSpeed   = _baseData.AtkSpeed + Mathf.RoundToInt(atkSpdBonus);
+		Data.MoveSpeed  = _baseData.MoveSpeed + movSpdBonus;
+		Data.CritRate   = _baseData.CritRate + critRateBonus;
+		Data.CritDamage = _baseData.CritDamage + (int)critDmgBonus;
 		StatsChanged?.Invoke();
 	}
 
