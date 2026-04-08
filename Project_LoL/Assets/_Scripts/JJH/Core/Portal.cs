@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class Portal : MonoBehaviour
 {
     [SerializeField] private Transform _destination;
-    [SerializeField] private GameObject _interactUI;
+    [SerializeField] private InteractUI _interactUI;
 
     private bool _playerInRange;
     private GameObject _player;
@@ -14,7 +14,7 @@ public class Portal : MonoBehaviour
         Canvas canvas = GetComponentInChildren<Canvas>();
         if (canvas != null)
             canvas.worldCamera = Camera.main;
-        
+
         _player = GameObject.FindWithTag("Player");
     }
 
@@ -31,13 +31,13 @@ public class Portal : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         _playerInRange = true;
-        if (_interactUI != null) _interactUI.SetActive(true);
+        if (_interactUI != null) _interactUI.SetVisible(true);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
         _playerInRange = false;
-        if (_interactUI != null) _interactUI.SetActive(false);
+        if (_interactUI != null) _interactUI.SetVisible(false);
     }
 }

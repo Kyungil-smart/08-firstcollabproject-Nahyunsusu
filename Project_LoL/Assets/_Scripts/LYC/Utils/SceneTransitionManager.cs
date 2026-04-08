@@ -14,17 +14,17 @@ using UnityEngine.SceneManagement;
 public class SceneTransitionManager : MonoBehaviour
 {
 	public static SceneTransitionManager Instance { get; private set; }
-
+ 
 	static readonly int HashTriggerIn = Animator.StringToHash("TransitionIn");
 	static readonly int HashTriggerOut = Animator.StringToHash("TransitionOut");
-
+ 
 	Animator _animator;
 	UnityEngine.UI.Image _image;
 
 	// 애니메이션 이벤트 완료 신호
 	bool _inCompleted;
 	bool _outCompleted;
-
+ 
 	void Awake()
 	{
 		if (Instance != null && Instance != this)
@@ -32,7 +32,7 @@ public class SceneTransitionManager : MonoBehaviour
 			Destroy(gameObject);
 			return;
 		}
-
+ 
 		Instance = this;
 		DontDestroyOnLoad(gameObject);
 		_animator = GetComponent<Animator>();
@@ -81,15 +81,19 @@ public class SceneTransitionManager : MonoBehaviour
 	public void LoadSceneWithTransition(string sceneName, bool colorSet = false, Color color = default)
 	{
 		if (colorSet)
-		{
 			_image.color = color;
-		}
-
+ 
 		StartCoroutine(LoadSceneWithTransitionCoroutine(sceneName));
 	}
-
+ 
 	IEnumerator LoadSceneWithTransitionCoroutine(string sceneName)
 	{
+		// TransitionIn과 BGM 페이드 아웃 동시 진행
+		if (BGMManager.Instance != null)
+		{
+			yield return StartCoroutine(BGMManager.Instance.FadeOutCoroutine());
+		}
+ 
 		yield return PlayTransitionInCoroutine();
 		yield return SceneManager.LoadSceneAsync(sceneName);
 		yield return PlayTransitionOutCoroutine();
