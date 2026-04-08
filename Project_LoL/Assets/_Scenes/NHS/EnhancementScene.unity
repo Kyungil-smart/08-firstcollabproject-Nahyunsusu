@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 314549593906349312, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 602830217497792506, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
@@ -211,6 +215,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2162344079663629142, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8097554889700234225, guid: a46f35ae4a283824cb3bad5ee8981db2, type: 3}
+    - target: {fileID: 5058289941713469277, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288925441907701123, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288925441907701123, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5483219858756307622, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
       propertyPath: m_Name
       value: EnforcementUI
@@ -218,6 +238,10 @@ PrefabInstance:
     - target: {fileID: 5483219858756307622, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738596991130904474, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
