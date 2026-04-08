@@ -56,7 +56,7 @@ public class EndingUI : MonoBehaviour
 
     private void SetInfoText()
     {
-        if (LanguageManager.Instance.currentLanguage == Language.Korean)
+        if (LanguageManager.Instance.Current == Language.Korean)
         {
             _infoText.text = $"최고 도달 층 수 : {1} 층\r\n최대 생존 시간 : {00: 00 : 38}\r\n처치한 적 : {1} 마리\r\n획득한 골드 : {0} Gold\r\n강화 성공 횟수 : {0} 회\r\n가장 강력한 일격 : {10}";
         }
@@ -68,7 +68,7 @@ public class EndingUI : MonoBehaviour
 
     private void SetStatText()
     {
-        if (LanguageManager.Instance.currentLanguage == Language.Korean)
+        if (LanguageManager.Instance.Current == Language.Korean)
         {
             _statText.text = $"공격력 : {10}\r\n공격 속도 : {1.0}\r\n이동 속도 : {8}\r\n치명타 확률 : {0} %\r\n치명타 피해 : {0} %";
         }
