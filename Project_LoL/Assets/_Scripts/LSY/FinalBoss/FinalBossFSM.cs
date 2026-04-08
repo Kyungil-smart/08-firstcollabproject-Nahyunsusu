@@ -197,7 +197,7 @@ public class FinalBossFSM : MonoBehaviour, Damageable
 
     private void OnDead()
     {
-        Debug.Log("클리어!");
+        SceneLoader.LoadEnding();
     }
 
     public Vector2 GetRandomRoomPosition()

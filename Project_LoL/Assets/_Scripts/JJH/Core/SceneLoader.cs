@@ -13,7 +13,7 @@ public static class SceneLoader
         public const string Stage2 = "Stage2";
         public const string Stage3 = "Stage3";
         public const string FinalBoss = "FinalBoss";
-        public const string Ending = "Ending";
+        public const string Ending = "EndingGameOver";
     }
 
     public static void LoadMainMenu()
