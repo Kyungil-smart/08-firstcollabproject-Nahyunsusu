@@ -973,6 +973,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7318420965183376076, guid: 6dd4efd438b03654aa63450569cb9c79, type: 3}
+      propertyPath: _finalBossBGM
+      value: 
+      objectReference: {fileID: 8300000, guid: 159d9c3da95bf7d41b3e036428faf3e5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

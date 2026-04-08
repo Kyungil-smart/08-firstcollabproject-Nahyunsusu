@@ -19185,6 +19185,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7974668805890112048}
+  - component: {fileID: 4529048641034453849}
   - component: {fileID: 5101160483124115718}
   m_Layer: 0
   m_Name: Shop
@@ -19212,6 +19213,33 @@ Transform:
   - {fileID: 3160560849632059078}
   m_Father: {fileID: 8078403197005389646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &4529048641034453849
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6098606025440526184}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &5101160483124115718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20792,6 +20820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4454948005700841652}
+  - component: {fileID: 4486035208482636953}
   - component: {fileID: 5676187672935749567}
   m_Layer: 0
   m_Name: Upgrade
@@ -20821,6 +20850,33 @@ Transform:
   - {fileID: 7074553712845192414}
   m_Father: {fileID: 8078403197005389646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &4486035208482636953
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9094114785761307482}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &5676187672935749567
 MonoBehaviour:
   m_ObjectHideFlags: 0

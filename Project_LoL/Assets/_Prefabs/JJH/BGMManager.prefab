@@ -53,7 +53,7 @@ MonoBehaviour:
   _stage1BGM: {fileID: 8300000, guid: 9553c929b36654b458d61ddba090b756, type: 3}
   _stage2BGM: {fileID: 8300000, guid: 53caa7ed7ec22fb40b3a370ccf01a129, type: 3}
   _stage3BGM: {fileID: 8300000, guid: 6d63494050e2fad45af7a0ff7a8f6573, type: 3}
-  _finalBossBGM: {fileID: 8300000, guid: e241dfc27afe57749abcabfe8e216803, type: 3}
+  _finalBossBGM: {fileID: 8300000, guid: 159d9c3da95bf7d41b3e036428faf3e5, type: 3}
   _boss1BGM: {fileID: 8300000, guid: e241dfc27afe57749abcabfe8e216803, type: 3}
   _boss2BGM: {fileID: 8300000, guid: 5062c2c8f68cb954283d1c49b7f39756, type: 3}
   _boss3BGM: {fileID: 8300000, guid: ba764462bfd45bf41a5ee6d0183b3d0b, type: 3}
