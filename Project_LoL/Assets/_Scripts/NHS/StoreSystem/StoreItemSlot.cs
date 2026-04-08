@@ -23,6 +23,27 @@ public class StoreItemSlot : TooltipComponent
 
     [SerializeField] private Sprite _healIcon;
 
+    private void OnEnable()
+    {
+        if (_playerController == null || _skillHandler == null)
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+
+            if (playerObj != null)
+            {
+                if (_playerController == null)
+                    _playerController = playerObj.GetComponent<PlayerController>();
+
+                if (_skillHandler == null)
+                    _skillHandler = playerObj.GetComponent<PlayerSkillHandler>();
+            }
+            else
+            {
+                Debug.LogError("StoreItemSlot: 'Player' 태그를 가진 오브젝트를 찾을 수 없습니다!");
+            }
+        }
+    }
+
     public override string GetTooltipText()
     {
         return $"아이템: {_descriptionText.text}\n가격: {_priceText.text}G";

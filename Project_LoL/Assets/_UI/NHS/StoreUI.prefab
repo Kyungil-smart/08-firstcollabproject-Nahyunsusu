@@ -6432,6 +6432,22 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 8939910074952518872, guid: cb57decab2203584f8162ffccee71769, type: 2}
+    - target: {fileID: 909909660741045690, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 909909660741045690, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4727423470454816057, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 67
+      objectReference: {fileID: 0}
+    - target: {fileID: 4727423470454816057, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -176
+      objectReference: {fileID: 0}
     - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

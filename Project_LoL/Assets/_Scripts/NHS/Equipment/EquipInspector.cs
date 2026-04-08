@@ -14,6 +14,21 @@ public class EquipInspector : MonoBehaviour
 
     public void OnEnable()
     {
+        if (_skillList == null)
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+
+            if (playerObj != null)
+            {
+                if (_skillList == null)
+                    _skillList = playerObj.GetComponent<PlayerSkillHandler>();
+            }
+            else
+            {
+                Debug.LogError("StoreUI: 'Player' 태그를 가진 오브젝트를 찾을 수 없습니다!");
+            }
+        }
+
         if (GameDataManager.instance == null) return;
 
         if (_equipmentList != null)

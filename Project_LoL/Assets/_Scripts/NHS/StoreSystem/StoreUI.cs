@@ -37,7 +37,25 @@ public class StoreUI : MonoBehaviour
 
     private void OnEnable()
     {
-        if(GameDataManager.instance != null && GameDataManager.instance.equipDataManager.IsLoaded)
+        if (_playerController == null || _skillHandler == null)
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+
+            if (playerObj != null)
+            {
+                if (_playerController == null)
+                    _playerController = playerObj.GetComponent<PlayerController>();
+
+                if (_skillHandler == null)
+                    _skillHandler = playerObj.GetComponent<PlayerSkillHandler>();
+            }
+            else
+            {
+                Debug.LogError("StoreUI: 'Player' 태그를 가진 오브젝트를 찾을 수 없습니다!");
+            }
+        }
+
+        if (GameDataManager.instance != null && GameDataManager.instance.equipDataManager.IsLoaded)
         {
             if (!_isInitialized)
             {
@@ -56,6 +74,7 @@ public class StoreUI : MonoBehaviour
         {
             UpdateGoldText();
 
+            _playerController.GoldChanged -= UpdateGoldText;
             _playerController.GoldChanged += UpdateGoldText;
         }
     }
