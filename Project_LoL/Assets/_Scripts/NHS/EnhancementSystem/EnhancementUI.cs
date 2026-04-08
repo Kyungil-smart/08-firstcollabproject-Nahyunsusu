@@ -59,6 +59,7 @@ public class EnhancementUI : MonoBehaviour
     private void Awake()
     {
         this.gameObject.SetActive(false);
+        _equipmentList = FindAnyObjectByType<EquipmentList>();
     }
 
     private void Start()
@@ -231,6 +232,12 @@ public class EnhancementUI : MonoBehaviour
 
         _selectedIndex = index;
         var selectedData = _equipmentList.MyEquips[index];
+
+        if (selectedData.CurrentUpgradeLevel >= 6)
+        {
+            Debug.Log($"{selectedData.EquipName}은(는) 이미 최대 강화 단계입니다!");
+            return;
+        }
 
         Debug.Log($"{index}번 무기 선택됨");
 

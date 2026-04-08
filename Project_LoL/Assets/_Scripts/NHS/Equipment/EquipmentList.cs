@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EquipmentList : MonoBehaviour
 {
+    public static EquipmentList Instance { get; private set; }
+
     [SerializeField] private DataManager dataManager;
 
     public List<EquipmentData> MyEquips => _playersEquip; // UI에 보여주기용
@@ -11,38 +13,47 @@ public class EquipmentList : MonoBehaviour
     [SerializeField] private PlayerController _playerController;
 
     public Action<bool> OnEquipChanged;
+    public int CurrentCount => _playersEquip.Count; // 현재 장비 개수 확인용
 
     private void Awake()
     {
-        // 이전 씬에서 저장된 장비가 있으면 조용히 복원 (이벤트 미발행)
-        // PlayerController.Start() → InitPlayer() → RecalculateStats() 에서 반영됨
-        var persistent = PlayerPersistentData.Instance;
-        if (persistent != null && persistent.HasData && persistent.SavedEquipments?.Count > 0)
+        if (Instance != null && Instance != this)
         {
-            _playersEquip = new List<EquipmentData>(persistent.SavedEquipments);
+            Destroy(gameObject);
+            return;
         }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        if (_playersEquip.Count == 0) LoadFromPersistent();
     }
 
     private void OnEnable()
     {
-        if (_playerController == null)
-        {
-            GameObject playerObj = GameObject.FindWithTag("Player");
-
-            if (playerObj != null)
-            {
-                if (_playerController == null)
-                    _playerController = playerObj.GetComponent<PlayerController>();
-            }
-            else
-            {
-                Debug.LogError("StoreUI: 'Player' 태그를 가진 오브젝트를 찾을 수 없습니다!");
-            }
-        }
+        FindPlayer();
     }
 
-    public int CurrentCount => _playersEquip.Count; // 현재 장비 개수 확인용
+    private void FindPlayer()
+    {
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj != null)
+            _playerController = playerObj.GetComponent<PlayerController>();
+    }
 
+    public void LoadFromPersistent()
+    {
+        var persistent = PlayerPersistentData.Instance;
+        if (persistent != null && persistent.HasData && persistent.SavedEquipments?.Count > 0)
+        {
+            Debug.Log("EquipmentList: 데이터 불러오기 성공");
+            _playersEquip = new List<EquipmentData>(persistent.SavedEquipments);
+            OnEquipChanged?.Invoke(false);
+        }
+        else
+        {
+            Debug.Log("EquipmentList: 불러올 데이터가 없거나 첫 시작입니다.");
+        }
+    }
     public void AddEquip(int index, int newEqiupId) // 보상이나 상점에서 호출할 함수
     {
         EquipmentData_SO so = dataManager.equipDataList.Find(x => x.EquipID == newEqiupId);
@@ -115,6 +126,8 @@ public class EquipmentList : MonoBehaviour
             _playersEquip[index].EquipAttackDamage += 5;
             _playersEquip[index].CurrentUpgradeLevel += 1;
             Debug.Log($"{_playersEquip[index].EquipName} 강화! 현재 데미지: {_playersEquip[index].EquipAttackDamage}");
+
+            OnEquipChanged?.Invoke(false);
         }
     }
 }

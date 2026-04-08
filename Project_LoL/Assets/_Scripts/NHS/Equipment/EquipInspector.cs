@@ -12,7 +12,12 @@ public class EquipInspector : MonoBehaviour
 
     private bool _currentIsSkillMode = false;
 
-    public void OnEnable()
+    private void Awake()
+    {
+        _equipmentList = FindAnyObjectByType<EquipmentList>();
+    }
+
+    private void OnEnable()
     {
         if (_skillList == null)
         {
