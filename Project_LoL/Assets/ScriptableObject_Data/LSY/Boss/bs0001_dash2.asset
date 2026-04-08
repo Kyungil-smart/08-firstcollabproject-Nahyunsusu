@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MonsterSkillDataSO
   skillId: 0
   baseDamage: 20
-  projectileSpeed: 2
-  range: 10
+  projectileSpeed: 4
+  range: 15
   warningDuration: 1
   damageRangeX: 3
   damageRangeY: 3
@@ -29,7 +29,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  skillPrefab: {fileID: 7306099465385864211, guid: 0fef82e77596aa24cad63aff3a21ff0c, type: 3}
+  skillPrefab: {fileID: 0}
   skillPrefab2: {fileID: 0}
   warningPrefab: {fileID: 3793445430646518522, guid: 0557673a72b8ab248b3f32f8baa524d7, type: 3}
   mainVfxPrefab: {fileID: 0}

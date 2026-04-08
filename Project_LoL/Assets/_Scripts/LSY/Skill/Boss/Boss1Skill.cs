@@ -18,6 +18,9 @@ public class Boss1Skill : BossSkillBase
     private float _dashTimer; 
     private GameObject _warningObj;
 
+    [Header("스킬 세부 설정")]
+    [SerializeField] private float dashSpeedMultiplier = 1f;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -30,7 +33,10 @@ public class Boss1Skill : BossSkillBase
         
         _currentSkill = skill;
         _finalDamage = skill.baseDamage + baseDamage;
-        _dashSpeed = skill.projectileSpeed > 0 ? skill.projectileSpeed : 10f;
+        
+        float baseSpeed = skill.projectileSpeed > 0 ? skill.projectileSpeed : 10f;
+        _dashSpeed = baseSpeed * dashSpeedMultiplier; 
+        
         _dashRange = skill.range > 0 ? skill.range : 5f;
         _hasHit = false;
 
@@ -92,34 +98,34 @@ public class Boss1Skill : BossSkillBase
             _trailTimer = 0f;
         }
 
-        if (!_hasHit)
-        {
-            float angle = Mathf.Atan2(_dashDir.y, _dashDir.x) * Mathf.Rad2Deg;
-            Collider2D hit = Physics2D.OverlapBox(_rb.position, new Vector2(_currentSkill.damageRangeX, _currentSkill.damageRangeY), angle, _currentSkill.targetLayer);
-
-            if (hit != null && hit.TryGetComponent(out PlayerController target))
-            {
-                if (!hit.CompareTag("Enemy") && !hit.CompareTag("Boss"))
-                {
-                    target.TakeDamage(_finalDamage);
-                    
-                    if (_currentSkill.hitVfxPrefab != null) 
-                    {
-                        GameObject vfx = SkillPool.Instance.Spawn(_currentSkill.hitVfxPrefab, hit.transform.position, Quaternion.identity);
-                        float scale = _currentSkill.impactScale > 0 ? _currentSkill.impactScale : 1f;
-                        vfx.transform.localScale = new Vector3(scale, scale, 1f);
-                        float duration = _currentSkill.impactTime > 0 ? _currentSkill.impactTime : 1f;
-                        SkillPool.Instance.Despawn(vfx, duration);
-                    }
-                    _hasHit = true; 
-                }
-            }
-        }
-
         _dashTimer += Time.fixedDeltaTime;
         float maxDashTime = (_dashRange / Mathf.Max(0.1f, _dashSpeed)) + 0.5f;
 
         if (Vector2.Distance(_startPos, _rb.position) >= _dashRange || _dashTimer > maxDashTime) StopSkill();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!_isDashing || _hasHit) return;
+
+        if (!collision.gameObject.CompareTag("Enemy") && !collision.gameObject.CompareTag("Boss") && collision.gameObject.TryGetComponent(out PlayerController target))
+        {
+            target.TakeDamage(_finalDamage);
+            
+            if (_currentSkill.hitVfxPrefab != null) 
+            {
+                Vector2 hitPoint = collision.contacts[0].point;
+                GameObject vfx = SkillPool.Instance.Spawn(_currentSkill.hitVfxPrefab, hitPoint, Quaternion.identity);
+                
+                float scale = _currentSkill.impactScale > 0 ? _currentSkill.impactScale : 1f;
+                vfx.transform.localScale = new Vector3(scale, scale, 1f);
+                
+                float duration = _currentSkill.impactTime > 0 ? _currentSkill.impactTime : 1f;
+                SkillPool.Instance.Despawn(vfx, duration);
+            }
+            
+            _hasHit = true; 
+        }
     }
 
     public override void StopSkill()

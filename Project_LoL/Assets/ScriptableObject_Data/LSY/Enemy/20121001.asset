@@ -20,6 +20,6 @@ MonoBehaviour:
   detectRange: 15
   attackRange: 14
   goldReward: 15
-  expReward: 10
+  expReward: 50
   chestId: 0
   skill: {fileID: 11400000, guid: ab13c8889c3f1414e8cfa31541061d81, type: 2}

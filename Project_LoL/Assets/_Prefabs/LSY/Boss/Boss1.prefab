@@ -4731,6 +4731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415476a163e1d31409938516709cb37e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss1Skill
+  dashSpeedMultiplier: 10
 --- !u!114 &1869163556268165783
 MonoBehaviour:
   m_ObjectHideFlags: 0
