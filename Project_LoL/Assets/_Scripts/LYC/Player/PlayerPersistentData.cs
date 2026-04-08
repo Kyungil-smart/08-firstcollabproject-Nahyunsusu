@@ -12,8 +12,11 @@ public class PlayerPersistentData : MonoBehaviour
 
 	public bool HasData { get; private set; }
 
-	/// <summary>레벨업 보너스 포함 순수 스탯 (장비 미적용)</summary>
+	/// <summary>PlayerDataSO 기반 초기 순수 스탯 (레벨업·장비 보너스 미적용)</summary>
 	public PlayerData SavedBaseData { get; private set; }
+
+	/// <summary>레벨업 선택지로 누적된 퍼센트 보너스 (UI 표시 및 재계산용)</summary>
+	public StatBonusPercent SavedLevelUpBonusPercent { get; private set; } = new StatBonusPercent();
 
 	/// <summary>현재 HP/레벨/경험치/골드 및 장비 보정 후 스탯</summary>
 	public PlayerData SavedRuntimeData { get; private set; }
@@ -37,23 +40,26 @@ public class PlayerPersistentData : MonoBehaviour
 	}
 
 	/// <summary>씬 전환 전 PlayerController와 EquipmentList가 호출</summary>
-	public void Save(PlayerData baseData, PlayerData runtimeData, List<EquipmentData> equips, List<SkillDataSO> skills)
+	public void Save(PlayerData baseData, PlayerData runtimeData, StatBonusPercent levelUpBonus,
+	                 List<EquipmentData> equips, List<SkillDataSO> skills)
 	{
 		Debug.Log("데이터 저장 실행");
-		SavedBaseData    = baseData?.Clone();
-		SavedRuntimeData = runtimeData?.Clone();
-		SavedEquipments  = equips != null ? new List<EquipmentData>(equips) : new List<EquipmentData>();
-		SavedSkills      = skills != null ? new List<SkillDataSO>(skills) : new List<SkillDataSO>();
-		HasData          = true;
+		SavedBaseData            = baseData?.Clone();
+		SavedRuntimeData         = runtimeData?.Clone();
+		SavedLevelUpBonusPercent = levelUpBonus?.Clone() ?? new StatBonusPercent();
+		SavedEquipments          = equips != null ? new List<EquipmentData>(equips) : new List<EquipmentData>();
+		SavedSkills              = skills != null ? new List<SkillDataSO>(skills) : new List<SkillDataSO>();
+		HasData                  = true;
 	}
 
 	/// <summary>새 게임을 시작할 때 호출</summary>
 	public void Clear()
 	{
-		HasData          = false;
-		SavedBaseData    = null;
-		SavedRuntimeData = null;
-		SavedEquipments  = new List<EquipmentData>();
-		SavedSkills      = new List<SkillDataSO>();
+		HasData                  = false;
+		SavedBaseData            = null;
+		SavedRuntimeData         = null;
+		SavedLevelUpBonusPercent = new StatBonusPercent();
+		SavedEquipments          = new List<EquipmentData>();
+		SavedSkills              = new List<SkillDataSO>();
 	}
 }

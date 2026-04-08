@@ -32,16 +32,16 @@ public class LevelUpChoiceEntry
 
 	[SerializeField] public Sprite icon;
 
-	/// <summary>비-0 스탯만 모아 표시용 문자열을 반환합니다.</summary>
+	/// <summary>비-0 스탯만 모아 표시용 문자열을 반환합니다. 수치는 기본 스탯 대비 퍼센트입니다.</summary>
 	public string BuildDescription()
 	{
 		var parts = new List<string>();
-		if (hp != 0) parts.Add($"체력 {hp:+#;-#;0}");
-		if (atkDamage != 0) parts.Add($"공격력 {atkDamage:+#;-#;0}");
-		if (atkSpeed != 0) parts.Add($"공격 속도 {atkSpeed:+#;-#;0}");
-		if (moveSpeed != 0) parts.Add($"이동 속도 {moveSpeed:+#;-#;0}");
-		if (critChance != 0) parts.Add($"치명타 확률 {critChance:+#;-#;0}");
-		if (critDamage != 0) parts.Add($"치명타 피해 {critDamage:+#;-#;0}");
+		if (hp != 0) parts.Add($"체력 {hp:+#;-#;0}%");
+		if (atkDamage != 0) parts.Add($"공격력 {atkDamage:+#;-#;0}%");
+		if (atkSpeed != 0) parts.Add($"공격 속도 {atkSpeed:+#;-#;0}%");
+		if (moveSpeed != 0) parts.Add($"이동 속도 {moveSpeed:+#;-#;0}%");
+		if (critChance != 0) parts.Add($"치명타 확률 {critChance:+#;-#;0}%");
+		if (critDamage != 0) parts.Add($"치명타 피해 {critDamage:+#;-#;0}%");
 		return string.Join("\n", parts);
 	}
 }

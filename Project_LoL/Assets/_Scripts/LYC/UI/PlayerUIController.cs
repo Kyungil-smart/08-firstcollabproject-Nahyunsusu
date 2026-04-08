@@ -123,11 +123,12 @@ public class PlayerUIController : MonoBehaviour
 
 	private void RefreshStats()
 	{
-		atkText.text        = $"{_controller.Data.AtkDamage}";
-		atkSpeedText.text   = $"{_controller.Data.AtkSpeed}";
-		moveSpeedText.text  = $"{Mathf.RoundToInt(_controller.Data.MoveSpeed)}";
-		critRateText.text   = $"{Mathf.RoundToInt(_controller.Data.CritRate)}";
-		critDamageText.text = $"{_controller.Data.CritDamage}";
+		var pct = _controller.TotalBonusPercent;
+		atkText.text        = $"{_controller.Data.AtkDamage} (+{pct.AtkDamage:F0}%)";
+		atkSpeedText.text   = $"{_controller.Data.AtkSpeed} (+{pct.AtkSpeed:F0}%)";
+		moveSpeedText.text  = $"{Mathf.RoundToInt(_controller.Data.MoveSpeed)} (+{pct.MoveSpeed:F0}%)";
+		critRateText.text   = $"{Mathf.RoundToInt(_controller.Data.CritRate)} (+{pct.CritRate:F0}%)";
+		critDamageText.text = $"{_controller.Data.CritDamage} (+{pct.CritDamage:F0}%)";
 
 		RefreshHealth();
 		RefreshExp();

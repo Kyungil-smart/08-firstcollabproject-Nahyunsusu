@@ -248,7 +248,7 @@ MonoBehaviour:
     hp: 0
     atkDamage: 0
     atkSpeed: 0
-    moveSpeed: 50
+    moveSpeed: 40
     critChance: 0
     critDamage: 0
     spawnWeight: 2
@@ -258,7 +258,7 @@ MonoBehaviour:
     hp: 0
     atkDamage: 0
     atkSpeed: 0
-    moveSpeed: 70
+    moveSpeed: 50
     critChance: 0
     critDamage: 0
     spawnWeight: 1
@@ -269,7 +269,7 @@ MonoBehaviour:
     atkDamage: 0
     atkSpeed: 0
     moveSpeed: 0
-    critChance: 5
+    critChance: 3
     critDamage: 0
     spawnWeight: 4
     icon: {fileID: 5494694198514985034, guid: 7944f3e605140774989a2676d7aab207, type: 3}
@@ -279,7 +279,7 @@ MonoBehaviour:
     atkDamage: 0
     atkSpeed: 0
     moveSpeed: 0
-    critChance: 10
+    critChance: 6
     critDamage: 0
     spawnWeight: 2
     icon: {fileID: 5494694198514985034, guid: 7944f3e605140774989a2676d7aab207, type: 3}
@@ -289,7 +289,7 @@ MonoBehaviour:
     atkDamage: 0
     atkSpeed: 0
     moveSpeed: 0
-    critChance: 15
+    critChance: 10
     critDamage: 0
     spawnWeight: 1
     icon: {fileID: 5494694198514985034, guid: 7944f3e605140774989a2676d7aab207, type: 3}
