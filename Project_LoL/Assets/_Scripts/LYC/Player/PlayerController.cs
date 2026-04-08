@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 			{
 				Health = Data.HP;
 				Level  = 1;
-				Gold   = 0;
+				Gold   = 10000000;
 				Exp    = 0;
 			}
 			else

@@ -25,6 +25,7 @@ public class StoreUI : MonoBehaviour
     private void Awake()
     {
         //this.gameObject.SetActive(false);
+        _itemInspector = FindAnyObjectByType<EquipInspector>();
     }
 
     private void Start()

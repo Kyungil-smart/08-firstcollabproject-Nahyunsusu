@@ -39,6 +39,7 @@ public class PlayerPersistentData : MonoBehaviour
 	/// <summary>씬 전환 전 PlayerController와 EquipmentList가 호출</summary>
 	public void Save(PlayerData baseData, PlayerData runtimeData, List<EquipmentData> equips, List<SkillDataSO> skills)
 	{
+		Debug.Log("데이터 저장 실행");
 		SavedBaseData    = baseData?.Clone();
 		SavedRuntimeData = runtimeData?.Clone();
 		SavedEquipments  = equips != null ? new List<EquipmentData>(equips) : new List<EquipmentData>();
