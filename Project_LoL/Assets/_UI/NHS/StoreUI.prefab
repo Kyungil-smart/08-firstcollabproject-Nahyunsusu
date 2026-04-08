@@ -1358,7 +1358,7 @@ MonoBehaviour:
   _negoButton: {fileID: 6149852759849227750}
   _negoSystem:
     range: 0.6
-  equipInspector: {fileID: 3089693862991266583}
+  equipInspector: {fileID: 5146259872391051581}
   _skillHandler: {fileID: 0}
   _playerController: {fileID: 0}
   _healIcon: {fileID: 0}
@@ -4727,7 +4727,7 @@ MonoBehaviour:
   _negoButton: {fileID: 952791071665051690}
   _negoSystem:
     range: 0.5
-  equipInspector: {fileID: 3089693862991266583}
+  equipInspector: {fileID: 5146259872391051581}
   _skillHandler: {fileID: 0}
   _playerController: {fileID: 0}
   _healIcon: {fileID: 0}
@@ -5998,7 +5998,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7789103722152917544}
-  - component: {fileID: 3089693862991266583}
+  - component: {fileID: 5146259872391051581}
   m_Layer: 5
   m_Name: Equipment_List
   m_TagString: Untagged
@@ -6029,7 +6029,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -94}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3089693862991266583
+--- !u!114 &5146259872391051581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6438,15 +6438,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 909909660741045690, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
       propertyPath: m_HorizontalAlignment
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4727423470454816057, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4727423470454816057, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4727423470454816057, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 67
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 4727423470454816057, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -176
+      value: -163
       objectReference: {fileID: 0}
     - target: {fileID: 5997406585518094585, guid: 180e4795e69e0924f9ec18a4047a1400, type: 3}
       propertyPath: m_Pivot.x

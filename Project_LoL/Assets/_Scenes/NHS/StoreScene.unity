@@ -130,28 +130,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d67060c8320f3994ab8903d55c33cc88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
---- !u!114 &168370272 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1074926668983823420, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
-  m_PrefabInstance: {fileID: 1801577260}
+--- !u!1 &99751770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 99751772}
+  - component: {fileID: 99751771}
+  m_Layer: 0
+  m_Name: Language
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &99751771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99751770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: a34a69d554ff45245a2d6e796db78cbe, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!114 &324426618 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4854019981991399573, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
-  m_PrefabInstance: {fileID: 1801577260}
+  m_EditorClassIdentifier: Assembly-CSharp::LanguageManager
+--- !u!4 &99751772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_GameObject: {fileID: 99751770}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1133.0471, y: 482.39066, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &374764351
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,29 +218,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &421328562 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8466729945077393175, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
-  m_PrefabInstance: {fileID: 1801577260}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &421328564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 421328562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 659c73f817a86e84a8c2fbccc9f97804, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EquipInspector
-  _equipmentList: {fileID: 953591478}
-  images:
-  - {fileID: 1570415274}
-  - {fileID: 168370272}
-  - {fileID: 324426618}
-  - {fileID: 967818678}
 --- !u!1 &461519385
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,17 +481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37bb776a3751b04ea04757820593c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentList
---- !u!114 &967818678 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7690983943434633494, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
-  m_PrefabInstance: {fileID: 1801577260}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &1361638946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -609,17 +597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93357867bd82ac440ab1b5e3a9b773b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillDataManager
---- !u!114 &1570415274 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7258212872592054439, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
-  m_PrefabInstance: {fileID: 1801577260}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &1714577205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -955,10 +932,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 41669093}
     - target: {fileID: 1566412648880276758, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
-      propertyPath: _healIcon
-      value: 
-      objectReference: {fileID: 21300000, guid: 996fc212cf78c794889929b393d24adf, type: 3}
-    - target: {fileID: 1566412648880276758, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
       propertyPath: _skillHandler
       value: 
       objectReference: {fileID: 41669093}
@@ -969,10 +942,6 @@ PrefabInstance:
     - target: {fileID: 4007611934414592414, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
       propertyPath: m_Name
       value: StoreUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4007611934414592414, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4946573188817909250, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
       propertyPath: m_Pivot.x
@@ -1054,33 +1023,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5075998352545069361, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 5146259872391051581, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
+      propertyPath: _equipmentList
+      value: 
+      objectReference: {fileID: 953591478}
     - target: {fileID: 6389381764052893963, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
       propertyPath: _skillHandler
       value: 
       objectReference: {fileID: 41669093}
-    - target: {fileID: 6389381764052893963, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
-      propertyPath: equipInspector
-      value: 
-      objectReference: {fileID: 421328564}
     - target: {fileID: 6512311199840375426, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
       propertyPath: _skillHandler
       value: 
       objectReference: {fileID: 41669093}
-    - target: {fileID: 6512311199840375426, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
-      propertyPath: equipInspector
-      value: 
-      objectReference: {fileID: 421328564}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8466729945077393175, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 421328564}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
 --- !u!114 &1830541796 stripped
 MonoBehaviour:
@@ -1467,3 +1425,4 @@ SceneRoots:
   - {fileID: 833954847}
   - {fileID: 688280749}
   - {fileID: 1361638946}
+  - {fileID: 99751772}
