@@ -1249,7 +1249,6 @@ GameObject:
   - component: {fileID: -4930915732507326288}
   - component: {fileID: 7657415780789771338}
   - component: {fileID: -3317069994681236228}
-  - component: {fileID: 6348848478863164812}
   m_Layer: 7
   m_Name: Enemy1
   m_TagString: Enemy
@@ -1381,22 +1380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a12786234e2834bad2c2e390743a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyEffectManager
---- !u!114 &6348848478863164812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806679725227952471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a50719e26f42bc24aa7d533dfdc27825, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyPathfinder
-  nodeSize: 1
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1 &835892887009050531
 GameObject:
   m_ObjectHideFlags: 0

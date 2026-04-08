@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: 20211001
   m_EditorClassIdentifier: Assembly-CSharp::BossData
   monsterId: 20211001
-  monsterName: "1\uC2A4\uD14C\uC774\uC9C0 \uBCF4\uC2A4"
-  maxHp: 500
+  maxHp: 1000
   attackDamage: 30
   attackSpeed: 2
   moveSpeed: 2
   detectRange: 13
-  attackRange: 3
+  attackRange: 5
   goldReward: 100
   expReward: 50
   chestId: 0

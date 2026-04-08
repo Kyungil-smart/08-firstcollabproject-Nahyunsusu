@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: 20212001
   m_EditorClassIdentifier: Assembly-CSharp::BossData
   monsterId: 20212001
-  monsterName: "2\uC2A4\uD14C\uC774\uC9C0 \uBCF4\uC2A4"
-  maxHp: 700
+  maxHp: 1500
   attackDamage: 30
   attackSpeed: 2
   moveSpeed: 2
