@@ -30,13 +30,15 @@ public class PlayerSkillHandler : MonoBehaviour
 	[field: SerializeField]
 	public UnityEvent<int, SkillExecuteResult> SkillExecutionFailed { get; private set; }
 
-	private PlayerController _controller;
+	private PlayerController   _controller;
 	private PlayerInputHandler _inputHandler;
+	private AudioSource        _audioSource;
 
 	private void Awake()
 	{
+		_audioSource  = GetComponent<AudioSource>();
 		_inputHandler = GetComponent<PlayerInputHandler>();
-		_controller = GetComponent<PlayerController>();
+		_controller   = GetComponent<PlayerController>();
 
 		Skills = new SkillExecutor[4];
 		for (var i = 0; i < Skills.Length; i++)
@@ -71,11 +73,12 @@ public class PlayerSkillHandler : MonoBehaviour
 
 	public void Execute(SkillSlot slot)
 	{
-		int index = ConvertSlotToIndex(slot);
+		int                index  = ConvertSlotToIndex(slot);
 		SkillExecuteResult result = Skills[index]?.TryExecute() ?? SkillExecuteResult.NotExist;
 
 		if (result == SkillExecuteResult.Success)
 		{
+			PlaySkillSFX(index);
 			SkillExecuted.Invoke(index);
 		}
 		else if (result == SkillExecuteResult.Reload)
@@ -98,6 +101,13 @@ public class PlayerSkillHandler : MonoBehaviour
 	{
 		CurrentSkillSlot = CurrentSkillSlot == SkillSlot.Left ? SkillSlot.Right : SkillSlot.Left;
 		SkillSetChanged?.Invoke(CurrentSkillSlot);
+	}
+
+	private void PlaySkillSFX(int index)
+	{
+		if (_audioSource == null) return;
+		AudioClip clip = Skills[index]?.SkillDataSO?.SfxClip;
+		if (clip != null) _audioSource.PlayOneShot(clip);
 	}
 
 	private int ConvertSlotToIndex(SkillSlot slot)

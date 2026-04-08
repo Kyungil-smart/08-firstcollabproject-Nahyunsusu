@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -75,12 +76,15 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 		}
 	}
 
+	public int ExpReq { get; private set; }
+
 	public PlayerData Data { get; private set; }
 	public PlayerFSM  FSM  { get; private set; }
 
 	private PlayerDataSO       _dataSO;
 	private EquipmentList      _equipmentList;
 	private PlayerInputHandler _inputHandler;
+	private PlayerSkillHandler _skillHandler;
 
 	/// <summary>장비 변경 시 발행. (슬롯 인덱스, 장착된 장비 — null이면 해제)</summary>
 	public event Action<int, EquipmentData> EquipmentChanged;
@@ -99,6 +103,7 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 		FSM            = GetComponent<PlayerFSM>();
 		_equipmentList = GetComponent<EquipmentList>();
 		_inputHandler  = GetComponent<PlayerInputHandler>();
+		_skillHandler  = GetComponent<PlayerSkillHandler>();
 
 		if (_equipmentList != null)
 			_equipmentList.OnEquipChanged += OnEquipmentListChanged;
@@ -123,7 +128,8 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 
 		// 씬 전환 시 현재 스탯과 장비를 저장
 		if (Data != null)
-			PlayerPersistentData.Instance?.Save(_baseData, Data, _equipmentList?.MyEquips);
+			PlayerPersistentData.Instance?.Save(_baseData, Data, _equipmentList?.MyEquips,
+				_skillHandler.Skills.Select(s => s.SkillDataSO).ToList());
 	}
 
 	public void InitPlayer(PlayerDataSO dataSO = null)
@@ -135,6 +141,19 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 			// 이전 씬에서 저장된 데이터로 복원
 			_baseData = persistent.SavedBaseData;
 			Data      = persistent.SavedRuntimeData;
+			var skillSaved = persistent.SavedSkills;
+
+			if (skillSaved != null)
+			{
+				for (int i = 0; i < skillSaved.Count; i++)
+				{
+					if (i > 3) break;
+
+					_skillHandler.SetSkill(skillSaved[i], i);
+				}
+			}
+
+			AddExperience(0);
 
 			// UI 이벤트 발행 및 장비 보정 재계산
 			HealthChanged?.Invoke();
@@ -259,26 +278,33 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 		const int   secondBaseExp  = 50;
 		const int   thirdBaseExp   = 50;
 		const float firstExponent  = 1;
-		const float secondExponent = 1;
-		const float thirdExponent  = 1;
-		const int   expDefault     = 50;
-		const int   firstBasis     = -1;
-		const int   secondBasis    = 0;
+		const float secondExponent = 1.05f;
+		const float thirdExponent  = 1.1f;
+		const int   expDefault     = 0;
+		const int   firstBasis     = 10;
+		const int   secondBasis    = 20;
 
-		int expRequired = (int)(Level switch
+		ExpReq = (int)(Level switch
 		{
 			<= firstBasis  => firstBaseExp * Mathf.Pow(Level, firstExponent),
 			<= secondBasis => secondBaseExp * Mathf.Pow(Level, secondExponent),
-			_              => secondBaseExp * Mathf.Pow(Level, thirdExponent)
+			_              => thirdBaseExp * Mathf.Pow(Level, thirdExponent)
 		});
 
 		Exp += exp;
-		if (Level >= 10) return;
-
-		if (Exp >= expRequired)
+		if (Exp >= ExpReq)
 		{
 			Level++;
+
+			ExpReq = (int)(Level switch
+			{
+				<= firstBasis  => firstBaseExp * Mathf.Pow(Level, firstExponent),
+				<= secondBasis => secondBaseExp * Mathf.Pow(Level, secondExponent),
+				_              => thirdBaseExp * Mathf.Pow(Level, thirdExponent)
+			});
+
 			LevelUp?.Invoke();
+			RecalculateStats();
 		}
 	}
 
