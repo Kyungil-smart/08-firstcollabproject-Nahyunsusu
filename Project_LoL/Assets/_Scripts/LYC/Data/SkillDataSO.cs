@@ -90,6 +90,10 @@ public abstract class SkillDataSO : ScriptableObject
 	[SerializeField]
 	protected ParticleSystem hitEffect;
 
+	[Header("SFX")]
+	[SerializeField] private AudioClip _sfxClip;
+	public AudioClip SfxClip => _sfxClip;
+
 	public abstract void Use(SkillExecutor executor);
 
 	protected void SetEffect(SkillData data, int dice = 0)

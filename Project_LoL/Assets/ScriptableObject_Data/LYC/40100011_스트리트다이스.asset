@@ -28,6 +28,7 @@ MonoBehaviour:
   damage: 17
   damageRangeX: 1
   damageRangeY: 3
+  projectileScale: 1
   projectileSpeed: 0
   range: 3
   delay: 0.3
@@ -56,6 +57,7 @@ MonoBehaviour:
     - type: 2
       amount: 2
   hitEffect: {fileID: 2931404212483687334, guid: 8ef5e0168c9a90546b4adfe7ecbcf74d, type: 3}
+  _sfxClip: {fileID: 8300000, guid: 754337e2fc4381f48944ab18f7f7f411, type: 3}
   <Hitbox>k__BackingField: {fileID: 6701573468997801403, guid: e81d059bb8e49774d9e57330e7e357d7, type: 3}
   <ParticleSet>k__BackingField:
     particle1: {fileID: 3935525571437280161, guid: 3079d54a81b1d244190c97cbe559a44d, type: 3}
