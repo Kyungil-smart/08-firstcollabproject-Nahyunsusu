@@ -140,12 +140,12 @@ TextureImporter:
       name: IdleBack_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 1092
-        width: 400
-        height: 513
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 12
+        y: 1093
+        width: 398
+        height: 511
+      alignment: 9
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -162,12 +162,12 @@ TextureImporter:
       name: IdleBack_1
       rect:
         serializedVersion: 2
-        x: 427
-        y: 1092
-        width: 415
-        height: 521
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 428
+        y: 1093
+        width: 413
+        height: 519
+      alignment: 9
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -184,12 +184,12 @@ TextureImporter:
       name: IdleBack_2
       rect:
         serializedVersion: 2
-        x: 864
-        y: 1092
-        width: 403
-        height: 510
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 865
+        y: 1093
+        width: 401
+        height: 508
+      alignment: 9
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -206,12 +206,12 @@ TextureImporter:
       name: IdleBack_3
       rect:
         serializedVersion: 2
-        x: 2
-        y: 554
-        width: 407
-        height: 513
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 3
+        y: 555
+        width: 405
+        height: 511
+      alignment: 9
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -228,12 +228,12 @@ TextureImporter:
       name: IdleBack_4
       rect:
         serializedVersion: 2
-        x: 428
-        y: 554
-        width: 411
-        height: 516
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 429
+        y: 555
+        width: 409
+        height: 514
+      alignment: 9
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -250,12 +250,12 @@ TextureImporter:
       name: IdleBack_5
       rect:
         serializedVersion: 2
-        x: 858
-        y: 554
-        width: 409
-        height: 519
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 859
+        y: 555
+        width: 407
+        height: 517
+      alignment: 9
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -272,12 +272,12 @@ TextureImporter:
       name: IdleBack_6
       rect:
         serializedVersion: 2
-        x: 10
-        y: 16
-        width: 406
-        height: 513
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 11
+        y: 17
+        width: 404
+        height: 511
+      alignment: 9
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -294,12 +294,12 @@ TextureImporter:
       name: IdleBack_7
       rect:
         serializedVersion: 2
-        x: 440
-        y: 16
-        width: 398
-        height: 512
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 441
+        y: 17
+        width: 396
+        height: 510
+      alignment: 9
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -316,12 +316,12 @@ TextureImporter:
       name: IdleBack_8
       rect:
         serializedVersion: 2
-        x: 854
-        y: 16
-        width: 407
-        height: 513
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 855
+        y: 17
+        width: 405
+        height: 511
+      alignment: 9
+      pivot: {x: 0.57, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -330,6 +330,50 @@ TextureImporter:
       bones: []
       spriteID: 17a6c075195bf3af0800000000000000
       internalID: -414413004859479439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdleBack_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1278
+        height: 1614
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1b957fd28bd96f4ab952113c45ed5e9
+      internalID: -1923028626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdleBack_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1278
+        height: 1614
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bd53a5079e26114383f74545cc0e886
+      internalID: -173349940
       vertices: []
       indices: 
       edges: []
@@ -346,10 +390,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5699999928474426,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":1,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       IdleBack_0: 2239502500526802822
       IdleBack_1: 4418771248019951181
+      IdleBack_10: -173349940
       IdleBack_2: 1221941781839356313
       IdleBack_3: 7785595751362579157
       IdleBack_4: -561198620191130925
@@ -357,6 +404,7 @@ TextureImporter:
       IdleBack_6: 2190358153947823416
       IdleBack_7: -9116351100719580886
       IdleBack_8: -414413004859479439
+      IdleBack_9: -1923028626
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
