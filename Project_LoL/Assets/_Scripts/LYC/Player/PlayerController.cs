@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 		get => Data.CurrentHp;
 		set
 		{
-			Data.SetHp(value);
+			Data.SetHp(Mathf.Max(value, 0));
 			HealthChanged?.Invoke();
 		}
 	}
