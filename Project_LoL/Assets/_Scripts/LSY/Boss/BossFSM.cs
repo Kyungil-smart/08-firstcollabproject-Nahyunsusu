@@ -5,11 +5,9 @@ public class BossFSM : MonoBehaviour, Damageable
 {
     [Header("데이터")]
     public BossData data;
-    public GameObject warningSignObj;
 
     public Rigidbody2D rigid { get; private set; }
     public Animator animator { get; private set; }
-    public EnemyPathfinder pathfinder { get; private set; }
     private MonsterEffectManager _effectManager;
 
     public Boss1Skill boss1Skill { get; private set; }
@@ -24,14 +22,13 @@ public class BossFSM : MonoBehaviour, Damageable
     public Transform playerTransform { get; private set; }
     public MonsterSkillDataSO selectedSkill { get; set; }
     public Vector2 initialTargetPos { get; set; }
-    
-    public RoomNode currentRoom { get; private set; } 
-    
+    public RoomNode currentRoom { get; private set; }
+
     private int _currentHp;
 
-    public bool isPlayerInDetectRange => data != null && playerTransform != null && 
+    public bool isPlayerInDetectRange => data != null && playerTransform != null &&
         Vector2.Distance(transform.position, playerTransform.position) <= data.detectRange;
-    public bool isPlayerInAttackRange => data != null && playerTransform != null && 
+    public bool isPlayerInAttackRange => data != null && playerTransform != null &&
         Vector2.Distance(transform.position, playerTransform.position) <= data.attackRange;
 
     protected virtual void Awake()
@@ -39,7 +36,6 @@ public class BossFSM : MonoBehaviour, Damageable
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         _effectManager = GetComponent<MonsterEffectManager>();
-        pathfinder = GetComponent<EnemyPathfinder>();
 
         boss1Skill = GetComponent<Boss1Skill>();
         boss2Skill = GetComponent<Boss2Skill>();
@@ -73,8 +69,6 @@ public class BossFSM : MonoBehaviour, Damageable
     public void SetRoom(RoomNode room)
     {
         currentRoom = room;
-        if (pathfinder != null && room != null)
-            pathfinder.InitGrid(room);
     }
 
     public void ResetBoss()
@@ -104,9 +98,9 @@ public class BossFSM : MonoBehaviour, Damageable
     public virtual void TakeDamage(int damage)
     {
         if (_currentHp <= 0 || currentStateType == BossStateType.Die) return;
-        
+
         _currentHp -= damage;
-        if (_effectManager != null) _effectManager.PlayHitFlash(); 
+        if (_effectManager != null) _effectManager.PlayHitFlash();
 
         if (_currentHp <= 0)
         {
@@ -120,7 +114,6 @@ public class BossFSM : MonoBehaviour, Damageable
         ChangeState(BossStateType.Hit);
     }
 
-
     public void TriggerAttackSkill()
     {
         if (selectedSkill == null) return;
@@ -128,9 +121,9 @@ public class BossFSM : MonoBehaviour, Damageable
         if (selectedSkill.skillId == 4 && boss3Skill1 != null)
         {
             boss3Skill1.ExecuteSkill(selectedSkill, initialTargetPos, data.attackDamage);
-            return; 
+            return;
         }
-        
+
         if (selectedSkill.skillId == 10 && boss3Skill2 != null)
         {
             boss3Skill2.ExecuteSkill(selectedSkill, initialTargetPos, data.attackDamage);
