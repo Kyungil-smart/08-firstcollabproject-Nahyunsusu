@@ -124,6 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2991541068896286148}
   - component: {fileID: 4015060848355162393}
+  - component: {fileID: 5224329245142650051}
   - component: {fileID: 2914543602001885481}
   m_Layer: 0
   m_Name: BossPortal
@@ -196,6 +197,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!50 &5224329245142650051
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357099836098796667}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &2914543602001885481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19147,8 +19175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossRewardChest
   _visuals: {fileID: 277872986358378112}
   _animator: {fileID: 2906782935683921042}
-  _equipmentList: {fileID: 7454494164900188995, guid: 957e383ee57debd4cb5b55ed70723c58, type: 3}
-  _dataManager: {fileID: 2360425075972459873, guid: 3ea1bcd8c69a5894c8d7b431dfba28b5, type: 3}
   _interactUI: {fileID: 50447918867367444}
 --- !u!1 &6098606025440526184
 GameObject:
@@ -21198,23 +21224,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4946573188817909250, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4946573188817909250, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4946573188817909250, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4946573188817909250, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -10.65953
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4946573188817909250, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 21.80038
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4946573188817909250, guid: 85b428481c7b3e34697681a05abf0bdb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -21503,23 +21529,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 821972452380705179, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 821972452380705179, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 821972452380705179, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 821972452380705179, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.45025
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 821972452380705179, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -14.67988
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 821972452380705179, guid: a677def7235109a4eaeebeddd4d4f116, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

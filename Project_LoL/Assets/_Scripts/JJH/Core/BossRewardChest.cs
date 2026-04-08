@@ -5,18 +5,31 @@ public class BossRewardChest : MonoBehaviour
 {
     [SerializeField] private GameObject _visuals;
     [SerializeField] private Animator _animator;
-    [SerializeField] private EquipmentList _equipmentList;
-    [SerializeField] private DataManager _dataManager;
     [SerializeField] private InteractUI _interactUI;
 
     private bool _playerInRange;
     private bool _opened;
+    private Collider2D _collider;
+    private EquipmentList _equipmentList;
+    private DataManager _dataManager;
 
     private void Awake()
     {
+        _collider = GetComponentInChildren<Collider2D>();
         _dataManager = FindAnyObjectByType<DataManager>();
         _equipmentList = FindAnyObjectByType<EquipmentList>();
         BossDieState.OnBossDied += Activate;
+    }
+
+    private void Start()
+    {
+        Canvas canvas = GetComponentInChildren<Canvas>();
+        if (canvas != null)
+            canvas.worldCamera = Camera.main;
+
+        if (_visuals != null) _visuals.SetActive(false);
+        if (_interactUI != null) _interactUI.SetVisible(false);
+        if (_collider != null) _collider.enabled = false;
     }
 
     private void OnDestroy()
@@ -27,6 +40,7 @@ public class BossRewardChest : MonoBehaviour
     private void Activate()
     {
         if (_visuals != null) _visuals.SetActive(true);
+        if (_collider != null) _collider.enabled = true;
     }
 
     private void Update()

@@ -10,13 +10,24 @@ public class BossPortal : MonoBehaviour
     private bool _playerInRange;
     private float _holdTimer;
     private SceneTransitionInteractable _transition;
+    private Collider2D _collider;
 
     private void Awake()
     {
         _transition = GetComponent<SceneTransitionInteractable>();
+        _collider = GetComponentInChildren<Collider2D>();
+        BossDieState.OnBossDied += Activate;
+    }
+
+    private void Start()
+    {
+        Canvas canvas = GetComponentInChildren<Canvas>();
+        if (canvas != null)
+            canvas.worldCamera = Camera.main;
 
         if (_visuals != null) _visuals.SetActive(false);
-        BossDieState.OnBossDied += Activate;
+        if (_interactUI != null) _interactUI.SetVisible(false);
+        if (_collider != null) _collider.enabled = false;
     }
 
     private void OnDestroy()
@@ -27,6 +38,7 @@ public class BossPortal : MonoBehaviour
     private void Activate()
     {
         if (_visuals != null) _visuals.SetActive(true);
+        if (_collider != null) _collider.enabled = true;
     }
 
     private void Update()
