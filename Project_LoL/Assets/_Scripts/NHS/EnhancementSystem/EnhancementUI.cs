@@ -3,6 +3,7 @@ using DG.Tweening;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -40,6 +41,7 @@ public class EnhancementUI : MonoBehaviour
     [SerializeField] private List<Image> _diceImage;    // 3개의 주사위 결과 이미지
     [SerializeField] private List<Animator> _animator;  // 3개의 주사위 애니메이터 (GIF 연출용)
     [SerializeField] private Sprite[] _diceSprites;     // 주사위 1~6번 눈 스프라이트
+    [SerializeField] private TextMeshProUGUI sum;     // 주사위 1~6번 눈 스프라이트
 
     private static readonly int _stop  = Animator.StringToHash("Stop");
     private static readonly int _start = Animator.StringToHash("Start");
@@ -47,7 +49,7 @@ public class EnhancementUI : MonoBehaviour
     private float _rollDuration = 1.5f; // 주사위가 실제로 굴러갈 시간
     private float _timer = 0f;
     private bool _isRolling = false;
-
+    
     [Header("EnhancePriceSetting")]
     private int[] _enhancePrices = { 5, 10, 15, 20, 30, 40 };
     private int[] _enhanceSum = { 4, 5, 6, 8, 10, 12 };
@@ -56,7 +58,7 @@ public class EnhancementUI : MonoBehaviour
 
     private void Awake()
     {
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -209,7 +211,8 @@ public class EnhancementUI : MonoBehaviour
 
     private void OnSelectEquipment(int index)
     {
-        if (index >= _equipmentList.MyEquips.Count) return;
+        if (index > _equipmentList.MyEquips.Count) 
+            return;
 
         _selectedIndex = index;
         var selectedData = _equipmentList.MyEquips[index];
@@ -236,6 +239,7 @@ public class EnhancementUI : MonoBehaviour
             _selectedImage.enabled = true;
         }
 
+        UpdateTargetSumText(index);
         CheckRequirement();
     }
 
@@ -272,6 +276,31 @@ public class EnhancementUI : MonoBehaviour
         {
             _selectedImage.enabled = false;
             _selectedImage.sprite  = null;
+        }
+
+        UpdateTargetSumText(-1);
+    }
+    private void UpdateTargetSumText(int index)
+    {
+        if (sum == null) return;
+
+        if (index == -1 || index >= _equipmentList.MyEquips.Count)
+        {
+            sum.text = LanguageManager.Instance.Current == Language.Korean ? "목표: -" : "Target: -";
+            return;
+        }
+
+        int currentLevel = _equipmentList.MyEquips[index].CurrentUpgradeLevel;
+        int levelIndex = Mathf.Clamp(currentLevel, 0, _enhanceSum.Length - 1);
+        int targetValue = _enhanceSum[levelIndex];
+
+        if (LanguageManager.Instance.Current == Language.Korean)
+        {
+            sum.text = $"목표 합계: {targetValue} 이상";
+        }
+        else
+        {
+            sum.text = $"Target Sum: {targetValue}+";
         }
     }
 }
