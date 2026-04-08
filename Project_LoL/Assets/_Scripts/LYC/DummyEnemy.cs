@@ -14,6 +14,8 @@ public class DummyEnemy : MonoBehaviour, Damageable
 	public TextMeshProUGUI damageUI;
 	public int             targetIndex = 0;
 
+	private bool _tutorialEnd;
+
 	private void Start()
 	{
 		handler.SkillReloadFinished.AddListener(ChangeSkillIcon);
@@ -29,8 +31,14 @@ public class DummyEnemy : MonoBehaviour, Damageable
 	public void ChangeSkillIcon(int slot)
 	{
 		if (slot != targetIndex) return;
-
+		if (_tutorialEnd) return;
 		spriteRenderer.sprite = handler.Skills[slot].CurrentSkillData.SkillImage;
+	}
+
+	public void TutorialEnd()
+	{
+		_tutorialEnd = true;
+		Destroy(spriteRenderer.gameObject);
 	}
 
 	public void TakeDamage(int damage)

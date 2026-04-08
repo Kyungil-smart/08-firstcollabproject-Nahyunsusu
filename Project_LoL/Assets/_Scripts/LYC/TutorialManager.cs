@@ -40,6 +40,8 @@ public class TutorialManager : MonoBehaviour
 	[SerializeField] private DummyEnemy         dummyEnemy1;
 	[SerializeField] private DummyEnemy         dummyEnemy2;
 
+	[SerializeField] private GameObject QuestEnd;
+
 	[Header("Quests (순서대로 진행)")] [SerializeField]
 	private List<TutorialQuest> quests = new();
 
@@ -81,14 +83,17 @@ public class TutorialManager : MonoBehaviour
 		ActivateQuest(0);
 	}
 
-	public void StopTutorial()
+	private void OnDestroy()
 	{
 		if (inputHandler != null) inputHandler.Moved -= OnMoved;
 		if (player != null) player.dashed.RemoveListener(OnDashed);
 		if (skillHandler != null) skillHandler.SkillExecuted.RemoveListener(OnSkillExecuted);
 		if (dummyEnemy1 != null) dummyEnemy1.OnHit -= OnDummyHit;
 		if (dummyEnemy2 != null) dummyEnemy2.OnHit -= OnDummyHit;
+	}
 
+	public void StopTutorial()
+	{
 		questProgressText.text = "";
 		questStepText.text     = "";
 		questText.text         = "";
@@ -97,6 +102,11 @@ public class TutorialManager : MonoBehaviour
 		{
 			g.SetActive(false);
 		}
+
+		QuestEnd.SetActive(true);
+		dummyEnemy1.gameObject.SetActive(true);
+		dummyEnemy2.gameObject.SetActive(true);
+		onTutorialCompleted.Invoke();
 	}
 
 	private void OnMoved(Vector2 dir)
@@ -172,7 +182,7 @@ public class TutorialManager : MonoBehaviour
 		_currentIndex++;
 		if (_currentIndex >= quests.Count)
 		{
-			onTutorialCompleted?.Invoke();
+			StopTutorial();
 			return;
 		}
 
@@ -188,7 +198,7 @@ public class TutorialManager : MonoBehaviour
 
 		if (index >= quests.Count)
 		{
-			onTutorialCompleted?.Invoke();
+			StopTutorial();
 			return;
 		}
 
