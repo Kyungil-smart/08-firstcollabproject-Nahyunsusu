@@ -23,6 +23,24 @@ public class EquipmentList : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (_playerController == null)
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+
+            if (playerObj != null)
+            {
+                if (_playerController == null)
+                    _playerController = playerObj.GetComponent<PlayerController>();
+            }
+            else
+            {
+                Debug.LogError("StoreUI: 'Player' 태그를 가진 오브젝트를 찾을 수 없습니다!");
+            }
+        }
+    }
+
     public int CurrentCount => _playersEquip.Count; // 현재 장비 개수 확인용
 
     public void AddEquip(int index, int newEqiupId) // 보상이나 상점에서 호출할 함수

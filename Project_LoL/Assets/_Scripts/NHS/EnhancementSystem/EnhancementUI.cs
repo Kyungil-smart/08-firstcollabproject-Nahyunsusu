@@ -58,7 +58,7 @@ public class EnhancementUI : MonoBehaviour
 
     private void Awake()
     {
-        //this.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -86,6 +86,21 @@ public class EnhancementUI : MonoBehaviour
         if (_equipmentList != null)
         {
             _equipmentList.OnEquipChanged += RefreshEquipIcons;
+        }
+
+        if (_playerController == null)
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+
+            if (playerObj != null)
+            {
+                if (_playerController == null)
+                    _playerController = playerObj.GetComponent<PlayerController>();
+            }
+            else
+            {
+                Debug.LogError("StoreUI: 'Player' 태그를 가진 오브젝트를 찾을 수 없습니다!");
+            }
         }
 
         RefreshEquipIcons();
