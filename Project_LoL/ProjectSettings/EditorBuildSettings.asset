@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: a4ba7c10e1245f347bcac4b38aedaeb1
   - enabled: 1
     path: Assets/_Scenes/KTS/OptionUI.unity
-    guid: 6e553be6f35872c4bb968a7f85f66eab
+    guid: 68062306574d67c459bed3e044bafe3e
   - enabled: 1
     path: Assets/_Scenes/SceneManager/Lobby.unity
     guid: 970ac0f2f7e15aa44b15036cac4b491a
