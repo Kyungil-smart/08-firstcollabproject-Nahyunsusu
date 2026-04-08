@@ -16,7 +16,7 @@ public class SkillTooltipData : TooltipComponent
 
         var data = _skillData.Get(1);
 
-        if (LanguageManager.Instance.currentLanguage == Language.Korean)
+        if (LanguageManager.Instance.Current == Language.Korean)
         {
             return $"<b>{data.SkillName}</b>";
         }

@@ -35,7 +35,7 @@ public class StoreItemSlot : TooltipComponent
         _imageButton.interactable = true;
         _imageButton.image.sprite = data.EquipImages.Get(0);
 
-        if (LanguageManager.Instance.currentLanguage == Language.Korean)
+        if (LanguageManager.Instance.Current == Language.Korean)
         {
             _descriptionText.text = $"<b>{data.EquipName_KO}</b>";
         }
