@@ -47,15 +47,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BGMManager
   _audioSource: {fileID: 43061759678842925}
   _fadeDuration: 1
+  _mainMenuBGM: {fileID: 8300000, guid: f5407d9c74a97a245aea899f9aeb83c7, type: 3}
   _lobbyBGM: {fileID: 8300000, guid: 93a05d308e2d6e64485206eeb6abb487, type: 3}
-  _tutorialBGM: {fileID: 0}
+  _tutorialBGM: {fileID: 8300000, guid: 93a05d308e2d6e64485206eeb6abb487, type: 3}
   _stage1BGM: {fileID: 8300000, guid: 9553c929b36654b458d61ddba090b756, type: 3}
   _stage2BGM: {fileID: 8300000, guid: 53caa7ed7ec22fb40b3a370ccf01a129, type: 3}
   _stage3BGM: {fileID: 8300000, guid: 6d63494050e2fad45af7a0ff7a8f6573, type: 3}
   _finalBossBGM: {fileID: 0}
-  _boss1BGM: {fileID: 8300000, guid: b06d8013de5b7694b866b8bcd2970d50, type: 3}
+  _boss1BGM: {fileID: 8300000, guid: e241dfc27afe57749abcabfe8e216803, type: 3}
   _boss2BGM: {fileID: 8300000, guid: 5062c2c8f68cb954283d1c49b7f39756, type: 3}
-  _boss3BGM: {fileID: 0}
+  _boss3BGM: {fileID: 8300000, guid: ba764462bfd45bf41a5ee6d0183b3d0b, type: 3}
 --- !u!82 &43061759678842925
 AudioSource:
   m_ObjectHideFlags: 0
