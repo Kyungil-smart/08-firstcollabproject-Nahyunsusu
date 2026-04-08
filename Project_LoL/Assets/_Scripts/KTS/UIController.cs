@@ -22,6 +22,11 @@ public class UIController : MonoBehaviour
         Application.Quit();
         Debug.Log("게임종료");
     }
+
+    public void Back()
+    {
+        SceneManager.LoadScene("TitleUI");
+    }
     
 }
 
