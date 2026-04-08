@@ -27,16 +27,6 @@ public class UIController : MonoBehaviour
     {
         SceneManager.LoadScene("TitleUI");
     }
-    
-    public void SetKorean()
-    {
-        LanguageManager.Instance.SetLanguage(Language.Korean);
-    }
-
-    public void SetEnglish()
-    {
-        LanguageManager.Instance.SetLanguage(Language.English);
-    }
 }
 
 

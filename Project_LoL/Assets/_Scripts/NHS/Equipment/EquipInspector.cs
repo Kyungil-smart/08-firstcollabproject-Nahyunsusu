@@ -63,6 +63,10 @@ public class EquipInspector : MonoBehaviour
         for (int i = 0; i < images.Count; i++)
         {
             images[i].enabled = false;
+            if (images[i].TryGetComponent<EquipTooltipData>(out var tooltip))
+            {
+                tooltip.Setup(null);
+            }
         }
 
         if (isSkillMode == false)
@@ -77,6 +81,11 @@ public class EquipInspector : MonoBehaviour
 
                 images[i].sprite = data.EquipIconSet.Get(data.CurrentUpgradeLevel);
                 images[i].enabled = true;
+
+                if (images[i].TryGetComponent<EquipTooltipData>(out var tooltip))
+                {
+                    tooltip.Setup(data);
+                }
             }
         }
         else

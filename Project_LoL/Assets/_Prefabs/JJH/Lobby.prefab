@@ -5855,6 +5855,7 @@ GameObject:
   - component: {fileID: 6775537398880186184}
   - component: {fileID: 4074578460061672393}
   - component: {fileID: 4514977382501624526}
+  - component: {fileID: 7660741500874075640}
   m_Layer: 0
   m_Name: TutorialPortal
   m_TagString: Untagged
@@ -5939,6 +5940,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionInteractable
   _destination: 1
   _requireTutorialComplete: 0
+--- !u!50 &7660741500874075640
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4804918812358919615}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4967264440090411288
 GameObject:
   m_ObjectHideFlags: 0
@@ -5951,6 +5979,7 @@ GameObject:
   - component: {fileID: 918161941360644480}
   - component: {fileID: 5190162116341578620}
   - component: {fileID: 4171356818769738251}
+  - component: {fileID: 3549892130462320196}
   m_Layer: 0
   m_Name: StartPortal
   m_TagString: Untagged
@@ -6081,6 +6110,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionInteractable
   _destination: 0
   _requireTutorialComplete: 0
+--- !u!50 &3549892130462320196
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4967264440090411288}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5221688871508222652
 GameObject:
   m_ObjectHideFlags: 0
