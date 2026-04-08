@@ -79,7 +79,7 @@ namespace _Scripts.LYC.Skill
 		{
 			if (CurrentSkillData == null || SkillDataSO == null) return SkillExecuteResult.NotExist;
 			if (LastExecutedTime + CurrentSkillData.Delay > Time.time) return SkillExecuteResult.OnCooldown;
-			if (IsRolling && LastExecutedTime + _reloadCooldown > Time.time) return SkillExecuteResult.OnCooldown;
+			if (IsRolling) return SkillExecuteResult.OnCooldown;
 
 			SkillDataSO.Use(this);
 			CurrentAmmo--;
