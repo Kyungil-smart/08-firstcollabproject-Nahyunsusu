@@ -592,19 +592,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6272449582905904117, guid: e7af2f713dbf2334780f21231c531e30, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8890563269152255145, guid: e7af2f713dbf2334780f21231c531e30, type: 3}
       propertyPath: m_Name
       value: Tutorial
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6272449582905904117, guid: e7af2f713dbf2334780f21231c531e30, type: 3}
+    - {fileID: 1168346370390563432, guid: e7af2f713dbf2334780f21231c531e30, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6272449582905904117, guid: e7af2f713dbf2334780f21231c531e30, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1461794163}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7af2f713dbf2334780f21231c531e30, type: 3}
 --- !u!1 &236756118
 GameObject:
@@ -1025,7 +1024,7 @@ MonoBehaviour:
   onTutorialCompleted:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1461794162}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -4600,24 +4599,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424480099}
   m_CullTransparentMesh: 1
---- !u!1 &1461794162 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6272449582905904117, guid: e7af2f713dbf2334780f21231c531e30, type: 3}
-  m_PrefabInstance: {fileID: 206068644}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1461794163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1461794162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7542c9748419e4b42a95a53709167c10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  sceneName: Stage1
 --- !u!1 &1468437870
 GameObject:
   m_ObjectHideFlags: 0
@@ -5735,7 +5716,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907874809}
   m_CullTransparentMesh: 1
---- !u!21 &1979700449
+--- !u!21 &1990009228
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -6152,8 +6133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionInteractable
   _destination: 3
-  _interactUI: {fileID: 4824588890670416539, guid: 2c9a4a7241b3b054392339edc8c126d0, type: 3}
-  _requireTutorialComplete: 0
+  _requireTutorialComplete: 1
 --- !u!61 &2123193516
 BoxCollider2D:
   m_ObjectHideFlags: 0
