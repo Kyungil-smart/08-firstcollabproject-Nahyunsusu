@@ -14,6 +14,8 @@ public class BossRewardChest : MonoBehaviour
 
     private void Awake()
     {
+        _dataManager = FindAnyObjectByType<DataManager>();
+        _equipmentList = FindAnyObjectByType<EquipmentList>();
         BossDieState.OnBossDied += Activate;
     }
 
