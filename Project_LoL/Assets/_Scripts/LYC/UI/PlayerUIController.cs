@@ -148,8 +148,8 @@ public class PlayerUIController : MonoBehaviour
 	{
 		atkText.text        = $"{_controller.Data.AtkDamage}";
 		atkSpeedText.text   = $"{_controller.Data.AtkSpeed}";
-		moveSpeedText.text  = $"{_controller.Data.MoveSpeed}";
-		critRateText.text   = $"{_controller.Data.CritRate}";
+		moveSpeedText.text  = $"{Mathf.RoundToInt(_controller.Data.MoveSpeed)}";
+		critRateText.text   = $"{Mathf.RoundToInt(_controller.Data.CritRate)}";
 		critDamageText.text = $"{_controller.Data.CritDamage}";
 
 		RefreshHealth();
