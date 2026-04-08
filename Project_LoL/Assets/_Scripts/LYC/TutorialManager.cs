@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,9 +16,9 @@ public class TutorialManager : MonoBehaviour
 	[Serializable]
 	public class TutorialQuest
 	{
-		public string questName;
+		public string            questName;
 		public TutorialQuestType type;
-		public GameObject[] GameObjects;
+		public GameObject[]      GameObjects;
 
 		[Tooltip("DodgeDash / UseSkillSlot / HitEnemy 에서 완료에 필요한 횟수")]
 		public int requiredCount = 1;
@@ -30,24 +29,28 @@ public class TutorialManager : MonoBehaviour
 		[HideInInspector] public int currentCount;
 	}
 
-	[Header("References")] [SerializeField] private PlayerController player;
-	[SerializeField] private TextMeshProUGUI questText;
-	[SerializeField] private TextMeshProUGUI questProgressText;
-	[SerializeField] public TextMeshProUGUI questStepText;
+	[Header("References")] [SerializeField]
+	private PlayerController player;
+
+	[SerializeField] private TextMeshProUGUI    questText;
+	[SerializeField] private TextMeshProUGUI    questProgressText;
+	[SerializeField] public  TextMeshProUGUI    questStepText;
 	[SerializeField] private PlayerInputHandler inputHandler;
 	[SerializeField] private PlayerSkillHandler skillHandler;
-	[SerializeField] private DummyEnemy dummyEnemy1;
-	[SerializeField] private DummyEnemy dummyEnemy2;
+	[SerializeField] private DummyEnemy         dummyEnemy1;
+	[SerializeField] private DummyEnemy         dummyEnemy2;
 
-	[Header("Quests (순서대로 진행)")]
-	[SerializeField] private List<TutorialQuest> quests = new();
+	[Header("Quests (순서대로 진행)")] [SerializeField]
+	private List<TutorialQuest> quests = new();
 
-	[Header("이벤트")] public UnityEvent<bool> onWPressed;
+	[Header("이벤트")]
+	public UnityEvent<bool> onWPressed;
+
 	public UnityEvent<bool> onAPressed;
 	public UnityEvent<bool> onSPressed;
 	public UnityEvent<bool> onDPressed;
 	public UnityEvent<bool> onLeftShiftPressed;
-	public UnityEvent onTutorialCompleted;
+	public UnityEvent       onTutorialCompleted;
 
 	private int _currentIndex;
 	private int _moveAndDodgePhase;
@@ -61,6 +64,11 @@ public class TutorialManager : MonoBehaviour
 
 	private void Start()
 	{
+		StartTutorial();
+	}
+
+	public void StartTutorial()
+	{
 		inputHandler.Moved += OnMoved;
 		player.dashed.AddListener(OnDashed);
 		skillHandler.SkillExecuted.AddListener(OnSkillExecuted);
@@ -73,13 +81,22 @@ public class TutorialManager : MonoBehaviour
 		ActivateQuest(0);
 	}
 
-	private void OnDestroy()
+	public void StopTutorial()
 	{
 		if (inputHandler != null) inputHandler.Moved -= OnMoved;
 		if (player != null) player.dashed.RemoveListener(OnDashed);
 		if (skillHandler != null) skillHandler.SkillExecuted.RemoveListener(OnSkillExecuted);
 		if (dummyEnemy1 != null) dummyEnemy1.OnHit -= OnDummyHit;
 		if (dummyEnemy2 != null) dummyEnemy2.OnHit -= OnDummyHit;
+
+		questProgressText.text = "";
+		questStepText.text     = "";
+		questText.text         = "";
+
+		foreach (GameObject g in quests.SelectMany(q => q.GameObjects))
+		{
+			g.SetActive(false);
+		}
 	}
 
 	private void OnMoved(Vector2 dir)
@@ -181,9 +198,9 @@ public class TutorialManager : MonoBehaviour
 			g.SetActive(true);
 		}
 
-		questText.text = quests[index].questName;
+		questText.text         = quests[index].questName;
 		questProgressText.text = $"({0}/{quests[index].requiredCount})";
-		questStepText.text = $"STEP {index + 1}/{quests.Count}";
+		questStepText.text     = $"STEP {index + 1}/{quests.Count}";
 
 		if (IsCurrentType(TutorialQuestType.UseSkillSlot))
 		{
