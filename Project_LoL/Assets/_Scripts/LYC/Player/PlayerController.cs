@@ -277,7 +277,6 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 
 		if (Exp >= expRequired)
 		{
-			Exp = expRequired;
 			Level++;
 			LevelUp?.Invoke();
 		}
