@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 /// <summary>
 /// Scene 로딩 시 Transition 효과를 관리하는 싱글톤 매니저입니다.
@@ -85,16 +86,32 @@ public class SceneTransitionManager : MonoBehaviour
  
 		StartCoroutine(LoadSceneWithTransitionCoroutine(sceneName));
 	}
+	
+	public void LoadSceneWithCutscene(string sceneName, VideoClip clip)
+	{
+		StartCoroutine(LoadSceneWithCutsceneCoroutine(sceneName, clip));
+	}
  
 	IEnumerator LoadSceneWithTransitionCoroutine(string sceneName)
 	{
-		// TransitionIn과 BGM 페이드 아웃 동시 진행
 		if (BGMManager.Instance != null)
-		{
 			yield return StartCoroutine(BGMManager.Instance.FadeOutCoroutine());
-		}
  
 		yield return PlayTransitionInCoroutine();
+		yield return SceneManager.LoadSceneAsync(sceneName);
+		yield return PlayTransitionOutCoroutine();
+	}
+	
+	IEnumerator LoadSceneWithCutsceneCoroutine(string sceneName, VideoClip clip)
+	{
+		if (BGMManager.Instance != null)
+			yield return StartCoroutine(BGMManager.Instance.FadeOutCoroutine());
+ 
+		yield return PlayTransitionInCoroutine();
+ 
+		if (CutsceneManager.Instance != null)
+			yield return StartCoroutine(CutsceneManager.Instance.PlayCutscene(clip));
+ 
 		yield return SceneManager.LoadSceneAsync(sceneName);
 		yield return PlayTransitionOutCoroutine();
 	}

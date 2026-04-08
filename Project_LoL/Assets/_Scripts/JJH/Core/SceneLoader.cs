@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public static class SceneLoader
 {
@@ -24,7 +25,12 @@ public static class SceneLoader
     {
         SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Lobby);
     }
-    
+
+    public static void LoadLobbyWithCutscene(VideoClip clip)
+    {
+        SceneTransitionManager.Instance.LoadSceneWithCutscene(SceneName.Lobby, clip);
+    }
+
     public static void LoadTutorial()
     {
         SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Tutorial);
