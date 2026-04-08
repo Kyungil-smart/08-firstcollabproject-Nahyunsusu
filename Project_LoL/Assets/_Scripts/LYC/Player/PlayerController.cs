@@ -75,6 +75,8 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 		}
 	}
 
+	public int ExpReq { get; private set; }
+
 	public PlayerData Data { get; private set; }
 	public PlayerFSM  FSM  { get; private set; }
 
@@ -135,6 +137,8 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 			// 이전 씬에서 저장된 데이터로 복원
 			_baseData = persistent.SavedBaseData;
 			Data      = persistent.SavedRuntimeData;
+
+			AddExperience(0);
 
 			// UI 이벤트 발행 및 장비 보정 재계산
 			HealthChanged?.Invoke();
@@ -259,26 +263,33 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 		const int   secondBaseExp  = 50;
 		const int   thirdBaseExp   = 50;
 		const float firstExponent  = 1;
-		const float secondExponent = 1;
-		const float thirdExponent  = 1;
-		const int   expDefault     = 50;
-		const int   firstBasis     = -1;
-		const int   secondBasis    = 0;
+		const float secondExponent = 1.05f;
+		const float thirdExponent  = 1.1f;
+		const int   expDefault     = 0;
+		const int   firstBasis     = 10;
+		const int   secondBasis    = 20;
 
-		int expRequired = (int)(Level switch
+		ExpReq = (int)(Level switch
 		{
 			<= firstBasis  => firstBaseExp * Mathf.Pow(Level, firstExponent),
 			<= secondBasis => secondBaseExp * Mathf.Pow(Level, secondExponent),
-			_              => secondBaseExp * Mathf.Pow(Level, thirdExponent)
+			_              => thirdBaseExp * Mathf.Pow(Level, thirdExponent)
 		});
 
 		Exp += exp;
-		if (Level >= 10) return;
-
-		if (Exp >= expRequired)
+		if (Exp >= ExpReq)
 		{
 			Level++;
+
+			ExpReq = (int)(Level switch
+			{
+				<= firstBasis  => firstBaseExp * Mathf.Pow(Level, firstExponent),
+				<= secondBasis => secondBaseExp * Mathf.Pow(Level, secondExponent),
+				_              => thirdBaseExp * Mathf.Pow(Level, thirdExponent)
+			});
+
 			LevelUp?.Invoke();
+			RecalculateStats();
 		}
 	}
 
