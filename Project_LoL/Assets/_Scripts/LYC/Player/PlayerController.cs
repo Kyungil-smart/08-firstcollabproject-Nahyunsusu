@@ -205,12 +205,12 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 	/// </summary>
 	public void AddBaseStat(LevelUpChoiceEntry entry)
 	{
-		_baseData.HP         += entry.hp;
-		_baseData.AtkDamage  += entry.atkDamage;
-		_baseData.AtkSpeed   += (int)entry.atkSpeed;
-		_baseData.MoveSpeed  += entry.moveSpeed;
-		_baseData.CritRate   += entry.critChance;
-		_baseData.CritDamage += entry.critDamage;
+		_baseData.HP         += _baseData.HP * (entry.hp / 100f);
+		_baseData.AtkDamage  += Mathf.RoundToInt(_baseData.AtkDamage * (entry.atkDamage / 100f));
+		_baseData.AtkSpeed   += (int)(_baseData.AtkSpeed * (entry.atkSpeed / 100f));
+		_baseData.MoveSpeed  += _baseData.MoveSpeed * (entry.moveSpeed / 100f);
+		_baseData.CritRate   += _baseData.CritRate * (entry.critChance / 100f);
+		_baseData.CritDamage += (int)(_baseData.CritDamage * (entry.critDamage / 100f));
 		RecalculateStats();
 	}
 

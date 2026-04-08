@@ -6,17 +6,18 @@ namespace _Scripts.LYC.States
 	public class MoveState : BaseState
 	{
 		private readonly Rigidbody2D _rb;
-		private readonly float _speed;
 
-		public MoveState(PlayerFSM fsm, PlayerInputHandler input, Rigidbody2D rb, float speed)
+		private float _speed;
+
+		public MoveState(PlayerFSM fsm, PlayerInputHandler input, Rigidbody2D rb)
 			: base(fsm, input)
 		{
 			_rb = rb;
-			_speed = speed;
 		}
 
 		public override void Enter()
 		{
+			_speed = FSM.Controller.Data.MoveSpeed;
 		}
 
 		public override void Update()
@@ -36,8 +37,8 @@ namespace _Scripts.LYC.States
 			_rb.linearVelocity = Vector2.zero;
 		}
 
-		public override void OnDashed() => FSM.ChangeState(FSM.Dash);
-		public override void OnLeftSkill() => FSM.EnterAttack(SkillSlot.Left);
+		public override void OnDashed()     => FSM.ChangeState(FSM.Dash);
+		public override void OnLeftSkill()  => FSM.EnterAttack(SkillSlot.Left);
 		public override void OnRightSkill() => FSM.EnterAttack(SkillSlot.Right);
 	}
 }

@@ -6,26 +6,26 @@ namespace _Scripts.LYC.States
 	public class DashState : BaseState
 	{
 		private readonly Rigidbody2D _rigidbody;
-		private readonly float _dashDistance;
-		private readonly float _dashTime;
-		private readonly float _dashCooldown;
 
-		private float _lastDashTime;
+		private float   _dashDistance;
+		private float   _dashTime;
+		private float   _dashCooldown;
+		private float   _lastDashTime;
 		private Vector3 _dashStartPosition;
 
-		public DashState(PlayerFSM fsm, PlayerInputHandler input, Rigidbody2D rigidbody,
-			float dashTime, float dashDistance, float dashCooldown)
+		public DashState(PlayerFSM fsm, PlayerInputHandler input, Rigidbody2D rigidbody)
 			: base(fsm, input)
 		{
-			_rigidbody = rigidbody;
-			_dashDistance = dashDistance;
-			_dashTime = dashTime;
-			_dashCooldown = dashCooldown;
+			_rigidbody    = rigidbody;
+			_dashDistance = 2;
 			_lastDashTime = -9999;
 		}
 
 		public override void Enter()
 		{
+			_dashTime     = FSM.Controller.Data.DashTime;
+			_dashCooldown = FSM.Controller.Data.DashCooldown;
+
 			if (Time.time < _lastDashTime + _dashCooldown)
 			{
 				Debug.Log($"Dash cooldown {_lastDashTime + _dashCooldown - Time.time:F2}");
@@ -43,8 +43,8 @@ namespace _Scripts.LYC.States
 
 		private IEnumerator DashCoroutine(Vector2 dir)
 		{
-			_lastDashTime = Time.time;
-			_dashStartPosition = FSM.transform.position;
+			_lastDashTime             = Time.time;
+			_dashStartPosition        = FSM.transform.position;
 			_rigidbody.linearVelocity = dir * (_dashDistance / _dashTime);
 
 			FSM.Controller.SetInvincible(true);
