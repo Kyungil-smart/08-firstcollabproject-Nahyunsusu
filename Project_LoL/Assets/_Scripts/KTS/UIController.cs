@@ -27,7 +27,6 @@ public class UIController : MonoBehaviour
     {
         SceneManager.LoadScene("TitleUI");
     }
-    
 }
 
 

@@ -49,10 +49,6 @@ public class EquipmentList : MonoBehaviour
             _playersEquip = new List<EquipmentData>(persistent.SavedEquipments);
             OnEquipChanged?.Invoke(false);
         }
-        else
-        {
-            Debug.Log("EquipmentList: 불러올 데이터가 없거나 첫 시작입니다.");
-        }
     }
     public void AddEquip(int index, int newEqiupId) // 보상이나 상점에서 호출할 함수
     {

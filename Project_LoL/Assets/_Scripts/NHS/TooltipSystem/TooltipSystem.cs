@@ -23,10 +23,6 @@ public class TooltipSystem : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-    }
-
     public void Show(string content)
     {
         _text.text = content;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +11,8 @@ public class EndingUI : MonoBehaviour
 
 	[SerializeField] private PlayerSkillHandler _skillHandler;
 
-	[SerializeField] private Text _infoText;
-	[SerializeField] private Text _statText;
+	[SerializeField] private TextMeshProUGUI _infoText;
+	[SerializeField] private TextMeshProUGUI _statText;
 
 	private void Start()
 	{
@@ -20,24 +21,34 @@ public class EndingUI : MonoBehaviour
 		SetStatText();
 	}
 
-	private void RefreshSkillUI()
-	{
-		var data = PlayerPersistentData.Instance?.SavedSkills;
-		for (int i = 0; i < 4; i++)
-		{
-			if (data == null || data.Count <= i)
-			{
-				_skillImageList[i].gameObject.SetActive(false);
-				continue;
-			}
+    private void RefreshSkillUI()
+    {
+        var data = PlayerPersistentData.Instance?.SavedSkills;
 
-			SkillDataSO currentSO = data[i];
-			_skillImageList[i].gameObject.SetActive(true);
-			_skillImageList[i].sprite = currentSO.Get(1).SkillImage;
-		}
-	}
+        for (int i = 0; i < _skillImageList.Count; i++)
+        {
+            if (data == null || i >= data.Count || data[i] == null)
+            {
+                _skillImageList[i].gameObject.SetActive(false);
+                continue;
+            }
 
-	private void SetInfoText()
+            SkillDataSO currentSO = data[i];
+
+            var skillBase = currentSO.Get(1);
+            if (skillBase != null && skillBase.SkillImage != null)
+            {
+                _skillImageList[i].gameObject.SetActive(true);
+                _skillImageList[i].sprite = skillBase.SkillImage;
+            }
+            else
+            {
+                _skillImageList[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void SetInfoText()
 	{
 		var data = PlayerPersistentData.Instance?.SavedRuntimeData ?? new PlayerData().Clone();
 		if (LanguageManager.Instance.Current == Language.Korean)
