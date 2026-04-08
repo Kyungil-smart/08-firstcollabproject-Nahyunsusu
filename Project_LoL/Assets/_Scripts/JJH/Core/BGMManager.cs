@@ -10,6 +10,7 @@ public class BGMManager : MonoBehaviour
     [SerializeField] private float _fadeDuration = 1f;
 
     [Header("씬 BGM")]
+    [SerializeField] private AudioClip _mainMenuBGM;
     [SerializeField] private AudioClip _lobbyBGM;
     [SerializeField] private AudioClip _tutorialBGM;
     [SerializeField] private AudioClip _stage1BGM;
@@ -120,6 +121,7 @@ public class BGMManager : MonoBehaviour
 
     private AudioClip GetSceneBGM(string sceneName) => sceneName switch
     {
+        "MainMenu"   => _mainMenuBGM,
         "Lobby"      => _lobbyBGM,
         "Tutorial"   => _tutorialBGM,
         "Stage1"     => _stage1BGM,
