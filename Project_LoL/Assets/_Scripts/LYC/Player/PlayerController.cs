@@ -295,6 +295,7 @@ public class PlayerController : MonoBehaviour, Damageable, IExperience
 		if (Exp >= ExpReq)
 		{
 			Level++;
+			Exp -= ExpReq;
 
 			ExpReq = (int)(Level switch
 			{
