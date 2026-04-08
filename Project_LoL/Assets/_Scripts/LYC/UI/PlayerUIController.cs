@@ -11,7 +11,6 @@ public class PlayerUIController : MonoBehaviour
 	public Slider hpSlider;
 
 	public Slider expSlider;
-	public Slider dashSlider;
 
 	[Header("Image")]
 	public Image equipment1;
@@ -48,7 +47,6 @@ public class PlayerUIController : MonoBehaviour
 
 		hpSlider.maxValue   = 1;
 		expSlider.maxValue  = 1;
-		dashSlider.maxValue = 1;
 
 		_equipmentSlots = new[] { equipment1, equipment2, equipment3, equipment4 };
 		foreach (var slot in _equipmentSlots)
@@ -60,26 +58,6 @@ public class PlayerUIController : MonoBehaviour
 		_controller.LevelChanged     += RefreshLevel;
 		_controller.StatsChanged     += RefreshStats;
 		_controller.GoldChanged      += RefreshGold;
-		_controller.dashed.AddListener(RefreshDash);
-	}
-
-	private void RefreshDash()
-	{
-		StartCoroutine(DashRoutine());
-	}
-
-	private IEnumerator DashRoutine()
-	{
-		dashSlider.value = 0;
-		float time = 0;
-		while (time < _controller.Data.DashCooldown)
-		{
-			time             += Time.deltaTime;
-			dashSlider.value =  time / _controller.Data.DashCooldown;
-			yield return null;
-		}
-
-		dashSlider.value = 1;
 	}
 
 	private void Start()
@@ -120,7 +98,6 @@ public class PlayerUIController : MonoBehaviour
 		_controller.LevelChanged     -= RefreshLevel;
 		_controller.StatsChanged     -= RefreshStats;
 		_controller.GoldChanged      -= RefreshGold;
-		_controller.dashed.RemoveListener(RefreshDash);
 	}
 
 	private void OnEquipmentChanged(int slot, EquipmentData equipment)
@@ -148,8 +125,8 @@ public class PlayerUIController : MonoBehaviour
 	{
 		atkText.text        = $"{_controller.Data.AtkDamage}";
 		atkSpeedText.text   = $"{_controller.Data.AtkSpeed}";
-		moveSpeedText.text  = $"{_controller.Data.MoveSpeed}";
-		critRateText.text   = $"{_controller.Data.CritRate}";
+		moveSpeedText.text  = $"{Mathf.RoundToInt(_controller.Data.MoveSpeed)}";
+		critRateText.text   = $"{Mathf.RoundToInt(_controller.Data.CritRate)}";
 		critDamageText.text = $"{_controller.Data.CritDamage}";
 
 		RefreshHealth();
