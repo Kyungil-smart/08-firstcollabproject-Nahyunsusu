@@ -16,8 +16,13 @@ public class BossRewardChest : MonoBehaviour
     private void Awake()
     {
         _collider = GetComponentInChildren<Collider2D>();
-        _dataManager = FindAnyObjectByType<DataManager>();
-        _equipmentList = FindAnyObjectByType<EquipmentList>();
+    
+        if (GameDataManager.instance != null)
+        {
+            _dataManager = GameDataManager.instance.equipDataManager;
+            _equipmentList = GameDataManager.instance.equipItemList;
+        }
+    
         BossDieState.OnBossDied += Activate;
     }
 

@@ -38,6 +38,8 @@ public class StoreUI : MonoBehaviour
 
     private void OnEnable()
     {
+        if (GameDataManager.instance == null) return;
+        
         if (_playerController == null || _skillHandler == null)
         {
             GameObject playerObj = GameObject.FindWithTag("Player");
@@ -82,7 +84,8 @@ public class StoreUI : MonoBehaviour
 
     public void OnDisable()
     {
-        _playerController.GoldChanged -= UpdateGoldText;
+        if (_playerController != null)
+            _playerController.GoldChanged -= UpdateGoldText;
     }
 
     private void OnDestroy()
@@ -141,6 +144,8 @@ public class StoreUI : MonoBehaviour
 
     public void RefreshSkillUI()
     {
+        if (_skillHandler == null) return;
+        
         if (_haveSkillList == null) 
         { 
             _haveSkillList = new List<SkillDataSO>(); 
