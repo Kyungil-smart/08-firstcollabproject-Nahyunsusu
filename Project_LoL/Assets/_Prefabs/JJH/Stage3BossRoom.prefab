@@ -541,7 +541,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 11
   m_TargetDisplay: 0
 --- !u!114 &4249685675529758005
 MonoBehaviour:
@@ -17972,7 +17972,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 8
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2559349680161912318, guid: afda4cedd10beb942a0a9fcb40a307b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -20929,6 +20929,10 @@ PrefabInstance:
     - target: {fileID: 97904698003880553, guid: 3ead964f204f02444848d7814a8462e3, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000216710873523221, guid: 3ead964f204f02444848d7814a8462e3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3680887234311865853, guid: 3ead964f204f02444848d7814a8462e3, type: 3}
       propertyPath: m_LocalScale.x
