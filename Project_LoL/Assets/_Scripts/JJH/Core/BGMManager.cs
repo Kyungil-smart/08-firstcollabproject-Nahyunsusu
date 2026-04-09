@@ -8,6 +8,7 @@ public class BGMManager : MonoBehaviour
 
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private float _fadeDuration = 1f;
+    [SerializeField] private float _targetVolume = 1f;
 
     [Header("씬 BGM")]
     [SerializeField] private AudioClip _mainMenuBGM;
@@ -101,7 +102,7 @@ public class BGMManager : MonoBehaviour
         _audioSource.clip = clip;
         _audioSource.Play();
 
-        yield return FadeCoroutine(1f);
+        yield return FadeCoroutine(_targetVolume);
     }
 
     private IEnumerator FadeCoroutine(float targetVolume)
