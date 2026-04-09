@@ -11,6 +11,7 @@ namespace _Scripts.LYC.States
 		public override void Enter()
 		{
 			FSM.Controller.died.Invoke();
+			SceneTransitionManager.Instance.LoadSceneWithTransition("EndingGameOver");
 			Debug.Log("플레이어 사망");
 		}
 
