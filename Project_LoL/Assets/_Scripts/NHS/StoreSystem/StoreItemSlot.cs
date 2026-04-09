@@ -10,6 +10,9 @@ public class StoreItemSlot : TooltipComponent
     [SerializeField] private TextMeshProUGUI       _priceText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
 
+    [SerializeField] private string _description;
+
+
     [SerializeField] private Button _negoButton;
     [SerializeField] private NegotiationSystem _negoSystem = new();
     private int _currentPrice;
@@ -46,7 +49,7 @@ public class StoreItemSlot : TooltipComponent
 
     public override string GetTooltipText()
     {
-        return $"아이템: {_descriptionText.text}\n가격: {_priceText.text}G";
+        return $"아이템: {_description}\n가격: {_priceText.text}G\n";
     }
 
     public void SetItem(EquipmentData_SO data)
@@ -59,6 +62,7 @@ public class StoreItemSlot : TooltipComponent
         if (LanguageManager.Instance.Current == Language.Korean)
         {
             _descriptionText.text = $"<b>{data.EquipName_KO}</b>";
+            _description = $"<b>{data.EquipName_KO}\n{data.EquipText}</b>";
         }
         else
         {
