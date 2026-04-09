@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BGMManager
   _audioSource: {fileID: 43061759678842925}
   _fadeDuration: 1
+  _targetVolume: 0.1
   _mainMenuBGM: {fileID: 8300000, guid: f5407d9c74a97a245aea899f9aeb83c7, type: 3}
   _lobbyBGM: {fileID: 8300000, guid: 93a05d308e2d6e64485206eeb6abb487, type: 3}
   _tutorialBGM: {fileID: 8300000, guid: 93a05d308e2d6e64485206eeb6abb487, type: 3}
