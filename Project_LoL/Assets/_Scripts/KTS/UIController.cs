@@ -38,6 +38,11 @@ public class UIController : MonoBehaviour
         LanguageManager.Instance.SetLanguage(Language.English);
     }
     
+    public void LoadMainMenu()
+    {
+        SceneLoader.LoadMainMenu();
+    }
+    
 }
 
 

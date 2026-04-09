@@ -6,7 +6,7 @@ public static class SceneLoader
 {
     private static class SceneName
     {
-        public const string MainMenu = "MainMenu";
+        public const string MainMenu = "TitleUI";
         public const string Lobby = "Lobby";
         public const string Tutorial = "Tutorial";
         public const string Stage1 = "Stage1";
