@@ -16,9 +16,11 @@ namespace _Scripts.LYC.Tester
 
 		private void Start()
 		{
-			if (skillHandler == null) return;
-			if (injectionArray == null) return;
+			Invoke("Init", 0);
+		}
 
+		void Init()
+		{
 			for (int i = 0; i < 4; i++)
 			{
 				var data = injectionArray[i];

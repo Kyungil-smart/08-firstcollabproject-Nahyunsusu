@@ -1,0 +1,140 @@
+using System.Collections;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PlayerUIController : MonoBehaviour
+{
+	public PlayerController _controller;
+
+	[Header("Slider")]
+	public Slider hpSlider;
+
+	public Slider expSlider;
+
+	[Header("Image")]
+	public Image equipment1;
+
+	public Image equipment2;
+	public Image equipment3;
+	public Image equipment4;
+
+	[Header("Text")]
+	public TextMeshProUGUI healthSliderText;
+
+	public TextMeshProUGUI expSliderText;
+	public TextMeshProUGUI levelText;
+	public TextMeshProUGUI atkText;
+	public TextMeshProUGUI atkSpeedText;
+	public TextMeshProUGUI moveSpeedText;
+	public TextMeshProUGUI critRateText;
+	public TextMeshProUGUI critDamageText;
+	public TextMeshProUGUI goldText;
+
+	private Image[] _equipmentSlots;
+
+	private void Awake()
+	{
+		if (_controller == null)
+		{
+			_controller = FindFirstObjectByType<PlayerController>();
+			if (_controller == null)
+			{
+				enabled = false;
+				return;
+			}
+		}
+
+		hpSlider.maxValue   = 1;
+		expSlider.maxValue  = 1;
+
+		_equipmentSlots = new[] { equipment1, equipment2, equipment3, equipment4 };
+		foreach (var slot in _equipmentSlots)
+			slot.enabled = false;
+
+		_controller.EquipmentChanged += OnEquipmentChanged;
+		_controller.HealthChanged    += RefreshHealth;
+		_controller.ExpChanged       += RefreshExp;
+		_controller.LevelChanged     += RefreshLevel;
+		_controller.StatsChanged     += RefreshStats;
+		_controller.GoldChanged      += RefreshGold;
+	}
+
+	private void Start()
+	{
+		if (_controller.Data == null)
+		{
+			StartCoroutine(LateUpdateRoutine());
+			return;
+		}
+
+		RefreshHealth();
+		RefreshExp();
+		RefreshLevel();
+		RefreshStats();
+		RefreshGold();
+	}
+
+	private IEnumerator LateUpdateRoutine()
+	{
+		while (_controller.Data == null)
+		{
+			yield return null;
+		}
+
+		RefreshHealth();
+		RefreshExp();
+		RefreshLevel();
+		RefreshStats();
+		RefreshGold();
+	}
+
+	private void OnDestroy()
+	{
+		if (_controller == null) return;
+		_controller.EquipmentChanged -= OnEquipmentChanged;
+		_controller.HealthChanged    -= RefreshHealth;
+		_controller.ExpChanged       -= RefreshExp;
+		_controller.LevelChanged     -= RefreshLevel;
+		_controller.StatsChanged     -= RefreshStats;
+		_controller.GoldChanged      -= RefreshGold;
+	}
+
+	private void OnEquipmentChanged(int slot, EquipmentData equipment)
+	{
+		_equipmentSlots[slot].sprite  = equipment?.EquipIconSet.Get(equipment.CurrentUpgradeLevel);
+		_equipmentSlots[slot].enabled = equipment != null;
+	}
+
+	private void RefreshHealth()
+	{
+		hpSlider.value        = _controller.Health / (_controller.Data.HP + 0.001f);
+		healthSliderText.text = $"{_controller.Health:F0}/{_controller.Data.HP:F0}";
+	}
+
+	private void RefreshExp()
+	{
+		expSlider.value    = _controller.Exp / (float)(_controller.ExpReq == 0 ? 1 : _controller.ExpReq);
+		expSliderText.text = $"{_controller.Exp:F0}/{_controller.ExpReq:F0}";
+	}
+
+	private void RefreshLevel() =>
+		levelText.text = $"Lv. {_controller.Level:D2}";
+
+	private void RefreshStats()
+	{
+		var pct = _controller.TotalBonusPercent;
+		atkText.text        = $"{_controller.Data.AtkDamage} (+{pct.AtkDamage:F0}%)";
+		atkSpeedText.text   = $"{_controller.Data.AtkSpeed} (+{pct.AtkSpeed:F0}%)";
+		moveSpeedText.text  = $"{Mathf.RoundToInt(_controller.Data.MoveSpeed)} (+{pct.MoveSpeed:F0}%)";
+		critRateText.text   = $"{Mathf.RoundToInt(_controller.Data.CritRate)} (+{pct.CritRate:F0}%)";
+		critDamageText.text = $"{_controller.Data.CritDamage} (+{pct.CritDamage:F0}%)";
+
+		RefreshHealth();
+		RefreshExp();
+		RefreshLevel();
+	}
+
+	private void RefreshGold() =>
+		goldText.text = $"{_controller.Gold}";
+}

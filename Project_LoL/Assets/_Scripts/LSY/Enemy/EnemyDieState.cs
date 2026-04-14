@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyDieState : EnemyStateBase
 {
-    private const float DEFAULT_DEATH_DURATION = 1.0f;
+    private const float _defaultDeathDuration = 1.0f;
 
     public EnemyDieState(EnemyFSM fsm) : base(fsm) { }
 
@@ -18,7 +18,7 @@ public class EnemyDieState : EnemyStateBase
 
         if (RoomClearManager.Instance != null)
         {
-            RoomClearManager.Instance.OnEnemyDied(_fsm.currentRoom);
+            RoomClearManager.Instance.OnEnemyDied(_fsm.currentRoom, _fsm.data.goldReward, _fsm.data.expReward);
         }
 
         _fsm.StartCoroutine(DieRoutine());
@@ -43,10 +43,10 @@ public class EnemyDieState : EnemyStateBase
 
     private float GetDeathAnimLength()
     {
-        if (_fsm.animator == null) return DEFAULT_DEATH_DURATION;
+        if (_fsm.animator == null) return _defaultDeathDuration;
 
         RuntimeAnimatorController rac = _fsm.animator.runtimeAnimatorController;
-        if (rac == null) return DEFAULT_DEATH_DURATION;
+        if (rac == null) return _defaultDeathDuration;
 
         foreach (AnimationClip clip in rac.animationClips)
         {
@@ -57,7 +57,7 @@ public class EnemyDieState : EnemyStateBase
             }
         }
 
-        return DEFAULT_DEATH_DURATION;
+        return _defaultDeathDuration;
     }
 
     public override void Update() { }

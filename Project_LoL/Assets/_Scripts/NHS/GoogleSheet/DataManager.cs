@@ -8,6 +8,7 @@ public class DataManager : MonoBehaviour
 {
     public SheetData _sheet;
 
+    public List<EquipmentData_SO> equipDataList => _equipDataList;
     [SerializeField] private List<EquipmentData_SO> _equipDataList;
 
     private Dictionary<int, EquipmentData_SO> _equipDataDictionary = new();
@@ -73,24 +74,48 @@ public class DataManager : MonoBehaviour
         _equipDataDictionary = _equipDataList.ToDictionary(data => data.EquipID);
     }
 
-    public List<EquipmentData_SO> GetRandomEquips(int count = 2)
+    public enum EChanceType { Chance1, Chance2, Chance3 }
+
+    public List<EquipmentData_SO> GetRandomEquips(int count = 2, EChanceType chanceType = EChanceType.Chance1)
     {
         if (!IsLoaded || _equipDataList.Count < count) return null;
 
         List<EquipmentData_SO> result = new List<EquipmentData_SO>();
-        HashSet<int> randomIndices = new HashSet<int>();
+        List<EquipmentData_SO>   pool = new List<EquipmentData_SO>(_equipDataList);
 
-        while(randomIndices.Count < count)
+        for (int i = 0; i < count; i++)
         {
-            int randomIndex = UnityEngine.Random.Range(0, _equipDataList.Count);
-            randomIndices.Add(randomIndex);
-        }
+            int totalWeight = pool.Sum(data => GetChanceByType(data, chanceType));
 
-        foreach(int index in randomIndices)
-        {
-            result.Add(_equipDataList[index]);
+            if (totalWeight <= 0) break;
+
+            int randomValue = UnityEngine.Random.Range(0, totalWeight);
+            int currentSum = 0;
+
+            for (int j = 0; j < pool.Count; j++)
+            {
+                currentSum += GetChanceByType(pool[j], chanceType);
+
+                if (randomValue < currentSum)
+                {
+                    result.Add(pool[j]);
+                    pool.RemoveAt(j);
+                    break;
+                }
+            }
         }
 
         return result;
+    }
+
+    private int GetChanceByType(EquipmentData_SO data, EChanceType type)
+    {
+        return type switch
+        {
+            EChanceType.Chance1 => data.EquipChance1,
+            EChanceType.Chance2 => data.EquipChance2,
+            EChanceType.Chance3 => data.EquipChance3,
+            _ => data.EquipChance1
+        };
     }
 }

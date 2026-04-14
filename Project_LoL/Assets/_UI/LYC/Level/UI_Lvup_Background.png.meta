@@ -1,0 +1,3588 @@
+fileFormatVersion: 2
+guid: 8f470eeef00e69f4ab8b35ee6eadb13e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6878621636263511653
+    second: UI_Lvup_Background_0
+  - first:
+      213: -2935185219303524501
+    second: UI_Lvup_Background_1
+  - first:
+      213: -1419787226733157394
+    second: UI_Lvup_Background_2
+  - first:
+      213: -154858460288157824
+    second: UI_Lvup_Background_3
+  - first:
+      213: 6566495812811643
+    second: UI_Lvup_Background_4
+  - first:
+      213: 675620049995932185
+    second: UI_Lvup_Background_5
+  - first:
+      213: 8534057374366028949
+    second: UI_Lvup_Background_6
+  - first:
+      213: 2563935622018939917
+    second: UI_Lvup_Background_7
+  - first:
+      213: -3732420316396825503
+    second: UI_Lvup_Background_8
+  - first:
+      213: 2381336451903563889
+    second: UI_Lvup_Background_9
+  - first:
+      213: -151966606143606742
+    second: UI_Lvup_Background_10
+  - first:
+      213: -3875790046969791577
+    second: UI_Lvup_Background_11
+  - first:
+      213: 2254794593381224227
+    second: UI_Lvup_Background_12
+  - first:
+      213: 906693867252058370
+    second: UI_Lvup_Background_13
+  - first:
+      213: 3781891234815845055
+    second: UI_Lvup_Background_14
+  - first:
+      213: 2293561462894474594
+    second: UI_Lvup_Background_15
+  - first:
+      213: 5258796183573741198
+    second: UI_Lvup_Background_16
+  - first:
+      213: -6348831668699376575
+    second: UI_Lvup_Background_17
+  - first:
+      213: -7185582790578071242
+    second: UI_Lvup_Background_18
+  - first:
+      213: -257900059468705538
+    second: UI_Lvup_Background_19
+  - first:
+      213: 2765267753857145132
+    second: UI_Lvup_Background_20
+  - first:
+      213: -6239352928204064815
+    second: UI_Lvup_Background_21
+  - first:
+      213: 7828025571195118729
+    second: UI_Lvup_Background_22
+  - first:
+      213: -775516949674941988
+    second: UI_Lvup_Background_23
+  - first:
+      213: -5202286419197425318
+    second: UI_Lvup_Background_24
+  - first:
+      213: -3459595658630118092
+    second: UI_Lvup_Background_25
+  - first:
+      213: -2197222177022062874
+    second: UI_Lvup_Background_26
+  - first:
+      213: 6839694236293963296
+    second: UI_Lvup_Background_27
+  - first:
+      213: -1780949740068159760
+    second: UI_Lvup_Background_28
+  - first:
+      213: -6493082524381548168
+    second: UI_Lvup_Background_29
+  - first:
+      213: 2564375926662960655
+    second: UI_Lvup_Background_30
+  - first:
+      213: -5860608831042631511
+    second: UI_Lvup_Background_31
+  - first:
+      213: -231699065422694964
+    second: UI_Lvup_Background_32
+  - first:
+      213: -2230972735149276989
+    second: UI_Lvup_Background_33
+  - first:
+      213: -1390541190618592160
+    second: UI_Lvup_Background_34
+  - first:
+      213: -1877926297272936904
+    second: UI_Lvup_Background_35
+  - first:
+      213: 2248239197390007070
+    second: UI_Lvup_Background_36
+  - first:
+      213: 4548993559605732836
+    second: UI_Lvup_Background_37
+  - first:
+      213: 3343359101368837394
+    second: UI_Lvup_Background_38
+  - first:
+      213: 5019403430705946605
+    second: UI_Lvup_Background_39
+  - first:
+      213: 797474368690530576
+    second: UI_Lvup_Background_40
+  - first:
+      213: 7733611013276906088
+    second: UI_Lvup_Background_41
+  - first:
+      213: 7613554042163925570
+    second: UI_Lvup_Background_42
+  - first:
+      213: -270782976381207715
+    second: UI_Lvup_Background_43
+  - first:
+      213: 1409613993123291431
+    second: UI_Lvup_Background_44
+  - first:
+      213: -2512212608788384758
+    second: UI_Lvup_Background_45
+  - first:
+      213: 1267567072892875273
+    second: UI_Lvup_Background_46
+  - first:
+      213: -2672615192443687962
+    second: UI_Lvup_Background_47
+  - first:
+      213: 7770275346125929685
+    second: UI_Lvup_Background_48
+  - first:
+      213: -3980689514321024528
+    second: UI_Lvup_Background_49
+  - first:
+      213: -8603380618919246373
+    second: UI_Lvup_Background_50
+  - first:
+      213: -8599665911356751509
+    second: UI_Lvup_Background_51
+  - first:
+      213: -439493031663611714
+    second: UI_Lvup_Background_52
+  - first:
+      213: -4353280001280436863
+    second: UI_Lvup_Background_53
+  - first:
+      213: -709081255122803098
+    second: UI_Lvup_Background_54
+  - first:
+      213: 5878658295756718031
+    second: UI_Lvup_Background_55
+  - first:
+      213: 1445804103220654909
+    second: UI_Lvup_Background_56
+  - first:
+      213: 6648490875238754965
+    second: UI_Lvup_Background_57
+  - first:
+      213: -1709442720410128037
+    second: UI_Lvup_Background_58
+  - first:
+      213: 6515354352250438815
+    second: UI_Lvup_Background_59
+  - first:
+      213: -9156454744289175022
+    second: UI_Lvup_Background_60
+  - first:
+      213: -2018133315649841533
+    second: UI_Lvup_Background_61
+  - first:
+      213: 6240705114562147402
+    second: UI_Lvup_Background_62
+  - first:
+      213: 1895722955661821694
+    second: UI_Lvup_Background_63
+  - first:
+      213: -2319027427110902925
+    second: UI_Lvup_Background_64
+  - first:
+      213: 2788839456002844691
+    second: UI_Lvup_Background_65
+  - first:
+      213: 2743112822234298783
+    second: UI_Lvup_Background_66
+  - first:
+      213: -7611311726008058640
+    second: UI_Lvup_Background_67
+  - first:
+      213: 9155498802781147327
+    second: UI_Lvup_Background_68
+  - first:
+      213: 6681072813711810054
+    second: UI_Lvup_Background_69
+  - first:
+      213: -4714488850306952398
+    second: UI_Lvup_Background_70
+  - first:
+      213: -1040711628727259469
+    second: UI_Lvup_Background_71
+  - first:
+      213: -5503782094621973390
+    second: UI_Lvup_Background_72
+  - first:
+      213: 1293091156339881201
+    second: UI_Lvup_Background_73
+  - first:
+      213: 5470718916451087348
+    second: UI_Lvup_Background_74
+  - first:
+      213: 8683913389738013813
+    second: UI_Lvup_Background_75
+  - first:
+      213: -4211167509399691081
+    second: UI_Lvup_Background_76
+  - first:
+      213: 8428263609166656187
+    second: UI_Lvup_Background_77
+  - first:
+      213: 2132748443147163508
+    second: UI_Lvup_Background_78
+  - first:
+      213: 1307488508568612303
+    second: UI_Lvup_Background_79
+  - first:
+      213: -8667301002839451216
+    second: UI_Lvup_Background_80
+  - first:
+      213: 7177859818909131268
+    second: UI_Lvup_Background_81
+  - first:
+      213: -922752604848933072
+    second: UI_Lvup_Background_82
+  - first:
+      213: 8781862677770122247
+    second: UI_Lvup_Background_83
+  - first:
+      213: 3258463259088750598
+    second: UI_Lvup_Background_84
+  - first:
+      213: -3530055392360988679
+    second: UI_Lvup_Background_85
+  - first:
+      213: -7878840498954998535
+    second: UI_Lvup_Background_86
+  - first:
+      213: 7269702492401353557
+    second: UI_Lvup_Background_87
+  - first:
+      213: -8897715294754682299
+    second: UI_Lvup_Background_88
+  - first:
+      213: -7438678111316252155
+    second: UI_Lvup_Background_89
+  - first:
+      213: 2690884427503576856
+    second: UI_Lvup_Background_90
+  - first:
+      213: 1050168657018670997
+    second: UI_Lvup_Background_91
+  - first:
+      213: 2018042612570671092
+    second: UI_Lvup_Background_92
+  - first:
+      213: 3887579833652175460
+    second: UI_Lvup_Background_93
+  - first:
+      213: 1933334852514960485
+    second: UI_Lvup_Background_94
+  - first:
+      213: 4688960840486593915
+    second: UI_Lvup_Background_95
+  - first:
+      213: 2748222698430923345
+    second: UI_Lvup_Background_96
+  - first:
+      213: 5325364420767181302
+    second: UI_Lvup_Background_97
+  - first:
+      213: -7035198640547726567
+    second: UI_Lvup_Background_98
+  - first:
+      213: -6498735398636014183
+    second: UI_Lvup_Background_99
+  - first:
+      213: 2497598905939791982
+    second: UI_Lvup_Background_100
+  - first:
+      213: -9153207289127504782
+    second: UI_Lvup_Background_101
+  - first:
+      213: 903882158781013461
+    second: UI_Lvup_Background_102
+  - first:
+      213: 811513422877200596
+    second: UI_Lvup_Background_103
+  - first:
+      213: -8182007425239692233
+    second: UI_Lvup_Background_104
+  - first:
+      213: 6208710530050805255
+    second: UI_Lvup_Background_105
+  - first:
+      213: -5617612560176683562
+    second: UI_Lvup_Background_106
+  - first:
+      213: 5399902967713468865
+    second: UI_Lvup_Background_107
+  - first:
+      213: 7798385224231070705
+    second: UI_Lvup_Background_108
+  - first:
+      213: -7621750592622666348
+    second: UI_Lvup_Background_109
+  - first:
+      213: 3300538940930961841
+    second: UI_Lvup_Background_110
+  - first:
+      213: -5713717677506717198
+    second: UI_Lvup_Background_111
+  - first:
+      213: -5789852559076238103
+    second: UI_Lvup_Background_112
+  - first:
+      213: 1989082814059247021
+    second: UI_Lvup_Background_113
+  - first:
+      213: -1187494692564600789
+    second: UI_Lvup_Background_114
+  - first:
+      213: 3836878225868147060
+    second: UI_Lvup_Background_115
+  - first:
+      213: 2537287926960858011
+    second: UI_Lvup_Background_116
+  - first:
+      213: 8031842845364597790
+    second: UI_Lvup_Background_117
+  - first:
+      213: 649474176558868870
+    second: UI_Lvup_Background_118
+  - first:
+      213: 1186573210332387578
+    second: UI_Lvup_Background_119
+  - first:
+      213: -828492919527183872
+    second: UI_Lvup_Background_120
+  - first:
+      213: -6815623177079585641
+    second: UI_Lvup_Background_121
+  - first:
+      213: 8171188015957712626
+    second: UI_Lvup_Background_122
+  - first:
+      213: -1956736485266684045
+    second: UI_Lvup_Background_123
+  - first:
+      213: 2123691637434440962
+    second: UI_Lvup_Background_124
+  - first:
+      213: -5934219770883207604
+    second: UI_Lvup_Background_125
+  - first:
+      213: 4220245284896313296
+    second: UI_Lvup_Background_126
+  - first:
+      213: 3403936398378590684
+    second: UI_Lvup_Background_127
+  - first:
+      213: -4533289739468899460
+    second: UI_Lvup_Background_128
+  - first:
+      213: 3672854117500060595
+    second: UI_Lvup_Background_129
+  - first:
+      213: 1816140506146159402
+    second: UI_Lvup_Background_130
+  - first:
+      213: -4555113628151781926
+    second: UI_Lvup_Background_131
+  - first:
+      213: -235418438483284846
+    second: UI_Lvup_Background_132
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UI_Lvup_Background_0
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 2062
+        width: 159
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b99723af01a3a80a0800000000000000
+      internalID: -6878621636263511653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_1
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 2047
+        width: 83
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b67bf6528902447d0800000000000000
+      internalID: -2935185219303524501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_2
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 2047
+        width: 83
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee3eee52a07eb4ce0800000000000000
+      internalID: -1419787226733157394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_3
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 2116
+        width: 57
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0877f040d05d9ddf0800000000000000
+      internalID: -154858460288157824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_4
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 2116
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7b77527134571000800000000000000
+      internalID: 6566495812811643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_5
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 2116
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 912a32b1bd8406900800000000000000
+      internalID: 675620049995932185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_6
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 2116
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 594d3e377ff0f6670800000000000000
+      internalID: 8534057374366028949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_7
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 2100
+        width: 57
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0cb8692ddde49320800000000000000
+      internalID: 2563935622018939917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_8
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 2100
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16457b85f77c33cc0800000000000000
+      internalID: -3732420316396825503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_9
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 2100
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 178a66ad2e43c0120800000000000000
+      internalID: 2381336451903563889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_10
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 2100
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a20b6174d2b14edf0800000000000000
+      internalID: -151966606143606742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_11
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 2084
+        width: 57
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7abfe52bc7d663ac0800000000000000
+      internalID: -3875790046969791577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_12
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 2084
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32f85fb7cb3aa4f10800000000000000
+      internalID: 2254794593381224227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_13
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 2084
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2098595b449359c00800000000000000
+      internalID: 906693867252058370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_14
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 2084
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb2ac5e6a0afb7430800000000000000
+      internalID: 3781891234815845055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_15
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 2068
+        width: 57
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 265b95aaffd54df10800000000000000
+      internalID: 2293561462894474594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_16
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 2068
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8eb714444ffaf840800000000000000
+      internalID: 5258796183573741198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_17
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 2068
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1445c602c3b64e7a0800000000000000
+      internalID: -6348831668699376575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_18
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 2068
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6391f67d58ea74c90800000000000000
+      internalID: -7185582790578071242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_19
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 2052
+        width: 57
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef0d0d72341cb6cf0800000000000000
+      internalID: -257900059468705538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_20
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 2052
+        width: 36
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c295f710f54306620800000000000000
+      internalID: 2765267753857145132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_21
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 2052
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d77a1eb19d5969a0800000000000000
+      internalID: -6239352928204064815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_22
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 1966
+        width: 159
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98462c748cbb2ac60800000000000000
+      internalID: 7828025571195118729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_23
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 1935
+        width: 83
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd1a451717fcc35f0800000000000000
+      internalID: -775516949674941988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_24
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 1999
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5906eb8014cdc7b0800000000000000
+      internalID: -5202286419197425318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_25
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 1999
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4354ed4041c0dffc0800000000000000
+      internalID: -3459595658630118092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_26
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 2001
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ee4df54216e181e0800000000000000
+      internalID: -2197222177022062874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_27
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 1999
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02e969e6ba97bee50800000000000000
+      internalID: 6839694236293963296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_28
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 1999
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0feb964b5abc847e0800000000000000
+      internalID: -1780949740068159760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_29
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 1999
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 871f0fc88dfe3e5a0800000000000000
+      internalID: -6493082524381548168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_30
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 1967
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f061f43915e769320800000000000000
+      internalID: 2564375926662960655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_31
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 1967
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a8cf2aa15feaaea0800000000000000
+      internalID: -5860608831042631511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_32
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 1967
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc5b0b67de6d8ccf0800000000000000
+      internalID: -231699065422694964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_33
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 1967
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c088d91e1ef901e0800000000000000
+      internalID: -2230972735149276989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_34
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 1967
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06c41af872ec3bce0800000000000000
+      internalID: -1390541190618592160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_35
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 1968
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8369ea87bf340f5e0800000000000000
+      internalID: -1877926297272936904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_36
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 1870
+        width: 159
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1b6a8a63a9533f10800000000000000
+      internalID: 2248239197390007070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_37
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 1905
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e5e6d57a85412f30800000000000000
+      internalID: 4548993559605732836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_38
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 1911
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 215a8a9836ff56e20800000000000000
+      internalID: 3343359101368837394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_39
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 1911
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: defda9783d088a540800000000000000
+      internalID: 5019403430705946605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_40
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 1916
+        width: 7
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 019274f86b2311b00800000000000000
+      internalID: 797474368690530576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_41
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 1916
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8623b6dfd3e435b60800000000000000
+      internalID: 7733611013276906088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_42
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 1905
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2429b612017c8a960800000000000000
+      internalID: 7613554042163925570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_43
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 1905
+        width: 34
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5b3391515cfd3cf0800000000000000
+      internalID: -270782976381207715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_44
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 1860
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 721a8825574ff8310800000000000000
+      internalID: 1409613993123291431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_45
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1860
+        width: 42
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0439ec41f3d22dd0800000000000000
+      internalID: -2512212608788384758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_46
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 1771
+        width: 350
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 902f2c4798d479110800000000000000
+      internalID: 1267567072892875273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_47
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 1781
+        width: 83
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ebe41184a6f8ead0800000000000000
+      internalID: -2672615192443687962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_48
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 1812
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dcbfc4324095db60800000000000000
+      internalID: 7770275346125929685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_49
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 1812
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f9e5c13affb1c8c0800000000000000
+      internalID: -3980689514321024528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_50
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 1810
+        width: 28
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd586d5e8e6aa9880800000000000000
+      internalID: -8603380618919246373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_51
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 1699
+        width: 54
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b618b86aa69d7a880800000000000000
+      internalID: -8599665911356751509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_52
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 1697
+        width: 24
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb05e6e8a6b96e9f0800000000000000
+      internalID: -439493031663611714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_53
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 1697
+        width: 24
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1851edb47ea0693c0800000000000000
+      internalID: -4353280001280436863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_54
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 1631
+        width: 152
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6666487fa56d826f0800000000000000
+      internalID: -709081255122803098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_55
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 1573
+        width: 35
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcf7b72d290359150800000000000000
+      internalID: 5878658295756718031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_56
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1573
+        width: 36
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d33f443fb27801410800000000000000
+      internalID: 1445804103220654909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_57
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 1334
+        width: 412
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59a280fc93f244c50800000000000000
+      internalID: 6648490875238754965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_58
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 1222
+        width: 67
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b51b31e17e6d648e0800000000000000
+      internalID: -1709442720410128037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_59
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 1288
+        width: 62
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f94cea773403b6a50800000000000000
+      internalID: 6515354352250438815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_60
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1288
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21a14bc4cecbde080800000000000000
+      internalID: -9156454744289175022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_61
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 1244
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3865f4321762ef3e0800000000000000
+      internalID: -2018133315649841533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_62
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 1236
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a44b07dac307b9650800000000000000
+      internalID: 6240705114562147402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_63
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 1236
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef6c6c4fbf5fe4a10800000000000000
+      internalID: 1895722955661821694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_64
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 1142
+        width: 111
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 373aaae77d821dfd0800000000000000
+      internalID: -2319027427110902925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_65
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 759
+        width: 183
+        height: 282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 6, y: 7, z: 6, w: 7}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 318a4a695b2f3b620800000000000000
+      internalID: 2788839456002844691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_66
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 775
+        width: 161
+        height: 251
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f993814049e711620800000000000000
+      internalID: 2743112822234298783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_67
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 1021
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fc3688cf403f5690800000000000000
+      internalID: -7611311726008058640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_68
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 1021
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb0d84937adde0f70800000000000000
+      internalID: 9155498802781147327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_69
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1006
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60edfc38350f7bc50800000000000000
+      internalID: 6681072813711810054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_70
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 942
+        width: 41
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2331aeb7e55c29eb0800000000000000
+      internalID: -4714488850306952398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_71
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 878
+        width: 51
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bee710a946ae81f0800000000000000
+      internalID: -1040711628727259469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_72
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 814
+        width: 57
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 274e6e06853ae93b0800000000000000
+      internalID: -5503782094621973390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_73
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 750
+        width: 59
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f476db3e8bf1f110800000000000000
+      internalID: 1293091156339881201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_74
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 693
+        width: 35
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f3b3119ed5ebeb40800000000000000
+      internalID: 5470718916451087348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_75
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 693
+        width: 62
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 574b797f735738870800000000000000
+      internalID: 8683913389738013813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_76
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 647
+        width: 175
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b0a090467dee85c0800000000000000
+      internalID: -4211167509399691081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_77
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 632
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb2fab1091537f470800000000000000
+      internalID: 8428263609166656187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_78
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 632
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 477dd05c86b099d10800000000000000
+      internalID: 2132748443147163508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_79
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 639
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcd23250fd1252210800000000000000
+      internalID: 1307488508568612303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_80
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 639
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b91e54c8af87b780800000000000000
+      internalID: -8667301002839451216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_81
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 639
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 402e0a1b971ec9360800000000000000
+      internalID: 7177859818909131268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_82
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 639
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 037b9641569b133f0800000000000000
+      internalID: -922752604848933072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_83
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 639
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 704bfbeb3917fd970800000000000000
+      internalID: 8781862677770122247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_84
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 601
+        width: 42
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60885afe113683d20800000000000000
+      internalID: 3258463259088750598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_85
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 580
+        width: 59
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fffedcd259b20fc0800000000000000
+      internalID: -3530055392360988679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_86
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 582
+        width: 59
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fc63d16f4cb8a290800000000000000
+      internalID: -7878840498954998535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_87
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 574
+        width: 168
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 553ca5a76eb23e460800000000000000
+      internalID: 7269702492401353557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_88
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 584
+        width: 92
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54a469fd417f48480800000000000000
+      internalID: -8897715294754682299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_89
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 213
+        width: 250
+        height: 282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50a65886ba184c890800000000000000
+      internalID: -7438678111316252155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_90
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 229
+        width: 226
+        height: 251
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8172bf04121f75520800000000000000
+      internalID: 2690884427503576856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_91
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 475
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59fc8db54d2f29e00800000000000000
+      internalID: 1050168657018670997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_92
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 475
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f740e76017810c10800000000000000
+      internalID: 2018042612570671092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_93
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 138
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4626fcce24573f530800000000000000
+      internalID: 3887579833652175460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_94
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 138
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 564590c1ec594da10800000000000000
+      internalID: 1933334852514960485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_95
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 138
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b75abee8a09821140800000000000000
+      internalID: 4688960840486593915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_96
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 138
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15204a7cbf5a32620800000000000000
+      internalID: 2748222698430923345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_97
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 138
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f9e457c9be77e940800000000000000
+      internalID: 5325364420767181302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_98
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 138
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91b77d94c14fd5e90800000000000000
+      internalID: -7035198640547726567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_99
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 138
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9953b03369adfc5a0800000000000000
+      internalID: -6498735398636014183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_100
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 138
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6012fbd8f049a220800000000000000
+      internalID: 2497598905939791982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_101
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 138
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 274f900677649f080800000000000000
+      internalID: -9153207289127504782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_102
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 138
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dd94f0d80c3b8c00800000000000000
+      internalID: 903882158781013461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_103
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 138
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d09e059823134b00800000000000000
+      internalID: 811513422877200596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_104
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 138
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73ccafcc89ba37e80800000000000000
+      internalID: -8182007425239692233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_105
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 138
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70ec7e8f455c92650800000000000000
+      internalID: 6208710530050805255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_106
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 138
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d565e0d32b3a02b0800000000000000
+      internalID: -5617612560176683562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_107
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 138
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c19324a32f40fa40800000000000000
+      internalID: 5399902967713468865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_108
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 138
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fba2f73b0e693c60800000000000000
+      internalID: 7798385224231070705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_109
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 138
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49d5a10c73a1a3690800000000000000
+      internalID: -7621750592622666348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_110
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 138
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b1b8850eaeddcd20800000000000000
+      internalID: 3300538940930961841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_111
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 138
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f9975d7b0cc4b0b0800000000000000
+      internalID: -5713717677506717198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_112
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 138
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ecdf5206cf46afa0800000000000000
+      internalID: -5789852559076238103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_113
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 138
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da5f5d0e744aa9b10800000000000000
+      internalID: 1989082814059247021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_114
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 138
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2876056edb258fe0800000000000000
+      internalID: -1187494692564600789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_115
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 138
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4794d43fa645f3530800000000000000
+      internalID: 3836878225868147060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_116
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 138
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b93a36b2de1463320800000000000000
+      internalID: 2537287926960858011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_117
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 138
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1438b96386d67f60800000000000000
+      internalID: 8031842845364597790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_118
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 97
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 689a4909255630900800000000000000
+      internalID: 649474176558868870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_119
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 99
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af85bdd4c0e877010800000000000000
+      internalID: 1186573210332387578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_120
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 98
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00ae7a8441a9084f0800000000000000
+      internalID: -828492919527183872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_121
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 97
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7948047c4da0a61a0800000000000000
+      internalID: -6815623177079585641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_122
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 83
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fe961c2534e56170800000000000000
+      internalID: 8171188015957712626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_123
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 81
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37702aca88648d4e0800000000000000
+      internalID: -1956736485266684045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_124
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 81
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20d5fbdda4ed87d10800000000000000
+      internalID: 2123691637434440962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_125
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 52
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4e08692f8a65ada0800000000000000
+      internalID: -5934219770883207604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_126
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 52
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0df034f0ab2519a30800000000000000
+      internalID: 4220245284896313296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_127
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 52
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd1e0679e163d3f20800000000000000
+      internalID: 3403936398378590684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_128
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 52
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7b780710058611c0800000000000000
+      internalID: -4533289739468899460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_129
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 36
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b30c693c5998f230800000000000000
+      internalID: 3672854117500060595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_130
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 36
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2b3a030b2a343910800000000000000
+      internalID: 1816140506146159402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_131
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 36
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad5e87a0a4cf8c0c0800000000000000
+      internalID: -4555113628151781926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Lvup_Background_132
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 36
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29c60a07d20abbcf0800000000000000
+      internalID: -235418438483284846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 4b72e0aea0f9c6f4c8ac16cdcd075b42
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      UI_Lvup_Background_0: -6878621636263511653
+      UI_Lvup_Background_1: -2935185219303524501
+      UI_Lvup_Background_10: -151966606143606742
+      UI_Lvup_Background_100: 2497598905939791982
+      UI_Lvup_Background_101: -9153207289127504782
+      UI_Lvup_Background_102: 903882158781013461
+      UI_Lvup_Background_103: 811513422877200596
+      UI_Lvup_Background_104: -8182007425239692233
+      UI_Lvup_Background_105: 6208710530050805255
+      UI_Lvup_Background_106: -5617612560176683562
+      UI_Lvup_Background_107: 5399902967713468865
+      UI_Lvup_Background_108: 7798385224231070705
+      UI_Lvup_Background_109: -7621750592622666348
+      UI_Lvup_Background_11: -3875790046969791577
+      UI_Lvup_Background_110: 3300538940930961841
+      UI_Lvup_Background_111: -5713717677506717198
+      UI_Lvup_Background_112: -5789852559076238103
+      UI_Lvup_Background_113: 1989082814059247021
+      UI_Lvup_Background_114: -1187494692564600789
+      UI_Lvup_Background_115: 3836878225868147060
+      UI_Lvup_Background_116: 2537287926960858011
+      UI_Lvup_Background_117: 8031842845364597790
+      UI_Lvup_Background_118: 649474176558868870
+      UI_Lvup_Background_119: 1186573210332387578
+      UI_Lvup_Background_12: 2254794593381224227
+      UI_Lvup_Background_120: -828492919527183872
+      UI_Lvup_Background_121: -6815623177079585641
+      UI_Lvup_Background_122: 8171188015957712626
+      UI_Lvup_Background_123: -1956736485266684045
+      UI_Lvup_Background_124: 2123691637434440962
+      UI_Lvup_Background_125: -5934219770883207604
+      UI_Lvup_Background_126: 4220245284896313296
+      UI_Lvup_Background_127: 3403936398378590684
+      UI_Lvup_Background_128: -4533289739468899460
+      UI_Lvup_Background_129: 3672854117500060595
+      UI_Lvup_Background_13: 906693867252058370
+      UI_Lvup_Background_130: 1816140506146159402
+      UI_Lvup_Background_131: -4555113628151781926
+      UI_Lvup_Background_132: -235418438483284846
+      UI_Lvup_Background_14: 3781891234815845055
+      UI_Lvup_Background_15: 2293561462894474594
+      UI_Lvup_Background_16: 5258796183573741198
+      UI_Lvup_Background_17: -6348831668699376575
+      UI_Lvup_Background_18: -7185582790578071242
+      UI_Lvup_Background_19: -257900059468705538
+      UI_Lvup_Background_2: -1419787226733157394
+      UI_Lvup_Background_20: 2765267753857145132
+      UI_Lvup_Background_21: -6239352928204064815
+      UI_Lvup_Background_22: 7828025571195118729
+      UI_Lvup_Background_23: -775516949674941988
+      UI_Lvup_Background_24: -5202286419197425318
+      UI_Lvup_Background_25: -3459595658630118092
+      UI_Lvup_Background_26: -2197222177022062874
+      UI_Lvup_Background_27: 6839694236293963296
+      UI_Lvup_Background_28: -1780949740068159760
+      UI_Lvup_Background_29: -6493082524381548168
+      UI_Lvup_Background_3: -154858460288157824
+      UI_Lvup_Background_30: 2564375926662960655
+      UI_Lvup_Background_31: -5860608831042631511
+      UI_Lvup_Background_32: -231699065422694964
+      UI_Lvup_Background_33: -2230972735149276989
+      UI_Lvup_Background_34: -1390541190618592160
+      UI_Lvup_Background_35: -1877926297272936904
+      UI_Lvup_Background_36: 2248239197390007070
+      UI_Lvup_Background_37: 4548993559605732836
+      UI_Lvup_Background_38: 3343359101368837394
+      UI_Lvup_Background_39: 5019403430705946605
+      UI_Lvup_Background_4: 6566495812811643
+      UI_Lvup_Background_40: 797474368690530576
+      UI_Lvup_Background_41: 7733611013276906088
+      UI_Lvup_Background_42: 7613554042163925570
+      UI_Lvup_Background_43: -270782976381207715
+      UI_Lvup_Background_44: 1409613993123291431
+      UI_Lvup_Background_45: -2512212608788384758
+      UI_Lvup_Background_46: 1267567072892875273
+      UI_Lvup_Background_47: -2672615192443687962
+      UI_Lvup_Background_48: 7770275346125929685
+      UI_Lvup_Background_49: -3980689514321024528
+      UI_Lvup_Background_5: 675620049995932185
+      UI_Lvup_Background_50: -8603380618919246373
+      UI_Lvup_Background_51: -8599665911356751509
+      UI_Lvup_Background_52: -439493031663611714
+      UI_Lvup_Background_53: -4353280001280436863
+      UI_Lvup_Background_54: -709081255122803098
+      UI_Lvup_Background_55: 5878658295756718031
+      UI_Lvup_Background_56: 1445804103220654909
+      UI_Lvup_Background_57: 6648490875238754965
+      UI_Lvup_Background_58: -1709442720410128037
+      UI_Lvup_Background_59: 6515354352250438815
+      UI_Lvup_Background_6: 8534057374366028949
+      UI_Lvup_Background_60: -9156454744289175022
+      UI_Lvup_Background_61: -2018133315649841533
+      UI_Lvup_Background_62: 6240705114562147402
+      UI_Lvup_Background_63: 1895722955661821694
+      UI_Lvup_Background_64: -2319027427110902925
+      UI_Lvup_Background_65: 2788839456002844691
+      UI_Lvup_Background_66: 2743112822234298783
+      UI_Lvup_Background_67: -7611311726008058640
+      UI_Lvup_Background_68: 9155498802781147327
+      UI_Lvup_Background_69: 6681072813711810054
+      UI_Lvup_Background_7: 2563935622018939917
+      UI_Lvup_Background_70: -4714488850306952398
+      UI_Lvup_Background_71: -1040711628727259469
+      UI_Lvup_Background_72: -5503782094621973390
+      UI_Lvup_Background_73: 1293091156339881201
+      UI_Lvup_Background_74: 5470718916451087348
+      UI_Lvup_Background_75: 8683913389738013813
+      UI_Lvup_Background_76: -4211167509399691081
+      UI_Lvup_Background_77: 8428263609166656187
+      UI_Lvup_Background_78: 2132748443147163508
+      UI_Lvup_Background_79: 1307488508568612303
+      UI_Lvup_Background_8: -3732420316396825503
+      UI_Lvup_Background_80: -8667301002839451216
+      UI_Lvup_Background_81: 7177859818909131268
+      UI_Lvup_Background_82: -922752604848933072
+      UI_Lvup_Background_83: 8781862677770122247
+      UI_Lvup_Background_84: 3258463259088750598
+      UI_Lvup_Background_85: -3530055392360988679
+      UI_Lvup_Background_86: -7878840498954998535
+      UI_Lvup_Background_87: 7269702492401353557
+      UI_Lvup_Background_88: -8897715294754682299
+      UI_Lvup_Background_89: -7438678111316252155
+      UI_Lvup_Background_9: 2381336451903563889
+      UI_Lvup_Background_90: 2690884427503576856
+      UI_Lvup_Background_91: 1050168657018670997
+      UI_Lvup_Background_92: 2018042612570671092
+      UI_Lvup_Background_93: 3887579833652175460
+      UI_Lvup_Background_94: 1933334852514960485
+      UI_Lvup_Background_95: 4688960840486593915
+      UI_Lvup_Background_96: 2748222698430923345
+      UI_Lvup_Background_97: 5325364420767181302
+      UI_Lvup_Background_98: -7035198640547726567
+      UI_Lvup_Background_99: -6498735398636014183
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

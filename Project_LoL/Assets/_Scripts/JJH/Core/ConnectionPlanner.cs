@@ -8,7 +8,7 @@ public class ConnectionPlanner : MonoBehaviour
     [SerializeField] private int _bendStepCount = 5;
     [SerializeField] private int _corridorWidthMin = 2;
     [SerializeField] private int _corridorWidthMax = 6;
-    [SerializeField] private int _bossCorridorWidth = 4;
+    [SerializeField] private int _bossCorridorWidth = 5;
  
     private HashSet<Vector2Int> _roomCells = new HashSet<Vector2Int>();
     private Dictionary<RoomNode, RectInt> _roomBounds = new Dictionary<RoomNode, RectInt>();
@@ -151,7 +151,7 @@ public class ConnectionPlanner : MonoBehaviour
         if (!PathClear(tiles, a, b, width, isVertical))
             return null;
  
-        return Wrap(tiles, ca.wallPos, cb.wallPos);
+        return Wrap(tiles, ca.tileWallPos, cb.tileWallPos);
     }
  
     private List<Vector2Int> TryLShape(
@@ -175,7 +175,7 @@ public class ConnectionPlanner : MonoBehaviour
             var tiles = ConcatLines(s, corner, e);
             if (!PathClear(tiles, a, b, width, isVertical)) continue;
  
-            return Wrap(tiles, ca.wallPos, cb.wallPos);
+            return Wrap(tiles, ca.tileWallPos, cb.tileWallPos);
         }
  
         return null;
@@ -208,7 +208,7 @@ public class ConnectionPlanner : MonoBehaviour
             var tiles = ConcatLines(s, p1, p2, e);
             if (!PathClear(tiles, a, b, width, isVertical)) continue;
  
-            return Wrap(tiles, ca.wallPos, cb.wallPos);
+            return Wrap(tiles, ca.tileWallPos, cb.tileWallPos);
         }
  
         for (int midY = yMin; midY <= yMax; midY += yStep)
@@ -222,7 +222,7 @@ public class ConnectionPlanner : MonoBehaviour
             var tiles = ConcatLines(s, p1, p2, e);
             if (!PathClear(tiles, a, b, width, isVertical)) continue;
  
-            return Wrap(tiles, ca.wallPos, cb.wallPos);
+            return Wrap(tiles, ca.tileWallPos, cb.tileWallPos);
         }
  
         return null;
@@ -294,9 +294,6 @@ public class ConnectionPlanner : MonoBehaviour
         List<Vector2Int> tiles,
         int width)
     {
-        ca.RecalcWallPos(width);
-        cb.RecalcWallPos(width);
-
         return new ConnectionResult
         {
             roomA = a,
@@ -312,27 +309,30 @@ public class ConnectionPlanner : MonoBehaviour
     {
         bool aBoss = a.roomData.roomType == RoomType.Boss;
         bool bBoss = b.roomData.roomType == RoomType.Boss;
-        bool aRepair = a.roomData.roomType == RoomType.Repair;
-        bool bRepair = b.roomData.roomType == RoomType.Repair;
-        return (aBoss && bRepair) || (aRepair && bBoss);
+        bool aCombat = a.roomData.roomType == RoomType.Combat;
+        bool bCombat = b.roomData.roomType == RoomType.Combat;
+        return (aBoss && bCombat) || (aCombat && bBoss);
     }
  
     private ConnectionResult ConnectVertical(RoomNode a, RoomNode b)
     {
         RoomNode lower = a.gridOrigin.y < b.gridOrigin.y ? a : b;
         RoomNode upper = lower == a ? b : a;
- 
+
         RectInt lb = _roomBounds[lower];
         RectInt ub = _roomBounds[upper];
- 
-        int cx = lb.xMin + lb.width / 2;
+
+        int upperCx = ub.xMin + ub.width / 2 - 1;
+        int cx = Mathf.Clamp(upperCx, lb.xMin, lb.xMax - 1);
+
         var wallLower = new Vector2Int(cx, lb.yMax);
         var wallUpper = new Vector2Int(cx, ub.yMin - 1);
- 
+
         var ca = new DoorCandidate(wallLower, DoorDir.Up, lower);
         var cb = new DoorCandidate(wallUpper, DoorDir.Down, upper);
-        var corridor = Wrap(MakeLine(ca.entrance, cb.entrance), ca.wallPos, cb.wallPos);
- 
+
+        var corridor = Wrap(MakeLine(ca.entrance, cb.entrance), ca.tileWallPos, cb.tileWallPos);
+
         return new ConnectionResult
         {
             roomA = lower,

@@ -20,9 +20,6 @@ public class EnhancementSystem : MonoBehaviour
         {
             targetWeapon.ApplyEnhancement(sum);
         }
-        else
-        {
-        }
 
         _isActionIsEven = false;
     }
@@ -37,7 +34,6 @@ public class EnhancementSystem : MonoBehaviour
         {
             sum += Dice.RollDice();
         }
-
 
         return sum;
     }

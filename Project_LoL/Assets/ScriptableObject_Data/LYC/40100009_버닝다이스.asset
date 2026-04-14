@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.LYC.Skill.BurningDiceSkill
   skillID: 40100009
   skillName: "\uBC84\uB2DD \uB2E4\uC774\uC2A4"
-  description: "\uCEE4\uC11C \uBC29\uD5A5\uC73C\uB85C ({range})\uAC70\uB9AC\uB9CC\uD07C
-    \uACF5\uACA9\uC744 \uB0A0\uB824 \uC801\uC5D0\uAC8C ({damage})\uB9CC\uD07C\uC758
-    \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4"
-  skillType: 4
+  description: "\uC804\uBC29\uC73C\uB85C {PlayerSkillRange}\uCE78 \uC55E\uC5D0 \uACF5\uACA9\uC744
+    \uB0A0\uB824 {PlayerSkillDamage}\uB9CC\uD07C \uB370\uBBF8\uC9C0\uB97C \uC785\uD78C\uB2E4."
+  skillType: 1
   skillIconSet:
     icon1: {fileID: 21300000, guid: 40b4663822c06ee4a9e82bd3ea03cea8, type: 3}
     icon2: {fileID: 21300000, guid: 15e3357d14f058546825e8ef58a0418b, type: 3}
@@ -28,18 +27,39 @@ MonoBehaviour:
   damage: 20
   damageRangeX: 3
   damageRangeY: 2
+  projectileScale: 1
   projectileSpeed: 0
   range: 2
   delay: 0.2
   maxUseCount: 6
   cooldown: 5
-  price: 0
+  price: 35
   diceEffects:
-    dice1Effects: []
-    dice2Effects: []
-    dice3Effects: []
-    dice4Effects: []
-    dice5Effects: []
-    dice6Effects: []
+    dice1Effects:
+    - type: 6
+      amount: 1
+    dice2Effects:
+    - type: 0
+      amount: 2
+    dice3Effects:
+    - type: 5
+      amount: -0.1
+    dice4Effects:
+    - type: 6
+      amount: 1
+    - type: 0
+      amount: 2
+    dice5Effects:
+    - type: 6
+      amount: 1
+    - type: 5
+      amount: -0.1
+    dice6Effects:
+    - type: 0
+      amount: 2
+    - type: 5
+      amount: -0.1
+  hitEffect: {fileID: 431863261433649305, guid: c04436747ebb69c47a2c85f123781845, type: 3}
+  _sfxClip: {fileID: 8300000, guid: 1d5b0fe799b9cd840a41e68e823f4e4e, type: 3}
   <Hitbox>k__BackingField: {fileID: 6328662636636476298, guid: 9e14e3e112be1e449be240194cff6009, type: 3}
   <Effect>k__BackingField: {fileID: 6715582766309951490, guid: f1bb5d2c9c0abc24e946f1e9c17d9a2a, type: 3}

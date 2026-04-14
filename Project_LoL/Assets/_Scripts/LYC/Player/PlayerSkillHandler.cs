@@ -22,19 +22,31 @@ public class PlayerSkillHandler : MonoBehaviour
 	public UnityEvent<int> SkillExecuted { get; private set; }
 
 	[field: SerializeField]
+	public UnityEvent<int> SkillReloadStarted { get; private set; }
+
+	[field: SerializeField]
+	public UnityEvent<int> SkillReloadFinished { get; private set; }
+
+	[field: SerializeField]
 	public UnityEvent<int, SkillExecuteResult> SkillExecutionFailed { get; private set; }
 
-	private PlayerController _controller;
+	private PlayerController   _controller;
 	private PlayerInputHandler _inputHandler;
+	private AudioSource        _audioSource;
 
 	private void Awake()
 	{
+		_audioSource  = GetComponent<AudioSource>();
 		_inputHandler = GetComponent<PlayerInputHandler>();
-		_controller = GetComponent<PlayerController>();
+		_controller   = GetComponent<PlayerController>();
 
 		Skills = new SkillExecutor[4];
 		for (var i = 0; i < Skills.Length; i++)
+		{
 			Skills[i] = new SkillExecutor(_controller);
+			int capturedIndex = i;
+			Skills[i].ReloadFinished += () => SkillReloadFinished.Invoke(capturedIndex);
+		}
 	}
 
 	private void OnEnable()
@@ -55,33 +67,47 @@ public class PlayerSkillHandler : MonoBehaviour
 			return;
 		}
 
-		if (dice != 0)
-		{
-			Skills[slotIndex].Set(skillData, dice);
-		}
-		else
-		{
-			Skills[slotIndex].Set(skillData);
-		}
-
+		Skills[slotIndex].Set(skillData, dice);
 		SkillChanged.Invoke(slotIndex);
 	}
 
 	public void Execute(SkillSlot slot)
 	{
-		int index = ConvertSlotToIndex(slot);
-		SkillExecuteResult result = Skills[index].TryExecute();
+		int                index  = ConvertSlotToIndex(slot);
+		SkillExecuteResult result = Skills[index]?.TryExecute() ?? SkillExecuteResult.NotExist;
 
 		if (result == SkillExecuteResult.Success)
+		{
+			PlaySkillSFX(index);
 			SkillExecuted.Invoke(index);
+		}
+		else if (result == SkillExecuteResult.Reload)
+		{
+			SkillReloadStarted.Invoke(index);
+		}
 		else
+		{
 			SkillExecutionFailed.Invoke(index, result);
+		}
+	}
+
+	private void Update()
+	{
+		for (int i = 0; i < Skills.Length; i++)
+			Skills[i].Tick(Time.time);
 	}
 
 	private void ChangeSkillSet()
 	{
 		CurrentSkillSlot = CurrentSkillSlot == SkillSlot.Left ? SkillSlot.Right : SkillSlot.Left;
 		SkillSetChanged?.Invoke(CurrentSkillSlot);
+	}
+
+	private void PlaySkillSFX(int index)
+	{
+		if (_audioSource == null) return;
+		AudioClip clip = Skills[index]?.SkillDataSO?.SfxClip;
+		if (clip != null) _audioSource.PlayOneShot(clip);
 	}
 
 	private int ConvertSlotToIndex(SkillSlot slot)

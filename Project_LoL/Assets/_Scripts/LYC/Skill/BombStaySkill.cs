@@ -20,7 +20,7 @@ namespace _Scripts.LYC.Skill
 			var explosionParticle = ExplosionParticleSet.Get(executor.LastDiceResult);
 
 			var proj = Instantiate(ProjectilePrefab);
-			proj.Init(executor.MouseDir, executor.Position, executor, ProjectileEffect, explosionParticle);
+			proj.Init(executor.MouseDir, executor.Position, executor, ProjectileEffect, explosionParticle, hitEffect);
 		}
 
 	}

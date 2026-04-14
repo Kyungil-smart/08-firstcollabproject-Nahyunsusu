@@ -6,7 +6,7 @@ public class EnemyFSM : MonoBehaviour, Damageable
 {
     [Header("데이터")]
     public EnemyData data;
-    
+
     [Header("스킬 설정")]
     public MonsterSkillDataSO currentSkill;
 
@@ -14,10 +14,9 @@ public class EnemyFSM : MonoBehaviour, Damageable
     [SerializeField] private Animator _animatorRef;
 
     private Rigidbody2D _rigid;
-    private EnemyEffectManager _effectManager;
-    private EnemyPathfinder _pathfinder;
+    private MonsterEffectManager _effectManager;
     private Animator _animator;
-    
+
     public EnemyMeleeSkill meleeSkill { get; private set; }
     public EnemyRangedSkill rangedSkill { get; private set; }
 
@@ -29,9 +28,7 @@ public class EnemyFSM : MonoBehaviour, Damageable
     public Transform playerTransform { get; private set; }
     public Rigidbody2D rigid => _rigid;
     public Animator animator => _animator;
-    public EnemyPathfinder pathfinder => _pathfinder;
     public RoomNode currentRoom { get; private set; }
-    
     public Vector2 initialTargetPos { get; set; }
 
     public bool isPlayerInDetectRange =>
@@ -44,9 +41,8 @@ public class EnemyFSM : MonoBehaviour, Damageable
 
     private void Awake()
     {
-        _rigid         = GetComponent<Rigidbody2D>();
-        _effectManager = GetComponent<EnemyEffectManager>();
-        _pathfinder    = GetComponent<EnemyPathfinder>();
+        _rigid = GetComponent<Rigidbody2D>();
+        _effectManager = GetComponent<MonsterEffectManager>();
 
         meleeSkill = GetComponent<EnemyMeleeSkill>();
         rangedSkill = GetComponent<EnemyRangedSkill>();
@@ -89,31 +85,27 @@ public class EnemyFSM : MonoBehaviour, Damageable
 
         _currentState?.Exit();
         currentStateType = next;
-        _currentState    = _states[next];
+        _currentState = _states[next];
         _currentState.Enter();
     }
 
     public void SetRoom(RoomNode room)
     {
         currentRoom = room;
-        if (_pathfinder != null && room != null)
-            _pathfinder.InitGrid(room);
     }
 
     public void ResetEnemy()
     {
-        _currentHp       = data.maxHp;
+        _currentHp = data.maxHp;
         currentStateType = EnemyStateType.Idle;
         StopAllCoroutines();
 
         if (_rigid != null)
-        {
             _rigid.bodyType = RigidbodyType2D.Dynamic;
-        }
 
         if (_animator != null)
         {
-            _animator.SetBool("1_Move",  false);
+            _animator.SetBool("1_Move", false);
             _animator.SetBool("isDeath", false);
         }
     }

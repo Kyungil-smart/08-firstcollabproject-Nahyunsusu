@@ -6,20 +6,21 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
 {
 	public event Action<Vector2> Moved;
-	public event Action LeftSkillPerformed;
-	public event Action RightSkillPerformed;
-	public event Action Dashed;
-	public event Action SkillSetChanged;
+	public event Action          LeftSkillPerformed;
+	public event Action          RightSkillPerformed;
+	public event Action          Dashed;
+	public event Action          SkillSetChanged;
+	public event Action          Interacted;
 
 	[SerializeField] private float skillRepeatInterval = 0.1f;
 
 	private PlayerInputSystem _inputSystem;
-	private InputAction _moveAction;
+	private InputAction       _moveAction;
 
-	private Coroutine _leftSkillCoroutine;
-	private Coroutine _rightSkillCoroutine;
-	private Coroutine _moveCoroutine;
 	private YieldInstruction _skillRepeatYield;
+	private Coroutine        _leftSkillCoroutine;
+	private Coroutine        _rightSkillCoroutine;
+	private Coroutine        _moveCoroutine;
 
 	private bool _isMoving;
 
@@ -51,7 +52,7 @@ public class PlayerInputHandler : MonoBehaviour
 	private void InitInput()
 	{
 		_skillRepeatYield = new WaitForSeconds(skillRepeatInterval);
-		_inputSystem = new PlayerInputSystem();
+		_inputSystem      = new PlayerInputSystem();
 		_inputSystem.Enable();
 	}
 
@@ -60,13 +61,13 @@ public class PlayerInputHandler : MonoBehaviour
 		if (_inputSystem == null) return;
 
 		// Skills
-		_inputSystem.Player.LeftSkill.started += _ => StartSkillRepeat(ref _leftSkillCoroutine, OnLeftSkillPerformed);
-		_inputSystem.Player.LeftSkill.canceled += _ => StopRepeat(ref _leftSkillCoroutine);
-		_inputSystem.Player.RightSkill.started += _ => StartSkillRepeat(ref _rightSkillCoroutine, OnRightSkillPerformed);
+		_inputSystem.Player.LeftSkill.started   += _ => StartSkillRepeat(ref _leftSkillCoroutine, OnLeftSkillPerformed);
+		_inputSystem.Player.LeftSkill.canceled  += _ => StopRepeat(ref _leftSkillCoroutine);
+		_inputSystem.Player.RightSkill.started  += _ => StartSkillRepeat(ref _rightSkillCoroutine, OnRightSkillPerformed);
 		_inputSystem.Player.RightSkill.canceled += _ => StopRepeat(ref _rightSkillCoroutine);
 
 		// Movement
-		_moveAction = _inputSystem.Player.Move;
+		_moveAction           =  _inputSystem.Player.Move;
 		_moveAction.performed += _ => _isMoving = true;
 		_moveAction.canceled += _ =>
 		{
@@ -79,6 +80,8 @@ public class PlayerInputHandler : MonoBehaviour
 
 		// Skill Change
 		_inputSystem.Player.ChangeSkillGroup.performed += _ => SkillSetChanged?.Invoke();
+
+		_inputSystem.Player.Interact.performed += _ => Interacted?.Invoke();
 	}
 
 	private void DisposeAll()
@@ -110,6 +113,6 @@ public class PlayerInputHandler : MonoBehaviour
 		}
 	}
 
-	private void OnLeftSkillPerformed() => LeftSkillPerformed?.Invoke();
+	private void OnLeftSkillPerformed()  => LeftSkillPerformed?.Invoke();
 	private void OnRightSkillPerformed() => RightSkillPerformed?.Invoke();
 }

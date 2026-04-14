@@ -7,9 +7,9 @@ namespace _Scripts.LYC.States
 	{
 		private YieldInstruction _yield;
 
-		public HitState(PlayerFSM fsm, PlayerInputHandler input, float stunDuration) : base(fsm, input)
+		public HitState(PlayerFSM fsm, PlayerInputHandler input) : base(fsm, input)
 		{
-			_yield = new WaitForSeconds(stunDuration);
+			_yield = new WaitForSeconds(0.2f);
 		}
 
 		public override void Enter()

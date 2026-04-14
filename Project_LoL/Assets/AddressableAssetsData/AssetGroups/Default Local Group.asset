@@ -25,6 +25,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 26aaccd49b50cd84fb017e109db7f4d7
+    m_Address: LvUp_AS
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2e76ea4d4a36f1b44b635f92c0f5a1ff
     m_Address: s-40100001
     m_ReadOnly: 0
@@ -32,6 +37,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 378addabf44469a4983bc65d6f030542
     m_Address: s-40100005
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3da68bfdaf384904381a83a5fae96c85
+    m_Address: LvUp_Speed
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -60,6 +70,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6fea403cc9503e947906db544f2caf64
+    m_Address: LvUp_AD
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7944f3e605140774989a2676d7aab207
+    m_Address: LvUp_Critrate
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 81a8b7adc6fdbf44d9f0e35651ab8e57
+    m_Address: LvUp_CritDmg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8a8ed706ccf4a5642abfda24e5d13d16
     m_Address: s-40100008
     m_ReadOnly: 0
@@ -72,6 +97,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c4ebbe942630e3441b1145e371cf04e4
     m_Address: playerData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c857cfc8845ba7a4d9040a8b0f8f24ac
+    m_Address: LvUp_HP
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

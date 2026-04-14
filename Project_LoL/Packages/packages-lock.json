@@ -1,5 +1,21 @@
 {
   "dependencies": {
+    "com.coffee.ui-material-property-injector": {
+      "version": "https://github.com/mob-sakai/UIMaterialPropertyInjector.git?path=Packages/src",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      },
+      "hash": "68deae875ad6c5dff4f5c6a36c6b623eeec7ad50"
+    },
+    "com.nobi.roundedcorners": {
+      "version": "https://github.com/kirevdokimov/Unity-UI-Rounded-Corners.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "33135342e868201eb0d4cef821ecab90caca373e"
+    },
     "com.unity.2d.animation": {
       "version": "13.0.4",
       "depth": 0,

@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9441d7a44eb267c4caea17438a29ee03, type: 3}
   m_Name: 30000026
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData_SO
-  <EquipImage>k__BackingField: {fileID: 0}
+  <EquipImages>k__BackingField:
+    icon0: {fileID: 21300000, guid: 1a33148c31c44144ba806b4098e6962e, type: 3}
+    icon1: {fileID: 21300000, guid: 1a33148c31c44144ba806b4098e6962e, type: 3}
+    icon2: {fileID: 21300000, guid: 1a33148c31c44144ba806b4098e6962e, type: 3}
+    icon3: {fileID: 21300000, guid: 1a33148c31c44144ba806b4098e6962e, type: 3}
+    icon4: {fileID: 21300000, guid: 1a33148c31c44144ba806b4098e6962e, type: 3}
+    icon5: {fileID: 21300000, guid: 1a33148c31c44144ba806b4098e6962e, type: 3}
+    icon6: {fileID: 21300000, guid: 1a33148c31c44144ba806b4098e6962e, type: 3}
   <EquipID>k__BackingField: 30000026
   <EquipText>k__BackingField: "\uACF5\uACA9\uB825 +100, \uACF5\uACA9\uC18D\uB3C4
     -70, \uC774\uB3D9\uC18D\uB3C4 -20"
@@ -20,7 +27,7 @@ MonoBehaviour:
   <EquipChance1>k__BackingField: 150
   <EquipChance2>k__BackingField: 150
   <EquipChance3>k__BackingField: 150
-  <EquipPrice>k__BackingField: 10
+  <EquipPrice>k__BackingField: 150
   <EquipHP>k__BackingField: 0
   <EquipAttackDamage>k__BackingField: 100
   <EquipAttackSpeed>k__BackingField: -70

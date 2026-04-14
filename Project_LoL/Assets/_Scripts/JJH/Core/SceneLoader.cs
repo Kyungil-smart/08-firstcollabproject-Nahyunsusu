@@ -1,0 +1,73 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Video;
+
+public static class SceneLoader
+{
+    private static class SceneName
+    {
+        public const string MainMenu = "TitleUI";
+        public const string Lobby = "Lobby";
+        public const string Tutorial = "Tutorial";
+        public const string Stage1 = "Stage1";
+        public const string Stage2 = "Stage2";
+        public const string Stage3 = "Stage3";
+        public const string FinalBoss = "FinalBoss";
+        public const string Ending = "EndingGameOver";
+    }
+
+    public static void LoadMainMenu()
+    {
+        SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.MainMenu);
+    }
+
+    public static void LoadLobby()
+    {
+        SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Lobby);
+    }
+
+    public static void LoadLobbyWithCutscene(VideoClip clip)
+    {
+        SceneTransitionManager.Instance.LoadSceneWithCutscene(SceneName.Lobby, clip);
+    }
+
+    public static void LoadTutorial()
+    {
+        SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Tutorial);
+    }
+
+    public static void LoadStage(int stage)
+    {
+        string name = stage switch
+        {
+            1 => SceneName.Stage1,
+            2 => SceneName.Stage2,
+            3 => SceneName.Stage3,
+            _ => SceneName.Stage1
+        };
+        SceneTransitionManager.Instance.LoadSceneWithTransition(name);
+    }
+
+    public static void LoadFinalBoss()
+    {
+        SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.FinalBoss);
+    }
+
+    public static void LoadEnding()
+    {
+        SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Ending);
+    }
+
+    public static void LoadNext()
+    {
+        string current = SceneManager.GetActiveScene().name;
+        switch (current)
+        {
+            case SceneName.Lobby:     SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Stage1); break;
+            case SceneName.Stage1:    SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Stage2); break;
+            case SceneName.Stage2:    SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Stage3); break;
+            case SceneName.Stage3:    SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.FinalBoss); break;
+            case SceneName.FinalBoss: SceneTransitionManager.Instance.LoadSceneWithTransition(SceneName.Ending); break;
+        }
+    }
+}

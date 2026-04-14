@@ -1926,6 +1926,7 @@ GameObject:
   - component: {fileID: 6266106702520102241}
   - component: {fileID: 6540334173693460483}
   - component: {fileID: 3419647106724566544}
+  - component: {fileID: 1611611619547363351}
   m_Layer: 7
   m_Name: Enemy5
   m_TagString: Enemy
@@ -2042,9 +2043,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 590217a9fddda91448bef5b90d528eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFSM
-  data: {fileID: 11400000, guid: d7d660d6eeb33454ea6d124d8b8b5d05, type: 2}
+  data: {fileID: 11400000, guid: 08a56200836e8814db587d3ecade4777, type: 2}
   currentSkill: {fileID: 11400000, guid: ab13c8889c3f1414e8cfa31541061d81, type: 2}
   _animatorRef: {fileID: 3084664909461348891}
+--- !u!114 &1611611619547363351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760341192496350349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a12786234e2834bad2c2e390743a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyEffectManager
 --- !u!1 &1792557896735801133
 GameObject:
   m_ObjectHideFlags: 0

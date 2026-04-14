@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59677af5323ac7744b6a508cf5c4d240, type: 3}
+  m_Name: 20213001
+  m_EditorClassIdentifier: Assembly-CSharp::BossData
+  monsterId: 20213001
+  maxHp: 2000
+  attackDamage: 30
+  attackSpeed: 2
+  moveSpeed: 3
+  detectRange: 17
+  attackRange: 20
+  goldReward: 200
+  expReward: 50
+  chestId: 0
+  skills:
+  - {fileID: 11400000, guid: df17a2c830d0a854488e3da0e831f519, type: 2}
+  - {fileID: 11400000, guid: 92bf97b47daaae84b8b2c407d0a39743, type: 2}

@@ -25,18 +25,24 @@ public abstract class SkillDataSO : ScriptableObject
 		[Header("Dice 6")]
 		public Sprite icon6;
 
-		public Sprite Get(int dice) => dice switch
+		public Sprite Get(int dice = 0) => dice switch
 		{
 			1 => icon1,
 			2 => icon2,
 			3 => icon3,
 			4 => icon4,
 			5 => icon5,
-			_ => icon6
+			6 => icon6,
+			_ => icon1
 		};
 	}
 
-	public SkillData Get(int dice)
+	/// <summary>
+	/// SKillDataSO의 원본 데이터를 가져올 때 실행하는 메소드입니다.
+	/// </summary>
+	/// <param name="dice">0일 경우 dice 1 기준 데이터 복사 및 DiceEffect 적용하지 않음</param>
+	/// <returns>SkillDataSO에서 값을 복사하여 SkillData 클래스로 반환</returns>
+	public SkillData Get(int dice = 0)
 	{
 		SkillData data = new()
 		{
@@ -47,6 +53,7 @@ public abstract class SkillDataSO : ScriptableObject
 			Damage = damage,
 			DamageRangeX = damageRangeX,
 			DamageRangeY = damageRangeY,
+			ProjectileScale = projectileScale,
 			ProjectileSpeed = projectileSpeed,
 			Range = range,
 			Delay = delay,
@@ -68,6 +75,7 @@ public abstract class SkillDataSO : ScriptableObject
 	[SerializeField] protected int damage;
 	[SerializeField] protected int damageRangeX;
 	[SerializeField] protected int damageRangeY;
+	[SerializeField] protected float projectileScale = 1f;
 	[SerializeField] protected float projectileSpeed;
 	[SerializeField] protected int range;
 	[SerializeField] protected float delay;
@@ -79,13 +87,20 @@ public abstract class SkillDataSO : ScriptableObject
 	[SerializeField]
 	protected SkillDiceEffectGroup diceEffects;
 
+	[SerializeField]
+	protected ParticleSystem hitEffect;
+
+	[Header("SFX")]
+	[SerializeField] private AudioClip _sfxClip;
+	public AudioClip SfxClip => _sfxClip;
+
 	public abstract void Use(SkillExecutor executor);
 
-	protected void SetEffect(SkillData data, int dice)
+	protected void SetEffect(SkillData data, int dice = 0)
 	{
 		var list = diceEffects.Get(dice);
 
-		if (list != null && list.Count > 0)
+		if (list is { Count: > 0 } && dice != 0)
 		{
 			string effectDescription = "스킬 강화 ";
 
@@ -115,7 +130,7 @@ public abstract class SkillDataSO : ScriptableObject
 						data.MaxUseCount += (int)effect.amount;
 						break;
 					case SkillBonusType.Cooldown:
-						data.Delay += effect.amount;
+						data.Cooldown += (int)effect.amount;
 						break;
 					default:
 						throw new System.ArgumentOutOfRangeException();

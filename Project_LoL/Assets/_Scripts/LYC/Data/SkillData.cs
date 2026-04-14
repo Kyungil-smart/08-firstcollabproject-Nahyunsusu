@@ -10,10 +10,14 @@ public class SkillData
 	public int Damage;
 	public int DamageRangeX;
 	public int DamageRangeY;
+	public float ProjectileScale;
 	public float ProjectileSpeed;
 	public int Range;
 	public float Delay;
 	public int MaxUseCount;
 	public int Cooldown;
 	public int Price;
+
+	public int CurrentAmmo;
+	public int CurrentDice;
 }

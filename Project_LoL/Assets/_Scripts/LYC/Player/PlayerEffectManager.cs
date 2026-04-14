@@ -1,10 +1,10 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 
 public class PlayerEffectManager : MonoBehaviour
 {
 	[SerializeField] private ParticleSystem _dashParticle;
+	[SerializeField] private Animator _hitAnimator;
 
 	private PlayerFSM _fsm;
 	private SpriteRenderer _playerRenderer;
@@ -17,6 +17,7 @@ public class PlayerEffectManager : MonoBehaviour
 	private readonly int _fMoveY = Animator.StringToHash("MoveY");
 	private readonly int _bIsMoving = Animator.StringToHash("IsMoving");
 	private readonly int _tAttack = Animator.StringToHash("Attack");
+	private readonly int _tOnHit = Animator.StringToHash("OnHit");
 
 	private void Awake()
 	{
@@ -25,7 +26,7 @@ public class PlayerEffectManager : MonoBehaviour
 		_animator = GetComponent<Animator>();
 	}
 
-	private void Update()
+	private void LateUpdate()
 	{
 		_animator.SetFloat(_fFacingX, _fsm.FacingDir.x);
 		_animator.SetFloat(_fFacingY, _fsm.FacingDir.y);
@@ -36,8 +37,9 @@ public class PlayerEffectManager : MonoBehaviour
 
 	public void PlayHitEffect()
 	{
-		_playerRenderer.color = new Color(0.5f, 0, 0, 1);
+		_playerRenderer.color = new Color(1f, 0.8f, 0.8f, 1);
 		_playerRenderer.DOColor(Color.white, _actionEffectDuration).SetEase(Ease.InCubic);
+		_hitAnimator.SetTrigger(_tOnHit);
 	}
 
 	public void PlayDashEffect()
@@ -53,5 +55,10 @@ public class PlayerEffectManager : MonoBehaviour
 
 		_playerRenderer.transform.localScale = Vector3.one * 0.93f;
 		_playerRenderer.transform.DOScale(Vector3.one, _actionEffectDuration).SetEase(Ease.InCubic);
+	}
+
+	public void TriggerAttack()
+	{
+		_animator.SetTrigger(_tAttack);
 	}
 }

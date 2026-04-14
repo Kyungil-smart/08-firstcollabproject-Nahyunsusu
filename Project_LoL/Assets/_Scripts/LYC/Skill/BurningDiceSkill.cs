@@ -14,7 +14,7 @@ namespace _Scripts.LYC.Skill
 
 		public override void Use(SkillExecutor executor)
 		{
-			Instantiate(Hitbox).Init(executor.MouseDir, executor.Position, executor, 0.2f, Effect);
+			Instantiate(Hitbox).Init(executor.MouseDir, executor.Position, executor, 0.2f, Effect, hitEffect);
 		}
 	}
 }

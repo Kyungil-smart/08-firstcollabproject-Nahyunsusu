@@ -1,16 +1,19 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class BossDieState : BossStateBase
 {
-    private const float DEFAULT_DEATH_DURATION = 2.0f; 
+    public static event Action OnBossDied;
+
+    private const float _defaultDeathDuration = 2.0f;
 
     public BossDieState(BossFSM fsm) : base(fsm) { }
 
     public override void Enter()
     {
         _fsm.rigid.linearVelocity = Vector2.zero;
-        
+
         _fsm.rigid.bodyType = RigidbodyType2D.Kinematic;
 
         _fsm.animator?.SetTrigger("4_Death");
@@ -18,8 +21,10 @@ public class BossDieState : BossStateBase
 
         if (RoomClearManager.Instance != null)
         {
-            RoomClearManager.Instance.OnEnemyDied(null); 
+            RoomClearManager.Instance.OnEnemyDied(null, _fsm.data.goldReward, _fsm.data.expReward);
         }
+
+        OnBossDied?.Invoke();
 
         _fsm.StartCoroutine(DieRoutine());
     }
@@ -32,15 +37,15 @@ public class BossDieState : BossStateBase
         
         yield return new WaitForSeconds(deathAnimDuration);
 
-        Object.Destroy(_fsm.gameObject, 0.5f);
+        GameObject.Destroy(_fsm.gameObject);
     }
 
     private float GetDeathAnimLength()
     {
-        if (_fsm.animator == null) return DEFAULT_DEATH_DURATION;
+        if (_fsm.animator == null) return _defaultDeathDuration;
 
         RuntimeAnimatorController rac = _fsm.animator.runtimeAnimatorController;
-        if (rac == null) return DEFAULT_DEATH_DURATION;
+        if (rac == null) return _defaultDeathDuration;
 
         foreach (AnimationClip clip in rac.animationClips)
         {
@@ -51,7 +56,7 @@ public class BossDieState : BossStateBase
             }
         }
 
-        return DEFAULT_DEATH_DURATION;
+        return _defaultDeathDuration;
     }
 
     public override void Update() { }

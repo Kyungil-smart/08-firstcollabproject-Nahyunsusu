@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5421867478752502346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1216409812569560758}
+  - component: {fileID: 2465758037810879648}
+  - component: {fileID: 1533256220137991120}
+  - component: {fileID: 9056271599888136448}
+  - component: {fileID: 1757129024930582142}
+  - component: {fileID: 6061031565934751202}
+  - component: {fileID: 4578576217623908542}
+  m_Layer: 0
+  m_Name: MapManager_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1216409812569560758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421867478752502346}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2465758037810879648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421867478752502346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccdb7a308ce98584a9d019f3c61f3545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapManager
+  _roomPool: {fileID: 11400000, guid: 578ce0a5314d35548b582a5d65118092, type: 2}
+  _planner: {fileID: 1533256220137991120}
+  _tileGenerator: {fileID: 9056271599888136448}
+  _doorController: {fileID: 1757129024930582142}
+  _objectPool: {fileID: 6061031565934751202}
+  _spawnedPrefabRoot: {fileID: 0}
+  _roomSpacing: 30
+  _miniMapUI: {fileID: 7094166515436158284, guid: 742df590f129c014d976d7d523bfcfa9, type: 3}
+--- !u!114 &1533256220137991120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421867478752502346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec5f19cfaffa72498d11e377691bffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConnectionPlanner
+  _bendClearance: 10
+  _roomClearance: 5
+  _bendStepCount: 5
+  _corridorWidthMin: 2
+  _corridorWidthMax: 6
+  _bossCorridorWidth: 5
+--- !u!114 &9056271599888136448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421867478752502346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fccdebb3f92dd9140a03108cf666579f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileMapGenerator_Grid
+  _floorTilemap: {fileID: 0}
+  _corridorTilemap: {fileID: 0}
+  _wallTilemap: {fileID: 0}
+  _floorTile: {fileID: 0}
+  _corridorTile: {fileID: 0}
+  _wallTile: {fileID: 0}
+  _tileRoot: {fileID: 0}
+--- !u!114 &1757129024930582142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421867478752502346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6921aa01d068ad4f8e1a6d21fe7d3f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorController
+  _objectPool: {fileID: 6061031565934751202}
+  _doorPrefab: {fileID: 391623070118702739, guid: f7a7022b352f1ff43b133cda1fd42254, type: 3}
+  _doorRoot: {fileID: 0}
+--- !u!114 &6061031565934751202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421867478752502346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21199b2aac8d89c42b9bd4bc4078445b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapObjectPool
+  _defaultPrewarmCount: 20
+--- !u!114 &4578576217623908542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421867478752502346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d5cda6cdd3d65428f21a87b91a46b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomCombatHandler
+  _wallMargin: 1
+  _doorExcludeRadius: 3
+  _monsterSpacing: 2
+  _tileGenerator: {fileID: 9056271599888136448}
+  _doorController: {fileID: 1757129024930582142}

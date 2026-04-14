@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class NegotiationSystem
 {
-    [SerializeField] private float range; 
+    [SerializeField] private float range;
     public bool SetTable()
     {
         return DiceSystem.instance.RollDice() > 3;
